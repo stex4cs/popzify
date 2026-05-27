@@ -3168,6 +3168,33 @@ input:checked + .slider:before {
     border: 0;
 }
 
+/* === Featured service card (Video Production) === */
+.service-card-featured {
+    position: relative;
+    border: 2px solid rgba(108, 92, 231, 0.3);
+}
+.service-card-featured::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6c5ce7, #ec4899);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+.service-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #6c5ce7, #ec4899);
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
 /* ===================================================================
    Partners section (theme-adaptive, purple/pink akcenti)
    =================================================================== */
