@@ -21,6 +21,9 @@ const translations = {
         uiuxDesignDesc: "User-centered design focused on creating intuitive and engaging experiences.",
         digitalStrategy: "Digital Strategy",
         digitalStrategyDesc: "Comprehensive analysis and planning to maximize your digital presence.",
+        videoProduction: "Video Production",
+        videoProductionDesc: "Short-form content, music videos, live streaming (incl. IRL), podcasts and aerial work with gimbal & FPV drones. Pro gear: Sony FX3, DJI Avata 2, DJI Mini 5 Pro.",
+        videoSpecialty: "Our Specialty",
         projectsTitle: "Featured <span class='accent-text'>Projects</span>",
         projectsDesc: "Explore our latest work and success stories",
         all: "All",
@@ -167,6 +170,9 @@ saveSettings: "Save Settings"
         uiuxDesignDesc: "Dizajn usmeren na korisnika fokusiran na stvaranje intuitivnih i privlačnih iskustava.",
         digitalStrategy: "Digitalna strategija",
         digitalStrategyDesc: "Sveobuhvatna analiza i planiranje za maksimiziranje vašeg digitalnog prisustva.",
+        videoProduction: "Video produkcija",
+        videoProductionDesc: "Short-form sadržaj, spotovi, strimovanje (uključujući IRL), podkasti i snimci iz vazduha sa gimbal i FPV dronovima. Pro oprema: Sony FX3, DJI Avata 2, DJI Mini 5 Pro.",
+        videoSpecialty: "Specijalnost",
         projectsTitle: "Izdvojeni <span class='accent-text'>projekti</span>",
         projectsDesc: "Istražite naše najnovije radove i uspešne priče",
         all: "Sve",
@@ -407,6 +413,11 @@ function updateLanguage(lang) {
                     
                     if (serviceCards[3].querySelector('h3')) serviceCards[3].querySelector('h3').textContent = translations[lang].digitalStrategy;
                     if (serviceCards[3].querySelector('p')) serviceCards[3].querySelector('p').textContent = translations[lang].digitalStrategyDesc;
+                }
+                if (serviceCards[4]) {
+                    if (serviceCards[4].querySelector('h3')) serviceCards[4].querySelector('h3').textContent = translations[lang].videoProduction;
+                    if (serviceCards[4].querySelector('p')) serviceCards[4].querySelector('p').textContent = translations[lang].videoProductionDesc;
+                    if (serviceCards[4].querySelector('.service-badge')) serviceCards[4].querySelector('.service-badge').textContent = translations[lang].videoSpecialty;
                 }
             }
         } catch (error) {
