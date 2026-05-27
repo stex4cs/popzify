@@ -3169,12 +3169,17 @@ input:checked + .slider:before {
 }
 
 /* ===================================================================
-   Partners section
+   Partners section (theme-adaptive, purple/pink akcenti)
    =================================================================== */
 .partners {
     padding: 100px 0;
-    background-color: #0a0a0a;
+    background-color: var(--bg-color, #ffffff);
+    transition: background-color 0.3s ease;
     position: relative;
+}
+
+.dark-mode .partners {
+    background-color: #0a0a0a;
 }
 
 .partners-header {
@@ -3184,7 +3189,7 @@ input:checked + .slider:before {
 
 .partners-eyebrow {
     display: block;
-    color: #22c55e;
+    color: #6c5ce7;
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.4em;
@@ -3193,7 +3198,7 @@ input:checked + .slider:before {
 }
 
 .partners-heading {
-    color: #ffffff;
+    color: #1a1a1a;
     font-size: 4rem;
     font-weight: 800;
     letter-spacing: 0.04em;
@@ -3202,6 +3207,11 @@ input:checked + .slider:before {
     padding-bottom: 28px;
     position: relative;
     display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .partners-heading {
+    color: #ffffff;
 }
 
 .partners-heading::after {
@@ -3212,7 +3222,7 @@ input:checked + .slider:before {
     transform: translateX(-50%);
     width: 130px;
     height: 4px;
-    background: linear-gradient(90deg, #22c55e 0%, #eab308 100%);
+    background: linear-gradient(90deg, #6c5ce7 0%, #ec4899 100%);
     border-radius: 2px;
 }
 
@@ -3229,17 +3239,29 @@ input:checked + .slider:before {
     justify-content: center;
     height: 160px;
     padding: 30px 24px;
-    background-color: #161616;
+    background-color: #f5f5f5;
     border-radius: 14px;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark-mode .partner-item {
+    background-color: #161616;
+    border-color: rgba(255, 255, 255, 0.04);
 }
 
 .partner-item:hover {
-    background-color: #1f1f1f;
+    background-color: #ececec;
     transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.15);
+    border-color: rgba(108, 92, 231, 0.2);
+}
+
+.dark-mode .partner-item:hover {
+    background-color: #1f1f1f;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(168, 85, 247, 0.2);
 }
 
 .partner-item img {
