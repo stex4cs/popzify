@@ -3194,6 +3194,11 @@ input:checked + .slider:before {
     margin-bottom: 14px;
 }
 
+/* Servisne landing stranice (NE koriste .services jer ga main.js prepisuje) */
+.services-page {
+    padding: 100px 0;
+}
+
 /* CTA link u service-card -> linkuje na detaljnu stranicu */
 .card-cta-link {
     display: inline-block;
