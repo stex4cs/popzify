@@ -3184,7 +3184,7 @@ input:checked + .slider:before {
 
 .partners-eyebrow {
     display: block;
-    color: #e63946;
+    color: #22c55e;
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.4em;
@@ -3212,7 +3212,7 @@ input:checked + .slider:before {
     transform: translateX(-50%);
     width: 130px;
     height: 4px;
-    background: linear-gradient(90deg, #e63946 0%, #ff8c00 100%);
+    background: linear-gradient(90deg, #22c55e 0%, #eab308 100%);
     border-radius: 2px;
 }
 
