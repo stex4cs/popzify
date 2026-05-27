@@ -14,31 +14,31 @@
 
   <!-- Portfolio -->
   <url>
-    <loc>https://popzify.com/projects.html</loc>
+    <loc>https://popzify.com/projects</loc>
     <lastmod>2025-04-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://popzify.com/project-correctscore.html</loc>
+    <loc>https://popzify.com/project-correctscore</loc>
     <lastmod>2025-04-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://popzify.com/project-fitlife.html</loc>
+    <loc>https://popzify.com/project-fitlife</loc>
     <lastmod>2025-04-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://popzify.com/project-artisanmarket.html</loc>
+    <loc>https://popzify.com/project-artisanmarket</loc>
     <lastmod>2025-04-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://popzify.com/project-fintrack.html</loc>
+    <loc>https://popzify.com/project-fintrack</loc>
     <lastmod>2025-04-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
@@ -46,13 +46,13 @@
 
   <!-- Team/Author Pages -->
   <url>
-    <loc>https://popzify.com/ivanpopovic.html</loc>
+    <loc>https://popzify.com/ivanpopovic</loc>
     <lastmod>2025-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://popzify.com/stefanpopovic.html</loc>
+    <loc>https://popzify.com/stefanpopovic</loc>
     <lastmod>2025-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -60,25 +60,25 @@
 
   <!-- Blog Articles - Ivan's Content -->
   <url>
-    <loc>https://popzify.com/videoprodukcija.html</loc>
+    <loc>https://popzify.com/videoprodukcija</loc>
     <lastmod>2025-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://popzify.com/alatiitehnike.html</loc>
+    <loc>https://popzify.com/alatiitehnike</loc>
     <lastmod>2025-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://popzify.com/audioprodukcija.html</loc>
+    <loc>https://popzify.com/audioprodukcija</loc>
     <lastmod>2025-02-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://popzify.com/digitalnimarketing.html</loc>
+    <loc>https://popzify.com/digitalnimarketing</loc>
     <lastmod>2025-02-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -86,25 +86,25 @@
 
   <!-- Blog Articles - Stefan's Content -->
   <url>
-    <loc>https://popzify.com/programiranje.html</loc>
+    <loc>https://popzify.com/programiranje</loc>
     <lastmod>2025-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://popzify.com/ecommerce.html</loc>
+    <loc>https://popzify.com/ecommerce</loc>
     <lastmod>2025-03-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://popzify.com/projectmenager.html</loc>
+    <loc>https://popzify.com/projectmenager</loc>
     <lastmod>2025-02-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://popzify.com/sales.html</loc>
+    <loc>https://popzify.com/sales</loc>
     <lastmod>2025-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -112,7 +112,7 @@
 
   <!-- Legal Pages -->
   <url>
-    <loc>https://popzify.com/privacypolicy.html</loc>
+    <loc>https://popzify.com/privacypolicy</loc>
     <lastmod>2025-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>

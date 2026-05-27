@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kako React.js i Next.js transformišu razvoj modernih web aplikacija">
+    <meta name="description" content="React.js i Next.js menjaju način gradnje modernih web aplikacija – ključne prednosti, primeri iz prakse i kada je vreme za prelazak na njih.">
+    <meta name="robots" content="index, follow">
     <meta name="keywords" content="React, Next.js, web razvoj, JavaScript, server-side rendering, SPA, frontned framework">
     <meta name="author" content="Stefan Popović">
-    <title>Kako React.js i Next.js transformišu razvoj modernih web aplikacija | Stefan Popović Blog</title>
+    <title>React.js i Next.js: modernizacija web aplikacija | Popzify</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,10 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css">
 
     <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Kako React.js i Next.js transformišu razvoj modernih web aplikacija | Stefan Popović Blog">
+    <meta property="og:title" content="React.js i Next.js: modernizacija web aplikacija | Popzify">
     <meta property="og:description" content="Saznajte kako React.js i Next.js redefinišu način na koji razvijamo web aplikacije i pomažu developerima da stvaraju brže i efikasnije aplikacije.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://popzify.com/programiranje.html">
+    <meta property="og:url" content="https://popzify.com/programiranje">
     <meta property="og:image" content="https://popzify.com/assets/images/react-main.webp">
     <!-- Detect JS -->
     <script>
@@ -30,7 +31,7 @@
       "@type": "BlogPosting",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://popzify.com/programiranje.html"
+        "@id": "https://popzify.com/programiranje"
       },
       "headline": "Kako React.js i Next.js transformišu razvoj modernih web aplikacija",
       "image": "https://popzify.com/assets/images/react-main.webp",
@@ -51,33 +52,33 @@
       "description": "Kako React.js i Next.js transformišu razvoj modernih web aplikacija."
     }
     </script>
-    <link rel="canonical" href="https://popzify.com/programiranje.html">
+    <link rel="canonical" href="https://popzify.com/programiranje">
 </head>
 <body>
 <header>
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><span>Pop</span>zify</a>
+                <a href="/"><span>Pop</span>zify</a>
             </div>
             <div class="nav-menu">
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="sr-content">Početna</a>
-                        <a href="index.html" class="en-content" style="display:none">Home</a></li>
-                    <li><a href="index.html#services" class="sr-content">Usluge</a>
-                        <a href="index.html#services" class="en-content" style="display:none">Services</a></li>
-                    <li><a href="index.html#team" class="sr-content">Naš tim</a>
-                        <a href="index.html#team" class="en-content" style="display:none">Our Team</a></li>
-                    <li><a href="index.html#projects" class="sr-content">Projekti</a>
-                        <a href="index.html#projects" class="en-content" style="display:none">Projects</a></li>
-                    <li><a href="index.html#about" class="sr-content">O nama</a>
-                        <a href="index.html#about" class="en-content" style="display:none">About Us</a></li>
-                    <li><a href="index.html#faq" class="sr-content">FAQ</a>
-                        <a href="index.html#faq" class="en-content" style="display:none">FAQ</a></li>
-                    <li><a href="stefanpopovic.html" class="active sr-content">Blog</a>
-                        <a href="stefanpopovic.html" class="active en-content" style="display:none">Blog</a></li>
-                    <li><a href="index.html#contact" class="sr-content">Kontakt</a>
-                        <a href="index.html#contact" class="en-content" style="display:none">Contact</a></li>
+                    <li><a href="/" class="sr-content">Početna</a>
+                        <a href="/" class="en-content" style="display:none">Home</a></li>
+                    <li><a href="/#services" class="sr-content">Usluge</a>
+                        <a href="/#services" class="en-content" style="display:none">Services</a></li>
+                    <li><a href="/#team" class="sr-content">Naš tim</a>
+                        <a href="/#team" class="en-content" style="display:none">Our Team</a></li>
+                    <li><a href="/#projects" class="sr-content">Projekti</a>
+                        <a href="/#projects" class="en-content" style="display:none">Projects</a></li>
+                    <li><a href="/#about" class="sr-content">O nama</a>
+                        <a href="/#about" class="en-content" style="display:none">About Us</a></li>
+                    <li><a href="/#faq" class="sr-content">FAQ</a>
+                        <a href="/#faq" class="en-content" style="display:none">FAQ</a></li>
+                    <li><a href="stefanpopovic" class="active sr-content">Blog</a>
+                        <a href="stefanpopovic" class="active en-content" style="display:none">Blog</a></li>
+                    <li><a href="/#contact" class="sr-content">Kontakt</a>
+                        <a href="/#contact" class="en-content" style="display:none">Contact</a></li>
                 </ul>
                 <div class="lang-selector" data-lang="sr">
                     <button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
@@ -446,11 +447,11 @@ export default function ProductImage({ product }) {
                     </div>
 
                     <div class="post-nav">
-                        <a href="ecommerce.html" class="post-nav-prev">
+                        <a href="ecommerce" class="post-nav-prev">
                             <span class="nav-label"><i class="fas fa-arrow-left"></i> Prethodni članak</span>
                             <span class="nav-title">7 strategija za povećanje stope konverzije u e-commerce</span>
                         </a>
-                        <a href="projectmenager.html" class="post-nav-next">
+                        <a href="projectmenager" class="post-nav-next">
                             <span class="nav-label">Sledeći članak <i class="fas fa-arrow-right"></i></span>
                             <span class="nav-title">Od korisničkog zahteva do produkcije: Upravljanje projektima u agile okruženju</span>
                         </a>
@@ -793,11 +794,11 @@ export default function ProductImage({ product }) {
                     </div>
 
                     <div class="post-nav">
-                        <a href="ecommerce.html" class="post-nav-prev">
+                        <a href="ecommerce" class="post-nav-prev">
                             <span class="nav-label"><i class="fas fa-arrow-left"></i> Previous Article</span>
                             <span class="nav-title">7 Strategies to Increase Conversion Rates in E-commerce</span>
                         </a>
-                        <a href="projectmenager.html" class="post-nav-next">
+                        <a href="projectmenager" class="post-nav-next">
                             <span class="nav-label">Next Article <i class="fas fa-arrow-right"></i></span>
                             <span class="nav-title">From User Request to Production: Project Management in an Agile Environment</span>
                         </a>
@@ -1003,7 +1004,7 @@ export default function ProductImage({ product }) {
     <div class="container">
         <div class="footer-content">
             <div class="footer-logo">
-                <a href="index.html"><span>Pop</span>zify</a>
+                <a href="/"><span>Pop</span>zify</a>
                 <p>Modern Web & Mobile Solutions</p>
             </div>
             <div class="footer-links">
@@ -1011,8 +1012,8 @@ export default function ProductImage({ product }) {
                     <h3 class="sr-content">Blog</h3>
                     <h3 class="en-content" style="display:none">Blog</h3>
                     <ul>
-                        <li><a href="ivanpopovic.html">Ivan Popović</a></li>
-                        <li><a href="stefanpopovic.html">Stefan Popović</a></li>
+                        <li><a href="ivanpopovic">Ivan Popović</a></li>
+                        <li><a href="stefanpopovic">Stefan Popović</a></li>
                         <li>
                             <a href="#" class="sr-content">Kategorije</a>
                             <a href="#" class="en-content" style="display:none">Categories</a>
@@ -1028,20 +1029,20 @@ export default function ProductImage({ product }) {
                     <h3 class="en-content" style="display:none">Links</h3>
                     <ul>
                         <li>
-                            <a href="index.html#about" class="sr-content">O nama</a>
-                            <a href="index.html#about" class="en-content" style="display:none">About Us</a>
+                            <a href="/#about" class="sr-content">O nama</a>
+                            <a href="/#about" class="en-content" style="display:none">About Us</a>
                         </li>
                         <li>
-                            <a href="index.html#services" class="sr-content">Usluge</a>
-                            <a href="index.html#services" class="en-content" style="display:none">Services</a>
+                            <a href="/#services" class="sr-content">Usluge</a>
+                            <a href="/#services" class="en-content" style="display:none">Services</a>
                         </li>
                         <li>
-                            <a href="index.html#projects" class="sr-content">Portfolio</a>
-                            <a href="index.html#projects" class="en-content" style="display:none">Portfolio</a>
+                            <a href="/#projects" class="sr-content">Portfolio</a>
+                            <a href="/#projects" class="en-content" style="display:none">Portfolio</a>
                         </li>
                         <li>
-                            <a href="index.html#contact" class="sr-content">Kontakt</a>
-                            <a href="index.html#contact" class="en-content" style="display:none">Contact</a>
+                            <a href="/#contact" class="sr-content">Kontakt</a>
+                            <a href="/#contact" class="en-content" style="display:none">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -1946,7 +1947,7 @@ export default function ProductImage({ product }) {
         
         // Store titles for both languages
         const titles = {
-            'sr': "Kako React.js i Next.js transformišu razvoj modernih web aplikacija | Stefan Popović Blog",
+            'sr': "React.js i Next.js: modernizacija web aplikacija | Popzify",
             'en': "How React.js and Next.js Transform Modern Web Application Development | Stefan Popović Blog"
         };
         
