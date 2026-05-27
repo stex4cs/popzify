@@ -685,6 +685,12 @@ function updateBlogPageTranslations(lang) {
 
 // Initialize interactive elements when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Dinamicka godina: azurira sve <span data-year> elemente na trenutnu godinu
+    const currentYear = new Date().getFullYear();
+    document.querySelectorAll('[data-year]').forEach(el => {
+        el.textContent = currentYear;
+    });
+
     // Add loading="lazy" attribute to images for better performance
     document.querySelectorAll('img:not([loading])').forEach(img => {
         img.setAttribute('loading', 'lazy');
