@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="sr" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Tags - Serbian -->
+    <meta name="description" lang="sr" content="Stefan Popović - Blog o programiranju i prodajnim strategijama. Saveti, tutorijali i uvidi u web razvoj, React, Next.js i e-commerce.">
+    <meta name="keywords" lang="sr" content="web razvoj, programiranje, prodajne strategije, e-commerce, React, Next.js, Stefan Popović, blog, Popzify">
+    <meta name="author" content="Stefan Popović">
+    <title class="sr-content">Stefan Popović - Blog | Popzify</title>
+    <!-- Meta Tags - English -->
+    <meta name="description" lang="en" content="Stefan Popović - Blog about programming and sales strategies. Tips, tutorials, and insights into web development, React, Next.js, and e-commerce.">
+    <meta name="keywords" lang="en" content="web development, programming, sales strategies, e-commerce, React, Next.js, Stefan Popović, blog, Popzify">
+    <title class="en-content" style="display:none">Stefan Popović - Blog | Popzify</title>
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Stefan Popović - Blog | Programming & Sales Strategies | Popzify">
+    <meta property="og:description" content="Explore the latest trends and insights in web development, React, Next.js, e-commerce optimization, and sales strategies by Stefan Popović.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://popzify.com/stefanpopovic.html">
+    <meta property="og:image" content="https://popzify.com/assets/images/stefan.webp"> <!-- Slika autora -->
+    <meta property="profile:first_name" content="Stefan">
+    <meta property="profile:last_name" content="Popović">
+    <meta property="profile:username" content="stefanpopovic_popzify"> <!-- Primer -->
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://popzify.com/stefanpopovic.html">
+    <meta name="twitter:title" content="Stefan Popović - Blog | Programming & Sales Strategies | Popzify">
+    <meta name="twitter:description" content="Insights on web development, React, Next.js, and sales strategies by Stefan Popović.">
+    <meta name="twitter:image" content="https://popzify.com/assets/images/stefan.webp">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://popzify.com/stefanpopovic.html">
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Removed blog-styles.css as styles are now in stefanpopovic.html itself -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" integrity="sha512-vswe+cgvic/XBoF1OcM/TeJ2FW0OofqAVdCZiEYkd6dwGXTwceytIYzcPL2zaQrcwM6dLKYSCHA1XYXFFBOWrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon Tags -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#6c5ce7">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Detect JS -->
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Stefan Popović",
+        "alternateName": "Stefan Popovic",
+        "description": "Expert in web development and sales strategies with over 10 years of experience in the IT sector. Specialist in React and Next.js technologies.",
+        "image": "https://popzify.com/assets/images/stefan.webp",
+        "jobTitle": "Web Developer & Sales Strategist",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Popzify",
+          "url": "https://popzify.com"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Faculty of Electrical Engineering, University of Belgrade",
+           "description": "Computer Science"
+        },
+        "sameAs": [
+          "https://github.com/stex4cs"
+        ],
+         "knowsAbout": ["Web Development", "React", "Next.js", "JavaScript", "Sales Strategy", "E-commerce Optimization", "Agile Project Management", "Scrum"]
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Popzify Blog",
+          "item": "https://popzify.com/ivanpopovic.html"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Stefan Popović"
+        }]
+      }
+    }
+    </script>
+
+<style>
+     /* Osnovne promenljive potrebne za ove stilove */
+     :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --text-color: #2d3436;
+            --light-text: #636e72;
+            --bg-color: #ffffff;
+            --light-bg: #f9f9f9;
+            --dark-bg: #1e272e;
+            --border-radius: 8px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Osigurajte da body ima ove osnovne stilove ako nisu učitani */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0; /* Reset */
+        }
+
+        /* Blog Hero */
+        .blog-hero {
+            padding: 180px 0 80px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        .tech-hero { /* Specific styles for Stefan's hero */
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+        }
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/api/placeholder/1920/400'); /* Placeholder */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .blog-hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .author-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--box-shadow);
+        }
+        .author-info h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .author-info p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .author-social {
+            display: flex;
+            gap: 15px;
+        }
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .social-link:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Blog About Section */
+        .blog-about {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        .blog-about .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .blog-about .about-text {
+            flex: 1.3;
+        }
+        .blog-about .about-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        .blog-about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .blog-about p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+
+        /* Stilovi za Blog Grid i Post Kartice */
+        .blog-posts {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+
+         .blog-posts .section-header {
+             text-align: center;
+             margin-bottom: 60px;
+         }
+
+        .blog-posts .section-header h2 {
+             font-size: 2.5rem;
+             margin-bottom: 15px;
+             position: relative;
+             display: inline-block;
+             color: var(--text-color); /* Default text color */
+         }
+
+        .blog-posts .section-header h2 .accent-text {
+             color: var(--accent-color);
+         }
+
+         .blog-posts .section-header p {
+             color: var(--light-text);
+             max-width: 600px;
+             margin: 0 auto;
+         }
+
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Postavlja dva stupca */
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        /* Stil za "Featured" post - zauzima celu širinu */
+        .featured-post {
+            grid-column: 1 / -1; /* Raspon preko svih stupaca */
+            display: grid; /* Koristi grid za unutrašnji raspored */
+            grid-template-columns: 1.2fr 1fr; /* Odnos slike i teksta */
+            gap: 0; /* Nema razmaka između slike i teksta */
+            align-items: stretch; /* Osigurava da oba dela zauzmu punu visinu */
+        }
+
+        /* Opšti stilovi za SVE blog post kartice */
+        .blog-post {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Stilovi za sliku posta */
+        .post-image {
+            position: relative;
+            overflow: hidden;
+            height: 0;
+            padding-bottom: 56.25%; /* Za 16:9 odnos slike */
+            flex-shrink: 0;
+        }
+
+        /* Featured post image adjustments */
+        .featured-post .post-image {
+             height: auto;
+             padding-bottom: 0;
+        }
+
+        .featured-post .post-image img {
+            position: static;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .post-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .blog-post:hover .post-image img {
+            transform: scale(1.05);
+        }
+
+        /* Kategorija posta (tag iznad slike) */
+        .post-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .post-category i {
+             font-size: 0.9em;
+        }
+
+
+        /* Sadržaj posta (tekstualni deo) */
+        .post-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 25px;
+        }
+
+        /* Meta podaci (datum, vreme čitanja) */
+        .post-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--light-text);
+            font-size: 0.85rem;
+        }
+        .post-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Naslov posta */
+        .post-title {
+            font-size: 1.3rem; /* Malo manji naslov za obične postove */
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .featured-post .post-title {
+        font-size: 1.8rem;
+    }
+
+    .post-title:hover {
+        color: var(--primary-color);
+    }
+
+    /* Izvod iz teksta (excerpt) */
+    .post-excerpt {
+        color: var(--light-text);
+        margin-bottom: 20px;
+        line-height: 1.6;
+        flex-grow: 1; /* Gura dugme na dno ako nema puno teksta */
+
+        /* Stilovi za skraćivanje teksta na 3 reda */
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;    /* Prefiksirana verzija */
+        line-clamp: 3;            /* Standardna verzija (dodata) */
+        overflow: hidden;         /* Neophodno (samo jednom) */
+        min-height: calc(1.6em * 3); /* Osigurava prostor za 3 reda */
+    }
+
+
+    /* Dugme unutar kartice */
+    .post-content .btn {
+        margin-top: auto; /* Gura dugme na dno kartice */
+        align-self: flex-start; /* Poravnava dugme na levu stranu */
+    }
+
+     /* Stilovi za dugmad (ako nisu učitani) */
+    .btn {
+        display: inline-block;
+        padding: 10px 25px; /* Malo manje dugme za kartice */
+        border-radius: 30px;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+        border: 2px solid transparent;
+        font-size: 0.9rem; /* Malo manji font */
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: transparent;
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+
+    .btn-secondary {
+        background-color: transparent;
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+
+    .btn-secondary:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+     /* Blog Pagination */
+     .blog-pagination {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-top: 50px;
+         gap: 10px;
+     }
+
+     .pagination-number, .pagination-arrow {
+         width: 40px;
+         height: 40px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border-radius: 50%;
+         background-color: var(--light-bg);
+         color: var(--text-color);
+         font-weight: 500;
+         transition: var(--transition);
+         text-decoration: none; /* Ensure arrows are not underlined */
+     }
+
+     .pagination-number:hover, .pagination-arrow:hover, .pagination-number.active {
+         background-color: var(--primary-color);
+         color: white;
+     }
+
+     .pagination-arrow.disabled {
+         opacity: 0.5;
+         cursor: not-allowed;
+         pointer-events: none;
+     }
+
+     /* Newsletter Section */
+     .newsletter-section {
+         padding: 80px 0;
+         background-color: var(--primary-color);
+         color: white;
+         position: relative;
+         overflow: hidden;
+     }
+     .newsletter-section::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-image: url('/api/placeholder/1920/400'); /* Placeholder */
+         background-size: cover;
+         background-position: center;
+         opacity: 0.1;
+         z-index: 0;
+     }
+     .newsletter-content {
+         position: relative;
+         z-index: 1;
+         display: flex;
+         align-items: center;
+         gap: 40px;
+     }
+     .newsletter-text {
+         flex: 1;
+     }
+     .newsletter-text h2 {
+         font-size: 2.5rem;
+         margin-bottom: 15px;
+         color: white; /* Ensure heading is white */
+     }
+    .newsletter-text h2 .accent-text {
+         color: var(--accent-color); /* Ensure accent text has correct color */
+     }
+     .newsletter-text p {
+         opacity: 0.9;
+         line-height: 1.7;
+     }
+     .newsletter-form {
+         flex: 1;
+         display: flex;
+         flex-direction: column;
+     }
+     .newsletter-form .form-group {
+         margin-bottom: 20px;
+     }
+     .newsletter-form input {
+         width: 100%;
+         padding: 15px 20px;
+         border-radius: 30px;
+         border: none;
+         font-family: inherit;
+         font-size: 1rem;
+         color: var(--text-color); /* Text color inside input */
+     }
+     .newsletter-form input::placeholder {
+         color: var(--light-text); /* Placeholder color */
+     }
+     .newsletter-form input:focus {
+         outline: none;
+         box-shadow: 0 0 0 2px var(--accent-color); /* Focus indicator */
+     }
+     .newsletter-form .btn {
+         align-self: flex-start;
+         background-color: white; /* Button background */
+         color: var(--primary-color); /* Button text color */
+         border: 2px solid white;
+     }
+     .newsletter-form .btn:hover {
+         background-color: transparent;
+         color: white;
+         border-color: white;
+     }
+
+     /* Categories Section */
+     .categories-section {
+         padding: 80px 0;
+         background-color: var(--light-bg);
+     }
+     .categories-section .section-header {
+         text-align: center;
+         margin-bottom: 60px;
+     }
+     .categories-section .section-header h2 {
+         font-size: 2.5rem;
+         margin-bottom: 15px;
+         color: var(--text-color); /* Ensure text color */
+     }
+     .categories-section .section-header h2 .accent-text {
+         color: var(--accent-color); /* Ensure accent text color */
+     }
+    .categories-section .section-header p {
+         color: var(--light-text);
+         max-width: 600px;
+         margin: 0 auto;
+     }
+
+     .categories-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+         gap: 30px;
+         margin-top: 50px;
+     }
+     .category-card {
+         background-color: var(--bg-color);
+         border-radius: var(--border-radius);
+         padding: 30px;
+         text-align: center;
+         box-shadow: var(--box-shadow);
+         transition: var(--transition);
+         text-decoration: none; /* Remove underline from link */
+     }
+     .category-card:hover {
+         transform: translateY(-10px);
+     }
+     .category-icon {
+         width: 70px;
+         height: 70px;
+         background-color: var(--primary-color);
+         color: white;
+         border-radius: 50%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         margin: 0 auto 20px;
+         font-size: 1.5rem;
+     }
+     .category-card h3 {
+         margin-bottom: 10px;
+         font-size: 1.3rem;
+         transition: var(--transition);
+         color: var(--text-color); /* Ensure text color */
+     }
+     .category-card p {
+         color: var(--light-text);
+         font-size: 0.9rem;
+     }
+     .category-card:hover h3 {
+         color: var(--primary-color);
+     }
+
+    /* Code Snippet Section */
+    .code-snippet-section {
+        padding: 80px 0;
+        background-color: var(--bg-color);
+    }
+    .code-snippet-section .section-header {
+         text-align: center;
+         margin-bottom: 60px;
+     }
+    .code-snippet-section .section-header h2 {
+         font-size: 2.5rem;
+         margin-bottom: 15px;
+         color: var(--text-color);
+     }
+    .code-snippet-section .section-header h2 .accent-text {
+        color: var(--accent-color);
+     }
+    .code-snippet-section .section-header p {
+         color: var(--light-text);
+         max-width: 600px;
+         margin: 0 auto;
+     }
+
+    .snippet-container {
+        background-color: #1e1e1e; /* Dark background for code */
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--box-shadow);
+        margin-top: 50px;
+        color: #f8f8f2; /* Light text for code */
+    }
+    .snippet-header {
+        padding: 20px 25px;
+        background-color: #2d2d2d; /* Slightly lighter header */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .snippet-header h3 {
+        color: white;
+        font-size: 1.3rem;
+        margin: 0;
+    }
+    .snippet-tags {
+        display: flex;
+        gap: 10px;
+    }
+    .snippet-tag {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    /* Ensure Prism styles override default pre/code */
+    .snippet-container pre[class*="language-"] {
+        margin: 0;
+        padding: 25px; /* Padding inside the code block */
+        background-color: #1e1e1e !important; /* Force background */
+        border-radius: 0 0 var(--border-radius) var(--border-radius); /* Rounded bottom corners */
+        overflow: auto; /* Add scrollbars if code is too long */
+    }
+    .snippet-container code[class*="language-"] {
+        font-family: 'Fira Code', 'Consolas', monospace;
+        font-size: 0.9rem;
+        background: none !important; /* Remove Prism's default background */
+         color: #f8f8f2 !important; /* Ensure text color */
+         text-shadow: none !important; /* Remove text shadow */
+    }
+    .snippet-footer {
+        padding: 15px 25px;
+        background-color: #2d2d2d; /* Match header */
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap; /* Allow buttons to wrap */
+    }
+    .btn-sm {
+        padding: 6px 15px;
+        font-size: 0.85rem;
+    }
+    /* Style for copy button */
+    .copy-btn {
+        background-color: var(--light-bg);
+        color: var(--text-color);
+        border-color: var(--light-text);
+    }
+    .copy-btn:hover {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+
+    /* Blog Authors Section */
+    .blog-authors {
+        padding: 80px 0;
+        background-color: var(--light-bg);
+    }
+    .blog-authors .section-header {
+         text-align: center;
+         margin-bottom: 60px;
+     }
+    .blog-authors .section-header h2 {
+         font-size: 2.5rem;
+         margin-bottom: 15px;
+         color: var(--text-color);
+     }
+    .blog-authors .section-header h2 .accent-text {
+         color: var(--accent-color);
+     }
+    .blog-authors .section-header p {
+         color: var(--light-text);
+         max-width: 600px;
+         margin: 0 auto;
+     }
+
+    .authors-grid {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 50px;
+        flex-wrap: wrap; /* Allow wrapping */
+    }
+    .author-card {
+        background-color: var(--bg-color);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        text-align: center;
+        box-shadow: var(--box-shadow);
+        transition: var(--transition);
+        width: 280px; /* Fixed width */
+        text-decoration: none;
+    }
+    .author-card.active {
+        background-color: var(--primary-color);
+        color: white;
+        transform: scale(1.05); /* Highlight active author */
+    }
+    .author-card:hover {
+        transform: translateY(-10px);
+    }
+    .author-card-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid rgba(108, 92, 231, 0.2);
+        margin: 0 auto 20px;
+        transition: border-color 0.3s ease;
+    }
+    .author-card.active .author-card-image {
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+     .author-card:hover .author-card-image {
+        border-color: var(--primary-color);
+    }
+     .author-card.active:hover .author-card-image {
+        border-color: var(--accent-color);
+    }
+    .author-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+        transition: var(--transition);
+        color: var(--text-color);
+    }
+    .author-card.active h3 {
+        color: white;
+    }
+    .author-card p {
+        color: var(--light-text);
+        font-size: 0.9rem;
+    }
+    .author-card.active p {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    .author-card:hover:not(.active) h3 {
+        color: var(--primary-color);
+    }
+
+    /* Dark Mode specific styles */
+    .dark-mode .blog-posts {
+        background-color: #121212;
+    }
+    .dark-mode .blog-post,
+    .dark-mode .category-card,
+    .dark-mode .author-card {
+        background-color: #1e1e1e;
+    }
+    .dark-mode .post-title,
+    .dark-mode .category-card h3,
+    .dark-mode .author-card h3 {
+        color: #f5f5f5;
+    }
+    .dark-mode .post-excerpt,
+    .dark-mode .post-meta,
+    .dark-mode .category-card p,
+    .dark-mode .author-card p {
+        color: #b3b9bd;
+    }
+    .dark-mode .post-title:hover,
+    .dark-mode .category-card:hover h3,
+    .dark-mode .author-card:hover:not(.active) h3 {
+         color: var(--primary-color);
+    }
+    .dark-mode .blog-pagination .pagination-number,
+    .dark-mode .blog-pagination .pagination-arrow {
+        background-color: #2d2d2d;
+        color: #f5f5f5;
+    }
+    .dark-mode .blog-pagination .pagination-number.active,
+    .dark-mode .blog-pagination .pagination-number:hover,
+    .dark-mode .blog-pagination .pagination-arrow:hover {
+         background-color: var(--primary-color);
+         color: white;
+    }
+    .dark-mode .blog-about,
+    .dark-mode .categories-section,
+    .dark-mode .blog-authors {
+        background-color: #1a1a1a; /* Slightly different dark bg */
+    }
+    .dark-mode .blog-about h2,
+    .dark-mode .blog-posts .section-header h2,
+    .dark-mode .code-snippet-section .section-header h2,
+    .dark-mode .newsletter-text h2,
+    .dark-mode .categories-section .section-header h2,
+    .dark-mode .blog-authors .section-header h2 {
+        color: #f5f5f5;
+    }
+    .dark-mode .blog-about p,
+    .dark-mode .blog-posts .section-header p,
+    .dark-mode .code-snippet-section .section-header p,
+    .dark-mode .newsletter-text p,
+    .dark-mode .categories-section .section-header p,
+    .dark-mode .blog-authors .section-header p {
+        color: #b3b9bd;
+    }
+    .dark-mode .newsletter-form input {
+        background-color: #333;
+        color: #f5f5f5;
+    }
+    .dark-mode .newsletter-form input::placeholder {
+         color: #888;
+    }
+    .dark-mode .newsletter-form .btn {
+        background-color: #333;
+        color: var(--primary-color);
+        border-color: #555;
+    }
+    .dark-mode .newsletter-form .btn:hover {
+         background-color: var(--primary-color);
+         color: white;
+         border-color: var(--primary-color);
+    }
+     /* Dark mode for code snippet */
+    .dark-mode .code-snippet-section {
+        background-color: #121212;
+    }
+     /* Ensure snippet container looks good in dark mode (already dark) */
+    .dark-mode .copy-btn {
+        background-color: #444;
+        color: #f5f5f5;
+        border-color: #666;
+    }
+    .dark-mode .copy-btn:hover {
+         background-color: var(--primary-color);
+         border-color: var(--primary-color);
+    }
+     /* Dark mode for authors section */
+    .dark-mode .author-card.active {
+        background-color: var(--primary-color);
+    }
+    .dark-mode .author-card.active h3 {
+         color: white;
+    }
+    .dark-mode .author-card.active p {
+         color: rgba(255, 255, 255, 0.9);
+    }
+    .dark-mode .author-card-image {
+         border-color: rgba(108, 92, 231, 0.3);
+    }
+    .dark-mode .author-card.active .author-card-image {
+         border-color: rgba(255, 255, 255, 0.4);
+    }
+    .dark-mode .author-card:hover .author-card-image {
+         border-color: var(--accent-color); /* Lighter hover border in dark mode */
+    }
+
+
+    /* Responsive prilagođavanja */
+    @media screen and (max-width: 991px) {
+        .featured-post {
+            grid-template-columns: 1fr;
+        }
+         .featured-post .post-image {
+             height: 0;
+             padding-bottom: 56.25%;
+        }
+         .featured-post .post-image img {
+             position: absolute;
+        }
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+        .blog-hero-content {
+             flex-direction: column;
+             text-align: center;
+             gap: 30px;
+         }
+         .blog-author {
+             flex-direction: column;
+         }
+         .blog-about .about-content {
+             flex-direction: column-reverse;
+         }
+        .newsletter-content {
+             flex-direction: column;
+             text-align: center;
+         }
+         .newsletter-form .btn {
+             align-self: center;
+         }
+         .authors-grid {
+             flex-direction: column;
+             align-items: center;
+         }
+         .snippet-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .post-title {
+            font-size: 1.2rem;
+        }
+        .featured-post .post-title {
+            font-size: 1.5rem;
+        }
+         .blog-hero {
+             padding: 150px 0 60px;
+         }
+         .author-info h1 {
+             font-size: 2.5rem;
+         }
+         .category-card {
+             padding: 20px;
+         }
+         .category-icon {
+             width: 60px;
+             height: 60px;
+             font-size: 1.3rem;
+         }
+         .author-card {
+             width: 100%;
+             max-width: 300px;
+         }
+         .snippet-footer {
+            flex-direction: column;
+         }
+         .btn-sm {
+             width: 100%;
+             text-align: center;
+         }
+    }
+     @media screen and (max-width: 480px) {
+         .blog-posts .section-header h2,
+         .code-snippet-section .section-header h2,
+         .categories-section .section-header h2,
+         .newsletter-text h2,
+         .blog-about h2,
+         .blog-authors .section-header h2 {
+             font-size: 2rem;
+         }
+         .post-meta {
+             flex-direction: column;
+             gap: 5px;
+         }
+         .categories-grid {
+             grid-template-columns: 1fr;
+         }
+          .snippet-container code[class*="language-"] {
+             font-size: 0.8rem;
+         }
+     }
+
+
+.newsletter-message {
+margin-top: 15px;
+padding: 10px 15px;
+border-radius: 20px;
+font-weight: 500;
+transition: all 0.3s ease;
+display: none; 
+text-align: center; 
+}
+
+.newsletter-message.success,
+.newsletter-message.error {
+display: block; /* Show when has a type */
+}
+
+.newsletter-message.success {
+background-color: rgba(40, 167, 69, 0.2);
+border: 1px solid rgba(40, 167, 69, 0.3);
+color: #ffffff; /* White text for success */
+}
+
+.newsletter-message.error {
+background-color: rgba(220, 53, 69, 0.2);
+border: 1px solid rgba(220, 53, 69, 0.3);
+color: #ffffff; /* White text for error */
+}
+
+/* Ensure our message container inherits the language display properties */
+html[lang="en"] .newsletter-message.sr-content {
+display: none !important;
+}
+
+html[lang="en"] .newsletter-message.en-content.success,
+html[lang="en"] .newsletter-message.en-content.error {
+display: block !important;
+}
+
+html[lang="sr"] .newsletter-message.en-content {
+display: none !important;
+}
+
+html[lang="sr"] .newsletter-message.sr-content.success,
+html[lang="sr"] .newsletter-message.sr-content.error {
+display: block !important;
+}
+/* Dark Mode for Blog List Page Sections */
+.dark-mode .blog-posts {
+background-color: #121212 !important;
+}
+
+.dark-mode .section-header h2,
+.dark-mode .blog-posts .section-header h2 {
+    color: #f5f5f5 !important;
+}
+
+.dark-mode .section-header p,
+.dark-mode .blog-posts .section-header p {
+    color: #b3b9bd !important;
+}
+
+.dark-mode .section-header .accent-text,
+.dark-mode .blog-posts .section-header .accent-text { /* Added specificity */
+    color: #fd79a8 !important;
+}
+
+.dark-mode .blog-pagination .pagination-number {
+    background-color: #2d2d2d !important;
+    color: #f5f5f5 !important;
+}
+
+.dark-mode .blog-pagination .pagination-number.active {
+    background-color: var(--primary-color) !important;
+}
+.dark-mode .blog-pagination .pagination-arrow {
+    background-color: #2d2d2d !important;
+    color: #f5f5f5 !important;
+}
+
+.dark-mode .categories-section {
+    background-color: #1e1e1e !important;
+}
+.dark-mode .categories-section .section-header h2,
+.dark-mode .categories-section .section-header p {
+    color: #f5f5f5 !important;
+}
+.dark-mode .categories-section .section-header .accent-text {
+    color: var(--accent-color) !important;
+}
+
+.dark-mode .category-card {
+    background-color: #2d2d2d !important; /* Changed from 1e1e1e */
+}
+
+.dark-mode .category-card h3 {
+    color: #f5f5f5 !important;
+}
+
+.dark-mode .category-card p {
+    color: #b3b9bd !important;
+}
+/* Add dark mode for newsletter section */
+.dark-mode .newsletter-section {
+    background-color: var(--primary-color); /* Keep primary color or adjust if needed */
+}
+.dark-mode .newsletter-text h2 {
+    color: white; /* Already white, but ensure */
+}
+.dark-mode .newsletter-text p {
+    color: rgba(255, 255, 255, 0.9);
+}
+/* Add dark mode for code snippets section */
+.dark-mode .code-snippet-section {
+    background-color: #121212 !important;
+}
+.dark-mode .code-snippet-section .section-header h2 {
+    color: #f5f5f5 !important;
+}
+ .dark-mode .code-snippet-section .section-header .accent-text {
+    color: var(--accent-color) !important;
+}
+.dark-mode .code-snippet-section .section-header p {
+    color: #b3b9bd !important;
+}
+/* Add dark mode for authors section */
+.dark-mode .blog-authors {
+    background-color: #1e1e1e !important;
+}
+ .dark-mode .blog-authors .section-header h2 {
+    color: #f5f5f5 !important;
+}
+  .dark-mode .blog-authors .section-header .accent-text {
+    color: var(--accent-color) !important;
+}
+ .dark-mode .blog-authors .section-header p {
+    color: #b3b9bd !important;
+}
+ .dark-mode .author-card {
+     background-color: #2d2d2d !important;
+ }
+ .dark-mode .author-card h3 {
+    color: #f5f5f5 !important;
+ }
+ .dark-mode .author-card p {
+     color: #b3b9bd !important;
+ }
+ .dark-mode .author-card.active {
+     background-color: var(--primary-color) !important;
+ }
+.dark-mode .author-card.active h3,
+.dark-mode .author-card.active p {
+     color: white !important;
+ }
+.dark-mode .author-card:hover:not(.active) h3 {
+    color: var(--primary-color) !important;
+}
+</style>
+
+</head>
+<body>
+<!-- Header, Hero, About ostaju isti -->
+<header>
+<nav class="navbar">
+<div class="container">
+<div class="logo">
+<a href="index.html"><span>Pop</span>zify</a>
+</div>
+<div class="nav-menu">
+<ul>
+<li>
+<a href="index.html" class="sr-content">Početna</a>
+<a href="index.html" class="en-content" style="display:none">Home</a>
+</li>
+<li>
+<a href="index.html#services" class="sr-content">Usluge</a>
+<a href="index.html#services" class="en-content" style="display:none">Services</a>
+</li>
+<li>
+<a href="index.html#team" class="sr-content">Naš tim</a>
+<a href="index.html#team" class="en-content" style="display:none">Our Team</a>
+</li>
+<li>
+<a href="projects.html" class="sr-content">Projekti</a> <!-- Update link -->
+<a href="projects.html" class="en-content" style="display:none">Projects</a> <!-- Update link -->
+</li>
+<li>
+<a href="index.html#about" class="sr-content">O nama</a>
+<a href="index.html#about" class="en-content" style="display:none">About Us</a>
+</li>
+<li>
+<a href="#" class="active sr-content">Blog</a>
+<a href="#" class="active en-content" style="display:none">Blog</a>
+</li>
+<li>
+<a href="index.html#faq" class="sr-content">FAQ</a>
+<a href="index.html#faq" class="en-content" style="display:none">FAQ</a>
+</li>
+<li>
+<a href="index.html#contact" class="sr-content">Kontakt</a>
+<a href="index.html#contact" class="en-content" style="display:none">Contact</a>
+</li>
+</ul>
+<div class="lang-selector" data-lang="sr">
+<button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
+<button class="lang-btn active" data-lang="sr" aria-label="Switch to Serbian">SR</button>
+<div class="slider"></div>
+</div>
+</div>
+<div class="hamburger">
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
+</div>
+</div>
+</nav>
+</header>
+<section class="blog-hero tech-hero">
+<div class="container">
+<div class="blog-hero-content">
+<div class="blog-author">
+<img loading="lazy" src="assets/images/stefan.webp" alt="Stefan Popović" class="author-image">
+<div class="author-info">
+<h1>Stefan <span class="accent-text">Popović</span></h1>
+<p class="sr-content">Specijalizant programiranja i prodajnih strategija</p>
+<p class="en-content" style="display:none">Specialist in Programming and Sales Strategies</p>
+</div>
+</div>
+<div class="author-social">
+<a href="#" class="social-link" aria-label="LinkedIn Stefana Popovića"><i class="fab fa-linkedin-in"></i></a> <!-- Add real link -->
+<a href="https://github.com/stex4cs" class="social-link" aria-label="GitHub Stefana Popovića"><i class="fab fa-github"></i></a>
+<a href="#" class="social-link" aria-label="Twitter Stefana Popovića"><i class="fab fa-twitter"></i></a> <!-- Add real link -->
+<a href="#" class="social-link" aria-label="Dev.to Stefana Popovića"><i class="fab fa-dev"></i></a> <!-- Add real link or change icon -->
+</div>
+</div>
+</div>
+</section>
+<section class="blog-about">
+<div class="container">
+<div class="about-content">
+<div class="about-text">
+<h2 class="sr-content">O <span class="accent-text">autoru</span></h2>
+<h2 class="en-content" style="display:none">About the <span class="accent-text">Author</span></h2>
+<p class="sr-content">Stefan Popović je stručnjak za web razvoj i prodajne strategije sa preko 10 godina iskustva u IT sektoru. Diplomirao je Računarske nauke na Elektrotehničkom fakultetu i poseduje brojne sertifikate iz oblasti digitalnog poslovanja i prodaje.</p>
+<p class="en-content" style="display:none">Stefan Popović is an expert in web development and sales strategies with over 10 years of experience in the IT sector. He graduated in Computer Science from the Electrical Engineering Faculty and holds numerous certificates in digital business and sales.</p>
+<p class="sr-content">Kombinujući tehničko znanje sa razumevanjem poslovnih procesa, Stefan pomaže kompanijama da optimizuju svoje online prisustvo i povećaju konverzije. Kroz svoj blog, deli praktične savete iz oblasti programiranja, e-commerce optimizacije i prodajnih strategija.</p>
+<p class="en-content" style="display:none">By combining technical knowledge with an understanding of business processes, Stefan helps companies optimize their online presence and increase conversions. Through his blog, he shares practical advice on programming, e-commerce optimization, and sales strategies.</p>
+</div>
+<div class="about-image">
+<img loading="lazy" src="assets/images/stefan.webp" alt="Fotografija Stefana Popovića">
+</div>
+</div>
+</div>
+</section>
+<section class="blog-posts">
+<div class="container">
+<div class="section-header">
+<h2 class="sr-content latest-articles-heading">Najnoviji <span class="accent-text">članci</span></h2>
+<h2 class="en-content latest-articles-heading" style="display:none">Latest <span class="accent-text">Articles</span></h2>
+<p class="sr-content">Saznajte više o programiranju i prodajnim strategijama</p>
+<p class="en-content" style="display:none">Learn more about programming and sales strategies</p>
+</div>
+<div class="blog-grid" id="blog-grid-content">
+         <!-- Featured Post -->
+        <div class="blog-post featured-post">
+            <div class="post-image">
+                <img src="assets/images/react-main.webp" alt="React i Next.js logo i kod" loading="lazy">
+                <div class="post-category sr-content"><i class="fas fa-code"></i> Web razvoj</div>
+                <div class="post-category en-content" style="display:none"><i class="fas fa-code"></i> Web Development</div>
+            </div>
+            <div class="post-content">
+                <div class="post-meta">
+                    <span class="post-date sr-content"><i class="far fa-calendar-alt"></i> 18. mart 2025.</span>
+                    <span class="post-date en-content" style="display:none"><i class="far fa-calendar-alt"></i> March 18, 2025</span>
+                    <span class="post-read-time sr-content"><i class="far fa-clock"></i> 10 min čitanja</span>
+                    <span class="post-read-time en-content" style="display:none"><i class="far fa-clock"></i> 10 min read</span>
+                </div>
+                <h3 class="post-title sr-content"><a href="programiranje.html">Kako React.js i Next.js transformišu razvoj modernih web aplikacija</a></h3>
+                <h3 class="post-title en-content" style="display:none"><a href="programiranje.html">How React.js and Next.js Transform Modern Web Application Development</a></h3>
+                <p class="post-excerpt sr-content">React.js i njegova server-side rendering ekstenzija Next.js redefinišu način na koji razvijamo web aplikacije. Ova kombinacija donosi brojne prednosti koje pomažu developerima da brže i efikasnije stvaraju visoko-performantna korisnička iskustva.</p>
+                <p class="post-excerpt en-content" style="display:none">React.js and its server-side rendering extension Next.js are redefining the way we develop web applications. This combination offers numerous benefits that help developers create high-performance user experiences faster and more efficiently.</p>
+                <a href="programiranje.html" class="btn btn-primary sr-content">Pročitaj više</a>
+                <a href="programiranje.html" class="btn btn-primary en-content" style="display:none">Read More</a>
+            </div>
+        </div>
+
+        <!-- Regular Posts -->
+         <div class="blog-post">
+            <div class="post-image">
+                <img src="assets/images/e-commerce-main.webp" alt="Grafikon povećanja e-commerce konverzija" loading="lazy">
+                <div class="post-category sr-content"><i class="fas fa-shopping-cart"></i> E-commerce</div>
+                <div class="post-category en-content" style="display:none"><i class="fas fa-shopping-cart"></i> E-commerce</div>
+            </div>
+            <div class="post-content">
+                <div class="post-meta">
+                    <span class="post-date sr-content"><i class="far fa-calendar-alt"></i> 5. mart 2025.</span>
+                    <span class="post-date en-content" style="display:none"><i class="far fa-calendar-alt"></i> March 5, 2025</span>
+                    <span class="post-read-time sr-content"><i class="far fa-clock"></i> 8 min čitanja</span>
+                    <span class="post-read-time en-content" style="display:none"><i class="far fa-clock"></i> 8 min read</span>
+                </div>
+                <h3 class="post-title sr-content"><a href="ecommerce.html">7 strategija za povećanje stope konverzije u e-commerce</a></h3>
+                <h3 class="post-title en-content" style="display:none"><a href="ecommerce.html">7 Strategies to Increase Conversion Rates in E-commerce</a></h3>
+                <p class="post-excerpt sr-content">Visoka stopa napuštanja korpe jedan je od najvećih izazova za online prodavnice. Prema poslednjim istraživanjima, prosečna stopa napuštanja korpe prelazi 69%. Saznajte kako da ovo promenite.</p>
+                <p class="post-excerpt en-content" style="display:none">High cart abandonment rates are one of the biggest challenges for online stores. According to recent research, the average cart abandonment rate exceeds 69%. Learn how to change this.</p>
+                <a href="ecommerce.html" class="btn btn-secondary sr-content">Pročitaj više</a>
+                <a href="ecommerce.html" class="btn btn-secondary en-content" style="display:none">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog-post">
+            <div class="post-image">
+                <img src="assets/images/agile-main.webp" alt="Agile tabla sa post-it papirićima" loading="lazy">
+                <div class="post-category sr-content"><i class="fas fa-tasks"></i> Projektni menadžment</div>
+                <div class="post-category en-content" style="display:none"><i class="fas fa-tasks"></i> Project Management</div>
+            </div>
+            <div class="post-content">
+                <div class="post-meta">
+                    <span class="post-date sr-content"><i class="far fa-calendar-alt"></i> 25. februar 2025.</span>
+                    <span class="post-date en-content" style="display:none"><i class="far fa-calendar-alt"></i> February 25, 2025</span>
+                    <span class="post-read-time sr-content"><i class="far fa-clock"></i> 9 min čitanja</span>
+                    <span class="post-read-time en-content" style="display:none"><i class="far fa-clock"></i> 9 min read</span>
+                </div>
+                <h3 class="post-title sr-content"><a href="projectmenager.html">Od korisničkog zahteva do produkcije: Upravljanje projektima u agile okruženju</a></h3>
+                <h3 class="post-title en-content" style="display:none"><a href="projectmenager.html">From User Request to Production: Project Management in an Agile Environment</a></h3>
+                <p class="post-excerpt sr-content">Uspešna implementacija softverskih rešenja zahteva mnogo više od kvalitetnog programiranja - potreban je strukturirani pristup upravljanju projektima. Istražite kompletan proces.</p>
+                <p class="post-excerpt en-content" style="display:none">Successful implementation of software solutions requires much more than quality programming—it demands a structured approach to project management. Explore the complete process.</p>
+                <a href="projectmenager.html" class="btn btn-secondary sr-content">Pročitaj više</a>
+                <a href="projectmenager.html" class="btn btn-secondary en-content" style="display:none">Read More</a>
+            </div>
+        </div>
+
+        <div class="blog-post">
+            <div class="post-image">
+                <img src="assets/images/psihologija-main.webp" alt="Mozak sa zupčanicima koji simbolizuje psihologiju odluka" loading="lazy">
+                <div class="post-category sr-content"><i class="fas fa-chart-line"></i> Prodajne tehnike</div>
+                <div class="post-category en-content" style="display:none"><i class="fas fa-chart-line"></i> Sales Techniques</div>
+            </div>
+            <div class="post-content">
+                <div class="post-meta">
+                    <span class="post-date sr-content"><i class="far fa-calendar-alt"></i> 10. februar 2025.</span>
+                    <span class="post-date en-content" style="display:none"><i class="far fa-calendar-alt"></i> February 10, 2025</span>
+                    <span class="post-read-time sr-content"><i class="far fa-clock"></i> 7 min čitanja</span>
+                    <span class="post-read-time en-content" style="display:none"><i class="far fa-clock"></i> 7 min read</span>
+                </div>
+                <h3 class="post-title sr-content"><a href="sales.html">Napredne tehnike prodaje: Psihologija donošenja odluka</a></h3>
+                <h3 class="post-title en-content" style="display:none"><a href="sales.html">Advanced Sales Techniques: The Psychology of Decision-Making</a></h3>
+                <p class="post-excerpt sr-content">Razumevanje psiholoških principa koji utiču na donošenje odluka o kupovini može dramatično poboljšati vašu sposobnost da utičete na potencijalne kupce i povećate prodaju.</p>
+                <p class="post-excerpt en-content" style="display:none">Understanding the psychological principles that influence purchasing decisions can dramatically improve your ability to influence potential customers and increase sales.</p>
+                <a href="sales.html" class="btn btn-secondary sr-content">Pročitaj više</a>
+                <a href="sales.html" class="btn btn-secondary en-content" style="display:none">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-pagination">
+        <a href="#" class="pagination-arrow disabled"><i class="fas fa-chevron-left"></i></a>
+        <a href="#" class="pagination-number active">1</a>
+        <a href="#" class="pagination-number">2</a>
+        <a href="#" class="pagination-number">3</a>
+        <a href="#" class="pagination-arrow"><i class="fas fa-chevron-right"></i></a>
+    </div>
+</div>
+
+</section>
+<section class="code-snippet-section">
+<div class="container">
+<div class="section-header">
+<h2 class="sr-content">Korisni <span class="accent-text">code snippets</span></h2>
+<h2 class="en-content" style="display:none">Useful <span class="accent-text">Code Snippets</span></h2>
+<p class="sr-content">Primeri koda koji mogu unaprediti vaše projekte</p>
+<p class="en-content" style="display:none">Code examples to enhance your projects</p>
+</div>
+<div class="snippet-container">
+        <div class="snippet-header">
+            <h3 class="sr-content">React hook za detekciju dark mode preference korisnika</h3>
+            <h3 class="en-content" style="display:none">React Hook for Detecting User's Dark Mode Preference</h3>
+            <div class="snippet-tags">
+                <span class="snippet-tag">React</span>
+                <span class="snippet-tag">Hooks</span>
+                <span class="snippet-tag">UX</span>
+            </div>
+        </div>
+        <pre id="code-snippet-1"><code class="language-javascript">
+
+import { useState, useEffect } from 'react';
+
+function useDarkMode() {
+// Proverava inicijalno podešavanje korisnika ili localStorage
+const prefersDarkMode = window.matchMedia
+&& window.matchMedia('(prefers-color-scheme: dark)').matches;
+const storedPreference = localStorage.getItem('darkMode');
+
+// State za praćenje trenutnog režima
+const [isDarkMode, setIsDarkMode] = useState(
+storedPreference !== null ? storedPreference === 'true' : prefersDarkMode
+);
+
+useEffect(() => {
+// Funkcija za ažuriranje DOM-a i localStorage kada se mode promeni
+const updateTheme = (mode) => {
+if (mode) {
+document.body.classList.add('dark-mode');
+} else {
+document.body.classList.remove('dark-mode');
+}
+localStorage.setItem('darkMode', mode);
+};
+
+// Funkcija za praćenje promene sistemskog režima
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const handleSystemChange = (e) => {
+  // Ažuriraj samo ako korisnik nije eksplicitno izabrao temu
+  if (localStorage.getItem('darkMode') === null) {
+    setIsDarkMode(e.matches);
+  }
+};
+
+// Dodaje listener za sistemske promene
+mediaQuery.addEventListener('change', handleSystemChange);
+
+
+// Ažurira temu kada se state promeni
+updateTheme(isDarkMode);
+
+// Cleanup prilikom unmount-a
+return () => {
+  mediaQuery.removeEventListener('change', handleSystemChange);
+};
+
+}, [isDarkMode]); // Reaguje samo na promenu isDarkMode
+
+// Vraća trenutni state i funkciju za promenu
+// Omotavanje setIsDarkMode da osigura da se string 'true'/'false' čuva
+const toggleDarkMode = (value) => {
+const newValue = typeof value === 'boolean' ? value : !isDarkMode;
+setIsDarkMode(newValue);
+}
+
+return [isDarkMode, toggleDarkMode];
+}
+
+export default useDarkMode;
+</code></pre>
+<div class="snippet-footer">
+<button class="btn btn-secondary btn-sm copy-btn sr-content" data-clipboard-target="#code-snippet-1">
+<i class="fas fa-copy"></i> Kopiraj kod
+</button>
+<button class="btn btn-secondary btn-sm copy-btn en-content" data-clipboard-target="#code-snippet-1" style="display:none">
+<i class="fas fa-copy"></i> Copy Code
+</button>
+<a href="#" class="btn btn-primary btn-sm sr-content">
+<i class="fas fa-book"></i> Detaljno objašnjenje
+</a>
+<a href="#" class="btn btn-primary btn-sm en-content" style="display:none">
+<i class="fas fa-book"></i> Detailed Explanation
+</a>
+</div>
+</div>
+</div>
+
+</section>
+<section class="newsletter-section">
+<div class="container">
+<div class="newsletter-content">
+<div class="newsletter-text">
+<h2 class="sr-content">Prijava na <span class="accent-text">newsletter</span></h2>
+<h2 class="en-content" style="display:none">Subscribe to the <span class="accent-text">Newsletter</span></h2>
+<p class="sr-content">Želite li da dobijate najnovije savete iz oblasti programiranja i online prodaje? Prijavite se na moj newsletter i svakog meseca dobijajte praktične savete, kod primere i strategije koje možete odmah implementirati.</p>
+<p class="en-content" style="display:none">Want to receive the latest tips on programming and online sales? Subscribe to my newsletter and get practical advice, code examples, and strategies you can implement immediately every month.</p>
+</div>
+<div class="newsletter-form">
+<form id="newsletterForm">
+<div class="form-group">
+<input type="email" id="newsletter-email" name="newsletter_email" placeholder="Vaša email adresa" class="sr-content" required>
+<input type="email" id="newsletter-email-en" name="newsletter_email_en" placeholder="Your email address" class="en-content" style="display:none" required>
+</div>
+<button type="submit" class="btn btn-primary sr-content">Prijavite se</button>
+<button type="submit" class="btn btn-primary en-content" style="display:none">Subscribe</button>
+<div class="newsletter-message"></div> <!-- Container for messages -->
+</form>
+</div>
+</div>
+</div>
+</section>
+<section class="categories-section">
+<div class="container">
+<div class="section-header">
+<h2 class="sr-content">Kategorije <span class="accent-text">bloga</span></h2>
+<h2 class="en-content" style="display:none">Blog <span class="accent-text">Categories</span></h2>
+<p class="sr-content">Istražite teme koje vas interesuju</p>
+<p class="en-content" style="display:none">Explore topics that interest you</p>
+</div>
+<div class="categories-grid">
+        <a href="#" class="category-card">
+            <div class="category-icon"><i class="fas fa-code"></i></div>
+            <h3 class="sr-content">Web razvoj</h3>
+            <h3 class="en-content" style="display:none">Web Development</h3>
+            <p class="sr-content">14 članaka</p>
+            <p class="en-content" style="display:none">14 articles</p>
+        </a>
+        <a href="#" class="category-card">
+            <div class="category-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h3 class="sr-content">E-commerce</h3>
+            <h3 class="en-content" style="display:none">E-commerce</h3>
+            <p class="sr-content">9 članaka</p>
+            <p class="en-content" style="display:none">9 articles</p>
+        </a>
+        <a href="#" class="category-card">
+            <div class="category-icon"><i class="fas fa-tasks"></i></div>
+            <h3 class="sr-content">Projektni menadžment</h3>
+            <h3 class="en-content" style="display:none">Project Management</h3>
+            <p class="sr-content">6 članaka</p>
+            <p class="en-content" style="display:none">6 articles</p>
+        </a>
+        <a href="#" class="category-card">
+            <div class="category-icon"><i class="fas fa-chart-line"></i></div>
+            <h3 class="sr-content">Prodajne tehnike</h3>
+            <h3 class="en-content" style="display:none">Sales Techniques</h3>
+            <p class="sr-content">11 članaka</p>
+            <p class="en-content" style="display:none">11 articles</p>
+        </a>
+    </div>
+</div>
+
+</section>
+<section class="blog-authors">
+<div class="container">
+<div class="section-header">
+<h2 class="sr-content">Naši <span class="accent-text">autori</span></h2>
+<h2 class="en-content" style="display:none">Our <span class="accent-text">Authors</span></h2>
+<p class="sr-content">Upoznajte stručnjake koji stoje iza Popzify bloga</p>
+<p class="en-content" style="display:none">Meet the experts behind the Popzify blog</p>
+</div>
+<div class="authors-grid">
+        <a href="stefanpopovic.html" class="author-card active"> <!-- Active class on Stefan's card -->
+            <img loading="lazy" src="assets/images/stefan.webp" alt="Stefan Popović" class="author-card-image">
+            <h3>Stefan Popović</h3>
+            <p class="sr-content">Programiranje i prodajne strategije</p>
+            <p class="en-content" style="display:none">Programming and Sales Strategies</p>
+        </a>
+        <a href="ivanpopovic.html" class="author-card">
+            <img loading="lazy" src="assets/images/ivan.webp" alt="Ivan Popović" class="author-card-image">
+            <h3>Ivan Popović</h3>
+            <p class="sr-content">Audio-video produkcija i marketing</p>
+            <p class="en-content" style="display:none">Audio-Video Production and Marketing</p>
+        </a>
+    </div>
+</div>
+
+</section>
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo">
+<a href="index.html"><span>Pop</span>zify</a>
+<p>Modern Web & Mobile Solutions</p>
+</div>
+<div class="footer-links">
+<div class="footer-col">
+<h3 class="sr-content">Blog</h3>
+<h3 class="en-content" style="display:none">Blog</h3>
+<ul>
+<li><a href="ivanpopovic.html">Ivan Popović</a></li>
+<li><a href="stefanpopovic.html">Stefan Popović</a></li>
+<li>
+<a href="#" class="sr-content">Kategorije</a>
+<a href="#" class="en-content" style="display:none">Categories</a>
+</li>
+<li>
+<a href="#" class="sr-content">Arhiva</a>
+<a href="#" class="en-content" style="display:none">Archive</a>
+</li>
+</ul>
+</div>
+<div class="footer-col">
+<h3 class="sr-content">Linkovi</h3>
+<h3 class="en-content" style="display:none">Links</h3>
+<ul>
+<li>
+<a href="index.html#about" class="sr-content">O nama</a>
+<a href="index.html#about" class="en-content" style="display:none">About Us</a>
+</li>
+<li>
+<a href="index.html#services" class="sr-content">Usluge</a>
+<a href="index.html#services" class="en-content" style="display:none">Services</a>
+</li>
+<li>
+<a href="projects.html" class="sr-content">Portfolio</a> <!-- Updated link -->
+<a href="projects.html" class="en-content" style="display:none">Portfolio</a> <!-- Updated link -->
+</li>
+<li>
+<a href="index.html#contact" class="sr-content">Kontakt</a>
+<a href="index.html#contact" class="en-content" style="display:none">Contact</a>
+</li>
+<li><a href="privacypolicy.html" class="en-content">Privacy Policy</a><a href="privacypolicy.html" class="sr-content">Politika privatnosti</a></li> <!-- Updated Link -->
+</ul>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 Popzify. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Custom cursor -->
+<div class="cursor-outer"></div>
+<div class="cursor-inner"></div>
+<!-- Dark mode toggle -->
+<div class="theme-toggle">
+<i class="fas fa-moon"></i>
+</div>
+<!-- Back to top button -->
+<div class="back-to-top">
+<i class="fas fa-chevron-up"></i>
+</div>
+<!-- JavaScript for Language Toggle -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const langButtons = document.querySelectorAll('.lang-btn');
+const srContent = document.querySelectorAll('.sr-content');
+const enContent = document.querySelectorAll('.en-content');
+const langSelector = document.querySelector('.lang-selector'); // Get the container
+
+const titles = {
+'sr': "Stefan Popović - Blog | Programiranje & Prodajne Strategije | Popzify",
+'en': "Stefan Popović - Blog | Programming & Sales Strategies | Popzify"
+};
+
+function updateContentLanguage(lang) {
+// Hide all language content initially
+srContent.forEach(el => el.style.display = 'none');
+enContent.forEach(el => el.style.display = 'none');
+
+// Show content for the selected language
+const contentToShow = (lang === 'sr') ? srContent : enContent;
+contentToShow.forEach(el => {
+// Determine the correct display style (block, inline, flex, grid)
+let displayStyle = 'block'; // Default
+if (el.classList.contains('inline')) displayStyle = 'inline';
+else if (el.classList.contains('flex')) displayStyle = 'flex';
+else if (el.classList.contains('grid')) displayStyle = 'grid';
+el.style.display = displayStyle;
+});
+
+
+document.documentElement.lang = lang; // Set lang attribute on <html>
+document.title = titles[lang]; // Set page title
+
+// Update language selector appearance
+if (langSelector) {
+langSelector.setAttribute('data-lang', lang);
+const slider = langSelector.querySelector('.slider');
+const activeBtn = langSelector.querySelector(`.lang-btn[data-lang="${lang}"]`);
+if(slider && activeBtn) {
+langSelector.classList.toggle('sr-active', lang === 'sr');
+slider.style.left = activeBtn.offsetLeft + 'px';
+slider.style.width = activeBtn.offsetWidth + 'px';
+}
+}
+
+langButtons.forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === lang));
+
+localStorage.setItem('preferredLanguage', lang);
+// Trigger custom event for other scripts
+document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+}
+
+langButtons.forEach(btn => {
+btn.addEventListener('click', function() {
+const lang = this.getAttribute('data-lang');
+updateContentLanguage(lang);
+});
+});
+
+const savedLang = localStorage.getItem('preferredLanguage') || 'sr'; // Default to Serbian
+updateContentLanguage(savedLang);
+});
+</script>
+<!-- Prism JS for code highlighting -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js" integrity="sha512-dLAbDzaEXR6L/3QIFdI/V/dM0L/hgjGfJcKkkn2b8hGfVzUEcxh70HkQ5nQ4sVvj9S7gJqyvr3Yh1hF36nU5Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-javascript.min.js" integrity="sha512-vZ/iY3uHwZ2w/v3c9Z85L+mJ2L7BBPk0+5yF4u/l5l1f5MhM312wz0Y5d35T7f0+i/hP4yP7r0YfH0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-fTl/qcO1VgvKtOMApX2PdZzkziyr2stM65GYPLGuYMnuRh_dBWDWBYRLaxQBxZWc0VL2qWUryAIqtSQLHIhdQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFg/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Main JS -->
+<script src="main.js"></script>
+<!-- Additional Blog JS -->
+<script>
+// Initialize clipboard.js for code snippets
+document.addEventListener('DOMContentLoaded', function() {
+// Ensure Prism highlights code after DOM load
+Prism.highlightAll();
+
+// Clipboard for copy buttons
+var clipboard = new ClipboardJS('.copy-btn');
+
+clipboard.on('success', function(e) {
+const originalBtnHTML = e.trigger.innerHTML;
+const lang = localStorage.getItem('preferredLanguage') || 'sr'; // Get current language
+const copiedText = (lang === 'sr') ? 'Kopirano!' : 'Copied!';
+
+e.trigger.innerHTML = `<i class="fas fa-check"></i> ${copiedText}`;
+e.trigger.disabled = true; // Optionally disable button temporarily
+
+setTimeout(function() {
+e.trigger.innerHTML = originalBtnHTML;
+e.trigger.disabled = false; // Re-enable button
+}, 2000);
+
+e.clearSelection();
+});
+
+clipboard.on('error', function(e) {
+// Optional: Handle copy errors (e.g., show a tooltip)
+console.error('Failed to copy code:', e);
+alert('Failed to copy code. Please copy manually.');
+});
+
+// Newsletter submission logic (copy from ivanpopovic.html's script)
+const newsletterForm = document.getElementById('newsletterForm');
+if (newsletterForm) {
+const srButton = newsletterForm.querySelector('.btn.sr-content');
+const enButton = newsletterForm.querySelector('.btn.en-content');
+const messageContainer = newsletterForm.querySelector('.newsletter-message'); // Use the existing div
+
+if (srButton) {
+srButton.addEventListener('click', function(ev) {
+ev.preventDefault();
+handleNewsletterSubmit('sr', messageContainer);
+});
+}
+
+if (enButton) {
+enButton.addEventListener('click', function(ev) {
+ev.preventDefault();
+handleNewsletterSubmit('en', messageContainer);
+});
+}
+}
+
+function handleNewsletterSubmit(lang, msgContainer) {
+const emailInput = document.getElementById(lang === 'sr' ? 'newsletter-email' : 'newsletter-email-en');
+const email = emailInput.value.trim();
+const button = document.querySelector(`.newsletter-form .btn.${lang}-content`);
+const originalText = button.textContent;
+
+if (!email) {
+showMessage(msgContainer, lang === 'sr' ? 'Email adresa je obavezna' : 'Email is required', 'error', lang);
+return;
+}
+if (!/\S+@\S+\.\S+/.test(email)) {
+showMessage(msgContainer, lang === 'sr' ? 'Unesite validnu email adresu' : 'Please enter a valid email', 'error', lang);
+return;
+}
+
+button.disabled = true;
+button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${lang === 'sr' ? 'Šalje se...' : 'Sending...'}`;
+
+const formData = new FormData();
+formData.append('newsletter_email', email); // Use consistent name
+
+fetch('php/process-newsletter.php', { // Ensure this PHP file exists and handles the 'newsletter_email' field
+method: 'POST',
+body: formData
+})
+.then(response => response.ok ? response.text() : Promise.reject('Network response was not ok.'))
+.then(data => {
+emailInput.value = '';
+showMessage(msgContainer, lang === 'sr' ? 'Hvala što ste se prijavili!' : 'Thank you for subscribing!', 'success', lang);
+button.disabled = false;
+button.innerHTML = originalText;
+})
+.catch(error => {
+console.error('Error:', error);
+showMessage(msgContainer, lang === 'sr' ? 'Došlo je do greške. Pokušajte ponovo.' : 'An error occurred. Please try again.', 'error', lang);
+button.disabled = false;
+button.innerHTML = originalText;
+});
+}
+
+function showMessage(container, message, type, lang) {
+container.textContent = message;
+container.className = `newsletter-message ${type} ${lang}-content`; // Add language class
+container.style.display = 'block';
+
+// Update display based on current language AFTER setting the class
+const currentLang = localStorage.getItem('preferredLanguage') || 'sr';
+container.style.display = (lang === currentLang) ? 'block' : 'none';
+
+
+if (type === 'success') {
+setTimeout(() => {
+container.style.display = 'none';
+container.textContent = '';
+container.className = 'newsletter-message';
+}, 5000);
+}
+}
+
+// Listen to language changes to show/hide the message accordingly
+document.addEventListener('languageChanged', (e) => {
+const messageContainer = document.querySelector('.newsletter-message');
+if (messageContainer && messageContainer.textContent) { // Check if there is a message
+const messageLangClass = messageContainer.classList.contains('sr-content') ? 'sr' : 'en';
+messageContainer.style.display = (e.detail.language === messageLangClass) ? 'block' : 'none';
+}
+});
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags - English -->
+    <meta name="title" content="ArtisanMarket - E-commerce Platform | Popzify">
+    <meta name="description" content="Case study of ArtisanMarket, a marketplace platform for handcrafted products built with WooCommerce and custom extensions by Popzify.">
+    <meta name="keywords" content="e-commerce, online marketplace, handcrafted products, artisan marketplace, WooCommerce, WordPress, custom e-commerce">
+    <meta name="author" content="Popzify">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+
+    <!-- Primary Meta Tags - Serbian -->
+    <meta name="title" lang="sr" content="ArtisanMarket - E-commerce Platforma | Popzify">
+    <meta name="description" lang="sr" content="Studija slučaja ArtisanMarket, marketplace platforme za ručno izrađene proizvode izgrađene sa WooCommerce-om i prilagođenim ekstenzijama koje je razvio Popzify.">
+    <meta name="keywords" lang="sr" content="e-commerce, online marketplace, ručno izrađeni proizvodi, zanatski marketplace, WooCommerce, WordPress, prilagođeni e-commerce">
+
+    <!-- Favicon Tags -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#6c5ce7">
+
+    <title>ArtisanMarket | Popzify Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+    <!-- Theme Color for browsers -->
+    <meta name="theme-color" content="#6c5ce7">
+
+    <!-- Detect JS -->
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+    
+    <style>
+        /* Additional styles for language support */
+        .en-content {
+            display: none;
+        }
+        
+        .sr-content {
+            display: none;
+        }
+        
+        [data-lang="en"] .en-content {
+            display: block;
+        }
+        
+        [data-lang="sr"] .sr-content {
+            display: block;
+        }
+        
+        [data-lang="en"] .en-content.inline {
+            display: inline;
+        }
+        
+        [data-lang="sr"] .sr-content.inline {
+            display: inline;
+        }
+        
+        [data-lang="en"] .en-content.flex {
+            display: flex;
+        }
+        
+        [data-lang="sr"] .sr-content.flex {
+            display: flex;
+        }
+        
+        [data-lang="en"] .en-content.grid {
+            display: grid;
+        }
+        
+        [data-lang="sr"] .sr-content.grid {
+            display: grid;
+        }
+        
+        /* Project specific styles */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-item {
+            background-color: var(--bg-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(108, 92, 231, 0.1);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+        
+        .feature-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .feature-item p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* Marketplace stats */
+        .marketplace-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-box {
+            background-color: var(--bg-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        /* User personas section */
+        .user-persona {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            margin: 40px 0;
+            padding: 30px;
+            background-color: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .persona-image {
+            flex: 0 0 150px;
+        }
+        
+        .persona-image img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+        }
+        
+        .persona-info {
+            flex: 1;
+        }
+        
+        .persona-info h4 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .persona-info .persona-title {
+            font-size: 1rem;
+            color: var(--light-text);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .persona-info p {
+            margin-bottom: 10px;
+        }
+        
+        .persona-goals {
+            margin-top: 15px;
+        }
+        
+        .persona-goals h5 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .persona-goals ul {
+            padding-left: 20px;
+        }
+        
+        .persona-goals li {
+            margin-bottom: 5px;
+        }
+        
+        /* Store screens gallery */
+        .store-screens {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 20px 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .store-screens::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .store-screen {
+            flex: 0 0 auto;
+            width: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .store-screen:hover {
+            transform: translateY(-10px);
+        }
+        
+        .store-screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Fix button positioning */
+        .back-to-top, .theme-toggle {
+            position: fixed !important;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            z-index: 99 !important;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+            color: white !important;
+            background-color: var(--primary-color) !important;
+        }
+
+        /* Position the back-to-top button at top position */
+        .back-to-top {
+            bottom: 90px !important; 
+            right: 30px !important;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Position the theme toggle button BELOW back-to-top */
+        .theme-toggle {
+            bottom: 30px !important;
+            right: 30px !important;
+            transition: all 0.3s ease;
+        }
+
+        /* Show back-to-top button when visible/active class is added */
+        .back-to-top.visible,
+        .back-to-top.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Hover effects */
+        .theme-toggle:hover,
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-color) !important;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .user-persona {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+            
+            .persona-goals ul {
+                text-align: left;
+            }
+            
+            .marketplace-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="canonical" href="https://popzify.com/project-artisanmarket.html">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><span>Pop</span>zify</a>
+                </div>
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="index.html#hero" data-nav="home" class="en-content">Home</a><a href="index.html#hero" data-nav="home" class="sr-content">Početna</a></li>
+                        <li><a href="index.html#services" data-nav="services" class="en-content">Services</a><a href="index.html#services" data-nav="services" class="sr-content">Usluge</a></li>
+                        <li><a href="index.html#team" data-nav="ourTeam" class="en-content">Our Team</a><a href="index.html#team" data-nav="ourTeam" class="sr-content">Naš tim</a></li>
+                        <li><a href="projects.html" data-nav="projects" class="active en-content">Projects</a><a href="projects.html" data-nav="projects" class="active sr-content">Projekti</a></li>
+                        <li><a href="index.html#about" data-nav="about" class="en-content">About</a><a href="index.html#about" data-nav="about" class="sr-content">O nama</a></li>
+                        <li><a href="index.html#faq" data-nav="faq" class="en-content">FAQ</a><a href="index.html#faq" data-nav="faq" class="sr-content">FAQ</a></li>
+                        <li><a href="ivanpopovic.html" data-nav="blog" class="en-content">Blog</a><a href="ivanpopovic.html" data-nav="blog" class="sr-content">Blog</a></li>
+                        <li><a href="index.html#contact" data-nav="contact" class="en-content">Contact</a><a href="index.html#contact" data-nav="contact" class="sr-content">Kontakt</a></li>
+                    </ul>
+                    <div class="lang-selector" data-lang="sr">
+                        <button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
+                        <button class="lang-btn active" data-lang="sr" aria-label="Switch to Serbian">SR</button>
+                        <div class="slider"></div>
+                    </div>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Project Hero Section -->
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-breadcrumbs">
+                <a href="index.html" class="en-content">Home</a><a href="index.html" class="sr-content">Početna</a> &gt; 
+                <a href="projects.html" class="en-content">Projects</a><a href="projects.html" class="sr-content">Projekti</a> &gt; 
+                <span>ArtisanMarket</span>
+            </div>
+            <div class="project-hero-content">
+                <h1>ArtisanMarket</h1>
+                <p class="project-tagline en-content">Marketplace platform for handcrafted products</p>
+                <p class="project-tagline sr-content">Marketplace platforma za ručno izrađene proizvode</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Project Overview -->
+    <section class="project-overview">
+        <div class="container">
+            <div class="project-overview-grid">
+                <div class="project-overview-image">
+                    <img loading="lazy" src="assets/projects/artisanmarket-main.webp" alt="ArtisanMarket e-commerce platform">
+                </div>
+                <div class="project-overview-info">
+                    <h2 class="en-content">Project Overview</h2>
+                    <h2 class="sr-content">Pregled Projekta</h2>
+                    <p class="en-content">ArtisanMarket is a specialized e-commerce platform that connects artisans and craftspeople with customers seeking unique, handcrafted products. Our team developed a comprehensive marketplace solution that enables artisans to showcase their work, manage inventory, process orders, and build their own brand presence within the platform.</p>
+                    <p class="sr-content">ArtisanMarket je specijalizovana e-commerce platforma koja povezuje zanatlije i umetnike sa kupcima koji traže jedinstvene, ručno izrađene proizvode. Naš tim je razvio sveobuhvatno marketplace rešenje koje omogućava zanatlijama da predstave svoje radove, upravljaju zalihama, obrađuju porudžbine i grade sopstveno prisustvo brenda unutar platforme.</p>
+                    
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <h4 class="en-content">Client</h4>
+                            <h4 class="sr-content">Klijent</h4>
+                            <p>ArtisanMarket Ltd.</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="en-content">Industry</h4>
+                            <h4 class="sr-content">Industrija</h4>
+                            <p class="en-content">E-commerce / Artisan Crafts</p>
+                            <p class="sr-content">E-commerce / Zanatski radovi</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="en-content">Services</h4>
+                            <h4 class="sr-content">Usluge</h4>
+                            <p class="en-content">E-commerce Development, UI/UX Design, Custom Plugin Development</p>
+                            <p class="sr-content">E-commerce Razvoj, UI/UX Dizajn, Razvoj prilagođenih dodataka</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="en-content">Year</h4>
+                            <h4 class="sr-content">Godina</h4>
+                            <p>2023</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="en-content">Website</h4>
+                            <h4 class="sr-content">Veb Sajt</h4>
+                            <p><a href="https://artisanmarket.com" target="_blank">artisanmarket.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details -->
+    <section class="project-details">
+        <div class="container">
+            <div class="project-details-content">
+                <div class="project-challenge">
+                    <h2 class="en-content">Challenge</h2>
+                    <h2 class="sr-content">Izazov</h2>
+                    <p class="en-content">The client approached us with a vision to create a specialized marketplace that would cater to the unique needs of artisans and craftspeople. The key challenges included:</p>
+                    <p class="sr-content">Klijent nam se obratio sa vizijom da kreira specijalizovani marketplace koji bi odgovarao specifičnim potrebama zanatlija i umetnika. Ključni izazovi uključivali su:</p>
+                    <ul>
+                        <li class="en-content">Building a platform that would allow diverse product types with custom attributes and variations unique to handmade items</li>
+                        <li class="sr-content">Izgradnja platforme koja bi omogućila različite tipove proizvoda sa prilagođenim atributima i varijacijama jedinstvenim za ručno izrađene predmete</li>
+                        <li class="en-content">Creating a seamless seller onboarding process with specialized tools for artisan vendors</li>
+                        <li class="sr-content">Kreiranje jednostavnog procesa registracije prodavaca sa specijalizovanim alatima za zanatlije</li>
+                        <li class="en-content">Designing an intuitive interface that would showcase craftsmanship while maintaining excellent usability</li>
+                        <li class="sr-content">Dizajniranje intuitivnog interfejsa koji bi isticao zanatstvo uz održavanje odlične upotrebljivosti</li>
+                        <li class="en-content">Implementing a commission-based system with flexible rates based on seller performance</li>
+                        <li class="sr-content">Implementacija sistema baziranog na provizijama sa fleksibilnim stopama na osnovu performansi prodavaca</li>
+                        <li class="en-content">Building a robust review and certification system to ensure product authenticity and quality</li>
+                        <li class="sr-content">Izgradnja robusnog sistema recenzija i sertifikacije za obezbeđivanje autentičnosti i kvaliteta proizvoda</li>
+                        <li class="en-content">Optimizing performance for a platform that would feature thousands of high-quality product images</li>
+                        <li class="sr-content">Optimizacija performansi za platformu koja bi prikazivala hiljade visokokvalitetnih slika proizvoda</li>
+                    </ul>
+                </div>
+                
+                <div class="project-solution">
+                    <h2 class="en-content">Solution</h2>
+                    <h2 class="sr-content">Rešenje</h2>
+                    <p class="en-content">We developed a custom e-commerce solution based on WooCommerce with extensive modifications to create a specialized multi-vendor marketplace:</p>
+                    <p class="sr-content">Razvili smo prilagođeno e-commerce rešenje bazirano na WooCommerce-u sa obimnim modifikacijama za kreiranje specijalizovanog multi-vendor marketplace-a:</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h3 class="en-content">Artisan Storefronts</h3>
+                            <h3 class="sr-content">Zanatske prodavnice</h3>
+                            <p class="en-content">Customizable seller profiles with branding options and storytelling elements to highlight artisan stories.</p>
+                            <p class="sr-content">Prilagodljivi profili prodavaca sa opcijama brendiranja i elementima pripovedanja za isticanje priča zanatlija.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3 class="en-content">Custom Product Attributes</h3>
+                            <h3 class="sr-content">Prilagođeni atributi proizvoda</h3>
+                            <p class="en-content">Extended product fields for materials, techniques, dimensions, and other craft-specific details.</p>
+                            <p class="sr-content">Proširena polja proizvoda za materijale, tehnike, dimenzije i druge specifične detalje zanatstva.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3 class="en-content">Verification System</h3>
+                            <h3 class="sr-content">Sistem verifikacije</h3>
+                            <p class="en-content">Tiered verification process for artisans with badges and certifications to build customer trust.</p>
+                            <p class="sr-content">Slojeviti proces verifikacije za zanatlije sa bedževima i sertifikatima za izgradnju poverenja kupaca.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <h3 class="en-content">Flexible Shipping</h3>
+                            <h3 class="sr-content">Fleksibilna isporuka</h3>
+                            <p class="en-content">Customizable shipping options for fragile items, custom orders, and international shipping.</p>
+                            <p class="sr-content">Prilagodljive opcije isporuke za lomljive predmete, posebne porudžbine i međunarodnu isporuku.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-comments-dollar"></i>
+                            </div>
+                            <h3 class="en-content">Commission Management</h3>
+                            <h3 class="sr-content">Upravljanje provizijama</h3>
+                            <p class="en-content">Dynamic commission system with variable rates based on seller tier, product category, and sales volume.</p>
+                            <p class="sr-content">Dinamički sistem provizija sa promenljivim stopama na osnovu nivoa prodavca, kategorije proizvoda i obima prodaje.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3 class="en-content">Advanced Search</h3>
+                            <h3 class="sr-content">Napredna pretraga</h3>
+                            <p class="en-content">Elasticsearch integration with filters for materials, techniques, location, and customization options.</p>
+                            <p class="sr-content">Elasticsearch integracija sa filterima za materijale, tehnike, lokaciju i opcije prilagođavanja.</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="en-content">User Research & Personas</h3>
+                    <h3 class="sr-content">Istraživanje korisnika i persone</h3>
+                    <p class="en-content">Our design process began with extensive research into both buyers and sellers in the artisan marketplace. Here's one of our key buyer personas:</p>
+                    <p class="sr-content">Naš proces dizajna počeo je opsežnim istraživanjem kupaca i prodavaca na zanatskom marketplace-u. Evo jedne od naših ključnih persona kupaca:</p>
+                    
+                    <div class="user-persona">
+                        <div class="persona-image">
+                            <img loading="lazy" src="assets/projects/artisanmarket-persona.jpg" alt="User persona - Emma">
+                        </div>
+                        <div class="persona-info">
+                            <h4 class="en-content">Emma, 35</h4>
+                            <h4 class="sr-content">Emma, 35</h4>
+                            <span class="persona-title en-content">Interior Designer & Conscious Consumer</span>
+                            <span class="persona-title sr-content">Dizajner enterijera i svesni potrošač</span>
+                            <p class="en-content">Emma is a professional interior designer who values authenticity and story in the pieces she selects for her clients. She's frustrated with mass-produced items and is willing to pay more for handcrafted quality that comes with a unique story and sustainable practices.</p>
+                            <p class="sr-content">Emma je profesionalni dizajner enterijera koja ceni autentičnost i priču u komadima koje bira za svoje klijente. Frustrirana je masovno proizvedenim predmetima i spremna je da plati više za ručno izrađeni kvalitet koji dolazi sa jedinstvenom pričom i održivim praksama.</p>
+                            
+                            <div class="persona-goals">
+                                <h5 class="en-content">Goals:</h5>
+                                <h5 class="sr-content">Ciljevi:</h5>
+                                <ul>
+                                    <li class="en-content">Find unique, high-quality artisan pieces with authentic stories</li>
+                                    <li class="sr-content">Pronaći jedinstvene, visokokvalitetne zanatske komade sa autentičnim pričama</li>
+                                    <li class="en-content">Connect directly with creators for custom commissions</li>
+                                    <li class="sr-content">Direktno se povezati sa kreatorima za posebne narudžbe</li>
+                                    <li class="en-content">Verify the sustainability and ethical production of items</li>
+                                    <li class="sr-content">Proveriti održivost i etičku proizvodnju predmeta</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="en-content">And here's one of our seller personas that guided our vendor-side development:</p>
+                    <p class="sr-content">A evo i jedne od naših persona prodavaca koja je vodila naš razvoj strane za prodavce:</p>
+                    
+                    <div class="user-persona">
+                        <div class="persona-image">
+                            <img loading="lazy" src="assets/projects/artisanmarket-persona2.jpg" alt="Seller persona - Miguel">
+                        </div>
+                        <div class="persona-info">
+                            <h4 class="en-content">Miguel, 42</h4>
+                            <h4 class="sr-content">Miguel, 42</h4>
+                            <span class="persona-title en-content">Woodworker & Small Business Owner</span>
+                            <span class="persona-title sr-content">Stolar i vlasnik malog biznisa</span>
+                            <p class="en-content">Miguel has been crafting custom wooden furniture for 15 years. He has a workshop and a small local clientele but struggles with online marketing and reaching customers beyond his community. He has great craftsmanship but limited technical and business skills.</p>
+                            <p class="sr-content">Miguel se bavi izradom prilagođenog drvenog nameštaja već 15 godina. Ima radionicu i malu lokalnu klijentelu, ali se bori sa online marketingom i dosezanjem kupaca izvan svoje zajednice. Ima odlično zanatstvo, ali ograničene tehničke i poslovne veštine.</p>
+                            
+                            <div class="persona-goals">
+                                <h5 class="en-content">Goals:</h5>
+                                <h5 class="sr-content">Ciljevi:</h5>
+                                <ul>
+                                    <li class="en-content">Expand his business beyond local markets</li>
+                                    <li class="sr-content">Proširiti svoje poslovanje izvan lokalnih tržišta</li>
+                                    <li class="en-content">Showcase his craftsmanship to appreciative customers</li>
+                                    <li class="sr-content">Prikazati svoje zanatstvo kupcima koji to cene</li>
+                                    <li class="en-content">Simplify order management and shipping logistics</li>
+                                    <li class="sr-content">Pojednostaviti upravljanje porudžbinama i logistiku isporuke</li>
+                                    <li class="en-content">Maintain creative control over his work and pricing</li>
+                                    <li class="sr-content">Održati kreativnu kontrolu nad svojim radom i cenama</li<li class="en-content">Maintain creative control over his work and pricing</li>
+                                    <li class="sr-content">Održati kreativnu kontrolu nad svojim radom i cenama</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="en-content">Marketplace Performance</h3>
+                    <h3 class="sr-content">Performanse marketplace-a</h3>
+                    <p class="en-content">Since launch, ArtisanMarket has grown into a vibrant community of creators and appreciative customers:</p>
+                    <p class="sr-content">Od lansiranja, ArtisanMarket je izrastao u živu zajednicu kreatora i kupaca koji to cene:</p>
+                    
+                    <div class="marketplace-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">3,500+</div>
+                            <div class="stat-label en-content">Verified Artisans</div>
+                            <div class="stat-label sr-content">Verifikovanih zanatlija</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">45,000+</div>
+                            <div class="stat-label en-content">Unique Products</div>
+                            <div class="stat-label sr-content">Jedinstvenih proizvoda</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label en-content">Positive Reviews</div>
+                            <div class="stat-label sr-content">Pozitivnih recenzija</div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="en-content">Store Screens</h3>
+                    <h3 class="sr-content">Ekrani prodavnice</h3>
+                    <p class="en-content">Below are some key screens from the ArtisanMarket platform:</p>
+                    <p class="sr-content">U nastavku su prikazani neki od ključnih ekrana ArtisanMarket platforme:</p>
+                    
+                    <div class="store-screens">
+                        <div class="store-screen">
+                            <img loading="lazy" src="assets/projects/artisanmarket-screen1.webp" alt="ArtisanMarket homepage">
+                        </div>
+                        <div class="store-screen">
+                            <img loading="lazy" src="assets/projects/artisanmarket-screen2.webp" alt="Artisan profile page">
+                        </div>
+                        <div class="store-screen">
+                            <img loading="lazy" src="assets/projects/artisanmarket-screen3.webp" alt="Product detail with story">
+                        </div>
+                    </div>
+                    
+                    
+<h3 class="en-content">Technical Implementation</h3>
+<h3 class="sr-content">Tehnička implementacija</h3>
+<p class="en-content">The platform was developed using the following technologies:</p>
+<p class="sr-content">Platforma je razvijena koristeći sledeće tehnologije:</p>
+
+<div class="tech-stack">
+    <div class="tech-category">
+        <h4 class="en-content">Core Platform</h4>
+        <h4 class="sr-content">Osnovna platforma</h4>
+        <ul>
+            <li><i class="fab fa-wordpress"></i> WordPress</li>
+            <li><i class="fab fa-woocommerce"></i> WooCommerce</li>
+            <li>
+                <i class="fas fa-plug"></i> WC Marketplace 
+                <span class="en-content">with custom extensions</span>
+                <span class="sr-content">sa prilagođenim ekstenzijama</span>
+            </li>
+            <li><i class="fas fa-shopping-cart"></i> Custom vendor system</li>
+        </ul>
+    </div>
+    <div class="tech-category">
+        <h4 class="en-content">Frontend</h4>
+        <h4 class="sr-content">Frontend</h4>
+        <ul>
+            <li>
+                <i class="fab fa-sass"></i> SASS 
+                <span class="en-content">for styling</span>
+                <span class="sr-content">za stilizovanje</span>
+            </li>
+            <li><i class="fab fa-js"></i> JavaScript</li>
+            <li>
+                <i class="fab fa-react"></i> React 
+                <span class="en-content">for interactive components</span>
+                <span class="sr-content">za interaktivne komponente</span>
+            </li>
+            <li>
+                <i class="fab fa-bootstrap"></i> Bootstrap 
+                <span class="en-content">for responsive design</span>
+                <span class="sr-content">za responzivni dizajn</span>
+            </li>
+        </ul>
+    </div>
+    <div class="tech-category">
+        <h4 class="en-content">Performance</h4>
+        <h4 class="sr-content">Performanse</h4>
+        <ul>
+            <li>
+                <i class="fas fa-server"></i> Redis 
+                <span class="en-content">for caching</span>
+                <span class="sr-content">za keširanje</span>
+            </li>
+            <li>
+                <i class="fas fa-cloud"></i> AWS CloudFront 
+                <span class="en-content">for CDN</span>
+                <span class="sr-content">za CDN</span>
+            </li>
+            <li>
+                <i class="fas fa-image"></i> Imgix 
+                <span class="en-content">for image optimization</span>
+                <span class="sr-content">za optimizaciju slika</span>
+            </li>
+            <li>
+                <i class="fas fa-search"></i> Elasticsearch 
+                <span class="en-content">for search functionality</span>
+                <span class="sr-content">za funkcionalnost pretrage</span>
+            </li>
+        </ul>
+    </div>
+    <div class="tech-category">
+        <h4 class="en-content">Integrations</h4>
+        <h4 class="sr-content">Integracije</h4>
+        <ul>
+            <li>
+                <i class="fab fa-stripe"></i> Stripe Connect 
+                <span class="en-content">for vendor payments</span>
+                <span class="sr-content">za plaćanja prodavcima</span>
+            </li>
+            <li><i class="fab fa-paypal"></i> PayPal</li>
+            <li>
+                <i class="fas fa-envelope"></i> Mailchimp 
+                <span class="en-content">for email marketing</span>
+                <span class="sr-content">za email marketing</span>
+            </li>
+            <li>
+                <i class="fas fa-shipping-fast"></i> EasyPost 
+                <span class="en-content">for shipping</span>
+                <span class="sr-content">za isporuku</span>
+            </li>
+        </ul>
+    </div>
+</div>
+                
+                <div class="project-results">
+                    <h2 class="en-content">Results</h2>
+                    <h2 class="sr-content">Rezultati</h2>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="result-text">
+                                <h3>320%</h3>
+                                <p class="en-content">Increase in seller registrations</p>
+                                <p class="sr-content">Povećanje registracija prodavaca</p>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="result-text">
+                                <h3>210%</h3>
+                                <p class="en-content">Growth in monthly transactions</p>
+                                <p class="sr-content">Rast mesečnih transakcija</p>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="result-text">
+                                <h3>65+</h3>
+                                <p class="en-content">Countries with active users</p>
+                                <p class="sr-content">Zemalja sa aktivnim korisnicima</p>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="result-text">
+                                <h3>4.2x</h3>
+                                <p class="en-content">Higher average order value</p>
+                                <p class="sr-content">Veća prosečna vrednost porudžbine</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="results-summary en-content">The relaunch of ArtisanMarket with our custom solution has transformed the platform into a thriving community. Seller onboarding increased by 320% within the first six months, and the average monthly transaction volume has grown by 210%. The improved user experience and advanced search functionality have resulted in a 4.2x increase in average order value compared to the industry standard for handcrafted goods.</p>
+                    <p class="results-summary sr-content">Ponovno pokretanje ArtisanMarket-a sa našim prilagođenim rešenjem transformisalo je platformu u uspešnu zajednicu. Registracija prodavaca povećana je za 320% u prvih šest meseci, a prosečni mesečni obim transakcija porastao je za 210%. Poboljšano korisničko iskustvo i napredna funkcionalnost pretrage rezultirali su povećanjem prosečne vrednosti porudžbine za 4,2 puta u poređenju sa industrijskim standardom za ručno izrađene proizvode.</p>
+                </div>
+                
+                <div class="project-testimonial">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="en-content">"Popzify has created more than just an e-commerce platform for us—they've built a community that celebrates craftsmanship and storytelling. Their understanding of both the technical requirements and the unique needs of artisans resulted in a marketplace that truly respects the human element of handmade goods. The platform has exceeded our growth projections, and both our sellers and customers consistently praise the intuitive interface and personalized features."</p>
+                        <p class="sr-content">"Popzify je kreirao više od obične e-commerce platforme za nas—izgradili su zajednicu koja slavi zanatstvo i pripovedanje. Njihovo razumevanje kako tehničkih zahteva, tako i specifičnih potreba zanatlija rezultiralo je marketplace-om koji zaista poštuje ljudski element ručno izrađenih proizvoda. Platforma je prevazišla naše projekcije rasta, a i naši prodavci i kupci dosledno hvale intuitivan interfejs i personalizovane funkcije."</p>
+                        <div class="client-info">
+                            <img loading="lazy" src="assets/clients/client-olivia.jpg" alt="Olivia Chen" class="client-image">
+                            <div>
+                                <h4>Olivia Chen</h4>
+                                <p class="en-content">Co-founder, ArtisanMarket Ltd.</p>
+                                <p class="sr-content">Suosnivač, ArtisanMarket Ltd.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="project-cta">
+                    <h2 class="en-content">Ready for a custom e-commerce solution?</h2>
+                    <h2 class="sr-content">Spremni za prilagođeno e-commerce rešenje?</h2>
+                    <p class="en-content">Let's discuss how we can help your business thrive online</p>
+                    <p class="sr-content">Razgovarajmo o tome kako možemo pomoći vašem poslovanju da napreduje online</p>
+                    <div class="cta-buttons">
+                        <a href="index.html#contact" class="btn btn-primary en-content">Contact Us</a>
+                        <a href="index.html#contact" class="btn btn-primary sr-content">Kontaktirajte nas</a>
+                        <a href="projects.html" class="btn btn-secondary en-content">View More Projects</a>
+                        <a href="projects.html" class="btn btn-secondary sr-content">Pogledajte više projekata</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Related Projects -->
+    <section class="related-projects">
+        <div class="container">
+            <h2 class="en-content">Related Projects</h2>
+            <h2 class="sr-content">Srodni projekti</h2>
+            <div class="related-projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img loading="lazy" src="assets/projects/correctscore.webp" alt="CorrectScore.pro platform">
+                        <div class="project-overlay">
+                            <a href="project-correctscore.html" class="btn-view-details en-content">View Details</a>
+                            <a href="project-correctscore.html" class="btn-view-details sr-content">Detalji Projekta</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category en-content">Web Application</span>
+                        <span class="project-category sr-content">Web Aplikacija</span>
+                        <h3><a href="project-correctscore.html">Correct Score Pro</a></h3>
+                        <p class="en-content">Advanced betting platform with multiple payment integrations</p>
+                        <p class="sr-content">Napredna betting platforma sa višestrukim integracijama plaćanja</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img loading="lazy" src="assets/projects/fintrack-main.webp" alt="FinTrack financial dashboard">
+                        <div class="project-overlay">
+                            <a href="project-fintrack.html" class="btn-view-details en-content">View Details</a>
+                            <a href="project-fintrack.html" class="btn-view-details sr-content">Detalji Projekta</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category en-content">Web Application</span>
+                        <span class="project-category sr-content">Web Aplikacija</span>
+                        <h3><a href="project-fintrack.html">FinTrack Dashboard</a></h3>
+                        <p class="en-content">Financial analytics dashboard for investors</p>
+                        <p class="sr-content">Financial analytics dashboard za investitore</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom cursor -->
+    <div class="cursor-outer"></div>
+    <div class="cursor-inner"></div>
+
+    <!-- Dark mode toggle -->
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#"><span>Pop</span>zify</a>
+                    <p>Modern Web & Mobile Solutions</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h3 class="en-content">Company</h3>
+                        <h3 class="sr-content">Kompanija</h3>
+                        <ul>
+                            <li><a href="index.html#about" class="en-content">About Us</a><a href="index.html#about" class="sr-content">O nama</a></li>
+                            <li><a href="index.html#services" class="en-content">Services</a><a href="index.html#services" class="sr-content">Usluge</a></li>
+                            <li><a href="projects.html" class="en-content">Portfolio</a><a href="projects.html" class="sr-content">Portfolio</a></li>
+                            <li><a href="#" class="en-content">Careers</a><a href="#" class="sr-content">Karijera</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3 class="en-content">Resources</h3>
+                        <h3 class="sr-content">Resursi</h3>
+                        <ul>
+                            <li><a href="ivanpopovic.html" class="en-content">Blog</a><a href="ivanpopovic.html" class="sr-content">Blog</a></li>
+                            <li><a href="#" class="en-content">Case Studies</a><a href="#" class="sr-content">Studije slučaja</a></li>
+                            <li><a href="index.html#faq" class="en-content">FAQ</a><a href="index.html#faq" class="sr-content">FAQ</a></li>
+                            <li><a href="privacypolicy.html" class="en-content">Privacy Policy</a><a href="privacypolicy.html" class="sr-content">Politika privatnosti</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="en-content">&copy; 2025 Popzify. All Rights Reserved.</p>
+                <p class="sr-content">&copy; 2025 Popzify. Sva prava zadržana.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- Custom JS -->
+    <script src="main.js"></script>
+
+    <!-- Additional script for language switching -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set language on page load from saved preference or default to Serbian
+            const savedLang = localStorage.getItem('preferredLanguage') || 'sr';
+            document.documentElement.setAttribute('data-lang', savedLang);
+            
+            // Update active button in language selector
+            const langSelector = document.querySelector('.lang-selector');
+            if (langSelector) {
+                langSelector.setAttribute('data-lang', savedLang);
+                
+                const buttons = langSelector.querySelectorAll('.lang-btn');
+                buttons.forEach(btn => {
+                    if (btn.getAttribute('data-lang') === savedLang) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // Update slider position for Serbian
+                if (savedLang === 'sr') {
+                    langSelector.classList.add('sr-active');
+                } else {
+                    langSelector.classList.remove('sr-active');
+                }
+            }
+            
+            // Language switch event listener
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    
+                    // Set language attribute on html element
+                    document.documentElement.setAttribute('data-lang', lang);
+                    
+                    // Update language selector
+                    const langSelector = this.closest('.lang-selector');
+                    langSelector.setAttribute('data-lang', lang);
+                    
+                    // Update active state on buttons
+                    langButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update slider position
+                    if (lang === 'sr') {
+                        langSelector.classList.add('sr-active');
+                    } else {
+                        langSelector.classList.remove('sr-active');
+                    }
+                    
+                    // Save preference
+                    localStorage.setItem('preferredLanguage', lang);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

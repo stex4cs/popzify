@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="sr" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ivan Popović - Blog o audio-video produkciji i digitalnom marketingu">
+    <meta name="keywords" content="audio produkcija, video produkcija, digitalni marketing, montaža, produkcija sadržaja">
+    <meta name="author" content="Ivan Popović">
+    <title class="sr-content">Ivan Popović - Blog | Popzify</title>
+    <title class="en-content" style="display:none">Ivan Popović - Blog | Popzify</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Ivan Popović - Blog o audio-video produkciji i digitalnom marketingu">
+    <meta property="og:description" content="Saznajte najnovije trendove i savete iz oblasti audio-video produkcije i digitalnog marketinga.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://popzify.com/ivanpopovic.html">
+    <meta property="og:image" content="https://popzify.com/assets/images/ivan.webp">
+
+    <!-- Detect JS -->
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+
+<style>
+ /* Osnovne promenljive potrebne za ove stilove */
+ :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --text-color: #2d3436;
+            --light-text: #636e72;
+            --bg-color: #ffffff;
+            --light-bg: #f9f9f9;
+            --dark-bg: #1e272e;
+            --border-radius: 8px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Osigurajte da body ima ove osnovne stilove ako nisu učitani */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0; /* Reset */
+        }
+
+        /* Stilovi za Blog Grid i Post Kartice */
+        .blog-posts {
+            padding: 80px 0;
+            background-color: var(--bg-color); /* Prilagodite ako je u dark modu */
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Postavlja dva stupca */
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        /* Stil za "Featured" post - zauzima celu širinu */
+        .featured-post {
+            grid-column: 1 / -1; /* Raspon preko svih stupaca */
+            display: grid; /* Koristi grid za unutrašnji raspored */
+            grid-template-columns: 1.2fr 1fr; /* Odnos slike i teksta */
+            gap: 0; /* Nema razmaka između slike i teksta */
+            align-items: stretch; /* Osigurava da oba dela zauzmu punu visinu */
+        }
+
+        /* Opšti stilovi za SVE blog post kartice */
+        .blog-post {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column; /* !!! KLJUČNO: Slika iznad teksta !!! */
+            height: 100%; /* !!! KLJUČNO: Osigurava istu visinu kartica u redu !!! */
+        }
+
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Stilovi za sliku posta */
+        .post-image {
+            position: relative;
+            overflow: hidden;
+            /* Ako slike nemaju fiksnu visinu, koristite padding-bottom za aspect ratio */
+            height: 0;
+            padding-bottom: 56.25%; /* Za 16:9 odnos slike */
+            flex-shrink: 0; /* Sprečava smanjivanje slike */
+        }
+
+        /* Featured post može imati drugačiji raspored slike */
+        .featured-post .post-image {
+             height: auto; /* Resetuje visinu jer se dimenzije kontrolišu gridom */
+             padding-bottom: 0; /* Resetuje padding */
+             /* Slika unutar featured posta treba da popuni svoj grid prostor */
+        }
+
+        .featured-post .post-image img {
+            position: static; /* Resetujemo absolutnu poziciju za featured post */
+            height: 100%; /* Neka zauzme punu visinu grid ćelije */
+            object-fit: cover;
+        }
+
+
+        .post-image img {
+            position: absolute; /* Omogućava da slika popuni .post-image div */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Pokriva ceo prostor bez distorzije */
+            transition: var(--transition);
+        }
+
+        .blog-post:hover .post-image img {
+            transform: scale(1.05); /* Efekat zumiranja na hover */
+        }
+
+        /* Kategorija posta (tag iznad slike) */
+        .post-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+            display: inline-flex; /* Da bi ikonica i tekst bili u liniji */
+            align-items: center;
+            gap: 5px; /* Razmak između ikonice i teksta */
+        }
+
+        .post-category i {
+             font-size: 0.9em; /* Malo manja ikonica */
+        }
+
+
+        /* Sadržaj posta (tekstualni deo) */
+        .post-content {
+            display: flex;
+            flex-direction: column; /* Ređa elemente vertikalno */
+            flex-grow: 1; /* !!! KLJUČNO: Omogućava da ovaj deo raste i popuni prostor !!! */
+            padding: 25px;
+        }
+
+        /* Meta podaci (datum, vreme čitanja) */
+        .post-meta {
+            display: flex;
+            flex-wrap: wrap; /* Prelomiće ako nema dovoljno mesta */
+            gap: 15px; /* Razmak između meta elemenata */
+            margin-bottom: 15px;
+            color: var(--light-text);
+            font-size: 0.85rem;
+        }
+        .post-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px; /* Razmak između ikonice i teksta */
+        }
+
+        /* Naslov posta */
+        .post-title {
+            font-size: 1.3rem; /* Malo manji naslov za obične postove */
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .featured-post .post-title {
+            font-size: 1.8rem; /* Veći naslov za featured post */
+        }
+
+        .post-title:hover {
+            color: var(--primary-color);
+        }
+
+        /* Izvod iz teksta (excerpt) */
+        .post-excerpt {
+    color: var(--light-text);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    flex-grow: 1; /* Gura dugme na dno ako nema puno teksta */
+
+    /* Stilovi za skraćivanje teksta na 3 reda */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;    /* Prefiksirana verzija */
+    line-clamp: 3;            /* Standardna verzija (dodata) */
+    overflow: hidden;         /* Neophodno (samo jednom) */
+
+    min-height: calc(1.6em * 3); /* Osigurava prostor za 3 reda */
+}
+
+
+        /* Dugme unutar kartice */
+        .post-content .btn {
+            margin-top: auto; /* !!! KLJUČNO: Gura dugme na dno kartice !!! */
+            align-self: flex-start; /* Poravnava dugme na levu stranu */
+        }
+
+         /* Stilovi za dugmad (ako nisu učitani) */
+        .btn {
+            display: inline-block;
+            padding: 10px 25px; /* Malo manje dugme za kartice */
+            border-radius: 30px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            font-size: 0.9rem; /* Malo manji font */
+            text-decoration: none; /* Ukloni podvučeno ako je link */
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Dark Mode specifični stilovi (ako koristite dark mode) */
+        .dark-mode .blog-posts {
+            background-color: var(--bg-color); /* Trebalo bi da bude #121212 ili slično */
+        }
+        .dark-mode .blog-post {
+            background-color: #1e1e1e; /* Tamnija pozadina za kartice */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .dark-mode .post-title {
+            color: #f5f5f5; /* Svetliji tekst naslova */
+        }
+        .dark-mode .post-excerpt,
+        .dark-mode .post-meta {
+            color: #b3b9bd; /* Svetliji sivi tekst */
+        }
+        .dark-mode .post-title:hover {
+             color: var(--primary-color);
+        }
+        /* Prilagodite boje dugmadi za dark mode ako je potrebno */
+
+
+        /* Responsive prilagođavanja */
+        @media screen and (max-width: 991px) {
+            .featured-post {
+                grid-template-columns: 1fr; /* Slika iznad teksta na manjim ekranima */
+            }
+             .featured-post .post-image {
+                 height: 0;
+                 padding-bottom: 56.25%; /* Vraćamo aspect ratio za vertikalni prikaz */
+            }
+             .featured-post .post-image img {
+                 position: absolute; /* Vraćamo absolutnu poziciju */
+            }
+            .blog-grid {
+                grid-template-columns: 1fr; /* Jedan stupac na tabletima */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .post-title {
+                font-size: 1.2rem;
+            }
+            .featured-post .post-title {
+                font-size: 1.5rem;
+            }
+        }
+
+/* Newsletter message styling */
+.newsletter-message {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: none; /* Hidden by default */
+}
+
+.newsletter-message.success,
+.newsletter-message.error {
+    display: block; /* Show when has a type */
+}
+
+.newsletter-message.success {
+    background-color: rgba(40, 167, 69, 0.2);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    color: #ffffff;
+}
+
+.newsletter-message.error {
+    background-color: rgba(220, 53, 69, 0.2);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #ffffff;
+}
+
+/* Ensure our message container inherits the language display properties */
+html[lang="en"] .newsletter-message.sr-content {
+    display: none !important;
+}
+
+html[lang="en"] .newsletter-message.en-content.success,
+html[lang="en"] .newsletter-message.en-content.error {
+    display: block !important;
+}
+
+html[lang="sr"] .newsletter-message.en-content {
+    display: none !important;
+}
+
+html[lang="sr"] .newsletter-message.sr-content.success,
+html[lang="sr"] .newsletter-message.sr-content.error {
+    display: block !important;
+}
+
+    /* Dark Mode for Blog List Page Sections */
+    .dark-mode .blog-posts {
+        background-color: #121212 !important;
+    }
+    
+    .dark-mode .section-header h2,
+    .dark-mode .blog-posts .section-header h2 {
+        color: #f5f5f5 !important;
+    }
+    
+    .dark-mode .section-header p,
+    .dark-mode .blog-posts .section-header p {
+        color: #b3b9bd !important;
+    }
+    
+    .dark-mode .section-header .accent-text {
+        color: #fd79a8 !important;
+    }
+    
+    .dark-mode .blog-pagination .pagination-number {
+        background-color: #2d2d2d !important;
+        color: #f5f5f5 !important;
+    }
+    
+    .dark-mode .blog-pagination .pagination-number.active {
+        background-color: var(--primary-color) !important;
+    }
+    
+    .dark-mode .categories-section {
+        background-color: #1e1e1e !important;
+    }
+    
+    .dark-mode .category-card {
+        background-color: #1e1e1e !important;
+    }
+    
+    .dark-mode .category-card h3 {
+        color: #f5f5f5 !important;
+    }
+    
+    .dark-mode .category-card p {
+        color: #b3b9bd !important;
+    }
+    </style>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Ivan Popović",
+        "image": "https://popzify.com/assets/images/ivan.webp",
+        "jobTitle": "Audio-Video Producer & Digital Marketing Specialist",
+        "description": "Stručnjak za audio-video produkciju i digitalni marketing.",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Popzify",
+          "url": "https://popzify.com"
+        },
+        "knowsAbout": ["Video Production", "Audio Production", "Video Editing", "Digital Marketing", "Social Media Marketing", "Content Creation"]
+      }
+    }
+    </script>
+    <link rel="canonical" href="https://popzify.com/ivanpopovic.html">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><span>Pop</span>zify</a>
+            </div>
+            <div class="nav-menu">
+                <ul>
+                    <li>
+                        <a href="index.html" class="sr-content">Početna</a>
+                        <a href="index.html" class="en-content" style="display:none">Home</a>
+                    </li>
+                    <li>
+                        <a href="index.html#services" class="sr-content">Usluge</a>
+                        <a href="index.html#services" class="en-content" style="display:none">Services</a>
+                    </li>
+                    <li>
+                        <a href="index.html#projects" class="sr-content">Projekti</a>
+                        <a href="index.html#projects" class="en-content" style="display:none">Projects</a>
+                    </li>
+                    <li>
+                        <a href="index.html#about" class="sr-content">O nama</a>
+                        <a href="index.html#about" class="en-content" style="display:none">About Us</a>
+                    </li>
+                    <li>
+                        <a href="#" class="active sr-content">Blog</a>
+                        <a href="#" class="active en-content" style="display:none">Blog</a>
+                    </li>
+                    <li>
+                        <a href="index.html#faq" class="sr-content">FAQ</a>
+                        <a href="index.html#faq" class="en-content" style="display:none">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="index.html#contact" class="sr-content">Kontakt</a>
+                        <a href="index.html#contact" class="en-content" style="display:none">Contact</a>
+                    </li>
+                </ul>
+                <div class="lang-selector" data-lang="sr">
+                    <button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
+                    <button class="lang-btn active" data-lang="sr" aria-label="Switch to Serbian">SR</button>
+                    <div class="slider"></div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="blog-hero">
+    <div class="container">
+        <div class="blog-hero-content">
+            <div class="blog-author">
+                <img loading="lazy" src="assets/images/ivan.webp" alt="Ivan Popović" class="author-image">
+                <div class="author-info">
+                    <h1>Ivan <span class="accent-text">Popović</span></h1>
+                    <p class="sr-content">Specijalizant audio-video produkcije i digitalnog marketinga</p>
+                    <p class="en-content" style="display:none">Specialist in Audio-Video Production and Digital Marketing</p>
+                </div>
+            </div>
+            <div class="author-social">
+                <a href="https://www.linkedin.com/in/ivan-popovic787/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/ivan_popz?igsh=Z3MwZzJtOTcxM3cy" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog-about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="sr-content">O <span class="accent-text">autoru</span></h2>
+                <h2 class="en-content" style="display:none">About the <span class="accent-text">Author</span></h2>
+                <p class="sr-content">Ivan Popović je stručnjak za audio-video produkciju i digitalni marketing sa više od 8 godina iskustva u industriji. Diplomirao je na Fakultetu dramskih umetnosti, smer Produkcija. Njegova strast za vizuelnim pričanjem priča i kreativnim marketinškim rešenjima dovela ga je do saradnje sa brojnim brendovima i agencijama.</p>
+                <p class="en-content" style="display:none">Ivan Popović is an expert in audio-video production and digital marketing with over 8 years of industry experience. He graduated from the Faculty of Dramatic Arts, Production Department. His passion for visual storytelling and creative marketing solutions has led him to collaborate with numerous brands and agencies.</p>
+                <p class="sr-content">Kroz ovaj blog, Ivan deli svoje znanje, iskustvo i najnovije trendove iz sveta multimedijalne produkcije i digitalnog marketinga.</p>
+                <p class="en-content" style="display:none">Through this blog, Ivan shares his knowledge, experience, and the latest trends from the world of multimedia production and digital marketing.</p>
+            </div>
+            <div class="about-image">
+                <img loading="lazy" src="assets/images/ivan.webp" alt="Ivan Popović">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="sr-content">Najnoviji <span class="accent-text">članci</span></h2>
+            <h2 class="en-content" style="display:none">Latest <span class="accent-text">Articles</span></h2>
+            <p class="sr-content">Saznajte više o audio-video produkciji i digitalnom marketingu</p>
+            <p class="en-content" style="display:none">Learn more about audio-video production and digital marketing</p>
+        </div>
+        
+        <div class="blog-grid" id="blog-grid-content">
+            <!-- Featured Post -->
+            <div class="blog-post featured-post">
+                <div class="post-image">
+                    <img loading="lazy" src="assets/images/video-main.webp" alt="Video produkcija">
+                    <div class="post-category sr-content"><i class="fas fa-video"></i> Video produkcija</div>
+                    <div class="post-category en-content" style="display:none"><i class="fas fa-video"></i> Video Production</div>
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="post-date sr-content"><i class="far fa-calendar-alt"></i> 15. mart 2025.</span>
+                        <span class="post-date en-content" style="display:none"><i class="far fa-calendar-alt"></i> March 15, 2025</span>
+                        <span class="post-read-time sr-content"><i class="far fa-clock"></i> 8 min čitanja</span>
+                        <span class="post-read-time en-content" style="display:none"><i class="far fa-clock"></i> 8 min read</span>
+                    </div>
+                    <h3 class="post-title sr-content">Kako stvoriti video sadržaj koji angažuje publiku u 2025. godini</h3>
+                    <h3 class="post-title en-content" style="display:none">How to Create Engaging Video Content in 2025</h3>
+                    <p class="post-excerpt sr-content">U doba kada je pažnja korisnika na društvenim mrežama sve kraća, stvaranje video sadržaja koji će zadržati pažnju publike postaje pravi izazov. Prema najnovijim istraživanjima, prosečni korisnik će odlučiti da li će nastaviti gledati video u prvih 3 sekunde.</p>
+                    <p class="post-excerpt en-content" style="display:none">In an era where user attention on social media is increasingly short, creating video content that retains audience attention becomes a real challenge. According to recent research, the average user decides whether to continue watching a video within the first 3 seconds.</p>
+                    <a href="videoprodukcija.html" class="btn btn-primary sr-content">Pročitaj više</a>
+                    <a href="videoprodukcija.html" class="btn btn-primary en-content" style="display:none">Read More</a>
+                </div>
+            </div>
+            
+            <!-- Regular Posts -->
+            <div class="blog-post">
+                <div class="post-image">
+                    <img loading="lazy" src="assets/images/alati-tehnike-main.webp" alt="Alati i tehnike">
+                    <div class="post-category sr-content"><i class="fas fa-edit"></i> Alati i tehnike</div>
+                    <div class="post-category en-content" style="display:none"><i class="fas fa-edit"></i> Tools and Techniques</div>
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="post-date sr-content"><i class="far fa-calendar-alt"></i> 2. mart 2025.</span>
+                        <span class="post-date en-content" style="display:none"><i class="far fa-calendar-alt"></i> March 2, 2025</span>
+                        <span class="post-read-time sr-content"><i class="far fa-clock"></i> 6 min čitanja</span>
+                        <span class="post-read-time en-content" style="display:none"><i class="far fa-clock"></i> 6 min read</span>
+                    </div>
+                    <h3 class="post-title sr-content">5 najmoćnijih alata za video montažu u 2025. godini</h3>
+                    <h3 class="post-title en-content" style="display:none">5 Most Powerful Video Editing Tools in 2025</h3>
+                    <p class="post-excerpt sr-content">Potpuni vodič kroz najbolje video editing alate koji će vam pomoći da unapredite svoju video produkciju. Otkrijte prednosti DaVinci Resolve, Adobe Premiere Pro, Final Cut Pro i drugih vodećih softvera koji definišu industriju video montaže.</p>
+                    <p class="post-excerpt en-content" style="display:none">A complete guide to the best video editing tools that will help you enhance your video production. Discover the benefits of DaVinci Resolve, Adobe Premiere Pro, Final Cut Pro, and other leading software defining the video editing industry.</p>
+                    <a href="alatiitehnike.html" class="btn btn-secondary sr-content">Pročitaj više</a>
+                    <a href="alatiitehnike.html" class="btn btn-secondary en-content" style="display:none">Read More</a>
+                </div>
+            </div>
+            
+            <div class="blog-post">
+                <div class="post-image">
+                    <img loading="lazy" src="assets/images/audio-main.webp" alt="Audio produkcija">
+                    <div class="post-category sr-content"><i class="fas fa-microphone-alt"></i> Audio produkcija</div>
+                    <div class="post-category en-content" style="display:none"><i class="fas fa-microphone-alt"></i> Audio Production</div>
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="post-date sr-content"><i class="far fa-calendar-alt"></i> 18. Februar 2025.</span>
+                        <span class="post-date en-content" style="display:none"><i class="far fa-calendar-alt"></i> February 18, 2025</span>
+                        <span class="post-read-time sr-content"><i class="far fa-clock"></i> 7 min čitanja</span>
+                        <span class="post-read-time en-content" style="display:none"><i class="far fa-clock"></i> 7 min read</span>
+                    </div>
+                    <h3 class="post-title sr-content">Audio produkcija za digitalni sadržaj: Saveti i trikovi</h3>
+                    <h3 class="post-title en-content" style="display:none">Audio Production for Digital Content: Tips and Tricks</h3>
+                    <p class="post-excerpt sr-content">Otkrijte kako profesionalna audio produkcija može transformisati vaš digitalni sadržaj. Naučite ključne tehnike snimanja, obrade zvuka i korišćenja profesionalnih alata koji će vašim podcastima, videima i ostalim formatima dati pravi profesionalni sjaj.</p>
+                    <p class="post-excerpt en-content" style="display:none">Discover how professional audio production can transform your digital content. Learn key recording techniques, sound processing, and the use of professional tools that will give your podcasts, videos, and other formats a true professional shine.</p>
+                    <a href="audioprodukcija.html" class="btn btn-secondary sr-content">Pročitaj više</a>
+                    <a href="audioprodukcija.html" class="btn btn-secondary en-content" style="display:none">Read More</a>
+                </div>
+            </div>
+            
+            <div class="blog-post">
+                <div class="post-image">
+                    <img loading="lazy" src="assets/images/marketing-main.webp" alt="Marketing strategija">
+                    <div class="post-category sr-content"><i class="fas fa-bullhorn"></i> Digitalni marketing</div>
+                    <div class="post-category en-content" style="display:none"><i class="fas fa-bullhorn"></i> Digital Marketing</div>
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="post-date sr-content"><i class="far fa-calendar-alt"></i> 5. Februar 2025.</span>
+                        <span class="post-date en-content" style="display:none"><i class="far fa-calendar-alt"></i> February 5, 2025</span>
+                        <span class="post-read-time sr-content"><i class="far fa-clock"></i> 9 min čitanja</span>
+                        <span class="post-read-time en-content" style="display:none"><i class="far fa-clock"></i> 9 min read</span>
+                    </div>
+                    <h3 class="post-title sr-content">Kako kreirati efektivnu marketing strategiju za društvene mreže</h3>
+                    <h3 class="post-title en-content" style="display:none">How to Create an Effective Social Media Marketing Strategy</h3>
+                    <p class="post-excerpt sr-content">Detaljan, korak po korak vodič za razvoj marketing strategije koja donosi rezultate. Naučite kako da definišete ciljeve, analizirate publiku, kreirate angažujući sadržaj i maksimizujete povraćaj ulaganja na društvenim mrežama.</p>
+                    <p class="post-excerpt en-content" style="display:none">A detailed, step-by-step guide to developing a marketing strategy that delivers results. Learn how to define goals, analyze your audience, create engaging content, and maximize ROI on social media.</p>
+                    <a href="digitalnimarketing.html" class="btn btn-secondary sr-content">Pročitaj više</a>
+                    <a href="digitalnimarketing.html" class="btn btn-secondary en-content" style="display:none">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-pagination">
+            <a href="#" class="pagination-arrow disabled"><i class="fas fa-chevron-left"></i></a>
+            <a href="#" class="pagination-number active">1</a>
+            <a href="#" class="pagination-number">2</a>
+            <a href="#" class="pagination-number">3</a>
+            <a href="#" class="pagination-arrow"><i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-content">
+            <div class="newsletter-text">
+                <h2 class="sr-content">Prijava na <span class="accent-text">newsletter</span></h2>
+                <h2 class="en-content" style="display:none">Subscribe to the <span class="accent-text">Newsletter</span></h2>
+                <p class="sr-content">Ostanite u toku sa najnovijim trendovima i savetima iz oblasti audio-video produkcije i digitalnog marketinga. Prijavite se na mesečni newsletter i dobijte ekskluzivne savete direktno u vaš inbox.</p>
+                <p class="en-content" style="display:none">Stay updated with the latest trends and tips in audio-video production and digital marketing. Subscribe to our monthly newsletter and receive exclusive tips directly in your inbox.</p>
+            </div>
+            <div class="newsletter-form">
+                <form id="newsletterForm">
+                    <div class="form-group">
+                        <input type="email" id="newsletter-email" placeholder="Vaša email adresa" class="sr-content" required>
+                        <input type="email" id="newsletter-email-en" placeholder="Your email address" class="en-content" style="display:none" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary sr-content">Prijavite se</button>
+                    <button type="submit" class="btn btn-primary en-content" style="display:none">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="categories-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="sr-content">Kategorije <span class="accent-text">bloga</span></h2>
+            <h2 class="en-content" style="display:none">Blog <span class="accent-text">Categories</span></h2>
+            <p class="sr-content">Istražite teme koje vas interesuju</p>
+            <p class="en-content" style="display:none">Explore topics that interest you</p>
+        </div>
+        
+        <div class="categories-grid">
+            <a href="#" class="category-card">
+                <div class="category-icon"><i class="fas fa-video"></i></div>
+                <h3 class="sr-content">Video produkcija</h3>
+                <h3 class="en-content" style="display:none">Video Production</h3>
+                <p class="sr-content">12 članaka</p>
+                <p class="en-content" style="display:none">12 articles</p>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon"><i class="fas fa-microphone-alt"></i></div>
+                <h3 class="sr-content">Audio produkcija</h3>
+                <h3 class="en-content" style="display:none">Audio Production</h3>
+                <p class="sr-content">8 članaka</p>
+                <p class="en-content" style="display:none">8 articles</p>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3 class="sr-content">Digitalni marketing</h3>
+                <h3 class="en-content" style="display:none">Digital Marketing</h3>
+                <p class="sr-content">15 članaka</p>
+                <p class="en-content" style="display:none">15 articles</p>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon"><i class="fas fa-edit"></i></div>
+                <h3 class="sr-content">Alati i tehnike</h3>
+                <h3 class="en-content" style="display:none">Tools and Techniques</h3>
+                <p class="sr-content">10 članaka</p>
+                <p class="en-content" style="display:none">10 articles</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="blog-authors">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="sr-content">Naši <span class="accent-text">autori</span></h2>
+            <h2 class="en-content" style="display:none">Our <span class="accent-text">Authors</span></h2>
+            <p class="sr-content">Upoznajte stručnjake koji stoje iza Popzify bloga</p>
+            <p class="en-content" style="display:none">Meet the experts behind the Popzify blog</p>
+        </div>
+        
+        <div class="authors-grid">
+            <a href="ivanpopovic.html" class="author-card active">
+                <img loading="lazy" src="assets/images/ivan.webp" alt="Ivan Popović" class="author-card-image">
+                <h3>Ivan Popović</h3>
+                <p class="sr-content">Audio-video produkcija i marketing</p>
+                <p class="en-content" style="display:none">Audio-Video Production and Marketing</p>
+            </a>
+            <a href="stefanpopovic.html" class="author-card">
+                <img loading="lazy" src="assets/images/stefan.webp" alt="Stefan Popović" class="author-card-image">
+                <h3>Stefan Popović</h3>
+                <p class="sr-content">Programiranje i prodajne strategije</p>
+                <p class="en-content" style="display:none">Programming and Sales Strategies</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html"><span>Pop</span>zify</a>
+                <p>Modern Web & Mobile Solutions</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h3 class="sr-content">Blog</h3>
+                    <h3 class="en-content" style="display:none">Blog</h3>
+                    <ul>
+                        <li><a href="ivanpopovic.html">Ivan Popović</a></li>
+                        <li><a href="stefanpopovic.html">Stefan Popović</a></li>
+                        <li>
+                            <a href="#" class="sr-content">Kategorije</a>
+                            <a href="#" class="en-content" style="display:none">Categories</a>
+                        </li>
+                        <li>
+                            <a href="#" class="sr-content">Arhiva</a>
+                            <a href="#" class="en-content" style="display:none">Archive</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="sr-content">Linkovi</h3>
+                    <h3 class="en-content" style="display:none">Links</h3>
+                    <ul>
+                        <li>
+                            <a href="index.html#about" class="sr-content">O nama</a>
+                            <a href="index.html#about" class="en-content" style="display:none">About Us</a>
+                        </li>
+                        <li>
+                            <a href="index.html#services" class="sr-content">Usluge</a>
+                            <a href="index.html#services" class="en-content" style="display:none">Services</a>
+                        </li>
+                        <li>
+                            <a href="index.html#projects" class="sr-content">Portfolio</a>
+                            <a href="index.html#projects" class="en-content" style="display:none">Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="index.html#contact" class="sr-content">Kontakt</a>
+                            <a href="index.html#contact" class="en-content" style="display:none">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Popzify. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Custom cursor -->
+<div class="cursor-outer"></div>
+<div class="cursor-inner"></div>
+
+<!-- Dark mode toggle -->
+<div class="theme-toggle">
+    <i class="fas fa-moon"></i>
+</div>
+
+<!-- Back to top button -->
+<div class="back-to-top">
+    <i class="fas fa-chevron-up"></i>
+</div>
+
+<!-- JavaScript for Language Toggle -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get language buttons and content elements
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const srContent = document.querySelectorAll('.sr-content');
+        const enContent = document.querySelectorAll('.en-content');
+        
+        // Function to update content based on selected language
+        function updateContentLanguage(lang) {
+            if (lang === 'sr') {
+                srContent.forEach(el => el.style.display = 'block');
+                enContent.forEach(el => el.style.display = 'none');
+                document.documentElement.setAttribute('lang', 'sr');
+            } else if (lang === 'en') {
+                srContent.forEach(el => el.style.display = 'none');
+                enContent.forEach(el => el.style.display = 'block');
+                document.documentElement.setAttribute('lang', 'en');
+            }
+            // Save the selected language to localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // Add click event to language buttons
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                langButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                updateContentLanguage(lang);
+            });
+        });
+        
+        // Check if there's a saved language preference
+        const savedLang = localStorage.getItem('preferredLanguage');
+        if (savedLang) {
+            langButtons.forEach(btn => {
+                if (btn.getAttribute('data-lang') === savedLang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            updateContentLanguage(savedLang);
+        }
+    });
+</script>
+
+<!-- Main JS -->
+<script src="main.js"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Direktno selektujemo dugmad za prijavu na newsletter
+    const srButton = document.querySelector('.newsletter-form .btn.sr-content');
+    const enButton = document.querySelector('.newsletter-form .btn.en-content');
+    
+    // Dodajemo eksplicitni event listener na svako dugme
+    if (srButton) {
+        srButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleNewsletterSubmit('sr');
+        });
+    }
+    
+    if (enButton) {
+        enButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleNewsletterSubmit('en');
+        });
+    }
+    
+    function handleNewsletterSubmit(lang) {
+        // Selektujemo odgovarajući input za email zavisno od jezika
+        const emailInput = lang === 'sr' ? 
+            document.getElementById('newsletter-email') : 
+            document.getElementById('newsletter-email-en');
+        
+        if (!emailInput) {
+            console.error('Email input not found');
+            return;
+        }
+        
+        const email = emailInput.value.trim();
+        
+        // Provera da li je email validan
+        if (!email) {
+            showMessage(lang === 'sr' ? 'Email adresa je obavezna' : 'Email is required', 'error', lang);
+            return;
+        }
+        
+        if (!email.includes('@') || !email.includes('.')) {
+            showMessage(
+                lang === 'sr' ? 'Unesite validnu email adresu' : 'Please enter a valid email', 
+                'error', 
+                lang
+            );
+            return;
+        }
+        
+        // Prikazujemo stanje učitavanja na dugmetu
+        const button = lang === 'sr' ? srButton : enButton;
+        const originalText = button.textContent;
+        button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + 
+            (lang === 'sr' ? 'Šalje se...' : 'Sending...');
+        
+        // Kreiramo FormData objekat
+        const formData = new FormData();
+        formData.append('newsletter_email', email);
+        
+        // Šaljemo zahtev na server
+        fetch('php/process-newsletter.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Mrežna greška: ' + response.status);
+            }
+            return response.text();
+        })
+        .then(data => {
+            // Uspešan odgovor
+            emailInput.value = '';
+            showMessage(
+                lang === 'sr' ? 
+                    'Hvala što ste se prijavili na naš newsletter!' : 
+                    'Thank you for subscribing to our newsletter!', 
+                'success', 
+                lang
+            );
+            
+            // Vraćamo dugme u prvobitno stanje
+            button.disabled = false;
+            button.innerHTML = originalText;
+        })
+        .catch(error => {
+            console.error('Greška:', error);
+            
+            showMessage(
+                lang === 'sr' ? 
+                    'Došlo je do problema sa vašom prijavom. Molimo pokušajte ponovo.' : 
+                    'There was a problem with your subscription. Please try again.', 
+                'error', 
+                lang
+            );
+            
+            // Vraćamo dugme u prvobitno stanje
+            button.disabled = false;
+            button.innerHTML = originalText;
+        });
+    }
+    
+    // Funkcija za prikazivanje poruka
+    function showMessage(message, type, lang) {
+        // Kreiramo element za poruku ako ne postoji
+        let messageContainer = document.querySelector('.newsletter-message');
+        if (!messageContainer) {
+            messageContainer = document.createElement('div');
+            messageContainer.className = 'newsletter-message';
+            
+            // Dodajemo u formu
+            const form = document.querySelector('.newsletter-form');
+            if (form) {
+                form.appendChild(messageContainer);
+            }
+        }
+        
+        // Postavljamo klase za jezike
+        messageContainer.className = 'newsletter-message ' + type;
+        if (lang === 'sr') {
+            messageContainer.classList.add('sr-content');
+            messageContainer.classList.remove('en-content');
+        } else {
+            messageContainer.classList.add('en-content');
+            messageContainer.classList.remove('sr-content');
+        }
+        
+        // Postavljamo poruku i prikazujemo je
+        messageContainer.textContent = message;
+        messageContainer.style.display = 'block';
+        
+        // Automatski brišemo poruku o uspehu nakon 5 sekundi
+        if (type === 'success') {
+            setTimeout(() => {
+                messageContainer.style.display = 'none';
+            }, 5000);
+        }
+    }
+});
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92785e0929ee14ca',t:'MTc0MzE3NzkwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

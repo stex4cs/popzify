@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags - English -->
+    <meta name="title" content="CorrectScore.pro - Betting Platform | Popzify">
+    <meta name="description" content="Case study of CorrectScore.pro, a comprehensive betting platform with multiple payment integrations developed by Popzify.">
+    <meta name="keywords" content="betting platform, payment integrations, PayPal, Stripe, Revolut, Google Pay, Apple Pay, USDT, case study">
+    <meta name="author" content="Popzify">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+
+    <!-- Primary Meta Tags - Serbian -->
+    <meta name="title" lang="sr" content="correctscore.pro - Betting Platforma | Popzify">
+    <meta name="description" lang="sr" content="Studija slučaja correctscore.pro, sveobuhvatne betting platforme sa višestrukim integracijama plaćanja koju je razvio Popzify.">
+    <meta name="keywords" lang="sr" content="betting platforma, integracije plaćanja, PayPal, Stripe, Revolut, Google Pay, Apple Pay, USDT, studija slučaja">
+
+    <!-- Favicon Tags -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#6c5ce7">
+
+    <title>CorrectScore.pro | Popzify Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+    <!-- Theme Color for browsers -->
+    <meta name="theme-color" content="#6c5ce7">
+
+    <!-- Detect JS -->
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+    
+    <style>
+        /* Additional styles for language support */
+        .en-content {
+            display: none;
+        }
+        
+        .sr-content {
+            display: none;
+        }
+        
+        [data-lang="en"] .en-content {
+            display: block;
+        }
+        
+        [data-lang="sr"] .sr-content {
+            display: block;
+        }
+        
+        [data-lang="en"] .en-content.inline {
+            display: inline;
+        }
+        
+        [data-lang="sr"] .sr-content.inline {
+            display: inline;
+        }
+        
+        [data-lang="en"] .en-content.flex {
+            display: flex;
+        }
+        
+        [data-lang="sr"] .sr-content.flex {
+            display: flex;
+        }
+        
+        [data-lang="en"] .en-content.grid {
+            display: grid;
+        }
+        
+        [data-lang="sr"] .sr-content.grid {
+            display: grid;
+        }
+    </style>
+    <link rel="canonical" href="https://popzify.com/project-correctscore.html">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><span>Pop</span>zify</a>
+                </div>
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="index.html#hero" data-nav="home" class="en-content">Home</a><a href="index.html#hero" data-nav="home" class="sr-content">Početna</a></li>
+                        <li><a href="index.html#services" data-nav="services" class="en-content">Services</a><a href="index.html#services" data-nav="services" class="sr-content">Usluge</a></li>
+                        <li><a href="index.html#team" data-nav="ourTeam" class="en-content">Our Team</a><a href="index.html#team" data-nav="ourTeam" class="sr-content">Naš tim</a></li>
+                        <li><a href="projects.html" data-nav="projects" class="active en-content">Projects</a><a href="projects.html" data-nav="projects" class="active sr-content">Projekti</a></li>
+                        <li><a href="index.html#about" data-nav="about" class="en-content">About</a><a href="index.html#about" data-nav="about" class="sr-content">O nama</a></li>
+                        <li><a href="index.html#faq" data-nav="faq" class="en-content">FAQ</a><a href="index.html#faq" data-nav="faq" class="sr-content">FAQ</a></li>
+                        <li><a href="ivanpopovic.html" data-nav="blog" class="en-content">Blog</a><a href="ivanpopovic.html" data-nav="blog" class="sr-content">Blog</a></li>
+                        <li><a href="index.html#contact" data-nav="contact" class="en-content">Contact</a><a href="index.html#contact" data-nav="contact" class="sr-content">Kontakt</a></li>
+                    </ul>
+                    <div class="lang-selector" data-lang="sr">
+                        <button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
+                        <button class="lang-btn active" data-lang="sr" aria-label="Switch to Serbian">SR</button>
+                        <div class="slider"></div>
+                    </div>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Project Hero Section -->
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-breadcrumbs">
+                <a href="index.html" class="en-content">Home</a><a href="index.html" class="sr-content">Početna</a> &gt; 
+                <a href="projects.html" class="en-content">Projects</a><a href="projects.html" class="sr-content">Projekti</a> &gt; 
+                <span>correctscore.pro</span>
+            </div>
+            <div class="project-hero-content">
+                <h1>correctscore.pro</h1>
+                <p class="project-tagline en-content">Advanced betting platform with multiple payment integrations</p>
+                <p class="project-tagline sr-content">Napredna betting platforma sa višestrukim integracijama plaćanja</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Project Overview -->
+    <section class="project-overview">
+        <div class="container">
+            <div class="project-overview-grid">
+                <div class="project-overview-image">
+                    <img loading="lazy" src="assets/projects/correctscore-main.webp" alt="CorrectScore.pro platform overview">
+                </div>
+                <div class="project-overview-info">
+                    <h2 class="en-content">Project Overview</h2>
+                    <h2 class="sr-content">Pregled Projekta</h2>
+                    <p class="en-content">correctscore.pro is a comprehensive betting platform that provides users with detailed analyses and forecasts of sports events. Our team developed a complete web application with a subscription system and multiple integrated payment methods.</p>
+                    <p class="sr-content">correctscore.pro je sveobuhvatna betting platforma koja korisnicima pruža detaljne analize i prognoze sportskih događaja. Naš tim je razvio kompletnu web aplikaciju sa sistemom pretplate i više integrisanih načina plaćanja.</p>
+                    
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <h4 class="en-content">Client</h4>
+                            <h4 class="sr-content">Klijent</h4>
+                            <p>GODFATHER BETTING TIPS LTD</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="en-content">Industry</h4>
+                            <h4 class="sr-content">Industrija</h4>
+                            <p class="en-content">Sports betting and analytics</p>
+                            <p class="sr-content">Sportsko klađenje i analitika</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="en-content">Services</h4>
+                            <h4 class="sr-content">Usluge</h4>
+                            <p class="en-content">Web development, Payment Integration, UI/UX design</p>
+                            <p class="sr-content">Web razvoj, Integracija plaćanja, UI/UX dizajn</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="en-content">Year</h4>
+                            <h4 class="sr-content">Godina</h4>
+                            <p>2024</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="en-content">Website</h4>
+                            <h4 class="sr-content">Veb Sajt</h4>
+                            <p><a href="https://correctscore.pro" target="_blank">correctscore.pro</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details -->
+    <section class="project-details">
+        <div class="container">
+            <div class="project-details-content">
+                <div class="project-challenge">
+                    <h2 class="en-content">Challenge</h2>
+                    <h2 class="sr-content">Izazov</h2>
+                    <p class="en-content">The client requested a complete platform for sharing betting tips and analyses that would offer multiple subscription levels and user packages. Key challenges included:</p>
+                    <p class="sr-content">Klijent je tražio kompletnu platformu za deljenje betting saveta i analiza koja bi nudila više nivoa pretplate i korisničkih paketa. Ključni izazovi uključivali su:</p>
+                    <ul>
+                        <li class="en-content">Development of a secure and reliable payment processing system with multiple different sources</li>
+                        <li class="sr-content">Razvoj sigurnog i pouzdanog sistema za obradu plaćanja sa više različitih izvora</li>
+                        <li class="en-content">Creating an intuitive user interface that would display complex data in an accessible way</li>
+                        <li class="sr-content">Kreiranje intuitivnog korisničkog interfejsa koji bi prikazivao složene podatke na pristupačan način</li>
+                        <li class="en-content">Implementation of an advanced content management system for analysts</li>
+                        <li class="sr-content">Implementaciju naprednog sistema upravljanja sadržajem za analitičare</li>
+                        <li class="en-content">Ensuring high availability during periods of high load (important sporting events)</li>
+                        <li class="sr-content">Obezbeđivanje visoke dostupnosti tokom perioda velikog opterećenja (važni sportski događaji)</li>
+                        <li class="en-content">Development of a real-time notification system for users</li>
+                        <li class="sr-content">Razvoj sistema obaveštenja u realnom vremenu za korisnike</li>
+                    </ul>
+                </div>
+                
+                <div class="project-solution">
+                    <h2 class="en-content">Solution</h2>
+                    <h2 class="sr-content">Rešenje</h2>
+                    <p class="en-content">Our team developed a robust web application with the following functionalities:</p>
+                    <p class="sr-content">Naš tim je razvio robustnu web aplikaciju sa sledećim funkcionalnostima:</p>
+                    
+                    <h3 class="en-content">Multiple payment integrations</h3>
+                    <h3 class="sr-content">Višestruke integracije plaćanja</h3>
+                    <p class="en-content">We implemented a comprehensive payment system supporting:</p>
+                    <p class="sr-content">Implementirali smo sveobuhvatan sistem plaćanja koji podržava:</p>
+                    <div class="payment-methods-grid">
+                        <div class="payment-method">
+                            <i class="fab fa-paypal"></i>
+                            <span>PayPal</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fab fa-stripe-s"></i>
+                            <span>Stripe</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Revolut</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fab fa-google-pay"></i>
+                            <span>Google Pay</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fab fa-apple-pay"></i>
+                            <span>Apple Pay</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fab fa-bitcoin"></i>
+                            <span>USDT</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="en-content">User Interface and Experience</h3>
+                    <h3 class="sr-content">Korisnički interfejs i iskustvo</h3>
+                    <p class="en-content">We designed an intuitive and responsive interface focusing on:</p>
+                    <p class="sr-content">Dizajnirali smo intuitivan i responzivan interfejs sa fokusom na:</p>
+                    <ul>
+                        <li class="en-content">Clear presentation of forecasts and analyses of sporting events</li>
+                        <li class="sr-content">Jasno prikazivanje prognoza i analiza sportskih događaja</li>
+                        <li class="en-content">Personalized dashboard for each user</li>
+                        <li class="sr-content">Personalizovani dashboard za svakog korisnika</li>
+                        <li class="en-content">Advanced event search filters</li>
+                        <li class="sr-content">Napredne filtere za pretraživanje događaja</li>
+                        <li class="en-content">Access to statistics and historical data</li>
+                        <li class="sr-content">Pristup statistikama i istorijskim podacima</li>
+                        <li class="en-content">Real-time notification system</li>
+                        <li class="sr-content">Sistem obaveštenja u realnom vremenu</li>
+                    </ul>
+                    
+                    <h3 class="en-content">Technical Implementation</h3>
+                    <h3 class="sr-content">Tehnička implementacija</h3>
+                    <p class="en-content">The platform was developed using the following technologies:</p>
+                    <p class="sr-content">Platforma je razvijena koristeći sledeće tehnologije:</p>
+                    <div class="tech-stack">
+                        <div class="tech-category">
+                            <h4>Frontend</h4>
+                            <ul>
+                                <li><i class="fab fa-react"></i> React.js</li>
+                                <li><i class="fab fa-sass"></i> SASS</li>
+                                <li><i class="fas fa-chart-line"></i> D3.js <span class="en-content">for data visualization</span><span class="sr-content">za vizualizaciju podataka</span></li>
+                                <li><i class="fab fa-bootstrap"></i> Bootstrap <span class="en-content">for mobile compatibility</span><span class="sr-content">za kompatibilnost sa mobilnim uređajima</span></li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Backend</h4>
+                            <ul>
+                                <li><i class="fab fa-node-js"></i> Node.js</li>
+                                <li><i class="fab fa-js"></i> Express.js</li>
+                                <li><i class="fas fa-database"></i> MongoDB <span class="en-content">for data storage</span><span class="sr-content">za skladištenje podataka</span></li>
+                                <li><i class="fas fa-lock"></i> JWT <span class="en-content">for authentication</span><span class="sr-content">za autentifikaciju</span></li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4 class="en-content">Integrations</h4>
+                            <h4 class="sr-content">Integracije</h4>
+                            <ul>
+                                <li><i class="fab fa-stripe-s"></i> Stripe API</li>
+                                <li><i class="fab fa-paypal"></i> PayPal API</li>
+                                <li><i class="fab fa-apple"></i> Apple Pay API</li>
+                                <li><i class="fab fa-google"></i> Google Pay API</li>
+                                <li><i class="fas fa-exchange-alt"></i> Revolut API</li>
+                                <li><i class="fab fa-bitcoin"></i> USDT <span class="en-content">blockchain integration</span><span class="sr-content">blockchain integracija</span></li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>DevOps</h4>
+                            <ul>
+                                <li><i class="fab fa-aws"></i> AWS <span class="en-content">for hosting</span><span class="sr-content">za hosting</span></li>
+                                <li><i class="fab fa-docker"></i> Docker <span class="en-content">for containerization</span><span class="sr-content">za kontejnerizaciju</span></li>
+                                <li><i class="fab fa-github"></i> GitHub Actions <span class="en-content">for CI/CD</span><span class="sr-content">za CI/CD</span></li>
+                                <li><i class="fas fa-shield-alt"></i> CloudFlare <span class="en-content">for security</span><span class="sr-content">za sigurnost</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-results">
+                    <h2 class="en-content">Results</h2>
+                    <h2 class="sr-content">Rezultati</h2>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="result-text">
+                                <h3>25,000+</h3>
+                                <p class="en-content">Active users monthly</p>
+                                <p class="sr-content">Aktivnih korisnika mesečno</p>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="result-text">
+                                <h3>150%</h3>
+                                <p class="en-content">Increase in subscription conversion</p>
+                                <p class="sr-content">Povećanje konverzije pretplata</p>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="result-text">
+                                <h3>65%</h3>
+                                <p class="en-content">Users access via mobile devices</p>
+                                <p class="sr-content">Korisnika pristupa putem mobilnih uređaja</p>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="result-text">
+                                <h3>45+</h3>
+                                <p class="en-content">Countries where the platform is used</p>
+                                <p class="sr-content">Zemalja u kojima se koristi platforma</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="results-summary en-content">With the launch of the new correctscore.pro platform, the client has achieved significant growth in terms of subscriber numbers and total revenue. Thanks to new payment integrations, the conversion rate has increased and the rate of payment process abandonment has decreased. The platform now records more than 25,000 active users monthly, with steady growth of 15% quarterly.</p>
+                    <p class="results-summary sr-content">Lansiranjem nove correctscore.pro platforme klijent je ostvario značajan rast u pogledu broja pretplatnika i ukupnih prihoda. Zahvaljujući novim integracijama plaćanja, povećana je stopa konverzije i smanjen broj napuštanja procesa plaćanja. Platforma sada beleži više od 25.000 aktivnih korisnika mesečno, sa stabilnim rastom od 15% kvartalno.</p>
+                </div>
+                
+                <div class="project-gallery">
+                    <h2 class="en-content">Project Gallery</h2>
+                    <h2 class="sr-content">Galerija projekta</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img loading="lazy" src="assets/projects/correctscore-stripe.webp" alt="CorrectScore.pro Stripe payment integration">
+                            <div class="gallery-caption en-content">Stripe payment integration</div>
+                            <div class="gallery-caption sr-content">Stripe integracija plaćanja</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img loading="lazy" src="assets/projects/correctscore-paypal.webp" alt="CorrectScore.pro PayPal integration">
+                            <div class="gallery-caption en-content">PayPal payment processing</div>
+                            <div class="gallery-caption sr-content">PayPal obrada plaćanja</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img loading="lazy" src="assets/projects/correctscore-usdt.webp" alt="CorrectScore.pro USDT payment">
+                            <div class="gallery-caption en-content">USDT cryptocurrency payments</div>
+                            <div class="gallery-caption sr-content">USDT kripto plaćanja</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-testimonial">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="en-content">"The Popzify team developed a platform that far exceeded our expectations. We are particularly impressed with the wide range of payment integrations and the efficiency of their implementation. Since launching the new platform, we have increased our conversion rate by 150% and significantly improved the user experience. Their approach to development and continuous support have been key to the success of our project."</p>
+                        <p class="sr-content">"Popzify tim je razvio platformu koja je daleko prevazišla naša očekivanja. Posebno smo impresionirani širokim spektrom integracija plaćanja i efikasnošću njihove implementacije. Od lansiranja nove platforme, povećali smo stopu konverzije za 150% i značajno poboljšali korisničko iskustvo. Njihov pristup razvoju i kontinuirana podrška bili su ključni za uspeh našeg projekta."</p>
+                        <div class="client-info">
+                            <img loading="lazy" src="assets/clients/client-john.jpg" alt="John Peterson" class="client-image">
+                            <div>
+                                <h4>John Peterson</h4>
+                                <p class="en-content">CEO, GODFATHER BETTING TIPS LTD</p>
+                                <p class="sr-content">CEO, GODFATHER BETTING TIPS LTD</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-cta">
+                    <h2 class="en-content">Ready for a similar project?</h2>
+                    <h2 class="sr-content">Spremni ste za sličan projekat?</h2>
+                    <p class="en-content">Let's discuss your ideas and how we can help bring them to life</p>
+                    <p class="sr-content">Razgovarajmo o vašim idejama i kako možemo pomoći u njihovoj realizaciji</p>
+                    <div class="cta-buttons">
+                        <a href="index.html#contact" class="btn btn-primary en-content">Contact Us</a>
+                        <a href="index.html#contact" class="btn btn-primary sr-content">Kontaktirajte nas</a>
+                        <a href="projects.html" class="btn btn-secondary en-content">View More Projects</a>
+                        <a href="projects.html" class="btn btn-secondary sr-content">Pogledajte više projekata</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Related Projects -->
+    <section class="related-projects">
+        <div class="container">
+            <h2 class="en-content">Related Projects</h2>
+            <h2 class="sr-content">Srodni projekti</h2>
+            <div class="related-projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img loading="lazy" src="assets/projects/fintrack-main.webp" alt="FinTrack financial dashboard">
+                        <div class="project-overlay">
+                            <a href="project-fintrack.html" class="btn-view-details en-content">View Details</a>
+                            <a href="project-fintrack.html" class="btn-view-details sr-content">Detalji Projekta</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category en-content">Web Application</span>
+                        <span class="project-category sr-content">Web Aplikacija</span>
+                        <h3><a href="project-fintrack.html">FinTrack Dashboard</a></h3>
+                        <p class="en-content">Financial analytics dashboard for investors</p>
+                        <p class="sr-content">Financial analytics dashboard za investitore</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img loading="lazy" src="assets/projects/artisanmarket-main.webp" alt="ArtisanMarket e-commerce platform">
+                        <div class="project-overlay">
+                            <a href="project-artisanmarket.html" class="btn-view-details en-content">View Details</a>
+                            <a href="project-artisanmarket.html" class="btn-view-details sr-content">Detalji Projekta</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category en-content">E-Commerce</span>
+                        <span class="project-category sr-content">E-Commerce</span>
+                        <h3><a href="project-artisanmarket.html">ArtisanMarket</a></h3>
+                        <p class="en-content">Marketplace for handcrafted products</p>
+                        <p class="sr-content">Marketplace za ručno izrađene proizvode</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom cursor -->
+    <div class="cursor-outer"></div>
+    <div class="cursor-inner"></div>
+
+    <!-- Dark mode toggle -->
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#"><span>Pop</span>zify</a>
+                    <p>Modern Web & Mobile Solutions</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h3 class="en-content">Company</h3>
+                        <h3 class="sr-content">Kompanija</h3>
+                        <ul>
+                            <li><a href="index.html#about" class="en-content">About Us</a><a href="index.html#about" class="sr-content">O nama</a></li>
+                            <li><a href="index.html#services" class="en-content">Services</a><a href="index.html#services" class="sr-content">Usluge</a></li>
+                            <li><a href="projects.html" class="en-content">Portfolio</a><a href="projects.html" class="sr-content">Portfolio</a></li>
+                            <li><a href="#" class="en-content">Careers</a><a href="#" class="sr-content">Karijera</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3 class="en-content">Resources</h3>
+                        <h3 class="sr-content">Resursi</h3>
+                        <ul>
+                            <li><a href="ivanpopovic.html" class="en-content">Blog</a><a href="ivanpopovic.html" class="sr-content">Blog</a></li>
+                            <li><a href="#" class="en-content">Case Studies</a><a href="#" class="sr-content">Studije slučaja</a></li>
+                            <li><a href="index.html#faq" class="en-content">FAQ</a><a href="index.html#faq" class="sr-content">FAQ</a></li>
+                            <li><a href="privacypolicy.html" class="en-content">Privacy Policy</a><a href="privacypolicy.html" class="sr-content">Politika privatnosti</a></li>
+                        </ul>
+                    </div></div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="en-content">&copy; 2025 Popzify. All Rights Reserved.</p>
+                    <p class="sr-content">&copy; 2025 Popzify. Sva prava zadržana.</p>
+                </div>
+            </div>
+        </footer>
+    
+        <!-- AOS Animation Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+        <!-- Custom JS -->
+        <script src="main.js"></script>
+    
+        <!-- Additional script for language switching -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set language on page load from saved preference or default to Serbian
+                const savedLang = localStorage.getItem('preferredLanguage') || 'sr';
+                document.documentElement.setAttribute('data-lang', savedLang);
+                
+                // Update active button in language selector
+                const langSelector = document.querySelector('.lang-selector');
+                if (langSelector) {
+                    langSelector.setAttribute('data-lang', savedLang);
+                    
+                    const buttons = langSelector.querySelectorAll('.lang-btn');
+                    buttons.forEach(btn => {
+                        if (btn.getAttribute('data-lang') === savedLang) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+                    
+                    // Update slider position for Serbian
+                    if (savedLang === 'sr') {
+                        langSelector.classList.add('sr-active');
+                    } else {
+                        langSelector.classList.remove('sr-active');
+                    }
+                }
+                
+                // Language switch event listener
+                const langButtons = document.querySelectorAll('.lang-btn');
+                langButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const lang = this.getAttribute('data-lang');
+                        
+                        // Set language attribute on html element
+                        document.documentElement.setAttribute('data-lang', lang);
+                        
+                        // Update language selector
+                        const langSelector = this.closest('.lang-selector');
+                        langSelector.setAttribute('data-lang', lang);
+                        
+                        // Update active state on buttons
+                        langButtons.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Update slider position
+                        if (lang === 'sr') {
+                            langSelector.classList.add('sr-active');
+                        } else {
+                            langSelector.classList.remove('sr-active');
+                        }
+                        
+                        // Save preference
+                        localStorage.setItem('preferredLanguage', lang);
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>

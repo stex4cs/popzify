@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /data/
+Disallow: /php/
+
+Sitemap: https://popzify.com/sitemap.xml

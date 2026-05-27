@@ -1,0 +1,29 @@
+# === Licni podaci posetilaca - NIKADA u git ===
+# (kontakt poruke, newsletter prijave - GDPR)
+data/contact_log.txt
+data/newsletter_subscribers.txt
+data/*.log
+
+# === Privremene / test skripte ===
+_tmp_*.php
+_tmp_*.js
+*.bak
+
+# === OS i IDE artifakti ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+*.swp
+*~
+
+# === Logovi ===
+*.log
+
+# === Node / build artifakti (za buducnost) ===
+node_modules/
+dist/
+build/
+.env
+.env.local

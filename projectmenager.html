@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="sr" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta Tags -->
+    <meta name="description" content="Od korisničkog zahteva do produkcije: Upravljanje projektima u agile okruženju. Saznajte kako efikasno upravljati IT projektima koristeći agile metodologije.">
+    <meta name="keywords" content="projektni menadžment, agile, scrum, kanban, softverski razvoj, project management, upravljanje projektima, IT projekti">
+    <meta name="author" content="Stefan Popović">
+    <title class="sr-content">Od korisničkog zahteva do produkcije: Upravljanje projektima u agile okruženju | Stefan Popović Blog</title>
+    <title class="en-content" style="display:none">From User Request to Production: Project Management in an Agile Environment | Stefan Popović Blog</title>
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Od korisničkog zahteva do produkcije: Upravljanje projektima u agile okruženju | Stefan Popović Blog">
+    <meta property="og:description" content="Kako efikasno upravljati IT projektima korišćenjem agile metodologija za uspešnu isporuku funkcionalnih softverskih rešenja.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://popzify.com/projectmanager.html"> <!-- *** ISPRAVITI NA projectmenager.html AKO JE TO TAČAN URL *** -->
+    <meta property="og:image" content="https://popzify.com/assets/images/agile-main.webp"> <!-- Koristi glavnu sliku članka -->
+    <meta property="article:author" content="Stefan Popović">
+    <meta property="article:published_time" content="2025-02-25T08:00:00+01:00"> <!-- Primer datuma -->
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://popzify.com/projectmanager.html"> <!-- *** ISPRAVITI NA projectmenager.html AKO JE TO TAČAN URL *** -->
+    <meta name="twitter:title" content="Od korisničkog zahteva do produkcije: Upravljanje projektima u agile okruženju | Stefan Popović Blog">
+    <meta name="twitter:description" content="Kako efikasno upravljati IT projektima korišćenjem agile metodologija za uspešnu isporuku.">
+    <meta name="twitter:image" content="https://popzify.com/assets/images/agile-main.webp">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://popzify.com/projectmanager.html"> <!-- *** ISPRAVITI NA projectmenager.html AKO JE TO TAČAN URL *** -->
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" integrity="sha512-vswe+cgvic/XBoF1OcM/TeJ2FW0OofqAVdCZiEYkd6dwGXTwceytIYzcPL2zaQrcwM6dLKYSCHA1XYXFFBOWrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon Tags (Replace with your actual favicon files) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#6c5ce7">
+    <meta name="theme-color" content="#ffffff"> <!-- Prilagoditi ako treba -->
+
+    <!-- Detect JS -->
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://popzify.com/projectmenager.html"
+      },
+      "headline": "Od korisničkog zahteva do produkcije: Upravljanje projektima u agile okruženju",
+      "alternativeHeadline": "From User Request to Production: Project Management in an Agile Environment",
+      "image": "https://popzify.com/assets/images/agile-main.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Stefan Popović"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Popzify",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://popzify.com/assets/images/logo.png"
+        }
+      },
+      "datePublished": "2025-02-25",
+      "dateModified": "2025-03-30",
+      "description": "Kako efikasno upravljati IT projektima korišćenjem agile metodologija za uspešnu isporuku funkcionalnih softverskih rešenja.",
+       "keywords": "projektni menadžment, agile, scrum, kanban, softverski razvoj, project management, upravljanje projektima, IT projekti",
+       "articleBody": "Uspešna implementacija softverskih rešenja zahteva mnogo više od kvalitetnog programiranja - potreban je strukturirani pristup upravljanju projektima..."
+    }
+    </script>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><span>Pop</span>zify</a>
+            </div>
+            <div class="nav-menu">
+                <!-- Navigacija - ostaje ista -->
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="sr-content">Početna</a>
+                        <a href="index.html" class="en-content" style="display:none">Home</a></li>
+                    <li><a href="index.html#services" class="sr-content">Usluge</a>
+                        <a href="index.html#services" class="en-content" style="display:none">Services</a></li>
+                    <li><a href="index.html#team" class="sr-content">Naš tim</a>
+                        <a href="index.html#team" class="en-content" style="display:none">Our Team</a></li>
+                    <li><a href="index.html#projects" class="sr-content">Projekti</a>
+                        <a href="index.html#projects" class="en-content" style="display:none">Projects</a></li>
+                    <li><a href="index.html#about" class="sr-content">O nama</a>
+                        <a href="index.html#about" class="en-content" style="display:none">About Us</a></li>
+                    <li><a href="index.html#faq" class="sr-content">FAQ</a>
+                        <a href="index.html#faq" class="en-content" style="display:none">FAQ</a></li>
+                    <li><a href="stefanpopovic.html" class="active sr-content">Blog</a>
+                        <a href="stefanpopovic.html" class="active en-content" style="display:none">Blog</a></li>
+                    <li><a href="index.html#contact" class="sr-content">Kontakt</a>
+                        <a href="index.html#contact" class="en-content" style="display:none">Contact</a></li>
+                </ul>
+                <div class="lang-selector" data-lang="sr">
+                    <button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
+                    <button class="lang-btn active" data-lang="sr" aria-label="Switch to Serbian">SR</button>
+                    <div class="slider"></div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="blog-post-hero">
+    <div class="container">
+        <div class="post-header">
+            <div class="post-category-badge sr-content">
+                <i class="fas fa-tasks"></i> Projektni menadžment
+            </div>
+            <div class="post-category-badge en-content" style="display:none">
+                <i class="fas fa-tasks"></i> Project Management
+            </div>
+            <h1 class="sr-content">Od korisničkog zahteva do produkcije: Upravljanje projektima u agile okruženju</h1>
+            <h1 class="en-content" style="display:none">From User Request to Production: Project Management in an Agile Environment</h1>
+            <div class="post-meta">
+                <div class="post-author">
+                    <img loading="lazy" src="assets/images/stefan.webp" alt="Stefan Popović" class="post-author-image">
+                    <span>Stefan Popović</span>
+                </div>
+                <div class="post-details">
+                    <span class="sr-content"><i class="far fa-calendar-alt"></i> 25. februar 2025.</span>
+                    <span class="en-content" style="display:none"><i class="far fa-calendar-alt"></i> February 25, 2025</span>
+                    <span class="sr-content"><i class="far fa-clock"></i> 9 min čitanja</span>
+                    <span class="en-content" style="display:none"><i class="far fa-clock"></i> 9 min read</span>
+                    <span class="sr-content"><i class="far fa-comment"></i> 7 komentara</span>
+                    <span class="en-content" style="display:none"><i class="far fa-comment"></i> 7 comments</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="blog-post-content">
+    <div class="container">
+        <div class="content-wrapper">
+            <main class="post-main-content">
+                <img loading="lazy" src="assets/images/agile-main.webp" alt="Agile project management workflow visualization" class="post-featured-image"> <!-- Added descriptive alt text -->
+
+                <!-- Serbian Content -->
+                <div class="sr-content">
+                    <div class="post-intro">
+                        <p>Uspešna implementacija softverskih rešenja zahteva mnogo više od kvalitetnog programiranja - potreban je strukturirani pristup upravljanju projektima. U ovom članku istražujemo kompletan proces upravljanja softverskim projektima u agile okruženju, od inicijalnog korisničkog zahteva do konačne isporuke u produkciju.</p>
+                    </div>
+
+                    <h2>Agile metodologije: Zašto su važne?</h2>
+                    <p>Tradicionalni "waterfall" pristup upravljanju projektima često je neefikasan za softverske projekte zbog njihove kompleksnosti i promenljive prirode zahteva. Agile pristup donosi fleksibilnost, fokus na saradnju i kontinuirano poboljšanje.</p>
+
+                    <ul class="content-list">
+                        <li><strong>Fleksibilnost na promene</strong> - Mogućnost prilagođavanja novim zahtevima tokom razvoja</li>
+                        <li><strong>Brža isporuka vrednosti</strong> - Kroz inkrementalni razvoj i redovne isporuke</li>
+                        <li><strong>Transparentnost</strong> - Redovni sastanci i vidljiv napredak</li>
+                        <li><strong>Saradnja sa klijentima</strong> - Redovno uključivanje korisnika u proces razvoja</li>
+                        <li><strong>Fokus na kvalitet</strong> - Integrisano testiranje i kontinuirano poboljšanje</li>
+                    </ul>
+
+                    <h2>Životni ciklus projekta: Od ideje do realizacije</h2>
+
+                    <div class="content-card">
+                        <h3>1. Prikupljanje i razumevanje zahteva</h3>
+                        <p>Prvi korak svakog projekta je temeljno razumevanje korisničkih potreba. Ovaj proces često uključuje:</p>
+                        <ul>
+                            <li>Intervjue sa stejkholderima i krajnjim korisnicima</li>
+                            <li>Dokumente sa zahtevima i specifikacije</li>
+                            <li>Radionice za analizu i razradu zahteva</li>
+                            <li>Kreiranje korisničkih priča (user stories)</li>
+                        </ul>
+                        <div class="tip-box">
+                            <h4><i class="fas fa-lightbulb"></i> Pro tip:</h4>
+                            <p>Koristite format "Kao [tip korisnika], želim [funkcionalnost], kako bih [ostvario cilj]" za pisanje korisničkih priča. Ovaj format osigurava fokus na potrebe korisnika i vrednost koju funkcionalnost donosi.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>2. Planiranje i prioritizacija</h3>
+                        <p>Nakon prikupljanja zahteva, potrebno je planirati obim projekta i postaviti prioritete. Ovo obično uključuje:</p>
+                        <ul>
+                            <li>Kreiranje product backlog-a - liste svih funkcionalnosti poređanih po prioritetu</li>
+                            <li>Procenu veličine zadataka (najčešće u "story points")</li>
+                            <li>Planiranje sprint-ova - kratkih vremenskih okvira za razvoj (obično 1-4 nedelje)</li>
+                            <li>Definisanje ciljeva za svaki sprint</li>
+                        </ul>
+                        <p>Važno je napomenuti da se, za razliku od tradicionalnih projekata, planning u agile okruženju obavlja kontinuirano tokom celog projekta, umesto samo na početku.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>3. Dizajn i arhitektura</h3>
+                        <p>Pre nego što počnemo sa implementacijom, potrebno je definisati dizajn i arhitekturu rešenja:</p>
+                        <ul>
+                            <li>Tehnička arhitektura (baze podataka, API-ji, integracije)</li>
+                            <li>UX/UI dizajn (wireframes, mockups, prototipovi)</li>
+                            <li>Dizajn sistema (dijagrami, modeli podataka)</li>
+                            <li>Definisanje standarda kodiranja i tehničkih praksi</li>
+                        </ul>
+                        <p>Iako se u agile pristupu izbegava preterano detaljno planiranje unapred, određeni nivo arhitekturalnog dizajna je neophodan kako bi se osigurala skalabilnost i održivost rešenja.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>4. Implementacija kroz sprintove</h3>
+                        <p>U ovoj fazi počinje sam razvoj softvera, organizovan u sprint-ove:</p>
+                        <ul>
+                            <li>Sprint planning - izbor zadataka za trenutni sprint</li>
+                            <li>Daily standup sastanci - kratki dnevni pregledi napretka</li>
+                            <li>Razvoj i testiranje funkcionalnosti</li>
+                            <li>Redovna integracija koda (Continuous Integration)</li>
+                            <li>Sprint review - demonstracija završenih funkcionalnosti klijentu</li>
+                            <li>Sprint retrospective - analiza procesa i definisanje poboljšanja</li>
+                        </ul>
+                        <p>Ključna prednost sprintova je brza povratna informacija od korisnika i mogućnost prilagođavanja prioriteta i zahteva tokom razvoja.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>5. Testiranje i osiguranje kvaliteta</h3>
+                        <p>Testiranje u agile okruženju nije zasebna faza, već je integrisano u ceo proces razvoja:</p>
+                        <ul>
+                            <li>Unit testovi - testiranje individualnih komponenti</li>
+                            <li>Integracioni testovi - testiranje interakcije između komponenti</li>
+                            <li>Automatizovano testiranje - kreiranje skripti za ponavljajuće testove</li>
+                            <li>Korisnička testiranja - validacija sa stvarnim korisnicima</li>
+                            <li>Regresiono testiranje - provera da nove promene ne utiču negativno na postojeće funkcionalnosti</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>6. Isporuka i implementacija</h3>
+                        <p>Nakon što je softver razvijen i testiran, sledi faza isporuke:</p>
+                        <ul>
+                            <li>Priprema infrastrukture i okruženja</li>
+                            <li>Deployment automatizacija (CI/CD pipeline)</li>
+                            <li>Migracija podataka (ako je potrebno)</li>
+                            <li>Obuka korisnika</li>
+                            <li>Go-live strategija i plan za rollback u slučaju problema</li>
+                        </ul>
+                        <div class="tip-box">
+                            <h4><i class="fas fa-lightbulb"></i> Pro tip:</h4>
+                            <p>Implementirajte automatizovane deployment procese (CI/CD) kako biste smanjili rizik od ljudskih grešaka i ubrzali isporuku.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>7. Podrška i održavanje</h3>
+                        <p>Projekat se ne završava sa isporukom u produkciju - sledi faza podrške i održavanja:</p>
+                        <ul>
+                            <li>Monitoring performansi i dostupnosti</li>
+                            <li>Brzo reagovanje na uočene probleme</li>
+                            <li>Redovne nadogradnje i patch-evi</li>
+                            <li>Prikupljanje povratnih informacija za buduća poboljšanja</li>
+                            <li>Dokumentacija i transfer znanja</li>
+                        </ul>
+                    </div>
+
+                    <h2>Najpopularnije agile metodologije</h2>
+                    <p>Postoji nekoliko različitih agile pristupa, svaki sa svojim specifičnostima:</p>
+
+                    <div class="format-grid">
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-sync-alt"></i></div>
+                            <h4>Scrum</h4>
+                            <ul>
+                                <li>Fiksni sprintovi (obično 2 nedelje)</li>
+                                <li>Jasno definisane uloge (Product Owner, Scrum Master, Team)</li>
+                                <li>Redovni sastanci (Daily, Planning, Review, Retrospective)</li>
+                                <li>Fokus na samo-organizujuće timove</li>
+                            </ul>
+                        </div>
+
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-columns"></i></div>
+                            <h4>Kanban</h4>
+                            <ul>
+                                <li>Vizuelno praćenje zadataka kroz table</li>
+                                <li>Fokus na kontinuirani rad umesto sprintova</li>
+                                <li>Ograničenje rada u progresu (WIP limits)</li>
+                                <li>Optimizacija toka vrednosti</li>
+                            </ul>
+                        </div>
+
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-code"></i></div>
+                            <h4>Ekstremno programiranje (XP)</h4>
+                            <ul>
+                                <li>Pair programming</li>
+                                <li>Test-driven development (TDD)</li>
+                                <li>Kontinuirana integracija</li>
+                                <li>Česte male isporuke</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2>Alati za agile upravljanje projektima</h2>
+                    <p>Izbor odgovarajućih alata može značajno olakšati upravljanje agile projektima:</p>
+
+                    <div class="format-grid">
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-project-diagram"></i></div>
+                            <h4>Jira</h4>
+                            <ul>
+                                <li>Praćenje zadataka i bugova</li>
+                                <li>Planiranje sprintova</li>
+                                <li>Izveštavanje i metrike</li>
+                                <li>Integracija sa razvojnim alatima</li>
+                            </ul>
+                        </div>
+
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-clipboard-list"></i></div>
+                            <h4>Trello</h4>
+                            <ul>
+                                <li>Jednostavne Kanban table</li>
+                                <li>Vizuelno upravljanje zadacima</li>
+                                <li>Lako dodavanje članova i komentara</li>
+                                <li>Kartice sa detaljima zadataka</li>
+                            </ul>
+                        </div>
+
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-comments"></i></div>
+                            <h4>Slack</h4>
+                            <ul>
+                                <li>Timska komunikacija</li>
+                                <li>Deljenje fajlova i linkova</li>
+                                <li>Integracije sa drugim alatima</li>
+                                <li>Kanali za različite teme</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2>Izazovi i kako ih prevazići</h2>
+                    <p>Agile upravljanje projektima donosi brojne prednosti, ali i određene izazove:</p>
+
+                    <div class="content-card">
+                        <h3>Izazov 1: Promenljivi zahtevi</h3>
+                        <p><strong>Problem:</strong> Česte promene zahteva mogu dovesti do pomeranja fokusa i "scope creep-a".</p>
+                        <p><strong>Rešenje:</strong> Implementirajte jasan proces za upravljanje promenama. Svaka nova funkcionalnost treba biti procenjena, prioritizovana i dodata u backlog, a ne odmah implementirana.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>Izazov 2: Procena vremena</h3>
+                        <p><strong>Problem:</strong> Teško je precizno proceniti koliko će vremena biti potrebno za implementaciju funkcionalnosti.</p>
+                        <p><strong>Rešenje:</strong> Koristite relativne procene (story points) umesto apsolutnih (sati/dani). Nakon nekoliko sprintova, tim će razviti osećaj za brzinu (velocity) i procene će postati tačnije.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>Izazov 3: Saradnja sa udaljenim timovima</h3>
+                        <p><strong>Problem:</strong> Kada su članovi tima geografski raspršeni, može biti teško održati efikasnu komunikaciju.</p>
+                        <p><strong>Rešenje:</strong> Koristite video pozive za sastanke, asinhrone alate za komunikaciju, i osigurajte preklapanje radnog vremena. Redovno organizujte team building aktivnosti i za udaljene članove.</p>
+                    </div>
+
+                    <h2>Ključni faktori uspeha</h2>
+                    <p>Na osnovu iskustva sa brojnim projektima, izdvojili smo nekoliko ključnih faktora koji doprinose uspešnoj implementaciji agile metodologija:</p>
+
+                    <ul class="content-list">
+                        <li><strong>Podrška menadžmenta</strong> - Rukovodioci moraju razumeti i podržavati agile principe</li>
+                        <li><strong>Jasno definisani ciljevi</strong> - Svi članovi tima treba da razumeju šta se želi postići</li>
+                        <li><strong>Fokus na korisnika</strong> - Redovno uključivanje krajnjih korisnika u proces razvoja</li>
+                        <li><strong>Kontinuirano poboljšanje</strong> - Kroz retrospektive i učenje iz iskustva</li>
+                        <li><strong>Balans između kvaliteta i brzine</strong> - Brze isporuke ne smeju ugroziti kvalitet</li>
+                        <li><strong>Tehnička izuzetnost</strong> - Fokus na čist kod, automatizaciju i najbolje prakse</li>
+                    </ul>
+
+                    <h2>Zaključak</h2>
+                    <p>Uspešno upravljanje projektima u agile okruženju zahteva balans između strukture i fleksibilnosti. Iako ne postoji jedinstveni recept koji odgovara svim projektima, primena osnovnih agile principa - fokus na korisnika, iterativni razvoj, i kontinuirano poboljšanje - može značajno povećati šanse za uspeh.</p>
+
+                    <p>Bez obzira da li koristite Scrum, Kanban ili neki drugi pristup, najvažnije je prilagoditi metodologiju specifičnostima vašeg tima i projekta. Agilnost nije samo u procesima, već i u načinu razmišljanja i spremnosti da se prilagodite promenama.</p>
+
+                    <div class="author-bio">
+                        <img loading="lazy" src="assets/images/stefan.webp" alt="Stefan Popović" class="author-image">
+                        <div class="author-info">
+                            <h3>O autoru</h3>
+                            <h4>Stefan Popović</h4>
+                            <p>Stefan je stručnjak za web razvoj i prodajne strategije sa preko 10 godina iskustva u IT sektoru. Diplomirao je Računarske nauke na Elektrotehničkom fakultetu i sertifikovani je Scrum Master.</p>
+                            <div class="author-social">
+                                <a href="#" class="social-link" aria-label="LinkedIn profil Stefana Popovića"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/stex4cs" class="social-link" aria-label="GitHub profil Stefana Popovića"><i class="fab fa-github"></i></a>
+                                <a href="#" class="social-link" aria-label="Twitter profil Stefana Popovića"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-tags">
+                        <span class="tag-label">Tagovi:</span>
+                        <a href="#" class="post-tag">projektni menadžment</a>
+                        <a href="#" class="post-tag">agile</a>
+                        <a href="#" class="post-tag">scrum</a>
+                        <a href="#" class="post-tag">kanban</a>
+                        <a href="#" class="post-tag">softverski razvoj</a>
+                    </div>
+
+                    <div class="post-share">
+                        <span class="share-label">Podelite članak:</span>
+                        <a href="#" class="share-btn facebook" aria-label="Podeli na Facebook-u"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="share-btn twitter" aria-label="Podeli na Twitter-u"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn linkedin" aria-label="Podeli na LinkedIn-u"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn pinterest" aria-label="Podeli na Pinterest-u"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+
+                    <div class="post-nav">
+                        <a href="ecommerce.html" class="post-nav-prev">
+                            <span class="nav-label"><i class="fas fa-arrow-left"></i> Prethodni članak</span>
+                            <span class="nav-title">7 strategija za povećanje stope konverzije u e-commerce</span>
+                        </a>
+                        <a href="programiranje.html" class="post-nav-next">
+                            <span class="nav-label">Sledeći članak <i class="fas fa-arrow-right"></i></span>
+                            <span class="nav-title">Kako React.js i Next.js transformišu razvoj modernih web aplikacija</span>
+                        </a>
+                    </div>
+
+                    <div class="related-posts">
+                        <h3>Povezani članci</h3>
+                        <div class="related-grid">
+                            <a href="ecommerce.html" class="related-post">
+                                <img src="assets/images/e-commerce-main.webp" alt="E-commerce strategije konverzije" loading="lazy">
+                                <h4>7 strategija za povećanje stope konverzije u e-commerce</h4>
+                                <span class="related-date"><i class="far fa-calendar-alt"></i> 5. mart 2025.</span>
+                            </a>
+                            <a href="programiranje.html" class="related-post">
+                                <img src="assets/images/react-main.webp" alt="React i Next.js logo" loading="lazy">
+                                <h4>Kako React.js i Next.js transformišu razvoj modernih web aplikacija</h4>
+                                <span class="related-date"><i class="far fa-calendar-alt"></i> 18. mart 2025.</span>
+                            </a>
+                            <a href="sales.html" class="related-post">
+                                <img src="assets/images/psihologija-main.webp" alt="Ilustracija psihologije prodaje" loading="lazy">
+                                <h4>Napredne tehnike prodaje: Psihologija donošenja odluka</h4>
+                                <span class="related-date"><i class="far fa-calendar-alt"></i> 10. februar 2025.</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- English Content -->
+                <div class="en-content" style="display:none">
+                    <div class="post-intro">
+                        <p>Successful implementation of software solutions requires much more than quality programming—it demands a structured approach to project management. In this article, we explore the complete process of managing software projects in an agile environment, from initial user request to final production delivery.</p>
+                    </div>
+
+                    <h2>Agile Methodologies: Why Are They Important?</h2>
+                    <p>The traditional "waterfall" approach to project management is often inefficient for software projects due to their complexity and evolving requirements. The agile approach brings flexibility, focus on collaboration, and continuous improvement.</p>
+
+                    <ul class="content-list">
+                        <li><strong>Flexibility for changes</strong> - Ability to adapt to new requirements during development</li>
+                        <li><strong>Faster value delivery</strong> - Through incremental development and regular releases</li>
+                        <li><strong>Transparency</strong> - Regular meetings and visible progress</li>
+                        <li><strong>Customer collaboration</strong> - Regular user involvement in the development process</li>
+                        <li><strong>Focus on quality</strong> - Integrated testing and continuous improvement</li>
+                    </ul>
+
+                    <h2>Project Lifecycle: From Idea to Implementation</h2>
+
+                    <div class="content-card">
+                        <h3>1. Gathering and Understanding Requirements</h3>
+                        <p>The first step of any project is a thorough understanding of user needs. This process often includes:</p>
+                        <ul>
+                            <li>Interviews with stakeholders and end users</li>
+                            <li>Requirements documents and specifications</li>
+                            <li>Workshops for analyzing and elaborating requirements</li>
+                            <li>Creating user stories</li>
+                        </ul>
+                        <div class="tip-box">
+                            <h4><i class="fas fa-lightbulb"></i> Pro tip:</h4>
+                            <p>Use the format "As a [type of user], I want [functionality] so that [goal]" for writing user stories. This format ensures a focus on user needs and the value that the functionality brings.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>2. Planning and Prioritization</h3>
+                        <p>After gathering requirements, it's necessary to plan the project scope and set priorities. This usually includes:</p>
+                        <ul>
+                            <li>Creating a product backlog - a list of all features ranked by priority</li>
+                            <li>Estimating task size (usually in "story points")</li>
+                            <li>Planning sprints - short timeframes for development (usually 1-4 weeks)</li>
+                            <li>Defining goals for each sprint</li>
+                        </ul>
+                        <p>It's important to note that, unlike traditional projects, planning in an agile environment is performed continuously throughout the project, not just at the beginning.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>3. Design and Architecture</h3>
+                        <p>Before starting implementation, it's necessary to define the design and architecture of the solution:</p>
+                        <ul>
+                            <li>Technical architecture (databases, APIs, integrations)</li>
+                            <li>UX/UI design (wireframes, mockups, prototypes)</li>
+                            <li>System design (diagrams, data models)</li>
+                            <li>Defining coding standards and technical practices</li>
+                        </ul>
+                        <p>Although the agile approach avoids excessive detailed planning in advance, a certain level of architectural design is necessary to ensure scalability and sustainability of the solution.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>4. Implementation Through Sprints</h3>
+                        <p>In this phase, software development begins, organized into sprints:</p>
+                        <ul>
+                            <li>Sprint planning - selecting tasks for the current sprint</li>
+                            <li>Daily standup meetings - short daily progress reviews</li>
+                            <li>Development and testing of functionality</li>
+                            <li>Regular code integration (Continuous Integration)</li>
+                            <li>Sprint review - demonstration of completed functionality to the client</li>
+                            <li>Sprint retrospective - process analysis and defining improvements</li>
+                        </ul>
+                        <p>The key advantage of sprints is rapid feedback from users and the ability to adjust priorities and requirements during development.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>5. Testing and Quality Assurance</h3>
+                        <p>Testing in an agile environment is not a separate phase but is integrated into the entire development process:</p>
+                        <ul>
+                            <li>Unit tests - testing individual components</li>
+                            <li>Integration tests - testing interaction between components</li>
+                            <li>Automated testing - creating scripts for repetitive tests</li>
+                            <li>User testing - validation with real users</li>
+                            <li>Regression testing - verifying that new changes don't negatively impact existing functionality</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>6. Delivery and Implementation</h3>
+                        <p>After the software is developed and tested, the delivery phase follows:</p>
+                        <ul>
+                            <li>Preparing infrastructure and environments</li>
+                            <li>Deployment automation (CI/CD pipeline)</li>
+                            <li>Data migration (if needed)</li>
+                            <li>User training</li>
+                            <li>Go-live strategy and rollback plan in case of issues</li>
+                        </ul>
+                        <div class="tip-box">
+                            <h4><i class="fas fa-lightbulb"></i> Pro tip:</h4>
+                            <p>Implement automated deployment processes (CI/CD) to reduce the risk of human error and speed up delivery.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>7. Support and Maintenance</h3>
+                        <p>The project doesn't end with production delivery - the phase of support and maintenance follows:</p>
+                        <ul>
+                            <li>Monitoring performance and availability</li>
+                            <li>Rapid response to detected issues</li>
+                            <li>Regular upgrades and patches</li>
+                            <li>Collecting feedback for future improvements</li>
+                            <li>Documentation and knowledge transfer</li>
+                        </ul>
+                    </div>
+
+                    <h2>Most Popular Agile Methodologies</h2>
+                    <p>There are several different agile approaches, each with its own specifics:</p>
+
+                    <div class="format-grid">
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-sync-alt"></i></div>
+                            <h4>Scrum</h4>
+                            <ul>
+                                <li>Fixed sprints (usually 2 weeks)</li>
+                                <li>Clearly defined roles (Product Owner, Scrum Master, Team)</li>
+                                <li>Regular meetings (Daily, Planning, Review, Retrospective)</li>
+                                <li>Focus on self-organizing teams</li>
+                            </ul>
+                        </div>
+
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-columns"></i></div>
+                            <h4>Kanban</h4>
+                            <ul>
+                                <li>Visual task tracking through boards</li>
+                                <li>Focus on continuous work instead of sprints</li>
+                                <li>Work in progress (WIP) limits</li>
+                                <li>Value stream optimization</li>
+                            </ul>
+                        </div>
+
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-code"></i></div>
+                            <h4>Extreme Programming (XP)</h4>
+                            <ul>
+                                <li>Pair programming</li>
+                                <li>Test-driven development (TDD)</li>
+                                <li>Continuous integration</li>
+                                <li>Frequent small releases</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2>Tools for Agile Project Management</h2>
+                    <p>Choosing the right tools can significantly facilitate agile project management:</p>
+
+                    <div class="format-grid">
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-project-diagram"></i></div>
+                            <h4>Jira</h4>
+                            <ul>
+                                <li>Task and bug tracking</li>
+                                <li>Sprint planning</li>
+                                <li>Reporting and metrics</li>
+                                <li>Integration with development tools</li>
+                            </ul>
+                        </div>
+
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-clipboard-list"></i></div>
+                            <h4>Trello</h4>
+                            <ul>
+                                <li>Simple Kanban boards</li>
+                                <li>Visual task management</li>
+                                <li>Easy adding of members and comments</li>
+                                <li>Cards with task details</li>
+                            </ul>
+                        </div>
+
+                        <div class="format-card">
+                            <div class="format-icon"><i class="fas fa-comments"></i></div>
+                            <h4>Slack</h4>
+                            <ul>
+                                <li>Team communication</li>
+                                <li>File and link sharing</li>
+                                <li>Integrations with other tools</li>
+                                <li>Channels for different topics</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2>Challenges and How to Overcome Them</h2>
+                    <p>Agile project management brings numerous benefits but also certain challenges:</p>
+
+                    <div class="content-card">
+                        <h3>Challenge 1: Changing Requirements</h3>
+                        <p><strong>Problem:</strong> Frequent changes in requirements can lead to shifting focus and "scope creep."</p>
+                        <p><strong>Solution:</strong> Implement a clear process for change management. Each new feature should be evaluated, prioritized, and added to the backlog, not immediately implemented.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>Challenge 2: Time Estimation</h3>
+                        <p><strong>Problem:</strong> It's difficult to precisely estimate how much time will be needed to implement functionality.</p>
+                        <p><strong>Solution:</strong> Use relative estimates (story points) instead of absolute ones (hours/days). After a few sprints, the team will develop a feel for velocity, and estimates will become more accurate.</p>
+                    </div>
+
+                    <div class="content-card">
+                        <h3>Challenge 3: Collaboration with Remote Teams</h3>
+                        <p><strong>Problem:</strong> When team members are geographically dispersed, it can be difficult to maintain effective communication.</p>
+                        <p><strong>Solution:</strong> Use video calls for meetings, asynchronous communication tools, and ensure overlapping working hours. Regularly organize team-building activities for remote members as well.</p>
+                    </div>
+
+                    <h2>Key Success Factors</h2>
+                    <p>Based on experience with numerous projects, we've identified several key factors that contribute to the successful implementation of agile methodologies:</p>
+
+                    <ul class="content-list">
+                        <li><strong>Management support</strong> - Managers must understand and support agile principles</li>
+                        <li><strong>Clearly defined goals</strong> - All team members should understand what is to be achieved</li>
+                        <li><strong>User focus</strong> - Regular involvement of end users in the development process</li>
+                        <li><strong>Continuous improvement</strong> - Through retrospectives and learning from experience</li>
+                        <li><strong>Balance between quality and speed</strong> - Fast deliveries must not compromise quality</li>
+                        <li><strong>Technical excellence</strong> - Focus on clean code, automation, and best practices</li>
+                    </ul>
+
+                    <h2>Conclusion</h2>
+                    <p>Successful project management in an agile environment requires a balance between structure and flexibility. Although there is no single recipe that suits all projects, applying the basic agile principles - user focus, iterative development, and continuous improvement - can significantly increase the chances of success.</p>
+
+                    <p>Whether you use Scrum, Kanban, or another approach, the most important thing is to adapt the methodology to the specifics of your team and project. Agility is not just in processes but also in the way of thinking and readiness to adapt to changes.</p>
+
+                    <div class="author-bio">
+                        <img loading="lazy" src="assets/images/stefan.webp" alt="Stefan Popović" class="author-image">
+                        <div class="author-info">
+                            <h3>About the Author</h3>
+                            <h4>Stefan Popović</h4>
+                            <p>Stefan is an expert in web development and sales strategies with over 10 years of experience in the IT sector. He graduated with a degree in Computer Science from the Faculty of Electrical Engineering and is a certified Scrum Master.</p>
+                            <div class="author-social">
+                                <a href="#" class="social-link" aria-label="Stefan Popović's LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/stex4cs" class="social-link" aria-label="Stefan Popović's GitHub Profile"><i class="fab fa-github"></i></a>
+                                <a href="#" class="social-link" aria-label="Stefan Popović's Twitter Profile"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-tags">
+                        <span class="tag-label">Tags:</span>
+                        <a href="#" class="post-tag">project management</a>
+                        <a href="#" class="post-tag">agile</a>
+                        <a href="#" class="post-tag">scrum</a>
+                        <a href="#" class="post-tag">kanban</a>
+                        <a href="#" class="post-tag">software development</a>
+                    </div>
+
+                    <div class="post-share">
+                        <span class="share-label">Share article:</span>
+                        <a href="#" class="share-btn facebook" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="share-btn twitter" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-btn linkedin" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn pinterest" aria-label="Share on Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+
+                    <div class="post-nav">
+                        <a href="ecommerce.html" class="post-nav-prev">
+                            <span class="nav-label"><i class="fas fa-arrow-left"></i> Previous Article</span>
+                            <span class="nav-title">7 Strategies to Increase Conversion Rates in E-commerce</span>
+                        </a>
+                        <a href="programiranje.html" class="post-nav-next">
+                            <span class="nav-label">Next Article <i class="fas fa-arrow-right"></i></span>
+                            <span class="nav-title">How React.js and Next.js Transform Modern Web Application Development</span>
+                        </a>
+                    </div>
+
+                    <div class="related-posts">
+                        <h3>Related Articles</h3>
+                        <div class="related-grid">
+                            <a href="ecommerce.html" class="related-post">
+                                <img src="assets/images/e-commerce-main.webp" alt="E-commerce conversion strategies illustration" loading="lazy">
+                                <h4>7 Strategies to Increase Conversion Rates in E-commerce</h4>
+                                <span class="related-date"><i class="far fa-calendar-alt"></i> March 5, 2025</span>
+                            </a>
+                            <a href="programiranje.html" class="related-post">
+                                <img src="assets/images/react-main.webp" alt="React and Next.js logos comparison" loading="lazy">
+                                <h4>How React.js and Next.js Transform Modern Web Application Development</h4>
+                                <span class="related-date"><i class="far fa-calendar-alt"></i> March 18, 2025</span>
+                            </a>
+                            <a href="sales.html" class="related-post">
+                                <img src="assets/images/psihologija-main.webp" alt="Illustration of sales psychology decision making" loading="lazy">
+                                <h4>Advanced Sales Techniques: The Psychology of Decision-Making</h4>
+                                <span class="related-date"><i class="far fa-calendar-alt"></i> February 10, 2025</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comments-section">
+                    <h3 class="sr-content">Komentari (7)</h3>
+                    <h3 class="en-content" style="display:none">Comments (7)</h3>
+                    <div class="comment-form">
+                        <h4 class="sr-content">Ostavite komentar</h4>
+                        <h4 class="en-content" style="display:none">Leave a comment</h4>
+                        <form id="commentForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="comment-name" placeholder="Vaše ime" class="sr-content">
+                                    <input type="text" id="comment-name-en" placeholder="Your name" class="en-content" style="display:none">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="comment-email" placeholder="Vaš email" class="sr-content">
+                                    <input type="email" id="comment-email-en" placeholder="Your email" class="en-content" style="display:none">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="comment-text" placeholder="Vaš komentar" class="sr-content"></textarea>
+                                <textarea id="comment-text-en" placeholder="Your comment" class="en-content" style="display:none"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary sr-content">Postavi komentar</button>
+                            <button type="submit" class="btn btn-primary en-content" style="display:none">Post comment</button>
+                        </form>
+                    </div>
+
+                    <div class="comments-list">
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="assets/images/draganamili.webp" alt="Avatar Dragane Milić" loading="lazy">
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <h4>Dragana Milić</h4>
+                                    <span class="sr-content">Pre 1 dan</span>
+                                    <span class="en-content" style="display:none">1 day ago</span>
+                                </div>
+                                <p class="sr-content">Sjajan članak! Naš tim je nedavno prešao sa vodopada na Scrum i već vidimo pozitivne rezultate. Zanima me kako vi rešavate problem kada klijent insistira na fiksnom obimu i rokovima, što se kosi sa agilnim principima?</p>
+                                <p class="en-content" style="display:none">Great article! Our team recently switched from waterfall to Scrum and we're already seeing positive results. I'm curious how you handle the situation when a client insists on fixed scope and deadlines, which conflicts with agile principles?</p>
+                                <div class="comment-actions">
+                                    <a href="#" class="sr-content">Odgovori</a>
+                                    <a href="#" class="en-content" style="display:none">Reply</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="assets/images/stefan.webp" alt="Avatar Stefana Popovića" loading="lazy">
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <h4>Stefan Popović <span class="author-badge">Author</span></h4>
+                                    <span class="sr-content">Pre 1 dan</span>
+                                    <span class="en-content" style="display:none">1 day ago</span>
+                                </div>
+                                <p class="sr-content">Hvala Dragana! Ovo je odlično pitanje i čest izazov. U takvim situacijama, mi obično koristimo hibridni pristup: zadržavamo agile način rada unutar tima, ali klijentu predstavljamo projekat kroz fiksne miljokaze (milestones). Glavna stvar je edukacija klijenta o prednostima agilnog pristupa i demonstracija vrednosti kroz rane i česte isporuke.</p>
+                                <p class="en-content" style="display:none">Thank you Dragana! This is an excellent question and a common challenge. In such situations, we typically use a hybrid approach: we maintain an agile way of working within the team but present the project to the client through fixed milestones. The main thing is educating the client on the benefits of the agile approach and demonstrating value through early and frequent deliveries.</p>
+                                <div class="comment-actions">
+                                    <a href="#" class="sr-content">Odgovori</a>
+                                    <a href="#" class="en-content" style="display:none">Reply</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comment">
+                            <div class="comment-avatar">
+                                <img src="assets/images/milosdj.webp" alt="Avatar Miloša Đorđevića" loading="lazy">
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <h4>Miloš Đorđević</h4>
+                                    <span class="sr-content">Pre 3 dana</span>
+                                    <span class="en-content" style="display:none">3 days ago</span>
+                                </div>
+                                <p class="sr-content">Koje alate koristite za automatizovano testiranje u agilnom okruženju? Trenutno eksperimentišemo sa Selenium-om, ali tražimo nešto što bi se bolje uklopilo u naš CI/CD pipeline.</p>
+                                <p class="en-content" style="display:none">What tools do you use for automated testing in an agile environment? We're currently experimenting with Selenium, but we're looking for something that would fit better into our CI/CD pipeline.</p>
+                                <div class="comment-actions">
+                                    <a href="#" class="sr-content">Odgovori</a>
+                                    <a href="#" class="en-content" style="display:none">Reply</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="load-more">
+                            <button class="btn btn-secondary sr-content">Učitaj još komentara</button>
+                            <button class="btn btn-secondary en-content" style="display:none">Load more comments</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="newsletter-box">
+                    <div class="sr-content">
+                        <h3>Pretplatite se na newsletter</h3>
+                        <p>Primajte najnovije savete i trendove iz oblasti projektnog menadžmenta direktno u vaš inbox.</p>
+                    </div>
+                    <div class="en-content" style="display:none">
+                        <h3>Subscribe to the newsletter</h3>
+                        <p>Receive the latest tips and trends in project management directly to your inbox.</p>
+                    </div>
+                    <form id="sidebar-newsletter">
+                        <div class="form-group">
+                            <input type="email" id="sidebar-email" placeholder="Vaš email" class="sr-content">
+                            <input type="email" id="sidebar-email-en" placeholder="Your email" class="en-content" style="display:none">
+                        </div>
+                        <button type="submit" class="btn btn-primary sr-content">Pretplatite se</button>
+                        <button type="submit" class="btn btn-primary en-content" style="display:none">Subscribe</button>
+                    </form>
+                </div>
+            </main>
+
+            <aside class="post-sidebar">
+                <div class="author-widget">
+                    <img loading="lazy" src="assets/images/stefan.webp" alt="Stefan Popović" class="sidebar-author-image">
+                    <h3>Stefan Popović</h3>
+                    <p class="sr-content">Programiranje & Prodajne strategije</p>
+                    <p class="en-content" style="display:none">Programming & Sales Strategies</p>
+                    <div class="author-social">
+                        <a href="#" class="social-link" aria-label="LinkedIn profil Stefana Popovića"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="GitHub profil Stefana Popovića"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter profil Stefana Popovića"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="category-widget">
+                    <h3 class="sr-content">Kategorije</h3>
+                    <h3 class="en-content" style="display:none">Categories</h3>
+                    <ul class="category-list">
+                        <li>
+                            <a href="#" class="sr-content">Web razvoj <span class="count">14</span></a>
+                            <a href="#" class="en-content" style="display:none">Web Development <span class="count">14</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="sr-content">E-commerce <span class="count">9</span></a>
+                            <a href="#" class="en-content" style="display:none">E-commerce <span class="count">9</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="sr-content">Projektni menadžment <span class="count">6</span></a>
+                            <a href="#" class="en-content" style="display:none">Project Management <span class="count">6</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="sr-content">Prodajne tehnike <span class="count">11</span></a>
+                            <a href="#" class="en-content" style="display:none">Sales Techniques <span class="count">11</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="popular-posts-widget">
+                    <h3 class="sr-content">Popularni članci</h3>
+                    <h3 class="en-content" style="display:none">Popular Articles</h3>
+                    <div class="popular-posts">
+                        <a href="#" class="popular-post">
+                            <img src="assets/images/framework.webp" alt="Agile Frameworks comparison illustration" loading="lazy">
+                            <div class="popular-post-content">
+                                <h4 class="sr-content">Scrum vs Kanban: Koji framework izabrati?</h4>
+                                <h4 class="en-content" style="display:none">Scrum vs Kanban: Which Framework to Choose?</h4>
+                                <span class="sr-content"><i class="far fa-calendar-alt"></i> 15. januar 2025.</span>
+                                <span class="en-content" style="display:none"><i class="far fa-calendar-alt"></i> January 15, 2025</span>
+                            </div>
+                        </a>
+                        <a href="#" class="popular-post">
+                            <img src="assets/images/remote.webp" alt="Illustration of a remote team collaborating" loading="lazy">
+                            <div class="popular-post-content">
+                                <h4 class="sr-content">Kako efikasno upravljati udaljenim timovima</h4>
+                                <h4 class="en-content" style="display:none">How to Effectively Manage Remote Teams</h4>
+                                <span class="sr-content"><i class="far fa-calendar-alt"></i> 20. decembar 2024.</span>
+                                <span class="en-content" style="display:none"><i class="far fa-calendar-alt"></i> December 20, 2024</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tags-widget">
+                    <h3 class="sr-content">Popularni tagovi</h3>
+                    <h3 class="en-content" style="display:none">Popular Tags</h3>
+                    <div class="tags-cloud">
+                        <a href="#" class="sidebar-tag sr-content">agile</a>
+                        <a href="#" class="sidebar-tag en-content" style="display:none">agile</a>
+                        <a href="#" class="sidebar-tag sr-content">scrum</a>
+                        <a href="#" class="sidebar-tag en-content" style="display:none">scrum</a>
+                        <a href="#" class="sidebar-tag sr-content">kanban</a>
+                        <a href="#" class="sidebar-tag en-content" style="display:none">kanban</a>
+                        <a href="#" class="sidebar-tag sr-content">projektni menadžment</a>
+                        <a href="#" class="sidebar-tag en-content" style="display:none">project management</a>
+                        <a href="#" class="sidebar-tag sr-content">softverski razvoj</a>
+                        <a href="#" class="sidebar-tag en-content" style="display:none">software development</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html"><span>Pop</span>zify</a>
+                <p>Modern Web & Mobile Solutions</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h3 class="sr-content">Blog</h3>
+                    <h3 class="en-content" style="display:none">Blog</h3>
+                    <ul>
+                        <li><a href="ivanpopovic.html">Ivan Popović</a></li>
+                        <li><a href="stefanpopovic.html">Stefan Popović</a></li>
+                        <li>
+                            <a href="#" class="sr-content">Kategorije</a>
+                            <a href="#" class="en-content" style="display:none">Categories</a>
+                        </li>
+                        <li>
+                            <a href="#" class="sr-content">Arhiva</a>
+                            <a href="#" class="en-content" style="display:none">Archive</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="sr-content">Linkovi</h3>
+                    <h3 class="en-content" style="display:none">Links</h3>
+                    <ul>
+                        <li>
+                            <a href="index.html#about" class="sr-content">O nama</a>
+                            <a href="index.html#about" class="en-content" style="display:none">About Us</a>
+                        </li>
+                        <li>
+                            <a href="index.html#services" class="sr-content">Usluge</a>
+                            <a href="index.html#services" class="en-content" style="display:none">Services</a>
+                        </li>
+                        <li>
+                            <a href="index.html#projects" class="sr-content">Portfolio</a>
+                            <a href="index.html#projects" class="en-content" style="display:none">Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="index.html#contact" class="sr-content">Kontakt</a>
+                            <a href="index.html#contact" class="en-content" style="display:none">Contact</a>
+                        </li>
+                         <li><a href="privacypolicy.html" class="en-content">Privacy Policy</a><a href="privacypolicy.html" class="sr-content">Politika privatnosti</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Popzify. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+<!-- Custom cursor -->
+<div class="cursor-outer"></div>
+<div class="cursor-inner"></div>
+
+<!-- Dark mode toggle -->
+<div class="theme-toggle">
+    <i class="fas fa-moon"></i>
+</div>
+
+<!-- Back to top button -->
+<div class="back-to-top">
+    <i class="fas fa-chevron-up"></i>
+</div>
+
+<!-- Add blog-specific CSS -->
+<style>
+    /* Blog Post Styles */
+    .blog-post-hero {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        padding: 180px 0 60px;
+        color: white;
+        position: relative;
+    }
+
+    .blog-post-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/api/placeholder/1920/400'); /* Placeholder */
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+        z-index: 0;
+    }
+
+    .post-header {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .post-category-badge {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+
+    .post-header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 25px;
+        line-height: 1.3;
+    }
+
+    .post-meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .post-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .post-author-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .post-details {
+        display: flex;
+        gap: 20px;
+    }
+
+    .post-details span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+
+    /* Blog Content Styles */
+    .blog-post-content {
+        padding: 60px 0;
+        background-color: var(--light-bg);
+    }
+
+    .content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: 40px;
+    }
+
+    .post-main-content {
+        background-color: var(--bg-color);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 40px;
+    }
+
+    .post-featured-image {
+        width: 100%;
+        border-radius: var(--border-radius);
+        margin-bottom: 30px;
+    }
+
+    .post-intro {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: var(--text-color);
+        line-height: 1.7;
+        font-weight: 500;
+    }
+
+    .post-main-content h2 {
+        font-size: 1.8rem;
+        margin: 40px 0 20px;
+        color: var(--text-color);
+    }
+
+    .post-main-content p {
+        margin-bottom: 20px;
+        line-height: 1.7;
+    }
+
+    .content-list {
+        margin-bottom: 30px;
+        padding-left: 20px;
+    }
+
+    .content-list li {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .content-card {
+        background-color: var(--light-bg);
+        border-radius: var(--border-radius);
+        padding: 25px;
+        margin-bottom: 25px;
+    }
+
+    .content-card h3 {
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+
+    .tip-box {
+        background-color: rgba(108, 92, 231, 0.1);
+        border-left: 4px solid var(--primary-color);
+        padding: 15px;
+        margin-top: 15px;
+        border-radius: 4px;
+    }
+
+    .tip-box h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+    }
+
+    /* Format Grid */
+    .format-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 20px;
+        margin: 30px 0 40px;
+    }
+
+    .format-card {
+        background-color: var(--light-bg);
+        border-radius: var(--border-radius);
+        padding: 20px;
+        transition: var(--transition);
+    }
+
+    .format-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--box-shadow);
+    }
+
+    .format-icon {
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .format-card h4 {
+        margin-bottom: 10px;
+        color: var(--text-color);
+    }
+
+    .format-card ul {
+        padding-left: 15px;
+    }
+
+    .format-card li {
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+    }
+
+    /* Author Bio */
+    .author-bio {
+        display: flex;
+        gap: 25px;
+        background-color: var(--light-bg);
+        border-radius: var(--border-radius);
+        padding: 25px;
+        margin: 40px 0;
+    }
+
+    .author-bio .author-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .author-bio .author-info h3 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--light-text);
+        margin-bottom: 5px;
+    }
+
+    .author-bio .author-info h4 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--text-color);
+    }
+
+    .author-bio .author-info p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .author-bio .author-social {
+        display: flex;
+        gap: 10px;
+    }
+
+    .author-bio .social-link {
+        width: 35px;
+        height: 35px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+    }
+
+    .author-bio .social-link:hover {
+        transform: translateY(-3px);
+        background-color: var(--accent-color);
+    }
+
+    /* Post Tags and Share */
+    .post-tags {
+        margin-bottom: 30px;
+    }
+
+    .tag-label, .share-label {
+        display: inline-block;
+        margin-right: 10px;
+        font-weight: 600;
+    }
+
+    .post-tag {
+        display: inline-block;
+        background-color: var(--light-bg);
+        padding: 5px 15px;
+        border-radius: 20px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        transition: var(--transition);
+    }
+
+    .post-tag:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .post-share {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .share-btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        color: white;
+        transition: var(--transition);
+    }
+
+    .share-btn:hover {
+        transform: translateY(-3px);
+    }
+
+    .share-btn.facebook {
+        background-color: #3b5998;
+    }
+
+    .share-btn.twitter {
+        background-color: #1da1f2;
+    }
+    .share-btn.linkedin {
+        background-color: #0077b5;
+    }
+
+    .share-btn.pinterest {
+        background-color: #bd081c;
+    }
+
+    /* Post Navigation */
+    .post-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .post-nav-prev, .post-nav-next {
+        flex: 1;
+        background-color: var(--light-bg);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        transition: var(--transition);
+    }
+
+    .post-nav-prev:hover, .post-nav-next:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .post-nav-next {
+        text-align: right;
+    }
+
+    .nav-label {
+        display: block;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        color: var(--light-text);
+        display: flex;
+        align-items: center;
+    }
+
+    .post-nav-prev .nav-label {
+        gap: 8px;
+    }
+
+    .post-nav-next .nav-label {
+        gap: 8px;
+        justify-content: flex-end;
+    }
+
+    .nav-title {
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    /* Related Posts */
+    .related-posts {
+        margin-bottom: 40px;
+    }
+
+    .related-posts h3 {
+        margin-bottom: 25px;
+        font-size: 1.5rem;
+    }
+
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .related-post {
+        background-color: var(--light-bg);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        transition: var(--transition);
+    }
+
+    .related-post:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--box-shadow);
+    }
+
+    .related-post img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .related-post h4 {
+        padding: 15px 15px 5px;
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    .related-date {
+        display: block;
+        padding: 0 15px 15px;
+        font-size: 0.85rem;
+        color: var(--light-text);
+    }
+
+    /* Comments Section */
+    .comments-section {
+        margin-top: 50px;
+    }
+
+    .comments-section h3 {
+        margin-bottom: 25px;
+        font-size: 1.5rem;
+    }
+
+    .comment-form {
+        background-color: var(--light-bg);
+        padding: 25px;
+        border-radius: var(--border-radius);
+        margin-bottom: 30px;
+    }
+
+    .comment-form h4 {
+        margin-bottom: 20px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .comments-list {
+        margin-top: 40px;
+    }
+
+    .comment {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .comment.reply {
+        margin-left: 60px;
+        margin-top: -15px;
+    }
+
+    .comment-avatar img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .comment-content {
+        flex: 1;
+        background-color: var(--light-bg);
+        padding: 20px;
+        border-radius: var(--border-radius);
+    }
+
+    .comment-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+    }
+
+    .comment-header h4 {
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .author-badge {
+        background-color: var(--primary-color);
+        color: white;
+        font-size: 0.7rem;
+        padding: 3px 8px;
+        border-radius: 10px;
+        text-transform: uppercase;
+    }
+
+    .comment-header span {
+        font-size: 0.85rem;
+        color: var(--light-text);
+    }
+
+    .comment-content p {
+        margin-bottom: 10px;
+    }
+
+    .comment-actions a {
+        font-size: 0.9rem;
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+
+    .load-more {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    /* Newsletter Box */
+    .newsletter-box {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 30px;
+        border-radius: var(--border-radius);
+        margin-top: 60px;
+    }
+
+    .newsletter-box h3 {
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+    }
+
+    .newsletter-box p {
+        margin-bottom: 20px;
+        opacity: 0.9;
+    }
+
+    .newsletter-box .form-group {
+        margin-bottom: 15px;
+    }
+
+    .newsletter-box input {
+        width: 100%;
+        padding: 12px 15px;
+        border-radius: 30px;
+        border: none;
+    }
+
+    .newsletter-box .btn {
+        width: 100%;
+    }
+
+    /* Sidebar Styles */
+    .post-sidebar {
+        align-self: start;
+        position: sticky;
+        top: 100px;
+    }
+
+    .author-widget, .category-widget, .popular-posts-widget, .tags-widget {
+        background-color: var(--bg-color);
+        border-radius: var(--border-radius);
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: var(--box-shadow);
+    }
+
+    .author-widget {
+        text-align: center;
+    }
+
+    .sidebar-author-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 15px;
+        border: 3px solid var(--primary-color);
+    }
+
+    .author-widget h3 {
+        margin-bottom: 8px;
+        font-size: 1.3rem;
+    }
+
+    .author-widget p {
+        color: var(--light-text);
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+    }
+
+    .author-widget .author-social {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .author-widget .social-link {
+        width: 35px;
+        height: 35px;
+        background-color: var(--light-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        transition: var(--transition);
+    }
+
+    .author-widget .social-link:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .category-widget h3, .popular-posts-widget h3, .tags-widget h3 {
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .category-widget h3::after, .popular-posts-widget h3::after, .tags-widget h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background-color: var(--primary-color);
+        border-radius: 10px;
+    }
+
+    .category-list li {
+        margin-bottom: 12px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 12px;
+    }
+
+    .category-list li:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .category-list a {
+        display: flex;
+        justify-content: space-between;
+        transition: var(--transition);
+    }
+
+    .category-list a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+    }
+
+    .count {
+        background-color: var(--light-bg);
+        width: 30px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        font-size: 0.85rem;
+    }
+
+    .popular-post {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .popular-post:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .popular-post img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .popular-post-content h4 {
+        font-size: 1rem;
+        line-height: 1.4;
+        margin-bottom: 5px;
+        transition: var(--transition);
+    }
+
+    .popular-post:hover .popular-post-content h4 {
+        color: var(--primary-color);
+    }
+
+    .popular-post-content span {
+        font-size: 0.85rem;
+        color: var(--light-text);
+    }
+
+    .tags-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .sidebar-tag {
+        display: inline-block;
+        padding: 5px 12px;
+        background-color: var(--light-bg);
+        border-radius: 5px;
+        font-size: 0.85rem;
+        transition: var(--transition);
+    }
+
+    .sidebar-tag:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    /* Language Toggle for Blog Post */
+    .en-content, .sr-content {
+        transition: opacity 0.3s ease;
+    }
+
+    /* Dark Mode Adjustments */
+    .dark-mode .blog-post-hero::before {
+        opacity: 0.3;
+    }
+
+    .dark-mode .post-main-content,
+    .dark-mode .author-widget,
+    .dark-mode .category-widget,
+    .dark-mode .popular-posts-widget,
+    .dark-mode .tags-widget {
+        background-color: #1e1e1e;
+    }
+
+    .dark-mode .comment-content,
+    .dark-mode .post-nav-prev,
+    .dark-mode .post-nav-next,
+    .dark-mode .related-post,
+    .dark-mode .comment-form,
+    .dark-mode .content-card,
+    .dark-mode .format-card,
+    .dark-mode .author-bio {
+        background-color: #2d2d2d;
+    }
+
+    .dark-mode .post-tag,
+    .dark-mode .sidebar-tag,
+    .dark-mode .count,
+    .dark-mode .author-widget .social-link {
+        background-color: #333;
+    }
+
+    .dark-mode .category-list li {
+        border-color: #333;
+    }
+
+    .dark-mode .popular-post {
+        border-color: #333;
+    }
+
+    .dark-mode .tip-box {
+        background-color: rgba(108, 92, 231, 0.2);
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 1100px) {
+        .content-wrapper {
+            grid-template-columns: 1fr;
+        }
+
+        .post-sidebar {
+            position: static;
+            margin-top: 40px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .blog-post-hero {
+            padding: 150px 0 50px;
+        }
+
+        .post-header h1 {
+            font-size: 2.2rem;
+        }
+
+        .post-meta {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .post-details {
+            justify-content: center;
+        }
+
+        .post-main-content {
+            padding: 25px;
+        }
+
+        .format-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .author-bio {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .author-bio .author-image {
+            margin: 0 auto 15px;
+        }
+
+        .author-bio .author-social {
+            justify-content: center;
+        }
+
+        .post-nav {
+            flex-direction: column;
+        }
+
+        .related-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .comment.reply {
+            margin-left: 30px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .post-details {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .comment {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .comment-avatar {
+            margin-left: 20px;
+        }
+
+        .comment.reply {
+            margin-left: 20px;
+        }
+    }
+</style>
+
+<!-- JavaScript for Language Toggle -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get language buttons and content elements
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const srContent = document.querySelectorAll('.sr-content');
+        const enContent = document.querySelectorAll('.en-content');
+
+        // Store titles for both languages
+        const titles = {
+            'sr': "Od korisničkog zahteva do produkcije: Upravljanje projektima u agile okruženju | Stefan Popović Blog",
+            'en': "From User Request to Production: Project Management in an Agile Environment | Stefan Popović Blog"
+        };
+
+        // Function to update content based on selected language
+        function updateContentLanguage(lang) {
+            if (lang === 'sr') {
+                srContent.forEach(el => el.style.display = 'block');
+                enContent.forEach(el => el.style.display = 'none');
+                document.documentElement.setAttribute('lang', 'sr');
+                document.title = titles.sr; // Set Serbian title
+            } else if (lang === 'en') {
+                srContent.forEach(el => el.style.display = 'none');
+                enContent.forEach(el => el.style.display = 'block');
+                document.documentElement.setAttribute('lang', 'en');
+                document.title = titles.en; // Set English title
+            }
+            // Save the selected language to localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Add click event to language buttons
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                langButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                updateContentLanguage(lang);
+            });
+        });
+
+        // Check if there's a saved language preference
+        const savedLang = localStorage.getItem('preferredLanguage');
+        if (savedLang) {
+            langButtons.forEach(btn => {
+                if (btn.getAttribute('data-lang') === savedLang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            updateContentLanguage(savedLang);
+        }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js" integrity="sha512-dLAbDzaEXR6L/3QIFdI/V/dM0L/hgjGfJcKkkn2b8hGfVzUEcxh70HkQ5nQ4sVvj9S7gJqyvr3Yh1hF36nU5Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-javascript.min.js" integrity="sha512-vZ/iY3uHwZ2w/v3c9Z85L+mJ2L7BBPk0+5yF4u/l5l1f5MhM312wz0Y5d35T7f0+i/hP4yP7r0YfH0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFg/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Custom JS for blog features -->
+ <!-- Main JS -->
+<script src="main.js"></script>
+</body>
+</html>

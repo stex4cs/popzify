@@ -1,0 +1,9 @@
+# Blokira sav web pristup ovom folderu.
+# Sadrzi kontakt logove i podatke o pretplatnicima (licni podaci).
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>
