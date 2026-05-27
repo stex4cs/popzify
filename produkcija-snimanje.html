@@ -12,7 +12,7 @@
 
     <link rel="canonical" href="https://popzify.com/produkcija-snimanje">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://popzify.com/produkcija-snimanje">
     <meta property="og:title" content="Profesionalna video produkcija, snimanje podkasta i kontenta | Popzify">
@@ -20,6 +20,7 @@
     <meta property="og:image" content="https://popzify.com/assets/images/video-main.webp">
     <meta property="og:site_name" content="Popzify">
     <meta property="og:locale" content="sr_RS">
+    <meta property="og:locale:alternate" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +36,7 @@
     <meta name="theme-color" content="#6c5ce7">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.min.css?v=7">
+    <link rel="stylesheet" href="styles.min.css?v=8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,10 +64,7 @@
           "addressCountry": "RS"
         }
       },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Serbia"
-      },
+      "areaServed": {"@type": "Country", "name": "Serbia"},
       "offers": {
         "@type": "Offer",
         "description": "Cena se utvrđuje individualno za svaki projekat — zavisi od trajanja produkcije, lokacije, broja kamera/dronova i postprodukcije. Kontaktirajte nas za transparentnu ponudu.",
@@ -75,9 +73,23 @@
     }
     </script>
 
+    <!-- Language toggle FOUC fix: postaviti html lang pre render-a iz localStorage -->
     <script>
-        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        (function() {
+            var saved = localStorage.getItem('preferredLanguage');
+            if (saved === 'en' || saved === 'sr') {
+                document.documentElement.setAttribute('lang', saved);
+            }
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        })();
     </script>
+
+    <!-- Page-level theme-aware section colors -->
+    <style>
+        .section-alt-bg { background-color: var(--light-bg); transition: background-color 0.3s ease; }
+        .lang-selector .lang-btn.active { color: var(--primary-color); font-weight: 600; }
+        .lang-btn { background: transparent; border: 0; padding: 6px 10px; cursor: pointer; font-size: 0.85rem; }
+    </style>
 </head>
 <body data-lang="sr">
     <header>
@@ -88,19 +100,19 @@
                 </div>
                 <div class="nav-menu">
                     <ul class="nav-list">
-                        <li><a href="/">Početna</a></li>
-                        <li><a href="/#services">Usluge</a></li>
-                        <li><a href="/#team">Naš tim</a></li>
-                        <li><a href="/#projects">Projekti</a></li>
-                        <li><a href="ivanpopovic" class="active">Blog</a></li>
-                        <li><a href="/#contact">Kontakt</a></li>
+                        <li><a href="/" class="sr-content">Početna</a><a href="/" class="en-content" style="display:none">Home</a></li>
+                        <li><a href="/#services" class="sr-content">Usluge</a><a href="/#services" class="en-content" style="display:none">Services</a></li>
+                        <li><a href="/#team" class="sr-content">Naš tim</a><a href="/#team" class="en-content" style="display:none">Our Team</a></li>
+                        <li><a href="/#projects" class="sr-content">Projekti</a><a href="/#projects" class="en-content" style="display:none">Projects</a></li>
+                        <li><a href="ivanpopovic" class="active sr-content">Blog</a><a href="ivanpopovic" class="active en-content" style="display:none">Blog</a></li>
+                        <li><a href="/#contact" class="sr-content">Kontakt</a><a href="/#contact" class="en-content" style="display:none">Contact</a></li>
                     </ul>
                 </div>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <div class="lang-selector" data-lang="sr">
+                    <button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
+                    <button class="lang-btn active" data-lang="sr" aria-label="Switch to Serbian">SR</button>
                 </div>
+                <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
             </div>
         </nav>
     </header>
@@ -108,12 +120,17 @@
     <section class="hero" style="min-height: auto; padding: 120px 0 60px;">
         <div class="container">
             <div class="hero-content" style="text-align: center; max-width: 900px; margin: 0 auto;">
-                <span class="service-badge" style="margin-bottom: 18px;">Specijalnost</span>
-                <h1>Profesionalna <span class="accent-text">video produkcija</span>, snimanje podkasta i kontenta</h1>
-                <p style="margin-top: 18px; font-size: 1.15rem;">Beograd · Zemun. Od ideje do isporuke — short-form sadržaj, spotovi, live i IRL strimovanje, podkasti, gimbal i FPV dronovi. Radimo isključivo sa najnovijom profesionalnom opremom.</p>
+                <span class="service-badge sr-content" style="margin-bottom: 18px;">Specijalnost</span>
+                <span class="service-badge en-content" style="margin-bottom: 18px; display:none">Our Specialty</span>
+                <h1 class="sr-content">Profesionalna <span class="accent-text">video produkcija</span>, snimanje podkasta i kontenta</h1>
+                <h1 class="en-content" style="display:none">Professional <span class="accent-text">video production</span>, podcast recording &amp; content creation</h1>
+                <p class="sr-content" style="margin-top: 18px; font-size: 1.15rem;">Beograd · Zemun. Od ideje do isporuke — short-form sadržaj, spotovi, live i IRL strimovanje, podkasti, gimbal i FPV dronovi. Radimo isključivo sa najnovijom profesionalnom opremom.</p>
+                <p class="en-content" style="margin-top: 18px; font-size: 1.15rem; display:none">Belgrade · Zemun. From idea to delivery — short-form content, music videos, live &amp; IRL streaming, podcasts, gimbal and FPV drones. We work exclusively with the latest professional equipment.</p>
                 <div class="hero-buttons" style="justify-content: center; margin-top: 30px;">
-                    <a href="/#contact" class="btn btn-primary">Zatraži ponudu</a>
-                    <a href="ivanpopovic" class="btn btn-secondary">Više o autoru</a>
+                    <a href="/#contact" class="btn btn-primary sr-content">Zatraži ponudu</a>
+                    <a href="/#contact" class="btn btn-primary en-content" style="display:none">Request a quote</a>
+                    <a href="ivanpopovic" class="btn btn-secondary sr-content">Više o autoru</a>
+                    <a href="ivanpopovic" class="btn btn-secondary en-content" style="display:none">About the author</a>
                 </div>
             </div>
         </div>
@@ -122,80 +139,105 @@
     <section class="services">
         <div class="container">
             <div class="section-header">
-                <h2>Šta <span class="accent-text">nudimo</span></h2>
-                <p>Sve što ti je potrebno za profesionalan vizuelni sadržaj — od koncepta do finalne isporuke.</p>
+                <h2 class="sr-content">Šta <span class="accent-text">nudimo</span></h2>
+                <h2 class="en-content" style="display:none">What we <span class="accent-text">offer</span></h2>
+                <p class="sr-content">Sve što ti je potrebno za profesionalan vizuelni sadržaj — od koncepta do finalne isporuke.</p>
+                <p class="en-content" style="display:none">Everything you need for professional visual content — from concept to final delivery.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-bolt"></i></div>
-                    <h3>Short-form sadržaj</h3>
-                    <p>Reels, TikTok, YouTube Shorts — kratke forme koje hvataju pažnju u prve 3 sekunde i ostvaruju maksimalan engagement.</p>
+                    <h3 class="sr-content">Short-form sadržaj</h3>
+                    <h3 class="en-content" style="display:none">Short-form content</h3>
+                    <p class="sr-content">Reels, TikTok, YouTube Shorts — kratke forme koje hvataju pažnju u prve 3 sekunde i ostvaruju maksimalan engagement.</p>
+                    <p class="en-content" style="display:none">Reels, TikTok, YouTube Shorts — short formats that grab attention in the first 3 seconds and maximize engagement.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-music"></i></div>
-                    <h3>Snimanje muzičkih spotova</h3>
-                    <p>Kreativna režija, cinematic kadrovi, color grading i finalna isporuka u 4K. Od koncepta do isporuke za streaming platforme.</p>
+                    <h3 class="sr-content">Snimanje muzičkih spotova</h3>
+                    <h3 class="en-content" style="display:none">Music video production</h3>
+                    <p class="sr-content">Kreativna režija, cinematic kadrovi, color grading i finalna isporuka u 4K. Od koncepta do isporuke za streaming platforme.</p>
+                    <p class="en-content" style="display:none">Creative direction, cinematic shots, color grading and 4K delivery. From concept to release-ready files for streaming platforms.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-broadcast-tower"></i></div>
-                    <h3>Live i IRL strimovanje</h3>
-                    <p>Multi-kamera produkcija u realnom vremenu, IRL šetajući strim, integracija sa Twitch i YouTube Live platformama.</p>
+                    <h3 class="sr-content">Live i IRL strimovanje</h3>
+                    <h3 class="en-content" style="display:none">Live &amp; IRL streaming</h3>
+                    <p class="sr-content">Multi-kamera produkcija u realnom vremenu, IRL šetajući strim, integracija sa Twitch i YouTube Live platformama.</p>
+                    <p class="en-content" style="display:none">Real-time multi-camera production, IRL walking streams, integration with Twitch and YouTube Live.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-podcast"></i></div>
-                    <h3>Snimanje podkasta</h3>
-                    <p>Audio i video podkasti, profesionalno snimanje sa višestrukim kamerama, montaža i isporuka spremna za sve platforme.</p>
+                    <h3 class="sr-content">Snimanje podkasta</h3>
+                    <h3 class="en-content" style="display:none">Podcast recording</h3>
+                    <p class="sr-content">Audio i video podkasti, profesionalno snimanje sa višestrukim kamerama, montaža i isporuka spremna za sve platforme.</p>
+                    <p class="en-content" style="display:none">Audio and video podcasts, professional multi-camera recording, editing and platform-ready delivery.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-helicopter"></i></div>
-                    <h3>Gimbal dron snimci</h3>
-                    <p>Smooth cinematic aerials sa DJI Mini 5 Pro — idealno za prezentacije, događaje, real estate i turističke sadržaje.</p>
+                    <h3 class="sr-content">Gimbal dron snimci</h3>
+                    <h3 class="en-content" style="display:none">Gimbal drone footage</h3>
+                    <p class="sr-content">Smooth cinematic aerials sa DJI Mini 5 Pro — idealno za prezentacije, događaje, real estate i turističke sadržaje.</p>
+                    <p class="en-content" style="display:none">Smooth cinematic aerials with DJI Mini 5 Pro — perfect for presentations, events, real estate and tourism content.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>FPV dron snimci</h3>
-                    <p>Akcione FPV sekvence sa DJI Avata 2 — dinamičko letenje za sportske događaje, music video i visceralni storytelling.</p>
+                    <h3 class="sr-content">FPV dron snimci</h3>
+                    <h3 class="en-content" style="display:none">FPV drone footage</h3>
+                    <p class="sr-content">Akcione FPV sekvence sa DJI Avata 2 — dinamičko letenje za sportske događaje, music video i visceralni storytelling.</p>
+                    <p class="en-content" style="display:none">Action FPV sequences with DJI Avata 2 — dynamic flight for sports events, music videos and visceral storytelling.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="about" style="background-color: var(--bg-secondary, #f8f9fa);">
+    <section class="services section-alt-bg">
         <div class="container">
             <div class="section-header">
-                <h2>Naša <span class="accent-text">oprema</span></h2>
-                <p>Radimo isključivo sa najnovijim profesionalnim alatima — bez kompromisa.</p>
+                <h2 class="sr-content"><span class="accent-text">Naša</span> oprema</h2>
+                <h2 class="en-content" style="display:none">Our <span class="accent-text">equipment</span></h2>
+                <p class="sr-content">Radimo isključivo sa najnovijim profesionalnim alatima — bez kompromisa.</p>
+                <p class="en-content" style="display:none">We work exclusively with the latest professional tools — no compromises.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-camera"></i></div>
                     <h3>Sony FX3</h3>
-                    <p>Full-frame cinema kamera, 4K do 120fps, S-Log3, dual base ISO. Industry-standard za pro video produkciju.</p>
+                    <p class="sr-content">Full-frame cinema kamera, 4K do 120fps, S-Log3, dual base ISO. Industry-standard za pro video produkciju.</p>
+                    <p class="en-content" style="display:none">Full-frame cinema camera, 4K up to 120fps, S-Log3, dual base ISO. Industry standard for pro video production.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-plane"></i></div>
                     <h3>DJI Avata 2</h3>
-                    <p>Najnoviji FPV dron — 4K snimanje, niskolatentna kontrola, akrobacije i ekstremni dinamički kadrovi.</p>
+                    <p class="sr-content">Najnoviji FPV dron — 4K snimanje, niskolatentna kontrola, akrobacije i ekstremni dinamički kadrovi.</p>
+                    <p class="en-content" style="display:none">Latest FPV drone — 4K recording, low-latency control, acrobatics and extreme dynamic shots.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-paper-plane"></i></div>
                     <h3>DJI Mini 5 Pro</h3>
-                    <p>Kompaktan gimbal dron sa pro senzorom — cinematic aerials, follow-me, vertical shooting za društvene mreže.</p>
+                    <p class="sr-content">Kompaktan gimbal dron sa pro senzorom — cinematic aerials, follow-me, vertical shooting za društvene mreže.</p>
+                    <p class="en-content" style="display:none">Compact gimbal drone with pro sensor — cinematic aerials, follow-me, vertical shooting for social media.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-microphone"></i></div>
-                    <h3>Pro audio setup</h3>
-                    <p>Shotgun i kondenzator mikrofoni, audio interfejs, monitoring — studio kvalitet zvuka i na terenu.</p>
+                    <h3 class="sr-content">Pro audio setup</h3>
+                    <h3 class="en-content" style="display:none">Pro audio setup</h3>
+                    <p class="sr-content">Shotgun i kondenzator mikrofoni, audio interfejs, monitoring — studio kvalitet zvuka i na terenu.</p>
+                    <p class="en-content" style="display:none">Shotgun and condenser microphones, audio interface, monitoring — studio-quality sound on location.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-circle"></i></div>
-                    <h3>Cinema objektivi</h3>
-                    <p>Komplet primarnih i zoom objektiva za različite žanrove i svetlosne uslove.</p>
+                    <h3 class="sr-content">Cinema objektivi</h3>
+                    <h3 class="en-content" style="display:none">Cinema lenses</h3>
+                    <p class="sr-content">Komplet primarnih i zoom objektiva za različite žanrove i svetlosne uslove.</p>
+                    <p class="en-content" style="display:none">Set of prime and zoom lenses for different genres and lighting conditions.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3>Profesionalno svetlo</h3>
-                    <p>LED paneli i continuous lights — kontrolisano osvetljenje i u studiju i na lokaciji.</p>
+                    <h3 class="sr-content">Profesionalno svetlo</h3>
+                    <h3 class="en-content" style="display:none">Professional lighting</h3>
+                    <p class="sr-content">LED paneli i continuous lights — kontrolisano osvetljenje i u studiju i na lokaciji.</p>
+                    <p class="en-content" style="display:none">LED panels and continuous lights — controlled illumination in studio and on location.</p>
                 </div>
             </div>
         </div>
@@ -204,34 +246,46 @@
     <section class="services">
         <div class="container">
             <div class="section-header">
-                <h2>Kako <span class="accent-text">radimo</span></h2>
-                <p>Pet koraka od ideje do gotovog sadržaja.</p>
+                <h2 class="sr-content">Kako <span class="accent-text">radimo</span></h2>
+                <h2 class="en-content" style="display:none">Our <span class="accent-text">process</span></h2>
+                <p class="sr-content">Pet koraka od ideje do gotovog sadržaja.</p>
+                <p class="en-content" style="display:none">Five steps from idea to finished content.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-comments"></i></div>
-                    <h3>1. Brif i koncept</h3>
-                    <p>Razgovor o ideji, ciljnoj publici, platformama i deliverable-ima. Definišemo cilj i metrike uspeha.</p>
+                    <h3 class="sr-content">1. Brif i koncept</h3>
+                    <h3 class="en-content" style="display:none">1. Brief &amp; concept</h3>
+                    <p class="sr-content">Razgovor o ideji, ciljnoj publici, platformama i deliverable-ima. Definišemo cilj i metrike uspeha.</p>
+                    <p class="en-content" style="display:none">Discussion about the idea, target audience, platforms and deliverables. We define goals and success metrics.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-clipboard-list"></i></div>
-                    <h3>2. Preprodukcija</h3>
-                    <p>Storyboard, scouting lokacija, dogovor opreme i ekipe, finalni kalendar produkcije.</p>
+                    <h3 class="sr-content">2. Preprodukcija</h3>
+                    <h3 class="en-content" style="display:none">2. Pre-production</h3>
+                    <p class="sr-content">Storyboard, scouting lokacija, dogovor opreme i ekipe, finalni kalendar produkcije.</p>
+                    <p class="en-content" style="display:none">Storyboard, location scouting, equipment and crew planning, final production schedule.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-video"></i></div>
-                    <h3>3. Snimanje</h3>
-                    <p>Terenska ili studijska produkcija sa pro opremom. Dnevni izveštaji i pregled materijala.</p>
+                    <h3 class="sr-content">3. Snimanje</h3>
+                    <h3 class="en-content" style="display:none">3. Production</h3>
+                    <p class="sr-content">Terenska ili studijska produkcija sa pro opremom. Dnevni izveštaji i pregled materijala.</p>
+                    <p class="en-content" style="display:none">On-location or studio production with pro equipment. Daily reports and footage review.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-cut"></i></div>
-                    <h3>4. Postprodukcija</h3>
-                    <p>Montaža, color grading, sound design, motion graphics, finalni mastering.</p>
+                    <h3 class="sr-content">4. Postprodukcija</h3>
+                    <h3 class="en-content" style="display:none">4. Post-production</h3>
+                    <p class="sr-content">Montaža, color grading, sound design, motion graphics, finalni mastering.</p>
+                    <p class="en-content" style="display:none">Editing, color grading, sound design, motion graphics, final mastering.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-check-circle"></i></div>
-                    <h3>5. Isporuka</h3>
-                    <p>Sadržaj prilagođen platformama (16:9, 9:16, 1:1). Dve runde revizija i finalni master.</p>
+                    <h3 class="sr-content">5. Isporuka</h3>
+                    <h3 class="en-content" style="display:none">5. Delivery</h3>
+                    <p class="sr-content">Sadržaj prilagođen platformama (16:9, 9:16, 1:1). Dve runde revizija i finalni master.</p>
+                    <p class="en-content" style="display:none">Content adapted to platforms (16:9, 9:16, 1:1). Two rounds of revisions and final master.</p>
                 </div>
             </div>
         </div>
@@ -240,13 +294,18 @@
     <section class="contact">
         <div class="container">
             <div class="section-header">
-                <h2><span class="accent-text">Cena</span></h2>
-                <p>Bez fiksnih paketa — cena prilagođena tvom projektu.</p>
+                <h2 class="sr-content"><span class="accent-text">Cena</span></h2>
+                <h2 class="en-content" style="display:none"><span class="accent-text">Pricing</span></h2>
+                <p class="sr-content">Bez fiksnih paketa — cena prilagođena tvom projektu.</p>
+                <p class="en-content" style="display:none">No fixed packages — pricing tailored to your project.</p>
             </div>
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.1rem; margin-bottom: 20px;">Cena se određuje <strong>individualno za svaki projekat</strong> — zavisi od trajanja produkcije, lokacije, broja kamera/dronova, kompleksnosti postprodukcije i broja deliverable-a.</p>
-                <p style="margin-bottom: 30px;">Pošalji kratak opis projekta i potreba — vraćamo se sa transparentnom ponudom u roku od 24 sata.</p>
-                <a href="/#contact" class="btn btn-primary">Zatraži ponudu</a>
+                <p class="sr-content" style="font-size: 1.1rem; margin-bottom: 20px;">Cena se određuje <strong>individualno za svaki projekat</strong> — zavisi od trajanja produkcije, lokacije, broja kamera/dronova, kompleksnosti postprodukcije i broja deliverable-a.</p>
+                <p class="en-content" style="font-size: 1.1rem; margin-bottom: 20px; display:none">Pricing is determined <strong>individually for each project</strong> — depending on production duration, location, number of cameras/drones, post-production complexity and number of deliverables.</p>
+                <p class="sr-content" style="margin-bottom: 30px;">Pošalji kratak opis projekta i potreba — vraćamo se sa transparentnom ponudom u roku od 24 sata.</p>
+                <p class="en-content" style="margin-bottom: 30px; display:none">Send a short description of your project and needs — we'll come back with a transparent quote within 24 hours.</p>
+                <a href="/#contact" class="btn btn-primary sr-content">Zatraži ponudu</a>
+                <a href="/#contact" class="btn btn-primary en-content" style="display:none">Request a quote</a>
             </div>
         </div>
     </section>
@@ -256,41 +315,64 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="/"><span>Pop</span>zify</a>
-                    <p>Modern Web & Mobile Solutions</p>
+                    <p>Modern Web &amp; Mobile Solutions</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-col">
-                        <h3>Kompanija</h3>
+                        <h3 class="sr-content">Kompanija</h3>
+                        <h3 class="en-content" style="display:none">Company</h3>
                         <ul>
-                            <li><a href="/#about">O nama</a></li>
-                            <li><a href="/#services">Usluge</a></li>
-                            <li><a href="/#projects">Portfolio</a></li>
+                            <li><a href="/#about" class="sr-content">O nama</a><a href="/#about" class="en-content" style="display:none">About Us</a></li>
+                            <li><a href="/#services" class="sr-content">Usluge</a><a href="/#services" class="en-content" style="display:none">Services</a></li>
+                            <li><a href="/#projects" class="sr-content">Portfolio</a><a href="/#projects" class="en-content" style="display:none">Portfolio</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h3>Resursi</h3>
+                        <h3 class="sr-content">Resursi</h3>
+                        <h3 class="en-content" style="display:none">Resources</h3>
                         <ul>
                             <li><a href="ivanpopovic">Blog</a></li>
                             <li><a href="/#faq">FAQ</a></li>
-                            <li><a href="privacypolicy">Politika privatnosti</a></li>
+                            <li><a href="privacypolicy" class="sr-content">Politika privatnosti</a><a href="privacypolicy" class="en-content" style="display:none">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© <span data-year>2026</span> Popzify. Sva prava zadržana.</p>
+                <p>© <span data-year>2026</span> Popzify. <span class="sr-content">Sva prava zadržana.</span><span class="en-content" style="display:none">All Rights Reserved.</span></p>
             </div>
         </div>
     </footer>
 
-    <div class="back-to-top">
-        <i class="fas fa-chevron-up"></i>
-    </div>
+    <div class="back-to-top"><i class="fas fa-chevron-up"></i></div>
+    <div class="theme-toggle"><i class="fas fa-moon"></i></div>
 
-    <div class="theme-toggle">
-        <i class="fas fa-moon"></i>
-    </div>
-
-    <script src="main.min.js?v=7"></script>
+    <!-- Language toggle: stranica-specifican -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const srContent = document.querySelectorAll('.sr-content');
+            const enContent = document.querySelectorAll('.en-content');
+            const titles = {
+                sr: "Profesionalna video produkcija, snimanje podkasta i kontenta | Popzify Beograd",
+                en: "Professional Video Production, Podcast Recording & Content Creation | Popzify Belgrade"
+            };
+            function setLang(lang) {
+                srContent.forEach(el => el.style.display = lang === 'sr' ? '' : 'none');
+                enContent.forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+                document.documentElement.setAttribute('lang', lang);
+                document.body.setAttribute('data-lang', lang);
+                document.title = titles[lang] || titles.sr;
+                langButtons.forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === lang));
+                const selector = document.querySelector('.lang-selector');
+                if (selector) selector.setAttribute('data-lang', lang);
+                localStorage.setItem('preferredLanguage', lang);
+            }
+            langButtons.forEach(btn => btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang'))));
+            const saved = localStorage.getItem('preferredLanguage') || 'sr';
+            setLang(saved);
+        });
+    </script>
+    <script src="main.min.js?v=8"></script>
 </body>
 </html>

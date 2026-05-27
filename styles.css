@@ -3194,6 +3194,23 @@ input:checked + .slider:before {
     margin-bottom: 14px;
 }
 
+/* CTA link u service-card -> linkuje na detaljnu stranicu */
+.card-cta-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+.card-cta-link:hover {
+    color: var(--accent-color, #fd79a8);
+    transform: translateX(4px);
+    border-bottom-color: var(--accent-color, #fd79a8);
+}
+
 /* ===================================================================
    Partners section (theme-adaptive, purple/pink akcenti)
    =================================================================== */
