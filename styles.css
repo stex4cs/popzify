@@ -3327,6 +3327,130 @@ input:checked + .slider:before {
     .specialty-card { padding: 36px 28px; }
 }
 
+/* ===================================================================
+   Comprehensive mobile responsive fixes (sve novododate komponente)
+   =================================================================== */
+@media (max-width: 768px) {
+    /* Hero text scaling na svim stranicama */
+    .hero h1 {
+        font-size: 2rem !important;
+        line-height: 1.25;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* Section header smaller */
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    .section-header p {
+        font-size: 0.95rem;
+    }
+
+    /* Specialty cards mobile */
+    .specialties { padding: 70px 0; }
+    .specialty-card { padding: 32px 24px; }
+    .specialty-card h3 { font-size: 1.25rem; }
+    .specialty-icon { font-size: 2.2rem; }
+
+    /* Contact strip mobile - stack vertikalno za citljivost */
+    .hero-contact-strip {
+        gap: 10px;
+    }
+    .contact-strip-link {
+        font-size: 0.9rem;
+        padding: 11px 18px;
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    /* Servisne landing stranice */
+    .services-page { padding: 60px 0; }
+
+    /* Service kartice */
+    .service-card { padding: 32px 24px; }
+    .service-card h3 { font-size: 1.15rem; }
+
+    /* Stats grid mobile */
+    .stats { padding: 60px 0; }
+    .stats-number { font-size: 2rem !important; }
+
+    /* Timeline column stacks vertikalno na mobilnom */
+    .timeline-item {
+        flex-direction: column !important;
+        gap: 4px !important;
+        padding: 14px 0 !important;
+    }
+    .timeline-time {
+        flex: 0 0 auto !important;
+        font-size: 0.85rem !important;
+    }
+    .timeline-content h4 { font-size: 1rem !important; }
+
+    /* FAQ items */
+    .faq-q { font-size: 1rem; }
+    .faq-a { font-size: 0.95rem; }
+
+    /* Partners heading */
+    .partners-heading { font-size: 2rem; }
+
+    /* Footer kompaktniji */
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    .footer-links {
+        flex-direction: column;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 1.65rem !important; }
+    .hero p { font-size: 0.9rem; }
+    .hero {
+        padding: 100px 0 40px !important;
+    }
+    .section-header h2 { font-size: 1.5rem; }
+    .section-header p { font-size: 0.9rem; }
+    .partners-heading { font-size: 1.55rem; }
+    .partners-eyebrow { font-size: 0.7rem; letter-spacing: 0.3em; }
+
+    .specialty-card { padding: 26px 20px; }
+    .specialty-icon { font-size: 1.9rem; }
+    .specialty-card h3 { font-size: 1.15rem; }
+    .specialty-card p { font-size: 0.9rem; }
+
+    .service-card { padding: 28px 20px; }
+    .service-card h3 { font-size: 1.05rem; }
+    .service-card p { font-size: 0.9rem; }
+
+    .container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .stats-number { font-size: 1.8rem !important; }
+
+    /* WhatsApp i back-to-top dugmici manji */
+    .floating-wa { bottom: 80px; right: 15px; }
+    .back-to-top { right: 15px; }
+}
+
 /* CTA link u service-card -> linkuje na detaljnu stranicu */
 .card-cta-link {
     display: inline-block;

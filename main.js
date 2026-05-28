@@ -424,6 +424,22 @@ function updateLanguage(lang) {
             console.error("Error updating services section:", error);
         }
 
+        // Update specialties section (3 CTAs ka servisnim stranicama)
+        // Generic en-content/sr-content toggle za ovu sekciju
+        try {
+            const spec = document.querySelector('.specialties');
+            if (spec) {
+                spec.querySelectorAll('.sr-content').forEach(el => {
+                    el.style.display = lang === 'sr' ? '' : 'none';
+                });
+                spec.querySelectorAll('.en-content').forEach(el => {
+                    el.style.display = lang === 'en' ? '' : 'none';
+                });
+            }
+        } catch (error) {
+            console.error("Error updating specialties section:", error);
+        }
+
         // Update projects section
         try {
             const projects = document.querySelector('#projects');
