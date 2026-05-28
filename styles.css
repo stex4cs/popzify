@@ -26,6 +26,7 @@ html {
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
+    background-color: var(--bg-color);
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -3197,6 +3198,133 @@ input:checked + .slider:before {
 /* Servisne landing stranice (NE koriste .services jer ga main.js prepisuje) */
 .services-page {
     padding: 100px 0;
+    background-color: var(--bg-color);
+}
+
+/* Hero contact strip - prikaz telefona i WhatsApp-a ispod hero dugmica */
+.hero-contact-strip {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 26px;
+    flex-wrap: wrap;
+}
+.contact-strip-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    background: rgba(108, 92, 231, 0.08);
+    border: 1px solid rgba(108, 92, 231, 0.25);
+    border-radius: 30px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.contact-strip-link:hover {
+    background: rgba(108, 92, 231, 0.18);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(108, 92, 231, 0.2);
+}
+.contact-strip-link.contact-strip-wa {
+    background: rgba(37, 211, 102, 0.12);
+    border-color: rgba(37, 211, 102, 0.35);
+}
+.contact-strip-link.contact-strip-wa:hover {
+    background: rgba(37, 211, 102, 0.22);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.25);
+}
+.contact-strip-link i { font-size: 1.15rem; }
+.contact-strip-link.contact-strip-wa i { color: #25d366; }
+
+/* Floating WhatsApp dugme - fiksno na svakoj stranici */
+.floating-wa {
+    position: fixed;
+    bottom: 95px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #25d366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.45);
+    z-index: 998;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.floating-wa:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+@media (max-width: 600px) {
+    .floating-wa { width: 48px; height: 48px; font-size: 1.45rem; bottom: 85px; right: 18px; }
+}
+
+/* Specijalnosti sekcija na pocetnoj - 3 najvaznije servisne stranice */
+.specialties {
+    padding: 100px 0;
+    background-color: var(--bg-color);
+}
+.specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 50px;
+}
+.specialty-card {
+    display: flex;
+    flex-direction: column;
+    padding: 44px 36px;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(236, 72, 153, 0.04));
+    border: 2px solid rgba(108, 92, 231, 0.15);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    position: relative;
+}
+.specialty-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px rgba(108, 92, 231, 0.2);
+}
+.dark-mode .specialty-card {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.18), rgba(236, 72, 153, 0.08));
+    border-color: rgba(168, 85, 247, 0.25);
+}
+.specialty-icon {
+    font-size: 2.6rem;
+    color: var(--primary-color);
+    margin-bottom: 22px;
+}
+.specialty-card h3 {
+    margin: 0 0 14px;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+.specialty-card p {
+    color: var(--light-text);
+    margin: 0 0 24px;
+    flex-grow: 1;
+}
+.specialty-arrow {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+.specialty-card:hover .specialty-arrow { transform: translateX(8px); }
+@media (max-width: 992px) {
+    .specialties-grid { grid-template-columns: 1fr; gap: 20px; }
+    .specialty-card { padding: 36px 28px; }
 }
 
 /* CTA link u service-card -> linkuje na detaljnu stranicu */

@@ -508,11 +508,15 @@ function updateLanguage(lang) {
                 if (contactHeader) contactHeader.innerHTML = translations[lang].contactTitle;
                 if (contactDesc) contactDesc.textContent = translations[lang].contactDesc;
                 
-                const contactHeadings = contact.querySelectorAll('.contact-text h3');
-                if (contactHeadings.length >= 3) {
-                    contactHeadings[0].textContent = translations[lang].location;
-                    contactHeadings[1].textContent = translations[lang].emailUs;
-                    contactHeadings[2].textContent = translations[lang].callUs;
+                // FIX: query po contact-item-u (svaki ima 2 h3: en + sr), uzimamo FIRST h3 svakog itema (en-content)
+                const contactItems = contact.querySelectorAll('.contact-info .contact-item');
+                if (contactItems.length >= 3) {
+                    const h0 = contactItems[0].querySelector('h3');
+                    const h1 = contactItems[1].querySelector('h3');
+                    const h2 = contactItems[2].querySelector('h3');
+                    if (h0) h0.textContent = translations[lang].location;
+                    if (h1) h1.textContent = translations[lang].emailUs;
+                    if (h2) h2.textContent = translations[lang].callUs;
                 }
                 
                 const nameInput = document.getElementById('name');
@@ -690,6 +694,18 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[data-year]').forEach(el => {
         el.textContent = currentYear;
     });
+
+    // Floating WhatsApp dugme - dodaje se na svim stranicama
+    if (!document.querySelector('.floating-wa')) {
+        const wa = document.createElement('a');
+        wa.href = 'https://wa.me/381605973212';
+        wa.className = 'floating-wa';
+        wa.target = '_blank';
+        wa.rel = 'noopener';
+        wa.setAttribute('aria-label', 'WhatsApp');
+        wa.innerHTML = '<i class="fab fa-whatsapp"></i>';
+        document.body.appendChild(wa);
+    }
 
     // Add loading="lazy" attribute to images for better performance
     document.querySelectorAll('img:not([loading])').forEach(img => {
