@@ -17,16 +17,21 @@
     <meta property="og:url" content="https://popzify.com/produkcija-snimanje">
     <meta property="og:title" content="Profesionalna video produkcija, venčanja, podkasti i kontent | Popzify">
     <meta property="og:description" content="Snimanje venčanja, 18-tih rođendana, krštenja, korporativnih događaja, gender reveal, podkasta i spotova. Foto + video. FPV i gimbal dronovi.">
-    <meta property="og:image" content="https://popzify.com/assets/images/video-main.webp">
+    <meta property="og:image" content="https://popzify.com/og.php?title=Video+produkcija&amp;subtitle=Beograd+%C2%B7+vencanja%2C+podkasti%2C+dronovi&amp;variant=video">
     <meta property="og:site_name" content="Popzify">
     <meta property="og:locale" content="sr_RS">
     <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Hreflang anotacije (isti URL servira oba jezika preko JS toggle-a) -->
+    <link rel="alternate" hreflang="sr-RS" href="https://popzify.com/produkcija-snimanje">
+    <link rel="alternate" hreflang="en" href="https://popzify.com/produkcija-snimanje">
+    <link rel="alternate" hreflang="x-default" href="https://popzify.com/produkcija-snimanje">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Profesionalna video produkcija, snimanje podkasta i kontenta">
     <meta name="twitter:description" content="Pro video produkcija u Beogradu — short-form, spotovi, podkasti, gimbal i FPV dron. Cena na upit.">
-    <meta name="twitter:image" content="https://popzify.com/assets/images/video-main.webp">
+    <meta name="twitter:image" content="https://popzify.com/og.php?title=Video+produkcija&amp;subtitle=Beograd+%C2%B7+vencanja%2C+podkasti%2C+dronovi&amp;variant=video">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -36,7 +41,7 @@
     <meta name="theme-color" content="#6c5ce7">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.min.css?v=13">
+    <link rel="stylesheet" href="styles.min.css?v=14">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,12 +69,31 @@
           "addressCountry": "RS"
         }
       },
-      "areaServed": {"@type": "Country", "name": "Serbia"},
+      "areaServed": [
+        {"@type": "City", "name": "Beograd"},
+        {"@type": "City", "name": "Novi Sad"},
+        {"@type": "City", "name": "Niš"},
+        {"@type": "City", "name": "Kragujevac"},
+        {"@type": "City", "name": "Subotica"},
+        {"@type": "Country", "name": "Serbia"}
+      ],
       "offers": {
         "@type": "Offer",
         "description": "Cena se utvrđuje individualno za svaki projekat — zavisi od trajanja produkcije, lokacije, broja kamera/dronova i postprodukcije. Kontaktirajte nas za transparentnu ponudu.",
         "url": "https://popzify.com/#contact"
       }
+    }
+    </script>
+
+    <!-- JSON-LD BreadcrumbList schema (Google SERP breadcrumbs) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Početna", "item": "https://popzify.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Video produkcija i snimanje"}
+      ]
     }
     </script>
 
@@ -440,6 +464,6 @@
             setLang(saved);
         });
     </script>
-    <script src="main.min.js?v=13"></script>
+    <script src="main.min.js?v=14"></script>
 </body>
 </html>

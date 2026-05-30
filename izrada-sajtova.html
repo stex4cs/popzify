@@ -17,16 +17,21 @@
     <meta property="og:url" content="https://popzify.com/izrada-sajtova">
     <meta property="og:title" content="Izrada web sajtova – profesionalno i brzo, prva verzija u 24h | Popzify">
     <meta property="og:description" content="Pro izrada web sajtova — prva verzija u 24 sata. Čist kod, SEO, mobile-first. React, Next.js i moderne tehnologije.">
-    <meta property="og:image" content="https://popzify.com/assets/images/main.webp">
+    <meta property="og:image" content="https://popzify.com/og.php?title=Izrada+web+sajtova&amp;subtitle=Prva+verzija+u+24h+%C2%B7+React+%26+Next.js&amp;variant=web">
     <meta property="og:site_name" content="Popzify">
     <meta property="og:locale" content="sr_RS">
     <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Hreflang anotacije -->
+    <link rel="alternate" hreflang="sr-RS" href="https://popzify.com/izrada-sajtova">
+    <link rel="alternate" hreflang="en" href="https://popzify.com/izrada-sajtova">
+    <link rel="alternate" hreflang="x-default" href="https://popzify.com/izrada-sajtova">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Izrada web sajtova – prva verzija u 24h | Popzify">
     <meta name="twitter:description" content="Pro izrada sajtova — prva verzija u 24 sata. Čist kod, SEO, React/Next.js. Cena na upit.">
-    <meta name="twitter:image" content="https://popzify.com/assets/images/main.webp">
+    <meta name="twitter:image" content="https://popzify.com/og.php?title=Izrada+web+sajtova&amp;subtitle=Prva+verzija+u+24h+%C2%B7+React+%26+Next.js&amp;variant=web">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -36,7 +41,7 @@
     <meta name="theme-color" content="#6c5ce7">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.min.css?v=13">
+    <link rel="stylesheet" href="styles.min.css?v=14">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,12 +69,31 @@
           "addressCountry": "RS"
         }
       },
-      "areaServed": {"@type": "Country", "name": "Serbia"},
+      "areaServed": [
+        {"@type": "City", "name": "Beograd"},
+        {"@type": "City", "name": "Novi Sad"},
+        {"@type": "City", "name": "Niš"},
+        {"@type": "City", "name": "Kragujevac"},
+        {"@type": "City", "name": "Subotica"},
+        {"@type": "Country", "name": "Serbia"}
+      ],
       "offers": {
         "@type": "Offer",
         "description": "Cena se određuje individualno za svaki projekat — zavisi od kompleksnosti, broja stranica, integracija i tehnologije. Kontaktirajte nas za transparentnu ponudu.",
         "url": "https://popzify.com/#contact"
       }
+    }
+    </script>
+
+    <!-- JSON-LD BreadcrumbList schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Početna", "item": "https://popzify.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Izrada web sajtova"}
+      ]
     }
     </script>
 
@@ -408,6 +432,6 @@
             setLang(saved);
         });
     </script>
-    <script src="main.min.js?v=13"></script>
+    <script src="main.min.js?v=14"></script>
 </body>
 </html>

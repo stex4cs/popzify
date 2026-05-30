@@ -17,16 +17,21 @@
     <meta property="og:url" content="https://popzify.com/snimanje-vencanja">
     <meta property="og:title" content="Snimanje venčanja Beograd — cinematic video u 4K | Popzify">
     <meta property="og:description" content="Cinematic snimanje venčanja u Beogradu. Ceo dan, drone aerials, highlights film, foto + video paketi. Sony FX3, DJI dron.">
-    <meta property="og:image" content="https://popzify.com/assets/images/video-main.webp">
+    <meta property="og:image" content="https://popzify.com/og.php?title=Snimanje+vencanja&amp;subtitle=Cinematic+4K+%C2%B7+drone+%C2%B7+highlights+film&amp;variant=wedding">
     <meta property="og:site_name" content="Popzify">
     <meta property="og:locale" content="sr_RS">
     <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Hreflang anotacije -->
+    <link rel="alternate" hreflang="sr-RS" href="https://popzify.com/snimanje-vencanja">
+    <link rel="alternate" hreflang="en" href="https://popzify.com/snimanje-vencanja">
+    <link rel="alternate" hreflang="x-default" href="https://popzify.com/snimanje-vencanja">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Snimanje venčanja Beograd — cinematic 4K video | Popzify">
     <meta name="twitter:description" content="Profesionalno cinematic snimanje venčanja. 4K, dron, highlights film, foto + video paketi.">
-    <meta name="twitter:image" content="https://popzify.com/assets/images/video-main.webp">
+    <meta name="twitter:image" content="https://popzify.com/og.php?title=Snimanje+vencanja&amp;subtitle=Cinematic+4K+%C2%B7+drone+%C2%B7+highlights+film&amp;variant=wedding">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -36,7 +41,7 @@
     <meta name="theme-color" content="#6c5ce7">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.min.css?v=13">
+    <link rel="stylesheet" href="styles.min.css?v=14">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +69,14 @@
           "addressCountry": "RS"
         }
       },
-      "areaServed": {"@type": "Country", "name": "Serbia"},
+      "areaServed": [
+        {"@type": "City", "name": "Beograd"},
+        {"@type": "City", "name": "Novi Sad"},
+        {"@type": "City", "name": "Niš"},
+        {"@type": "City", "name": "Kragujevac"},
+        {"@type": "City", "name": "Subotica"},
+        {"@type": "Country", "name": "Serbia"}
+      ],
       "offers": {
         "@type": "Offer",
         "description": "Cena se utvrđuje individualno — zavisi od trajanja snimanja, lokacije, izabranog paketa (samo video, foto + video, sa dronom), i potreba postprodukcije. Kontaktirajte nas za prilagođenu ponudu.",
@@ -127,6 +139,19 @@
             "text": "Da, koristimo DJI Mini 5 Pro za cinematic aerials. Dron je dostupan u srednjem i premium paketu. Letenje je u skladu sa SCAA regulativom — uz dozvolu organizatora i lokacije."
           }
         }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD BreadcrumbList schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Početna", "item": "https://popzify.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Video produkcija", "item": "https://popzify.com/produkcija-snimanje"},
+        {"@type": "ListItem", "position": 3, "name": "Snimanje venčanja"}
       ]
     }
     </script>
@@ -555,6 +580,6 @@
             setLang(saved);
         });
     </script>
-    <script src="main.min.js?v=13"></script>
+    <script src="main.min.js?v=14"></script>
 </body>
 </html>
