@@ -3195,6 +3195,16 @@ input:checked + .slider:before {
     margin-bottom: 14px;
 }
 
+/* Pravni podaci u footer-u (POPZOGRAPHY, PIB, MB) - suptilan mali tekst */
+.footer-legal {
+    font-size: 0.72rem;
+    color: var(--light-text);
+    opacity: 0.7;
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+}
+
 /* Servisne landing stranice (NE koriste .services jer ga main.js prepisuje) */
 .services-page {
     padding: 100px 0;
