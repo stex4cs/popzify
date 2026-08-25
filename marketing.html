@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Izrada sajtova i aplikacija — prva verzija za 24h | Popzify</title>
+<meta name="description" content="Pravimo web sajtove, e-commerce prodavnice i mobilne aplikacije po meri. Prva verzija za 24 sata, bez šablona. Besplatna analiza postojećeg sajta. Beograd, Zemun.">
+<meta name="author" content="Popzify">
+
+<!-- Kampanjska stranica: noindex da ne konkuriše /izrada-sajtova u organskoj pretrazi -->
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://popzify.com/marketing">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://popzify.com/marketing">
+<meta property="og:title" content="Sajt i aplikacija koji donose klijente — prva verzija za 24h">
+<meta property="og:description" content="Web sajtovi, e-commerce i mobilne aplikacije po meri. Vidiš prvu verziju pre nego što potpišeš bilo šta. Besplatna analiza sajta.">
+<meta property="og:image" content="https://popzify.com/og.php?title=Sajtovi+i+aplikacije&amp;subtitle=Prva+verzija+za+24h&amp;variant=web">
+<meta property="og:site_name" content="Popzify">
+<meta property="og:locale" content="sr_RS">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0b0b12">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Popzify",
+  "legalName": "POPZOGRAPHY",
+  "url": "https://popzify.com/marketing",
+  "logo": "https://popzify.com/assets/images/logo.png",
+  "image": "https://popzify.com/assets/images/main.webp",
+  "description": "Izrada web sajtova, e-commerce prodavnica, web i mobilnih aplikacija po meri.",
+  "foundingDate": "2024-02-14",
+  "vatID": "114200786",
+  "telephone": "+381605973212",
+  "email": "info@popzify.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Beograd",
+    "addressRegion": "Zemun",
+    "addressCountry": "RS"
+  },
+  "areaServed": {"@type": "Country", "name": "Serbia"}
+}
+</script>
+
+<style>
+/* ==========================================================
+   POPZIFY - kampanjska landing stranica (/marketing)
+   Samostalna: bez eksternog CSS-a i JS-a, samo Google Fonts.
+   Brend tokeni preuzeti iz styles.css (#6c5ce7 / #a29bfe / #fd79a8).
+   ========================================================== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --primary:#6c5ce7;
+  --primary-soft:#a29bfe;
+  --accent:#fd79a8;
+  --bg:#0b0b12;
+  --bg-2:#11111c;
+  --panel:rgba(22,22,35,.55);
+  --panel-solid:#161623;
+  --border:rgba(255,255,255,.09);
+  --border-hi:rgba(162,155,254,.35);
+  --text:#f3f3f8;
+  --muted:#a2a2ba;
+  --radius:16px;
+  --radius-sm:10px;
+  --maxw:1160px;
+  --shadow:0 18px 50px rgba(0,0,0,.45);
+}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+ul{list-style:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--primary-soft);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+section{position:relative}
+.sec{padding:88px 0}
+.sec-alt{background:var(--bg-2)}
+
+/* --- tipografija --- */
+h1,h2,h3{line-height:1.18;font-weight:700;letter-spacing:-.02em}
+h1{font-size:clamp(2rem,5.6vw,3.6rem);font-weight:800}
+h2{font-size:clamp(1.65rem,3.8vw,2.6rem);font-weight:800}
+h3{font-size:1.13rem;font-weight:600}
+.grad{background:linear-gradient(105deg,var(--primary-soft),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-size:1.06rem;max-width:62ch}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--primary-soft);
+  border:1px solid var(--border-hi);background:rgba(108,92,231,.1);
+  padding:7px 15px;border-radius:999px;
+}
+.head{text-align:center;max-width:720px;margin:0 auto 52px}
+.head .lead{margin:16px auto 0}
+
+/* --- dugmad --- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:15px 30px;border-radius:999px;font-weight:600;font-size:.98rem;
+  border:2px solid transparent;cursor:pointer;text-align:center;
+  transition:transform .18s ease,box-shadow .22s ease,background .22s ease,border-color .22s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{
+  background:linear-gradient(105deg,var(--primary),#8b6ff0);color:#fff;
+  box-shadow:0 12px 30px rgba(108,92,231,.38);
+}
+.btn-primary:hover{box-shadow:0 16px 40px rgba(108,92,231,.55);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--border-hi);color:var(--text);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:var(--primary-soft);background:rgba(108,92,231,.14)}
+.btn-wa{background:#25D366;color:#062e14;box-shadow:0 12px 30px rgba(37,211,102,.28)}
+.btn-wa:hover{transform:translateY(-2px)}
+.btn-block{width:100%}
+.ico{width:19px;height:19px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* --- nav --- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(11,11,18,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+.logo{font-weight:800;font-size:1.32rem;letter-spacing:-.03em}
+.logo span{color:var(--primary-soft)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-tel{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.95rem;color:var(--muted)}
+.nav-tel:hover{color:var(--text)}
+.nav .btn{padding:11px 22px;font-size:.9rem}
+@media(max-width:640px){.nav-tel span{display:none}}
+
+/* --- hero --- */
+.hero{padding:74px 0 68px;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:-30% -10% auto -10%;height:640px;z-index:0;
+  background:
+    radial-gradient(48% 52% at 22% 32%,rgba(108,92,231,.34),transparent 68%),
+    radial-gradient(42% 46% at 82% 18%,rgba(253,121,168,.2),transparent 66%);
+  filter:blur(14px);pointer-events:none;
+}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{margin:22px 0 18px;max-width:19ch}
+.hero .lead{font-size:1.13rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:13px;margin:32px 0 30px}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.83rem;color:var(--muted);font-weight:500;
+  border:1px solid var(--border);background:var(--panel);
+  padding:8px 14px;border-radius:999px;
+}
+.chip svg{width:15px;height:15px;stroke:var(--primary-soft)}
+
+/* --- traka partnera --- */
+.partners{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2)}
+.partners .wrap{padding-top:32px;padding-bottom:32px}
+.partners > .wrap > p{text-align:center;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+.partner-grid{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:26px 44px}
+.partner-grid img{
+  height:32px;width:auto;opacity:.5;filter:grayscale(1) brightness(1.9);
+  transition:opacity .25s ease,filter .25s ease;
+}
+.partner-grid a:hover img{opacity:.95;filter:grayscale(0) brightness(1)}
+@media(max-width:560px){.partner-grid{gap:20px 26px}.partner-grid img{height:24px}}
+
+/* --- univerzalna mreza kartica --- */
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.card{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px 26px;transition:border-color .25s ease,transform .25s ease,background .25s ease;
+}
+.card:hover{border-color:var(--border-hi);transform:translateY(-3px);background:rgba(108,92,231,.06)}
+.card h3{margin-bottom:9px}
+.card p{color:var(--muted);font-size:.95rem}
+.card-ico{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;
+  background:linear-gradient(140deg,rgba(108,92,231,.28),rgba(253,121,168,.16));
+  border:1px solid var(--border-hi);
+}
+.card-ico svg{width:22px;height:22px;stroke:var(--primary-soft)}
+
+/* --- problemi --- */
+.pain{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.pain li{
+  display:flex;gap:13px;align-items:flex-start;
+  background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:var(--radius-sm);padding:17px 19px;color:var(--muted);font-size:.96rem;
+}
+.pain svg{width:18px;height:18px;stroke:var(--accent);flex:0 0 auto;margin-top:3px}
+
+/* --- kviz / analiza --- */
+.quiz{
+  max-width:760px;margin:0 auto;
+  background:var(--panel-solid);border:1px solid var(--border-hi);border-radius:22px;
+  padding:34px 30px;box-shadow:var(--shadow);
+}
+.quiz-field{margin-bottom:24px}
+.quiz-field label{display:block;font-size:.88rem;font-weight:600;margin-bottom:9px}
+.quiz-field input{
+  width:100%;padding:13px 15px;border-radius:var(--radius-sm);
+  background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:.96rem;
+}
+.quiz-field input:focus{outline:none;border-color:var(--primary);background:rgba(108,92,231,.08)}
+.quiz-field input::placeholder{color:#6f6f8a}
+.q{border-top:1px solid var(--border);padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.q p{font-size:.97rem;margin:0}
+.q-btns{display:flex;gap:8px;flex:0 0 auto}
+.q-btn{
+  min-width:58px;padding:9px 15px;border-radius:999px;cursor:pointer;font-size:.87rem;font-weight:600;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);transition:all .2s ease;
+}
+.q-btn:hover{border-color:var(--primary-soft)}
+.q-btn[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
+@media(max-width:520px){.q{flex-direction:column;align-items:flex-start;gap:11px}.q-btns{width:100%}.q-btn{flex:1}}
+
+.quiz-progress{font-size:.82rem;color:var(--muted);margin-top:18px;text-align:center}
+.quiz-result{display:none;margin-top:26px;border-top:1px solid var(--border);padding-top:26px}
+.quiz-result.on{display:block;animation:fade .4s ease}
+.score-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:16px}
+.score{
+  width:82px;height:82px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+  font-size:1.5rem;font-weight:800;color:#fff;
+  background:conic-gradient(var(--primary) var(--deg,0deg),rgba(255,255,255,.07) 0);
+  position:relative;
+}
+.score::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--panel-solid)}
+.score b{position:relative;z-index:1;font-weight:800}
+.score-txt{flex:1;min-width:220px}
+.score-txt strong{display:block;font-size:1.06rem;margin-bottom:4px}
+.score-txt span{color:var(--muted);font-size:.94rem}
+.disclaimer{
+  font-size:.83rem;color:var(--muted);background:rgba(255,255,255,.03);
+  border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 15px;margin-bottom:18px;
+}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* --- portfolio --- */
+.work{
+  border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
+  background:var(--panel-solid);display:flex;flex-direction:column;
+  transition:border-color .25s ease,transform .25s ease;
+}
+.work:hover{border-color:var(--border-hi);transform:translateY(-4px)}
+.work-img{aspect-ratio:16/10;overflow:hidden;background:#0e0e18}
+.work-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.work:hover .work-img img{transform:scale(1.05)}
+.work-body{padding:22px 22px 24px;flex:1;display:flex;flex-direction:column}
+.work-body p{color:var(--muted);font-size:.92rem;margin:7px 0 15px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-size:.74rem;color:var(--primary-soft);border:1px solid var(--border-hi);background:rgba(108,92,231,.1);padding:4px 11px;border-radius:999px}
+
+/* --- proces --- */
+.steps{counter-reset:s;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.step{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px}
+.step::before{
+  counter-increment:s;content:counter(s);
+  display:grid;place-items:center;width:38px;height:38px;border-radius:11px;margin-bottom:15px;
+  font-weight:800;font-size:1rem;color:#fff;background:linear-gradient(140deg,var(--primary),var(--accent));
+}
+.step h3{margin-bottom:7px}
+.step p{color:var(--muted);font-size:.94rem}
+
+/* --- paketi --- */
+.plans{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:stretch}
+.plan{
+  background:var(--panel-solid);border:1px solid var(--border);border-radius:20px;
+  padding:32px 28px;display:flex;flex-direction:column;
+}
+.plan.best{border-color:var(--primary);box-shadow:0 0 0 1px var(--primary),0 20px 50px rgba(108,92,231,.22);position:relative}
+.plan-badge{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(105deg,var(--primary),var(--accent));color:#fff;
+  font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:6px 16px;border-radius:999px;white-space:nowrap;
+}
+.plan h3{font-size:1.32rem;font-weight:700}
+.plan-for{color:var(--primary-soft);font-size:.87rem;font-weight:500;margin:5px 0 18px}
+.plan ul{display:grid;gap:11px;margin-bottom:26px;flex:1;align-content:start}
+.plan li{display:flex;gap:11px;align-items:flex-start;font-size:.93rem;color:var(--muted)}
+.plan li svg{width:17px;height:17px;stroke:var(--primary-soft);flex:0 0 auto;margin-top:4px}
+.plan-note{
+  text-align:center;color:var(--muted);font-size:.92rem;margin-top:26px;
+  border:1px dashed var(--border-hi);border-radius:var(--radius-sm);padding:16px 18px;
+}
+
+/* --- zasto mi --- */
+.why{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.why li{display:flex;gap:14px;align-items:flex-start}
+.why svg{width:21px;height:21px;stroke:var(--primary-soft);flex:0 0 auto;margin-top:4px}
+.why strong{display:block;font-weight:600;margin-bottom:3px}
+.why span{color:var(--muted);font-size:.93rem}
+
+/* --- FAQ --- */
+.faq{max-width:800px;margin:0 auto;display:grid;gap:11px}
+.faq details{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.faq details[open]{border-color:var(--border-hi)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:19px 22px;font-weight:600;font-size:1rem;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.5rem;font-weight:400;color:var(--primary-soft);line-height:1;transition:transform .25s ease}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 22px 20px;color:var(--muted);font-size:.95rem}
+
+/* --- kontakt --- */
+.contact-grid{display:grid;gap:26px;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
+.contact-side .lead{margin-bottom:26px}
+.side-list{display:grid;gap:14px;margin-bottom:26px}
+.side-list a,.side-list div{display:flex;gap:14px;align-items:center}
+.side-ico{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:0 0 auto;
+  background:rgba(108,92,231,.14);border:1px solid var(--border-hi);
+}
+.side-ico svg{width:19px;height:19px;stroke:var(--primary-soft)}
+.side-list small{display:block;color:var(--muted);font-size:.79rem;line-height:1.4}
+.side-list b{font-weight:600;font-size:.98rem}
+
+.form-box{background:var(--panel-solid);border:1px solid var(--border);border-radius:20px;padding:30px 28px;box-shadow:var(--shadow)}
+.f-row{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+@media(max-width:560px){.f-row{grid-template-columns:1fr}}
+.f{margin-bottom:16px}
+.f label{display:block;font-size:.85rem;font-weight:600;margin-bottom:7px}
+.f label i{color:var(--accent);font-style:normal}
+.f input,.f select,.f textarea{
+  width:100%;padding:13px 15px;border-radius:var(--radius-sm);
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  font-size:.96rem;transition:border-color .2s ease,background .2s ease;
+}
+.f input::placeholder,.f textarea::placeholder{color:#6f6f8a}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--primary);background:rgba(108,92,231,.08)}
+.f textarea{min-height:104px;resize:vertical}
+.f select{appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a2a2ba' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:17px;padding-right:42px;
+}
+.f select option{background:#161623;color:var(--text)}
+.consent{display:flex;gap:11px;align-items:flex-start;font-size:.83rem;color:var(--muted);margin-bottom:20px}
+.consent input{width:17px;height:17px;flex:0 0 auto;margin-top:3px;accent-color:var(--primary)}
+.consent a{color:var(--primary-soft);text-decoration:underline}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-msg{margin-top:16px;padding:14px 16px;border-radius:var(--radius-sm);font-size:.92rem;display:none}
+.form-msg.on{display:block}
+.form-msg.ok{background:rgba(46,213,115,.12);border:1px solid rgba(46,213,115,.4);color:#7bed9f}
+.form-msg.err{background:rgba(253,121,168,.12);border:1px solid rgba(253,121,168,.4);color:#ffa5c4}
+.form-foot{text-align:center;color:var(--muted);font-size:.81rem;margin-top:14px}
+
+/* --- zavrsni CTA --- */
+.final{text-align:center;background:linear-gradient(140deg,rgba(108,92,231,.2),rgba(253,121,168,.11));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.final h2{max-width:16ch;margin:0 auto 16px}
+.final .lead{margin:0 auto 30px}
+
+/* --- footer --- */
+footer{padding:44px 0 108px;border-top:1px solid var(--border);background:var(--bg-2)}
+.foot{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+.foot-links{display:flex;flex-wrap:wrap;gap:20px;font-size:.89rem;color:var(--muted)}
+.foot-links a:hover{color:var(--text)}
+.legal{width:100%;color:#77778f;font-size:.79rem;margin-top:20px;border-top:1px solid var(--border);padding-top:18px}
+@media(min-width:721px){footer{padding-bottom:44px}}
+
+/* --- lepljiva mobilna traka --- */
+.mbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;gap:9px;padding:10px 12px;
+  background:rgba(11,11,18,.95);backdrop-filter:blur(14px);border-top:1px solid var(--border);
+}
+.mbar a{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:13px 8px;border-radius:12px;font-size:.87rem;font-weight:600;
+}
+.mbar .m-tel{background:rgba(255,255,255,.06);border:1px solid var(--border)}
+.mbar .m-wa{background:#25D366;color:#062e14}
+.mbar .m-cta{background:linear-gradient(105deg,var(--primary),#8b6ff0);color:#fff}
+@media(max-width:720px){.mbar{display:flex}}
+
+/* --- animacija pri skrolu --- */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap">
+    <a href="/" class="logo"><span>Pop</span>zify</a>
+    <div class="nav-actions">
+      <a href="tel:+381605973212" class="nav-tel" data-track="Contact" data-ch="telefon-nav">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        <span>060 5973212</span>
+      </a>
+      <a href="#kontakt" class="btn btn-primary">Zatraži ponudu</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Beograd &middot; Zemun &middot; od 2024.</span>
+    <h1>Sajt i aplikacija koji <span class="grad">donose klijente</span>, a ne samo lepo izgledaju.</h1>
+    <p class="lead">Pravimo web sajtove, online prodavnice i mobilne aplikacije po meri. Prvu verziju vidiš za 24 sata &mdash; pre nego što potpišeš bilo šta i pre nego što platiš prvi dinar.</p>
+    <div class="hero-cta">
+      <a href="#kontakt" class="btn btn-primary">
+        Zatraži besplatnu ponudu
+        <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="https://wa.me/381605973212?text=Zdravo%20Popzify%2C%20zanima%20me%20izrada%20sajta%2Faplikacije." target="_blank" rel="noopener" class="btn btn-wa" data-track="Contact" data-ch="whatsapp-hero">
+        <svg class="ico" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.9-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1a14.6 14.6 0 0 1-6.6-5.8c-.5-.8-.8-1.6-.8-2.4 0-.8.4-1.5.9-1.9.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.6l-.4.5c-.1.2-.3.3-.1.6.5.9 1.2 1.7 2 2.3.4.3.7.4.9.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.4.1.2.1.9-.1 1.5Z"/></svg>
+        Piši na WhatsApp
+      </a>
+    </div>
+    <div class="chips">
+      <span class="chip"><svg class="ico" viewBox="0 0 24 24"><path d="M13 2 4.1 13.3a1 1 0 0 0 .8 1.7H11l-1 7 8.9-11.3a1 1 0 0 0-.8-1.7H12l1-7Z"/></svg> Prva verzija za 24h</span>
+      <span class="chip"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg> Registrovana firma, PIB 114200786</span>
+      <span class="chip"><svg class="ico" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> Kod i domen ostaju tvoji</span>
+      <span class="chip"><svg class="ico" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg> Odgovor na upit za 24h</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PARTNERI ============ -->
+<section class="partners">
+  <div class="wrap">
+    <p>Brendovi sa kojima smo radili</p>
+    <div class="partner-grid">
+      <a href="https://www.tvarenasport.com" target="_blank" rel="noopener" aria-label="Arena Sport"><img loading="lazy" src="assets/partners/arenasport.png" alt="Arena Sport logo" width="120" height="32"></a>
+      <a href="https://www.soccerbet.rs/sr" target="_blank" rel="noopener" aria-label="Soccerbet"><img loading="lazy" src="assets/partners/soccer.png" alt="Soccerbet logo" width="120" height="32"></a>
+      <a href="https://www.oktagonbet.com" target="_blank" rel="noopener" aria-label="Oktagonbet"><img loading="lazy" src="assets/partners/oktagonbet.png" alt="Oktagonbet logo" width="120" height="32"></a>
+      <a href="https://primobet-1.com" target="_blank" rel="noopener" aria-label="Primobet"><img loading="lazy" src="assets/partners/primobet.png" alt="Primobet logo" width="120" height="32"></a>
+      <a href="https://bif.events" target="_blank" rel="noopener" aria-label="BIF Events"><img loading="lazy" src="assets/partners/bif.png" alt="BIF Events logo" width="120" height="32"></a>
+    </div>
+  </div>
+</section>
+<!-- ============ PROBLEM ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Da pogodimo</span>
+      <h2 style="margin-top:16px">Prepoznaješ li se u <span class="grad">nečemu od ovoga</span>?</h2>
+    </div>
+    <ul class="pain rv">
+      <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg> Sajt ti izgleda kao da je pravljen 2015. godine, a ti se stidiš da pošalješ link.</li>
+      <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg> Na telefonu se raspada &mdash; a preko 80% ljudi te otvara baš sa telefona.</li>
+      <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg> Plaćaš oglase, ljudi klikću, ali upiti ne stižu. Novac curi.</li>
+      <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg> Prethodni &bdquo;programer&ldquo; se ne javlja već tri nedelje, a ti nemaš ni pristup svom sajtu.</li>
+      <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg> Imaš ideju za aplikaciju, ali ne znaš odakle da počneš ni koliko to košta.</li>
+      <li><svg class="ico" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg> Konkurencija ti izgleda ozbiljnije na netu, iako radiš bolji posao od njih.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ BESPLATNA ANALIZA (interaktivni kviz) ============ -->
+<section class="sec sec-alt" id="analiza">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Besplatno &middot; 60 sekundi</span>
+      <h2 style="margin-top:16px">Koliko ti sajt <span class="grad">zapravo radi</span>?</h2>
+      <p class="lead">Odgovori na 5 pitanja i vidi gde gubiš klijente. Zatim ti šaljemo pravu, ručno rađenu analizu &mdash; besplatno, u roku od 24 sata.</p>
+    </div>
+
+    <div class="quiz rv">
+      <div class="quiz-field">
+        <label for="q-site">Link tvog sajta <span style="color:var(--muted);font-weight:400">(opciono &mdash; ako ga nemaš, preskoči)</span></label>
+        <input type="text" id="q-site" placeholder="npr. mojafirma.rs" autocomplete="url" inputmode="url">
+      </div>
+
+      <div id="q-list">
+        <div class="q" data-q="0">
+          <p>Učitava li se sajt za manje od 3 sekunde na mobilnom internetu?</p>
+          <div class="q-btns" role="group" aria-label="Odgovor na pitanje 1">
+            <button type="button" class="q-btn" data-v="1" aria-pressed="false">Da</button>
+            <button type="button" class="q-btn" data-v="0" aria-pressed="false">Ne</button>
+          </div>
+        </div>
+        <div class="q" data-q="1">
+          <p>Izgleda li dobro i lako se koristi na telefonu?</p>
+          <div class="q-btns" role="group" aria-label="Odgovor na pitanje 2">
+            <button type="button" class="q-btn" data-v="1" aria-pressed="false">Da</button>
+            <button type="button" class="q-btn" data-v="0" aria-pressed="false">Ne</button>
+          </div>
+        </div>
+        <div class="q" data-q="2">
+          <p>Postoji li jasno dugme ili forma odmah na vrhu, bez skrolovanja?</p>
+          <div class="q-btns" role="group" aria-label="Odgovor na pitanje 3">
+            <button type="button" class="q-btn" data-v="1" aria-pressed="false">Da</button>
+            <button type="button" class="q-btn" data-v="0" aria-pressed="false">Ne</button>
+          </div>
+        </div>
+        <div class="q" data-q="3">
+          <p>Da li je dizajn menjan u poslednje dve godine?</p>
+          <div class="q-btns" role="group" aria-label="Odgovor na pitanje 4">
+            <button type="button" class="q-btn" data-v="1" aria-pressed="false">Da</button>
+            <button type="button" class="q-btn" data-v="0" aria-pressed="false">Ne</button>
+          </div>
+        </div>
+        <div class="q" data-q="4">
+          <p>Stižu li ti upiti sa sajta bar jednom nedeljno?</p>
+          <div class="q-btns" role="group" aria-label="Odgovor na pitanje 5">
+            <button type="button" class="q-btn" data-v="1" aria-pressed="false">Da</button>
+            <button type="button" class="q-btn" data-v="0" aria-pressed="false">Ne</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="quiz-progress" id="q-progress" aria-live="polite">Odgovoreno: 0 / 5</p>
+
+      <div class="quiz-result" id="q-result">
+        <div class="score-row">
+          <div class="score" id="q-score"><b>0</b></div>
+          <div class="score-txt">
+            <strong id="q-title">&nbsp;</strong>
+            <span id="q-desc">&nbsp;</span>
+          </div>
+        </div>
+        <p class="disclaimer">
+          <strong style="color:var(--text)">Da bude pošteno:</strong> ovaj rezultat je prost zbir <em>tvojih</em> odgovora, nije automatsko skeniranje sajta.
+          Pravu analizu &mdash; brzina, SEO, mobilni prikaz, konkurencija &mdash; radimo ručno i šaljemo ti je u roku od 24h. Besplatno i bez obaveze.
+        </p>
+        <button type="button" class="btn btn-primary btn-block" id="q-cta">
+          Pošalji mi pravu analizu (besplatno)
+          <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ USLUGE ============ -->
+<section class="sec" id="usluge">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Šta radimo</span>
+      <h2 style="margin-top:16px">Sajtovi i <span class="grad">aplikacije</span> po meri</h2>
+      <p class="lead">Bez kupljenih šablona za 30 dolara. Svaki projekat se piše od nule, prilagođen tvom poslu i tvojim klijentima.</p>
+    </div>
+    <div class="grid g3">
+      <article class="card rv">
+        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M6 6.5h.01M9 6.5h.01"/></svg></div>
+        <h3>Web sajt po meri</h3>
+        <p>Prezentacioni i korporativni sajtovi koji predstavljaju firmu ozbiljno: usluge, tim, portfolio, blog, kontakt forme. CMS ako želiš sam da menjaš sadržaj.</p>
+      </article>
+      <article class="card rv">
+        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><path d="M13 2 4.1 13.3a1 1 0 0 0 .8 1.7H11l-1 7 8.9-11.3a1 1 0 0 0-.8-1.7H12l1-7Z"/></svg></div>
+        <h3>Landing stranica za oglase</h3>
+        <p>Jedna strana, jedan cilj &mdash; da posetilac sa Meta ili Google oglasa ostavi upit. Sa merenjem konverzija, tako da tačno znaš koliko te lead košta. (Baš kao ova stranica.)</p>
+      </article>
+      <article class="card rv">
+        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L22 7H6"/></svg></div>
+        <h3>Online prodavnica</h3>
+        <p>E-commerce sa plaćanjem karticom, upravljanjem zalihama i automatskim porudžbinama. WooCommerce, Shopify ili potpuno custom rešenje.</p>
+      </article>
+      <article class="card rv">
+        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+        <h3>Web aplikacija</h3>
+        <p>SaaS platforme, dashboardi, interni alati, sistemi za rezervacije. React, Next.js, Node.js &mdash; korisnički nalozi, baza, integracije sa drugim servisima.</p>
+      </article>
+      <article class="card rv">
+        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <h3>Mobilna aplikacija</h3>
+        <p>iOS i Android iz jednog koda. Od ideje i wireframe-a do objave na App Store-u i Google Play-u, uključujući push notifikacije i analitiku.</p>
+      </article>
+      <article class="card rv">
+        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg></div>
+        <h3>Redizajn i održavanje</h3>
+        <p>Imaš sajt ali te sramota? Modernizujemo ga bez gubitka sadržaja i Google pozicija. Plus mesečno održavanje, bekap i sigurnosna ažuriranja.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section class="sec sec-alt" id="radovi">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Radovi</span>
+      <h2 style="margin-top:16px">Nešto od toga <span class="grad">što smo napravili</span></h2>
+      <p class="lead">Klikni na projekat za detaljan prikaz &mdash; šta je bio problem, kako smo ga rešili i sa čime je pravljen.</p>
+    </div>
+    <div class="grid g3">
+      <a class="work rv" href="project-correctscore">
+        <div class="work-img"><img loading="lazy" src="assets/projects/correctscore-main.webp" alt="CorrectScore.pro platforma" width="600" height="375"></div>
+        <div class="work-body">
+          <h3>CorrectScore.pro</h3>
+          <p>Platforma sa korisničkim nalozima i tri integracije za plaćanje &mdash; kartice, PayPal i kripto.</p>
+          <div class="tags"><span class="tag">Web aplikacija</span><span class="tag">Stripe</span><span class="tag">PayPal</span></div>
+        </div>
+      </a>
+      <a class="work rv" href="project-artisanmarket">
+        <div class="work-img"><img loading="lazy" src="assets/projects/artisanmarket-main.webp" alt="ArtisanMarket marketplace" width="600" height="375"></div>
+        <div class="work-body">
+          <h3>ArtisanMarket</h3>
+          <p>Marketplace za rukotvorine sa više prodavaca, custom dodacima nad WooCommerce platformom.</p>
+          <div class="tags"><span class="tag">E-commerce</span><span class="tag">WooCommerce</span></div>
+        </div>
+      </a>
+      <a class="work rv" href="project-fintrack">
+        <div class="work-img"><img loading="lazy" src="assets/projects/fintrack-main.webp" alt="FinTrack dashboard" width="600" height="375"></div>
+        <div class="work-body">
+          <h3>FinTrack Dashboard</h3>
+          <p>Finansijska analitika sa grafikonima u realnom vremenu za investitore i analitičare.</p>
+          <div class="tags"><span class="tag">Dashboard</span><span class="tag">React</span></div>
+        </div>
+      </a>
+      <a class="work rv" href="project-fitlife">
+        <div class="work-img"><img loading="lazy" src="assets/projects/fitlife-main.png" alt="FitLife mobilna aplikacija" width="600" height="375"></div>
+        <div class="work-body">
+          <h3>FitLife Fitness</h3>
+          <p>Mobilna aplikacija za praćenje treninga i ishrane, sa personalizovanim planovima.</p>
+          <div class="tags"><span class="tag">Mobilna app</span><span class="tag">iOS + Android</span></div>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:34px" class="rv">
+      <a href="projects" class="btn btn-ghost">Vidi ceo portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCES ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Kako radimo</span>
+      <h2 style="margin-top:16px">Četiri koraka, <span class="grad">bez iznenađenja</span></h2>
+      <p class="lead">Bez rokova koji se pomeraju u nedogled i bez skrivenih stavki na kraju.</p>
+    </div>
+    <div class="steps rv">
+      <div class="step">
+        <h3>Razgovor (20 min, besplatno)</h3>
+        <p>Telefon ili uživo. Šta ti treba, ko su ti klijenti, šta radi konkurencija, koji je budžet. Iskreno kažemo ako ti nešto ne treba.</p>
+      </div>
+      <div class="step">
+        <h3>Prva verzija za 24h</h3>
+        <p>Dobiješ link na živu verziju sa tvojim sadržajem i bojama. Vidiš pravac pre nego što išta potpišeš ili platiš.</p>
+      </div>
+      <div class="step">
+        <h3>Doterivanje</h3>
+        <p>Kažeš šta menjamo, mi menjamo. Dnevni update, ne &bdquo;javiću se sledeće nedelje&ldquo;. Sve dok ne bude kako treba.</p>
+      </div>
+      <div class="step">
+        <h3>Objava i obuka</h3>
+        <p>Postavljamo na tvoj hosting i domen, povezujemo Analytics i Meta Pixel, i naučimo te da sam menjaš sadržaj.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ PAKETI ============ -->
+<section class="sec sec-alt" id="paketi">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Paketi</span>
+      <h2 style="margin-top:16px">Izaberi otprilike <span class="grad">gde spadaš</span></h2>
+      <p class="lead">Cenu ne lepimo unapred jer landing stranica i aplikacija sa bazom nisu isti posao. Reci nam šta ti treba i dobijaš tačnu cenu i rok &mdash; u roku od 24 sata.</p>
+    </div>
+
+    <div class="plans rv">
+      <div class="plan">
+        <h3>Start</h3>
+        <p class="plan-for">Za zanatlije, lokalne usluge i one koji tek kreću</p>
+        <ul>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Jednostrana landing stranica</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Prilagođena telefonu pre svega</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Kontakt forma + WhatsApp dugme</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Osnovni SEO i Google Maps</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Analytics i Meta Pixel povezani</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Postavljanje na hosting i domen</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Isporuka: 3&ndash;7 dana</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost btn-block" data-plan="Start">Zatraži ponudu</a>
+      </div>
+
+      <div class="plan best">
+        <span class="plan-badge">Najčešći izbor</span>
+        <h3>Biznis</h3>
+        <p class="plan-for">Za firme koje žele ozbiljnu prisutnost i stalne upite</p>
+        <ul>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Sve iz paketa Start</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> 5&ndash;10 stranica ili online prodavnica</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> CMS &mdash; sam menjaš tekst i slike</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Blog i sekcija sa radovima</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Napredni SEO, schema i brzina 90+</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> GDPR baner za kolačiće</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> 30 dana podrške posle objave</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Isporuka: 7&ndash;21 dan</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-primary btn-block" data-plan="Biznis">Zatraži ponudu</a>
+      </div>
+
+      <div class="plan">
+        <h3>Aplikacija</h3>
+        <p class="plan-for">Za web i mobilne aplikacije sa pravom logikom iza</p>
+        <ul>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Web ili mobilna aplikacija (iOS + Android)</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Korisnički nalozi i uloge</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Baza podataka i admin panel</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Plaćanja i integracije sa drugim servisima</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Objava na App Store i Google Play</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Ugovor o održavanju</li>
+          <li><svg class="ico" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg> Rok po dogovoru, radi se u fazama</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-ghost btn-block" data-plan="Aplikacija">Zakaži razgovor</a>
+      </div>
+    </div>
+
+    <p class="plan-note rv">U svakom paketu: čist kod bez kupljenih šablona &middot; kod, domen i hosting nalozi ostaju na tvoje ime &middot; račun i ugovor &middot; obuka za samostalno korišćenje.</p>
+  </div>
+</section>
+
+<!-- ============ ZASTO MI ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Zašto baš mi</span>
+      <h2 style="margin-top:16px">Šest razloga da nas <span class="grad">ne preskočiš</span></h2>
+    </div>
+    <ul class="why rv">
+      <li>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div><strong>Registrovana firma, ne freelancer sa Instagrama</strong><span>POPZOGRAPHY, PIB 114200786, MB 67394909, osnovana 14.02.2024. Dobijaš ugovor i račun.</span></div>
+      </li>
+      <li>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M13 2 4.1 13.3a1 1 0 0 0 .8 1.7H11l-1 7 8.9-11.3a1 1 0 0 0-.8-1.7H12l1-7Z"/></svg>
+        <div><strong>Vidiš pre nego što platiš</strong><span>Prva verzija za 24h. Ako ti se ne dopadne pravac, nisi izgubio ni dinar.</span></div>
+      </li>
+      <li>
+        <svg class="ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
+        <div><strong>Pričaš sa onim ko piše kod</strong><span>Bez posrednika i &bdquo;prosledio sam kolegi&ldquo;. Direktan broj, javljamo se isti dan.</span></div>
+      </li>
+      <li>
+        <svg class="ico" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>
+        <div><strong>Bez kupljenih šablona</strong><span>Ne prodajemo ti temu za 30 dolara kao custom sajt. Piše se od nule, zato je i brz.</span></div>
+      </li>
+      <li>
+        <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <div><strong>Sve ostaje tvoje</strong><span>Kod, domen, hosting i nalozi glase na tebe. Možeš da odeš kod bilo koga sutra.</span></div>
+      </li>
+      <li>
+        <svg class="ico" viewBox="0 0 24 24"><path d="m23 7-7 5 7 5V7Z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        <div><strong>Sadržaj radimo u kući</strong><span>Foto, video i produkcija su nam osnovna delatnost &mdash; sajt ne mora da čeka na tuđe slike.</span></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="eyebrow">Pitanja</span>
+      <h2 style="margin-top:16px">Ono što nas <span class="grad">najčešće pitaju</span></h2>
+    </div>
+    <div class="faq rv">
+      <details>
+        <summary>Koliko košta sajt?</summary>
+        <p>Zavisi od broja stranica, funkcionalnosti i toga da li treba prodavnica, korisnički nalozi ili integracije. Landing stranica i aplikacija sa bazom nisu ni blizu isti posao, pa bi svaka cena zalepljena unapred bila laž. Pošalji kratak opis &mdash; vraćamo se sa konkretnom cenom i rokom u roku od 24h, bez obaveze.</p>
+      </details>
+      <details>
+        <summary>Koliko traje izrada?</summary>
+        <p>Prvu verziju vidiš za 24 sata od razgovora. Jednostavnija landing stranica je gotova za 3&ndash;7 dana, veći sajt ili prodavnica 7&ndash;21 dan. Aplikacije se rade u fazama i rok dogovaramo posle brifa.</p>
+      </details>
+      <details>
+        <summary>Mogu li sam da menjam sadržaj kasnije?</summary>
+        <p>Da, ako uzmeš paket sa CMS-om. Dobijaš pristup panelu gde menjaš tekst, slike, cene i objave &mdash; plus obuku uživo ili snimak ekrana da imaš čemu da se vratiš.</p>
+      </details>
+      <details>
+        <summary>Već imam sajt, da li radite redizajn?</summary>
+        <p>Radimo, i to često. Prebacimo sadržaj bez gubitka Google pozicija, postavimo preusmerenja sa starih adresa i modernizujemo dizajn, brzinu i mobilni prikaz. Ako nemaš pristup starom sajtu, pomažemo i oko toga.</p>
+      </details>
+      <details>
+        <summary>Pravite li i mobilne aplikacije?</summary>
+        <p>Da &mdash; iOS i Android iz jednog koda. Od wireframe-a i dizajna, preko izrade, do objave na App Store i Google Play, uključujući push notifikacije i analitiku.</p>
+      </details>
+      <details>
+        <summary>Šta je sa hostingom i domenom?</summary>
+        <p>Možemo da ih kupimo i podesimo umesto tebe, ali nalozi uvek glase na tvoje ime i tvoj mejl. Ne držimo klijente kao taoce.</p>
+      </details>
+      <details>
+        <summary>Da li dobijam račun i ugovor?</summary>
+        <p>Naravno. POPZOGRAPHY je registrovana firma (PIB 114200786, MB 67394909). Za svaki posao ide ugovor sa jasnim obimom, rokom i cenom, i uredan račun.</p>
+      </details>
+      <details>
+        <summary>Radite li van Beograda?</summary>
+        <p>Radimo za celu Srbiju i inostranstvo. Sve se lepo odradi preko poziva i deljenja ekrana, a ako si u Beogradu ili Zemunu &mdash; može i kafa uživo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section class="sec" id="kontakt">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-side rv">
+        <span class="eyebrow">Kontakt</span>
+        <h2 style="margin:16px 0 16px">Reci nam šta ti treba <span class="grad">i to je to</span></h2>
+        <p class="lead">Popuni formu ili nas jednostavno pozovi. Odgovaramo u roku od 24 sata, radnim danima obično mnogo brže. Prvi razgovor je besplatan i ništa te ne obavezuje.</p>
+
+        <div class="side-list">
+          <a href="tel:+381605973212" data-track="Contact" data-ch="telefon-sekcija">
+            <span class="side-ico"><svg class="ico" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+            <span><b>+381 60 5973212</b><small>Pozovi, javljamo se</small></span>
+          </a>
+          <a href="https://wa.me/381605973212?text=Zdravo%20Popzify%2C%20zanima%20me%20izrada%20sajta%2Faplikacije." target="_blank" rel="noopener" data-track="Contact" data-ch="whatsapp-sekcija">
+            <span class="side-ico"><svg class="ico" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.9-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1a14.6 14.6 0 0 1-6.6-5.8c-.5-.8-.8-1.6-.8-2.4 0-.8.4-1.5.9-1.9.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.6l-.4.5c-.1.2-.3.3-.1.6.5.9 1.2 1.7 2 2.3.4.3.7.4.9.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.4.1.2.1.9-.1 1.5Z"/></svg></span>
+            <span><b>WhatsApp</b><small>Ako ti je lakše da pišeš</small></span>
+          </a>
+          <a href="mailto:info@popzify.com">
+            <span class="side-ico"><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
+            <span><b>info@popzify.com</b><small>Za detaljnije upite i dokumentaciju</small></span>
+          </a>
+          <div>
+            <span class="side-ico"><svg class="ico" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span><b>Beograd, Zemun</b><small>Radimo za celu Srbiju i inostranstvo</small></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-box rv">
+        <form id="leadForm" action="php/process-lead.php" method="POST" novalidate>
+          <div class="f-row">
+            <div class="f">
+              <label for="ime">Ime i prezime <i>*</i></label>
+              <input type="text" id="ime" name="ime" placeholder="Petar Petrović" autocomplete="name" required>
+            </div>
+            <div class="f">
+              <label for="telefon">Telefon <i>*</i></label>
+              <input type="tel" id="telefon" name="telefon" placeholder="060 123 4567" autocomplete="tel" inputmode="tel" required>
+            </div>
+          </div>
+
+          <div class="f">
+            <label for="email">Email <span style="color:var(--muted);font-weight:400">(opciono)</span></label>
+            <input type="email" id="email" name="email" placeholder="petar@mojafirma.rs" autocomplete="email">
+          </div>
+
+          <div class="f">
+            <label for="usluga">Šta ti treba? <i>*</i></label>
+            <select id="usluga" name="usluga" required>
+              <option value="">Izaberi...</option>
+              <option>Web sajt po meri</option>
+              <option>Landing stranica za oglase</option>
+              <option>Online prodavnica (e-commerce)</option>
+              <option>Web aplikacija</option>
+              <option>Mobilna aplikacija</option>
+              <option>Redizajn postojećeg sajta</option>
+              <option>Održavanje i podrška</option>
+              <option>Besplatna analiza sajta</option>
+              <option>Nisam siguran, treba mi savet</option>
+            </select>
+          </div>
+
+          <div class="f">
+            <label for="sajt">Link postojećeg sajta <span style="color:var(--muted);font-weight:400">(opciono)</span></label>
+            <input type="text" id="sajt" name="sajt" placeholder="mojafirma.rs" inputmode="url">
+          </div>
+
+          <div class="f">
+            <label for="poruka">Ukratko o projektu <span style="color:var(--muted);font-weight:400">(opciono)</span></label>
+            <textarea id="poruka" name="poruka" placeholder="Npr. imam frizerski salon u Zemunu, treba mi sajt sa online zakazivanjem i galerijom."></textarea>
+          </div>
+
+          <!-- Skriveno polje protiv botova -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="izvor" id="izvor" value="">
+          <input type="hidden" name="kviz" id="kviz" value="">
+
+          <label class="consent">
+            <input type="checkbox" id="saglasnost" name="saglasnost" required>
+            <span>Saglasan/na sam da me Popzify kontaktira povodom ovog upita i da se moji podaci obrađuju u skladu sa <a href="privacypolicy" target="_blank" rel="noopener">politikom privatnosti</a>.</span>
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+            Pošalji upit &mdash; odgovor za 24h
+            <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="form-foot">Bez obaveze i bez spama. Podaci se koriste isključivo za odgovor na tvoj upit.</p>
+        </form>
+        <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ZAVRSNI CTA ============ -->
+<section class="sec final">
+  <div class="wrap">
+    <h2 class="rv">Sutra u ovo vreme možeš da gledaš <span class="grad">svoju prvu verziju</span>.</h2>
+    <p class="lead rv">Jedan poziv od 20 minuta i znaš tačno šta dobijaš, koliko košta i kada je gotovo.</p>
+    <div class="hero-cta rv" style="justify-content:center">
+      <a href="#kontakt" class="btn btn-primary">Zatraži besplatnu ponudu</a>
+      <a href="tel:+381605973212" class="btn btn-ghost" data-track="Contact" data-ch="telefon-final">Pozovi 060 5973212</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a href="/" class="logo"><span>Pop</span>zify</a>
+      <nav class="foot-links">
+        <a href="/">Početna</a>
+        <a href="izrada-sajtova">Izrada sajtova</a>
+        <a href="projects">Portfolio</a>
+        <a href="privacypolicy">Politika privatnosti</a>
+      </nav>
+    </div>
+    <p class="legal">
+      &copy; <span id="year">2026</span> Popzify &mdash; POPZOGRAPHY &middot; PIB 114200786 &middot; MB 67394909 &middot; Datum osnivanja 14.02.2024. &middot; Beograd, Zemun, Srbija
+    </p>
+  </div>
+</footer>
+
+<!-- ============ LEPLJIVA MOBILNA TRAKA ============ -->
+<div class="mbar">
+  <a href="tel:+381605973212" class="m-tel" data-track="Contact" data-ch="telefon-mbar">
+    <svg class="ico" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+    Pozovi
+  </a>
+  <a href="https://wa.me/381605973212?text=Zdravo%20Popzify%2C%20zanima%20me%20izrada%20sajta%2Faplikacije." target="_blank" rel="noopener" class="m-wa" data-track="Contact" data-ch="whatsapp-mbar">
+    <svg class="ico" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.9-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1a14.6 14.6 0 0 1-6.6-5.8c-.5-.8-.8-1.6-.8-2.4 0-.8.4-1.5.9-1.9.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.6l-.4.5c-.1.2-.3.3-.1.6.5.9 1.2 1.7 2 2.3.4.3.7.4.9.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.4.1.2.1.9-.1 1.5Z"/></svg>
+    WhatsApp
+  </a>
+  <a href="#kontakt" class="m-cta">Ponuda</a>
+</div>
+
+<script>
+/* ============================================================
+   POPZIFY /marketing - logika stranice
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* ---------- 1. META PIXEL --------------------------------
+     >>> ZAMENI ovu vrednost svojim Pixel ID-jem iz Meta Events Manager-a.
+     Dok stoji 'PIXEL_ID_OVDE', pixel se NE ucitava (nema laznih poziva).
+     Pixel se pali odmah po ucitavanju stranice, bez pitanja za kolacice
+     (svesna odluka za kampanjsku stranicu - vidi privacypolicy).
+  --------------------------------------------------------- */
+  var META_PIXEL_ID = 'PIXEL_ID_OVDE';
+
+  var pixelReady = false;
+
+  function loadPixel() {
+    if (pixelReady || META_PIXEL_ID === 'PIXEL_ID_OVDE') return;
+    /* zvanicni Meta Pixel bootstrap */
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+      t = b.createElement(e); t.async = !0; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('init', META_PIXEL_ID);
+    window.fbq('track', 'PageView');
+    pixelReady = true;
+  }
+
+  /* Salje event samo ako je pixel stvarno ucitan. */
+  function track(event, params, custom) {
+    if (!window.fbq || !pixelReady) return;
+    window.fbq(custom ? 'trackCustom' : 'track', event, params || {});
+  }
+
+  /* ---------- 2. START ---------- */
+  loadPixel();
+
+  /* ---------- 3. ANIMACIJA PRI SKROLU ---------- */
+  var revealables = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
+    revealables.forEach(function (el) { io.observe(el); });
+  } else {
+    revealables.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------- 4. KVIZ / BESPLATNA ANALIZA ----------
+     Skor je prost zbir korisnikovih odgovora (5 x 20 poena).
+     Namerno NE izmisljamo metrike o tudjem sajtu.
+  ------------------------------------------------- */
+  var answers = {};
+  var TOTAL_Q = 5;
+  var quizTracked = false;
+  var leadSource = '';
+  var resultBox = document.getElementById('q-result');
+  var progressEl = document.getElementById('q-progress');
+
+  document.querySelectorAll('.q').forEach(function (row) {
+    var idx = row.getAttribute('data-q');
+    row.querySelectorAll('.q-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        row.querySelectorAll('.q-btn').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+        btn.setAttribute('aria-pressed', 'true');
+        answers[idx] = parseInt(btn.getAttribute('data-v'), 10);
+        renderQuiz();
+      });
+    });
+  });
+
+  function renderQuiz() {
+    var keys = Object.keys(answers);
+    progressEl.textContent = 'Odgovoreno: ' + keys.length + ' / ' + TOTAL_Q;
+    if (keys.length < TOTAL_Q) return;
+
+    var yes = 0;
+    keys.forEach(function (k) { yes += answers[k]; });
+    var score = yes * 20;
+
+    var title, desc;
+    if (score <= 40) {
+      title = 'Sajt te trenutno košta klijenata.';
+      desc = 'Po tvojim odgovorima, većina osnovnih stvari ne radi. Ovde redizajn obično najbrže vrati uloženo — ljudi već dolaze, samo odlaze pre nego što te kontaktiraju.';
+    } else if (score <= 60) {
+      title = 'Solidna osnova, ali curi na nekoliko mesta.';
+      desc = 'Nešto radi, nešto ne. Obično je dovoljno doterati brzinu, mobilni prikaz i poziv na akciju da broj upita primetno skoči — bez pravljenja sajta ispočetka.';
+    } else if (score <= 80) {
+      title = 'Dobro stojiš — fali finiš.';
+      desc = 'Osnove su tu. Prostor je u detaljima: brzina, SEO i to koliko je lako ostaviti upit. Male izmene, merljiva razlika.';
+    } else {
+      title = 'Sajt ti radi kako treba.';
+      desc = 'Po tvojim odgovorima nema većih rupa. Tu obično ima smisla pričati o rastu — oglasi, nove funkcionalnosti ili aplikacija, umesto novog sajta.';
+    }
+
+    document.getElementById('q-score').innerHTML = '<b>' + score + '</b>';
+    document.getElementById('q-score').style.setProperty('--deg', (score * 3.6) + 'deg');
+    document.getElementById('q-title').textContent = title;
+    document.getElementById('q-desc').textContent = desc;
+    resultBox.classList.add('on');
+    if (!quizTracked) { track('AnalizaZavrsena', { score: score }, true); quizTracked = true; }
+  }
+
+  /* Rezultat kviza -> popunjava formu i skroluje do nje */
+  document.getElementById('q-cta').addEventListener('click', function () {
+    var url = document.getElementById('q-site').value.trim();
+    var yes = 0;
+    Object.keys(answers).forEach(function (k) { yes += answers[k]; });
+
+    if (url) document.getElementById('sajt').value = url;
+    document.getElementById('usluga').value = 'Besplatna analiza sajta';
+    document.getElementById('kviz').value = 'skor ' + (yes * 20) + '/100';
+    leadSource = 'kviz-analiza';
+    document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(function () { document.getElementById('ime').focus({ preventScroll: true }); }, 600);
+  });
+
+  /* ---------- 5. IZVOR LEAD-A (paketi, oglas) ----------
+     leadSource = poslednja akcija na stranici, utmString = parametri iz oglasa.
+     Oba se spajaju tek pri slanju, da jedno ne pregazi drugo.
+  ------------------------------------------------------- */
+  document.querySelectorAll('[data-plan]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      leadSource = 'paket: ' + el.getAttribute('data-plan');
+    });
+  });
+
+  var qs = new URLSearchParams(window.location.search);
+  var utmString = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'fbclid']
+    .map(function (k) { return qs.get(k) ? k + '=' + qs.get(k) : null; })
+    .filter(Boolean).join(' | ');
+
+  /* ---------- 6. KLIK NA TELEFON / WHATSAPP ---------- */
+  document.querySelectorAll('[data-track="Contact"]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      track('Contact', { content_name: el.getAttribute('data-ch') });
+    });
+  });
+
+  /* ---------- 7. SLANJE FORME ---------- */
+  var form = document.getElementById('leadForm');
+  var msg = document.getElementById('formMsg');
+  var btn = document.getElementById('submitBtn');
+
+  function showMsg(text, kind) {
+    msg.textContent = text;
+    msg.className = 'form-msg on ' + kind;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var ime = document.getElementById('ime').value.trim();
+    var tel = document.getElementById('telefon').value.trim();
+    var usluga = document.getElementById('usluga').value;
+    var saglasan = document.getElementById('saglasnost').checked;
+
+    if (!ime || !tel || !usluga) {
+      showMsg('Popuni ime, telefon i izaberi šta ti treba.', 'err');
+      return;
+    }
+    if (tel.replace(/\D/g, '').length < 8) {
+      showMsg('Proveri broj telefona — deluje da nedostaje neka cifra.', 'err');
+      return;
+    }
+    if (!saglasan) {
+      showMsg('Potrebna je saglasnost da bismo smeli da te kontaktiramo.', 'err');
+      return;
+    }
+
+    document.getElementById('izvor').value =
+      [leadSource, utmString].filter(Boolean).join(' | ') || 'direktno';
+
+    var original = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = 'Šaljem...';
+    msg.className = 'form-msg';
+
+    fetch('php/process-lead.php', { method: 'POST', body: new FormData(form) })
+      .then(function (r) { return r.json().catch(function () { return { status: r.ok ? 'success' : 'error' }; }); })
+      .then(function (data) {
+        if (data.status === 'success') {
+          track('Lead', { content_name: usluga, content_category: 'web-app-development' });
+          form.style.display = 'none';
+          showMsg('Hvala, ' + ime.split(' ')[0] + '! Upit je stigao. Javljamo se na ' + tel + ' u roku od 24 sata — obično mnogo pre.', 'ok');
+        } else {
+          throw new Error(data.message || 'greska');
+        }
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.innerHTML = original;
+        showMsg('Slanje nije uspelo. Pozovi nas na 060 5973212 ili piši na info@popzify.com — javljamo se odmah.', 'err');
+      });
+  });
+
+  /* ---------- 8. Sitnice ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

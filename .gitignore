@@ -2,6 +2,8 @@
 # (kontakt poruke, newsletter prijave - GDPR)
 data/contact_log.txt
 data/newsletter_subscribers.txt
+data/leads_log.txt
+data/.lead_throttle_*
 data/*.log
 
 # === Privremene / test skripte ===
