@@ -34,6 +34,29 @@ function clean($value, $max = 500) {
     return mb_substr($value, 0, $max);
 }
 
+/**
+ * Pravi IP posetioca.
+ *
+ * Iza Cloudflare-a ili nekog drugog proxy-ja REMOTE_ADDR je adresa proxy-ja,
+ * pa bi svi posetioci delili isti throttle i jedan upit bi blokirao ostale.
+ * Zato prvo gledamo zaglavlja koja nose stvarni IP. Ta zaglavlja se mogu
+ * lazirati, ali throttle je ovde samo meka zastita - botove hvata honeypot.
+ */
+function client_ip() {
+    foreach (['HTTP_CF_CONNECTING_IP', 'HTTP_X_REAL_IP'] as $header) {
+        if (!empty($_SERVER[$header]) && filter_var($_SERVER[$header], FILTER_VALIDATE_IP)) {
+            return $_SERVER[$header];
+        }
+    }
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $first = trim(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0]);
+        if (filter_var($first, FILTER_VALIDATE_IP)) {
+            return $first;
+        }
+    }
+    return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+}
+
 /** Kao clean(), ali zadrzava prelome reda - za telo poruke. */
 function clean_multiline($value, $max = 3000) {
     $value = is_string($value) ? $value : '';
@@ -92,19 +115,64 @@ if (!is_dir($log_dir) && !mkdir($log_dir, 0755, true) && !is_dir($log_dir)) {
     error_log("Lead: ne mogu da kreiram {$log_dir}");
 }
 
-$ip = $_SERVER['REMOTE_ADDR'] ?? '?';
+$ip  = client_ip();
+$now = time();
 
-// Jednostavna zastita od flood-a: isti IP ne sme cesce od 20 sekundi.
+/**
+ * Zastita od flood-a.
+ *
+ * Namerno je popustljiva: honeypot iznad hvata botove, a lazno blokiran
+ * posetilac koji je stigao sa placenog oglasa kosta vise nego par visak upita.
+ * Dozvoljeno je $throttle_max upita u $throttle_window sekundi po IP-u.
+ */
+$throttle_window = 600; // 10 minuta
+$throttle_max    = 5;
+
 $throttle_file = $log_dir . '/.lead_throttle_' . md5($ip);
-if (is_file($throttle_file) && (time() - filemtime($throttle_file)) < 20) {
+$hits = [];
+if (is_file($throttle_file)) {
+    foreach (explode(',', (string) @file_get_contents($throttle_file)) as $ts) {
+        $ts = (int) $ts;
+        if ($ts > 0 && ($now - $ts) < $throttle_window) {
+            $hits[] = $ts;
+        }
+    }
+}
+
+if (count($hits) >= $throttle_max) {
+    error_log("Lead throttle: {$ip} je poslao " . count($hits) . " upita u poslednjih {$throttle_window}s.");
     http_response_code(429);
-    echo json_encode(['status' => 'error', 'message' => 'Upit je vec poslat. Sacekaj malo pre sledeceg.']);
+    echo json_encode([
+        'status'  => 'error',
+        'message' => 'Primili smo vise upita sa ove veze. Pozovi nas na 060 5973212 i resavamo odmah.',
+    ]);
     exit;
 }
-@touch($throttle_file);
+
+$hits[] = $now;
+@file_put_contents($throttle_file, implode(',', $hits), LOCK_EX);
+
+// Povremeno pocisti stare throttle fajlove da data/ ne raste u nedogled.
+if (mt_rand(1, 50) === 1) {
+    foreach (glob($log_dir . '/.lead_throttle_*') ?: [] as $old) {
+        if (($now - (int) @filemtime($old)) > $throttle_window * 2) {
+            @unlink($old);
+        }
+    }
+}
 
 // === Upis u log ===
-$log  = "=== NOVI LEAD /marketing (" . date('Y-m-d H:i:s') . ") ===\n";
+// Sa koje stranice je upit stigao (/marketing, /reels, ...). Referer moze
+// da izostane, pa je ovo samo informativno, nikad uslov za obradu.
+$stranica = '-';
+if (!empty($_SERVER['HTTP_REFERER'])) {
+    $path = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
+    if (is_string($path) && $path !== '') {
+        $stranica = clean($path, 120);
+    }
+}
+
+$log  = "=== NOVI LEAD {$stranica} (" . date('Y-m-d H:i:s') . ") ===\n";
 $log .= "Ime:      {$ime}\n";
 $log .= "Telefon:  {$telefon}\n";
 $log .= "Email:    " . ($email !== '' ? $email : '-') . "\n";
@@ -123,7 +191,7 @@ if (@file_put_contents($log_file, $log, FILE_APPEND | LOCK_EX) === false) {
 $recipient = 'info@popzify.com';
 $subject   = 'NOVI LEAD (' . $usluga . ') - ' . $ime;
 
-$body  = "Novi upit sa kampanjske stranice popzify.com/marketing\n";
+$body  = "Novi upit sa kampanjske stranice: {$stranica}\n";
 $body .= "--------------------------------------------------\n";
 $body .= "Ime:      {$ime}\n";
 $body .= "Telefon:  {$telefon}\n";
