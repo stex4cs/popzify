@@ -1,92 +1,132 @@
 <?php
 /**
- * og.php - Dinamicki Open Graph image generator (1200x630)
- * Usage: /og.php?title=Naslov&subtitle=Podnaslov&variant=purple
+ * og.php - Open Graph slika (1200x630)
  *
- * Varianti: purple (default), video, wedding, web
+ * Usage: /og.php?title=Naslov&subtitle=Podnaslov&variant=video
+ * Varijante menjaju boju odsjaja: purple (default), video, wedding, web, dark
  *
- * Trazi Poppins TTF u assets/fonts/, ako nema fallback na DejaVu (sistem),
- * ako ni to nema fallback na PHP built-in font.
+ * Sta se crta:
+ *   tamna podloga + odsjaj u brend bojama, tekst levo, a desno tri
+ *   vertikalna kadra iz stvarnih snimaka (assets/og/f1..f3.jpg).
+ *
+ * Font: Poppins iz assets/fonts/ (SIL OFL, ide uz repo). Ranije se
+ * oslanjalo na sistemski font koji na hostingu ne postoji, pa je GD
+ * padao na ugradjeni bitmap font - otud sicusan tekst bez kvacica.
  */
 
-header('Content-Type: image/png');
-header('Cache-Control: public, max-age=2592000'); // 30 dana — og:image se redak menja
+// JPEG, ne PNG: sadrzaj je fotografija plus prelaz, gde PNG pravi
+// cetvrt megabajta, a JPEG istu sliku spakuje u desetak puta manje.
+header('Content-Type: image/jpeg');
+header('Cache-Control: public, max-age=604800'); // 7 dana
 
-$title    = isset($_GET['title'])    ? (string)$_GET['title']    : 'Popzify';
-$subtitle = isset($_GET['subtitle']) ? (string)$_GET['subtitle'] : 'Modern Web & Mobile Solutions';
-$variant  = isset($_GET['variant'])  ? (string)$_GET['variant']  : 'purple';
+$title    = isset($_GET['title'])    ? (string) $_GET['title']    : 'Popzify';
+$subtitle = isset($_GET['subtitle']) ? (string) $_GET['subtitle'] : '';
+$variant  = isset($_GET['variant'])  ? (string) $_GET['variant']  : 'purple';
 
-$w = 1200;
-$h = 630;
+$W = 1200;
+$H = 630;
 
 if (!function_exists('imagecreatetruecolor')) {
     http_response_code(500);
-    echo "GD library not available";
-    exit;
+    exit('GD nije dostupan');
 }
 
-$img = imagecreatetruecolor($w, $h);
+$img = imagecreatetruecolor($W, $H);
 
-// Gradient po varianti
-$variants = [
-    'purple'  => [[108,  92, 231], [236,  72, 153]], // Popzify brand: ljubicasta -> roze
-    'video'   => [[59, 130, 246], [168,  85, 247]],  // plava -> ljubicasta
-    'wedding' => [[244, 114, 182], [108,  92, 231]], // roze -> ljubicasta
-    'web'     => [[16, 185, 129], [108,  92, 231]],  // zelena -> ljubicasta
-    'dark'    => [[18,  18,  18], [40,  40,  60]],   // dark mode
+/* ---------- 1. PODLOGA ----------
+   Odsjaj se crta na sicusnom platnu pa se uvecava - imagecopyresampled
+   ga usput izglaca u mek prelaz. Racuna se ~2000 piksela umesto 756.000.
+--------------------------------- */
+$glows = [
+    'purple'  => [[108, 92, 231], [253, 121, 168]],
+    'video'   => [[108, 92, 231], [253, 121, 168]],
+    'wedding' => [[214, 158, 106], [253, 121, 168]],
+    'web'     => [[ 76, 201, 176], [108,  92, 231]],
+    'dark'    => [[ 60, 60,  90], [ 90,  70, 120]],
 ];
-$colors = isset($variants[$variant]) ? $variants[$variant] : $variants['purple'];
-$c1 = $colors[0];
-$c2 = $colors[1];
+$g = isset($glows[$variant]) ? $glows[$variant] : $glows['purple'];
 
-// Vertikalni gradient
-for ($y = 0; $y < $h; $y++) {
-    $r = (int)round($c1[0] + ($c2[0] - $c1[0]) * ($y / $h));
-    $g = (int)round($c1[1] + ($c2[1] - $c1[1]) * ($y / $h));
-    $b = (int)round($c1[2] + ($c2[2] - $c1[2]) * ($y / $h));
-    $color = imagecolorallocate($img, $r, $g, $b);
-    imageline($img, 0, $y, $w, $y, $color);
+$sw = 150; $sh = 79;
+$small = imagecreatetruecolor($sw, $sh);
+for ($y = 0; $y < $sh; $y++) {
+    for ($x = 0; $x < $sw; $x++) {
+        $nx = $x / $sw; $ny = $y / $sh;
+        // dva izvora svetla, jacina opada sa kvadratom rastojanja
+        $d1 = sqrt(pow(($nx - 0.16) * 1.5, 2) + pow($ny - 0.28, 2));
+        $d2 = sqrt(pow(($nx - 0.92) * 1.3, 2) + pow($ny - 0.10, 2));
+        $i1 = max(0, 1 - $d1 * 1.55); $i1 = $i1 * $i1;
+        $i2 = max(0, 1 - $d2 * 1.75); $i2 = $i2 * $i2;
+        $r = (int) min(255, 11 + $g[0][0] * $i1 * 0.85 + $g[1][0] * $i2 * 0.55);
+        $gg = (int) min(255, 11 + $g[0][1] * $i1 * 0.85 + $g[1][1] * $i2 * 0.55);
+        $b = (int) min(255, 18 + $g[0][2] * $i1 * 0.85 + $g[1][2] * $i2 * 0.55);
+        imagesetpixel($small, $x, $y, imagecolorallocate($small, $r, $gg, $b));
+    }
+}
+imagecopyresampled($img, $small, 0, 0, 0, 0, $W, $H, $sw, $sh);
+imagedestroy($small);
+
+// Uvecavanje ostavlja blage kvadrate; jedan prolaz zamucenja ih brise.
+// Mora pre crtanja plocica i teksta da njih ne dotakne.
+if (function_exists('imagefilter')) {
+    imagefilter($img, IMG_FILTER_GAUSSIAN_BLUR);
 }
 
-// Dekorativni krug u uglu za vizuelnu zanimljivost
-$accent = imagecolorallocatealpha($img, 255, 255, 255, 110);
-imagefilledellipse($img, $w + 60, $h - 60, 280, 280, $accent);
-imagefilledellipse($img, -40, 80, 220, 220, $accent);
+/* ---------- 2. KADROVI DESNO ----------
+   Tri vertikalna kadra 9:16, srednji podignut. Ako fajl fali,
+   preskace se i tekst dobija vise mesta - slika se ne lomi.
+------------------------------------- */
+$tiles  = [__DIR__ . '/assets/og/f1.jpg', __DIR__ . '/assets/og/f2.jpg', __DIR__ . '/assets/og/f3.jpg'];
+$tW     = 170;
+$tH     = 302;
+$gap    = 14;
+$startX = 645;
+$offsets = [172, 128, 172]; // srednji visi
+
+$border = imagecolorallocatealpha($img, 255, 255, 255, 100);
+$drawn  = 0;
+foreach ($tiles as $i => $path) {
+    if (!is_file($path)) continue;
+    $src = @imagecreatefromjpeg($path);
+    if (!$src) continue;
+
+    $x = $startX + $i * ($tW + $gap);
+    $y = $offsets[$i];
+
+    // senka ispod plocice
+    $shadow = imagecolorallocatealpha($img, 0, 0, 0, 95);
+    imagefilledrectangle($img, $x + 5, $y + 7, $x + $tW + 5, $y + $tH + 7, $shadow);
+
+    imagecopyresampled($img, $src, $x, $y, 0, 0, $tW, $tH, imagesx($src), imagesy($src));
+    imagerectangle($img, $x, $y, $x + $tW, $y + $tH, $border);
+    imagedestroy($src);
+    $drawn++;
+}
+
+/* ---------- 3. FONT ---------- */
+$fontBold = __DIR__ . '/assets/fonts/Poppins-Bold.ttf';
+$fontSemi = __DIR__ . '/assets/fonts/Poppins-SemiBold.ttf';
+$fontReg  = __DIR__ . '/assets/fonts/Poppins-Regular.ttf';
+foreach ([[$fontBold, 'C:/Windows/Fonts/arialbd.ttf'], [$fontReg, 'C:/Windows/Fonts/arial.ttf']] as $pair) {
+    if (!is_file($pair[0]) && is_file($pair[1])) { /* ostavljeno kao krajnji fallback */ }
+}
+if (!is_file($fontSemi)) $fontSemi = $fontBold;
+$useTTF = is_file($fontBold) && is_file($fontReg) && function_exists('imagettftext');
 
 $white = imagecolorallocate($img, 255, 255, 255);
-$soft  = imagecolorallocate($img, 235, 230, 255);
+$soft  = imagecolorallocate($img, 176, 172, 208);
+$pink  = imagecolorallocate($img, 253, 121, 168);
 
-// Trazimo TTF font (Poppins prvo, DejaVu fallback)
-$fontBold = '';
-$fontRegular = '';
-$boldCandidates = [
-    __DIR__ . '/assets/fonts/Poppins-Bold.ttf',
-    '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
-    '/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf',
-    'C:/Windows/Fonts/arialbd.ttf',
-];
-$regularCandidates = [
-    __DIR__ . '/assets/fonts/Poppins-Regular.ttf',
-    '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
-    '/usr/share/fonts/dejavu/DejaVuSans.ttf',
-    'C:/Windows/Fonts/arial.ttf',
-];
-foreach ($boldCandidates as $p) { if (file_exists($p)) { $fontBold = $p; break; } }
-foreach ($regularCandidates as $p) { if (file_exists($p)) { $fontRegular = $p; break; } }
-$useTTF = $fontBold !== '' && function_exists('imagettftext');
-
-// Pomocna: obmotaj tekst da stane u maksimalnu sirinu
+/** Lomi tekst u redove sirine najvise $maxWidth. */
 function wrapText($text, $font, $size, $maxWidth) {
-    $words = explode(' ', $text);
+    $words = preg_split('/\s+/', trim($text));
     $lines = [];
     $cur = '';
-    foreach ($words as $w) {
-        $test = $cur === '' ? $w : $cur . ' ' . $w;
+    foreach ($words as $word) {
+        $test = $cur === '' ? $word : $cur . ' ' . $word;
         $bbox = imagettfbbox($size, 0, $font, $test);
-        $width = $bbox[2] - $bbox[0];
-        if ($width > $maxWidth && $cur !== '') {
+        if (($bbox[2] - $bbox[0]) > $maxWidth && $cur !== '') {
             $lines[] = $cur;
-            $cur = $w;
+            $cur = $word;
         } else {
             $cur = $test;
         }
@@ -96,48 +136,46 @@ function wrapText($text, $font, $size, $maxWidth) {
 }
 
 if ($useTTF) {
-    // Title (big, bold) - automatski wrap ako je duzi
-    $titleSize = 60;
-    $titleLines = wrapText($title, $fontBold, $titleSize, 1040);
-    if (count($titleLines) > 2) $titleSize = 50;
-    $titleLines = wrapText($title, $fontBold, $titleSize, 1040);
+    $textMax = $drawn > 0 ? 500 : 1040;
+    $x = 74;
 
-    $startY = 230;
-    foreach ($titleLines as $i => $line) {
-        imagettftext($img, $titleSize, 0, 80, $startY + $i * ($titleSize + 14), $white, $fontBold, $line);
+    // nadnaslov
+    imagettftext($img, 15, 0, $x, 148, $pink, $fontSemi, 'POPZIFY  ·  BEOGRAD');
+
+    // naslov - smanjuje se dok ne stane u tri reda
+    $size = 50;
+    $lines = wrapText($title, $fontBold, $size, $textMax);
+    while (count($lines) > 3 && $size > 32) {
+        $size -= 4;
+        $lines = wrapText($title, $fontBold, $size, $textMax);
+    }
+    $lh = (int) round($size * 1.28);
+    $y = 212;
+    foreach ($lines as $line) {
+        imagettftext($img, $size, 0, $x, $y, $white, $fontBold, $line);
+        $y += $lh;
     }
 
-    // Subtitle (smaller, regular)
+    // linija pa podnaslov
     if ($subtitle !== '') {
-        $subSize = 28;
-        $subStartY = $startY + count($titleLines) * ($titleSize + 14) + 30;
-        $subLines = wrapText($subtitle, $fontRegular, $subSize, 1040);
-        foreach ($subLines as $i => $line) {
-            imagettftext($img, $subSize, 0, 80, $subStartY + $i * ($subSize + 8), $soft, $fontRegular, $line);
+        $y += 6;
+        imagefilledrectangle($img, $x, $y - 12, $x + 46, $y - 9, $pink);
+        $y += 26;
+        foreach (wrapText($subtitle, $fontReg, 21, $textMax) as $line) {
+            imagettftext($img, 21, 0, $x, $y, $soft, $fontReg, $line);
+            $y += 32;
         }
     }
 
-    // Popzify brand bottom-right
-    $brandSize = 32;
-    $brandText = 'Popzify';
-    $bbox = imagettfbbox($brandSize, 0, $fontBold, $brandText);
-    $brandWidth = $bbox[2] - $bbox[0];
-    imagettftext($img, $brandSize, 0, $w - $brandWidth - 60, $h - 50, $white, $fontBold, $brandText);
-
-    // Mali ".com" pored
-    $domSize = 20;
-    $domText = '.com';
-    imagettftext($img, $domSize, 0, $w - 55, $h - 52, $soft, $fontRegular, $domText);
+    imagettftext($img, 19, 0, $x, $H - 58, $white, $fontSemi, 'popzify.com');
 
 } else {
-    // Fallback: built-in font + ASCII transliteracija (za Srpske karaktere)
+    // Krajnji fallback: bez TTF-a GD ume samo sitan bitmap font.
     $map = ['č'=>'c','ć'=>'c','ž'=>'z','š'=>'s','đ'=>'dj','Č'=>'C','Ć'=>'C','Ž'=>'Z','Š'=>'S','Đ'=>'Dj'];
-    $title = strtr($title, $map);
-    $subtitle = strtr($subtitle, $map);
-    imagestring($img, 5, 80, 250, $title, $white);
-    if ($subtitle !== '') imagestring($img, 5, 80, 310, $subtitle, $soft);
-    imagestring($img, 5, $w - 220, $h - 80, 'Popzify', $white);
+    imagestring($img, 5, 74, 280, strtr($title, $map), $white);
+    if ($subtitle !== '') imagestring($img, 5, 74, 320, strtr($subtitle, $map), $soft);
+    imagestring($img, 5, 74, $H - 70, 'popzify.com', $white);
 }
 
-imagepng($img);
+imagejpeg($img, null, 88);
 imagedestroy($img);
