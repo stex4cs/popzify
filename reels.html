@@ -327,16 +327,6 @@ body.cursor-hot .cursor{width:64px;height:64px;background:rgba(108,92,231,.16);b
 .plan li svg{width:16px;height:16px;stroke:var(--purple-soft);flex:0 0 auto;margin-top:4px}
 .plan-note{text-align:center;color:var(--muted);font-size:.9rem;margin-top:28px;border:1px dashed var(--line-hi);border-radius:12px;padding:16px 18px}
 
-/* ---------- FAQ ---------- */
-.faq{max-width:820px;margin:0 auto;display:grid;gap:10px}
-.faq details{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.faq details[open]{border-color:var(--line-hi)}
-.faq summary{cursor:pointer;list-style:none;padding:20px 24px;font-weight:600;font-size:1rem;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-size:1.6rem;font-weight:300;color:var(--purple-soft);line-height:1;transition:transform .3s ease}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq details p{padding:0 24px 22px;color:var(--muted);font-size:.94rem}
-
 /* ---------- kontakt ---------- */
 .contact-grid{display:grid;gap:30px;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:start}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
@@ -681,51 +671,8 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
   </div>
 </section>
 
-<!-- ============ STA DOBIJAS ============ -->
-<section class="sec">
-  <div class="wrap">
-    <div class="head rv">
-      <span class="eyebrow">Šta ulazi u posao</span>
-      <h2 class="display" style="margin-top:18px">Ne dobijaš samo <em>fajlove</em>.</h2>
-      <p class="lead">Snimak bez plana je samo fajl na disku. Zato ide ceo lanac, od ideje do objave.</p>
-    </div>
-    <div class="grid g3 stagger">
-      <article class="card">
-        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div>
-        <h3>Scenario i lista kadrova</h3>
-        <p>Znamo šta snimamo pre nego što dođemo. Ti unapred vidiš plan i kažeš šta menjamo.</p>
-      </article>
-      <article class="card">
-        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><path d="m23 7-7 5 7 5V7Z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
-        <h3>Snimanje pro opremom</h3>
-        <p>Sony FX3, svetlo i mikrofoni. FPV i gimbal dron kad lokacija traži kadar odozgo.</p>
-      </article>
-      <article class="card">
-        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><rect x="2" y="2" width="20" height="20" rx="3"/></svg></div>
-        <h3>Montaža i titlovi</h3>
-        <p>Rez u ritmu, titlovi koji se čitaju bez zvuka, muzika bez problema sa autorskim pravima.</p>
-      </article>
-      <article class="card">
-        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-        <h3>Plan objava</h3>
-        <p>Kalendar sa datumima i tekstovima. Znaš tačno šta izlazi i kada, mesec unapred.</p>
-      </article>
-      <article class="card">
-        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></div>
-        <h3>Objavljivanje</h3>
-        <p>Ako hoćeš, mi i objavljujemo &mdash; Instagram, TikTok i Shorts iz istog materijala.</p>
-      </article>
-      <article class="card">
-        <div class="card-ico"><svg class="ico" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16v-5M12 16V8M17 16v-3"/></svg></div>
-        <h3>Izveštaj na kraju meseca</h3>
-        <p>Šta je imalo domet, šta nije i šta menjamo sledeći mesec. Bez ulepšavanja brojki.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- ============ PAKETI ============ -->
-<section class="sec sec-alt" id="paketi">
+<section class="sec" id="paketi">
   <div class="wrap">
     <div class="head mid rv">
       <span class="eyebrow">Paketi</span>
@@ -779,50 +726,6 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
     </div>
 
     <p class="plan-note rv">U svakom paketu: sirovi materijal i nalozi ostaju na tvoje ime &middot; račun i ugovor &middot; jedan sagovornik za sve &middot; POPZOGRAPHY, PIB 114200786.</p>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="sec">
-  <div class="wrap">
-    <div class="head mid rv">
-      <span class="eyebrow">Pitanja</span>
-      <h2 class="display" style="margin-top:18px">Ono što nas <em>najčešće pitaju</em></h2>
-    </div>
-    <div class="faq rv">
-      <details>
-        <summary>Moram li ja da se pojavljujem u kadru?</summary>
-        <p>Ne moraš. Veliki deo onoga što radimo je bez lica &mdash; proizvod, proces, prostor, detalji, tekst preko slike. Ako ipak hoćeš da se pojaviš, pomažemo oko toga šta da kažeš i kako da staneš. Ne bacamo te pred kameru bez pripreme.</p>
-      </details>
-      <details>
-        <summary>Koliko snimaka dobijam?</summary>
-        <p>Zavisi od paketa i od toga koliko materijala možemo da izvučemo iz jednog dana kod tebe. Kod većine klijenata jedan dan da dovoljno za mesec dana objava. Tačan broj dogovaramo unapred i piše u ugovoru, da ne bude naknadnih tumačenja.</p>
-      </details>
-      <details>
-        <summary>Koliko košta?</summary>
-        <p>Zavisi od lokacije, broja snimanja mesečno i toga da li objavljujemo umesto tebe. Zato cenu ne lepimo na stranicu &mdash; javi se sa kratkim opisom i dobijaš tačnu cifru i rok u roku od 24 sata, bez obaveze.</p>
-      </details>
-      <details>
-        <summary>Za koliko dobijam gotove snimke?</summary>
-        <p>Prve montirane snimke vidiš u roku od nedelju dana od snimanja. Ostatak ide po dogovorenom planu objava, tako da imaš materijal raspoređen kroz mesec, a ne sve odjednom pa ništa.</p>
-      </details>
-      <details>
-        <summary>Dolazite li van Beograda?</summary>
-        <p>Dolazimo. Radimo po celoj Srbiji i u regionu &mdash; Bali Mountain Resort je u Bijelom Polju. Za lokacije van Beograda se dogovara putni trošak unapred, bez naknadnih stavki.</p>
-      </details>
-      <details>
-        <summary>Čiji je snimljeni materijal?</summary>
-        <p>Tvoj. Sirovi snimci, montirane verzije i nalozi glase na tvoje ime. Možeš da ih koristiš za oglase, sajt ili bilo šta drugo, i da odeš kod nekog drugog sutra ako hoćeš.</p>
-      </details>
-      <details>
-        <summary>Radite li i oglase, ne samo snimanje?</summary>
-        <p>Radimo, i najbolje funkcioniše zajedno &mdash; isti materijal ide i kao objava i kao kreativa za oglas. Možeš uzeti samo snimanje ako oglase već neko vodi, ali onda odgovaramo za materijal, ne za rezultat kampanje.</p>
-      </details>
-      <details>
-        <summary>Šta ako mi se snimci ne dopadnu?</summary>
-        <p>Zato postoji odobrenje pre objave i scenario pre snimanja &mdash; da se neslaganje vidi na papiru, a ne na gotovom materijalu. Ispravke u okviru dogovorenog obima idu bez doplate.</p>
-      </details>
-    </div>
   </div>
 </section>
 
