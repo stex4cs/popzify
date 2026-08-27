@@ -26,7 +26,7 @@ data-poster="assets/reels/salon.jpg"
 
 ## Šta je trenutno unutra
 
-Osam klipova isečenih iz četiri sirova eksporta:
+Sedam klipova isečenih iz četiri sirova eksporta:
 
 | Fajl | Sekcija | Iz čega |
 |------|---------|---------|
@@ -36,11 +36,20 @@ Osam klipova isečenih iz četiri sirova eksporta:
 | `bojkovic-trening.mp4` | galerija | `bojkovic.mp4`, 4–12s |
 | `svadba-dron.mp4` | galerija | `svadba.mp4`, 11.5–18.5s |
 | `sajam-igre.mp4` | galerija | `sajam.mp4`, 52–59s |
-| `honda-pobeda.mp4` | galerija | `honda.mp4`, 12–19s |
 | `bojkovic-mec.mp4` | galerija | `bojkovic.mp4`, 23–30s |
 
 Redosled u galeriji je namerno izmešan po povodu (sajam, borilački,
 svadba…) da ne izgleda kao da se radi samo jedna vrsta posla.
+
+### Galerija ide u pet komada
+
+Mreža je `repeat(auto-fit, minmax(190px, 1fr))` unutar 1152px sadržaja,
+pa staje tačno pet u red. Šesti se prelama u novi red i ostaje sam.
+Ako dodaješ, dodaj do deset — ne šest do devet.
+
+Postojao je i `honda-pobeda.mp4` (`honda.mp4`, 12–19s) koji je izbačen
+baš zbog toga. Ako ti zatreba, komanda za vraćanje je ista kao dole,
+sa `-ss 12 -t 7`.
 
 U herou stoje namerno borilačka veče i svadba — najveći raspon odmah,
 da posetilac u prve dve sekunde vidi da se ne radi samo jedna stvar.
