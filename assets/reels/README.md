@@ -26,14 +26,19 @@ data-poster="assets/reels/salon.jpg"
 
 ## Šta je trenutno unutra
 
-Četiri klipa isečena iz dva sirova eksporta (FNC borilačke večeri):
+Šest klipova isečenih iz tri sirova eksporta:
 
 | Fajl | Sekcija | Iz čega |
 |------|---------|---------|
 | `honda-izlazak.mp4` | hero | `honda.mp4`, 3–11s |
-| `bojkovic-trening.mp4` | hero | `bojkovic.mp4`, 4–12s |
+| `svadba-par.mp4` | hero | `svadba.mp4`, 17–25s |
+| `svadba-dron.mp4` | galerija | `svadba.mp4`, 11.5–18.5s |
+| `bojkovic-trening.mp4` | galerija | `bojkovic.mp4`, 4–12s |
 | `bojkovic-mec.mp4` | galerija | `bojkovic.mp4`, 23–30s |
 | `honda-pobeda.mp4` | galerija | `honda.mp4`, 12–19s |
+
+U herou stoje namerno borilačka veče i svadba — najveći raspon odmah,
+da posetilac u prve dve sekunde vidi da se ne radi samo jedna stvar.
 
 Sirovi eksporti stoje u `_src/` i **nisu u gitu** (desetine MB). Ako ti trebaju
 na drugoj mašini, prebaci ih ručno.
@@ -45,8 +50,23 @@ na drugoj mašini, prebaci ih ručno.
 | 1–2  | hero | kreću odmah pri učitavanju — ovde idu dva najjača snimka |
 | 3+   | galerija „Ovako to izgleda" | učitavaju se tek kad dođu u vidno polje |
 
-Galerija trenutno ima klasu `reel-grid-2` koja je drži centriranu jer su samo
-dva primera. Kad dodaš treći, skini tu klasu sa `<div class="reel-grid ...">`.
+## Ako je izvor 16:9
+
+`svadba.mp4` je bio 4K landscape. Centralno sečenje radi kad su subjekti
+u sredini kadra:
+
+```bash
+ffmpeg -ss 17 -i _src/svadba.mp4 -t 8 -an \
+  -vf "crop=1215:2160:(iw-1215)/2:0,scale=720:1280" \
+  -c:v libx264 -crf 30 -preset slow -pix_fmt yuv420p -movflags +faststart svadba-par.mp4
+```
+
+(`1215` je `2160 * 9/16` — visina ostaje puna, širina se seče na vertikalu.)
+
+Probano je i punjenje pozadine zamućenom kopijom, da bi ceo 16:9 kadar
+stao unutra — **ne valja**: dve trećine slike je mutna kaša i izgleda
+jeftino pored klipova koji pune ceo kadar. Radije biraj deo snimka gde je
+kompozicija centrirana, pa seci.
 
 ## Format
 
