@@ -348,6 +348,62 @@ body.cursor-hot .cursor{width:64px;height:64px;background:rgba(108,92,231,.16);b
 .side-list small{display:block;color:var(--muted);font-size:.78rem;line-height:1.4}
 
 .form-box{background:var(--panel-solid);border:1px solid var(--line);border-radius:20px;padding:32px 30px;box-shadow:var(--shadow)}
+
+/* ---------- tok u koracima (umesto obicne forme) ---------- */
+.fprog{height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+.fprog i{display:block;height:100%;width:20%;border-radius:3px;
+  background:linear-gradient(90deg,var(--purple),var(--pink));
+  transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.fmeta{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin:14px 0 22px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.fback{background:none;border:0;color:var(--muted);cursor:pointer;padding:4px 0;
+  font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.fback:hover{color:var(--text)}
+
+.fstep{display:none}
+.fstep.on{display:block;animation:fstepIn .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes fstepIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.fq{font-family:var(--serif);font-size:clamp(1.5rem,3.6vw,2rem);font-weight:500;
+  letter-spacing:-.01em;margin-bottom:6px}
+.fhint{color:var(--muted);font-size:.86rem;margin-bottom:16px}
+.fq + .fopts{margin-top:20px}
+
+.fopts{display:grid;gap:9px}
+.fopt{
+  position:relative;text-align:left;cursor:pointer;
+  padding:15px 48px 15px 18px;border-radius:13px;
+  background:rgba(255,255,255,.035);border:1px solid var(--line);
+  font-size:.97rem;font-weight:500;line-height:1.35;
+  transition:border-color .22s ease,background .22s ease,transform .22s cubic-bezier(.2,.8,.2,1);
+}
+.fopt small{display:block;font-size:.79rem;font-weight:400;color:var(--muted);margin-top:3px}
+.fopt:hover{border-color:var(--line-hi);background:rgba(108,92,231,.1);transform:translateX(3px)}
+.fopt::after{
+  content:"";position:absolute;right:16px;top:50%;margin-top:-11px;
+  width:22px;height:22px;border-radius:50%;border:1px solid var(--line);
+  transition:border-color .22s ease,background .22s ease;
+}
+.fopt.on{border-color:var(--purple);background:rgba(108,92,231,.16)}
+.fopt.on::after{
+  border-color:var(--purple);background:var(--purple) center/13px no-repeat
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 13 4 4L19 7'/%3E%3C/svg%3E");
+}
+
+.fresult{
+  border:1px solid var(--line-hi);border-radius:16px;padding:24px 22px;margin-bottom:26px;
+  background:linear-gradient(150deg,rgba(108,92,231,.16),rgba(253,121,168,.07));
+}
+.fpick-label{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--purple-soft)}
+.fpick{font-family:var(--serif);font-size:1.75rem;font-weight:500;margin:8px 0 16px}
+.fsum{display:grid;gap:9px}
+.fsum li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--muted)}
+.fsum li::before{
+  content:"";flex:0 0 auto;width:15px;height:15px;margin-top:4px;
+  background:center/15px no-repeat
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a29bfe' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 13 4 4L19 7'/%3E%3C/svg%3E");
+}
+.fnote{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:.83rem;color:var(--muted)}
 .f-row{display:grid;gap:16px;grid-template-columns:1fr 1fr}
 @media(max-width:560px){.f-row{grid-template-columns:1fr}}
 .f{margin-bottom:16px}
@@ -776,8 +832,8 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
     <div class="contact-grid">
       <div class="rv">
         <span class="eyebrow">Kontakt</span>
-        <h2 class="display" style="margin:18px 0 18px">Reci nam <em>šta prodaješ</em></h2>
-        <p class="lead">Ostatak je naš posao. Odgovaramo u roku od 24 sata, radnim danima obično mnogo brže. Prvi razgovor je besplatan i ništa te ne obavezuje.</p>
+        <h2 class="display" style="margin:18px 0 18px">Četiri pitanja, <em>pa predlog</em></h2>
+        <p class="lead">Bez formulara na pola strane. Odgovoriš na četiri stvari, dobiješ konkretan predlog paketa, i tek onda ostavljaš broj. Traje kraće od minuta i ništa te ne obavezuje.</p>
 
         <div class="side-list">
           <a href="tel:+381605973212" data-track="Contact" data-ch="telefon-sekcija">
@@ -801,67 +857,108 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
 
       <div class="form-box rv">
         <form id="leadForm" action="php/process-lead.php" method="POST" novalidate>
-          <div class="f-row">
-            <div class="f">
-              <label for="ime">Ime i prezime <i>*</i></label>
-              <input type="text" id="ime" name="ime" placeholder="Petar Petrović" autocomplete="name" required>
+
+          <div class="fprog" aria-hidden="true"><i id="fbar"></i></div>
+          <div class="fmeta">
+            <span id="fstepno">Korak 1 od 5</span>
+            <button type="button" class="fback" id="fback" hidden>&larr; Nazad</button>
+          </div>
+
+          <!-- 1. POVOD -->
+          <div class="fstep on" data-step="0">
+            <h3 class="fq">Šta snimamo?</h3>
+            <div class="fopts" data-key="povod" data-multi="0">
+              <button type="button" class="fopt" data-v="Svadba">Svadba<small>Aftermovie, priprema, ceremonija</small></button>
+              <button type="button" class="fopt" data-v="Borilački event ili utakmica">Borilački event ili utakmica<small>Meč, trening, izlazak, publika</small></button>
+              <button type="button" class="fopt" data-v="Sajam ili konferencija">Sajam ili konferencija<small>Štand, izlagači, poseta</small></button>
+              <button type="button" class="fopt" data-v="Proslava ili rođendan">Proslava ili rođendan<small>Slavlje, gosti, atmosfera</small></button>
+              <button type="button" class="fopt" data-v="Proizvod ili usluga">Proizvod ili usluga<small>Za profil firme i oglase</small></button>
+              <button type="button" class="fopt" data-v="Nešto drugo">Nešto drugo<small>Objasnićeš nam u razgovoru</small></button>
+            </div>
+          </div>
+
+          <!-- 2. ROK -->
+          <div class="fstep" data-step="1">
+            <h3 class="fq">Kada ti treba?</h3>
+            <div class="fopts" data-key="rok" data-multi="0">
+              <button type="button" class="fopt" data-v="Za manje od dve nedelje">Za manje od dve nedelje<small>Hitno je</small></button>
+              <button type="button" class="fopt" data-v="Ovaj mesec">Ovaj mesec</button>
+              <button type="button" class="fopt" data-v="Za jedan do tri meseca">Za jedan do tri meseca</button>
+              <button type="button" class="fopt" data-v="Još planiram">Još planiram<small>Raspitujem se za sada</small></button>
+            </div>
+          </div>
+
+          <!-- 3. UCESTALOST -->
+          <div class="fstep" data-step="2">
+            <h3 class="fq">Jednom ili redovno?</h3>
+            <div class="fopts" data-key="ucestalost" data-multi="0">
+              <button type="button" class="fopt" data-v="Jednokratno">Jednokratno<small>Jedan događaj, jedno snimanje</small></button>
+              <button type="button" class="fopt" data-v="Svakog meseca">Svakog meseca<small>Stalan priliv sadržaja za profil</small></button>
+              <button type="button" class="fopt" data-v="Više puta godišnje">Više puta godišnje<small>Po potrebi, kad ima povoda</small></button>
+            </div>
+          </div>
+
+          <!-- 4. DODACI -->
+          <div class="fstep" data-step="3">
+            <h3 class="fq">Šta ti treba uz snimanje?</h3>
+            <p class="fhint">Možeš da izabereš više stvari, ili nijednu.</p>
+            <div class="fopts" data-key="dodaci" data-multi="1">
+              <button type="button" class="fopt" data-v="Montaža i titlovi">Montaža i titlovi</button>
+              <button type="button" class="fopt" data-v="Objavljivanje na mreže">Objavljivanje na mreže</button>
+              <button type="button" class="fopt" data-v="Snimanje dronom">Snimanje dronom</button>
+              <button type="button" class="fopt" data-v="Vođenje profila">Vođenje profila</button>
+              <button type="button" class="fopt" data-v="Meta oglasi">Meta oglasi</button>
+            </div>
+            <button type="button" class="btn btn-solid btn-block" id="fnext" style="margin-top:20px">
+              Vidi predlog
+              <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+
+          <!-- 5. PREDLOG + KONTAKT -->
+          <div class="fstep" data-step="4">
+            <div class="fresult" id="fresult">
+              <span class="fpick-label">Na osnovu tvojih odgovora</span>
+              <h3 class="fpick" id="fpick">&nbsp;</h3>
+              <ul class="fsum" id="fsum"></ul>
+              <p class="fnote" id="fnote"></p>
+            </div>
+
+            <div class="f-row">
+              <div class="f">
+                <label for="ime">Ime <i>*</i></label>
+                <input type="text" id="ime" name="ime" placeholder="Petar" autocomplete="name" required>
+              </div>
+              <div class="f">
+                <label for="telefon">Telefon <i>*</i></label>
+                <input type="tel" id="telefon" name="telefon" placeholder="060 123 4567" autocomplete="tel" inputmode="tel" required>
+              </div>
             </div>
             <div class="f">
-              <label for="telefon">Telefon <i>*</i></label>
-              <input type="tel" id="telefon" name="telefon" placeholder="060 123 4567" autocomplete="tel" inputmode="tel" required>
+              <label for="email">Email <u>(opciono)</u></label>
+              <input type="email" id="email" name="email" placeholder="petar@mojafirma.rs" autocomplete="email">
             </div>
+
+            <div class="hp" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+            <input type="hidden" name="usluga" id="usluga" value="">
+            <input type="hidden" name="kviz"   id="kviz"   value="">
+            <input type="hidden" name="poruka" id="poruka" value="">
+            <input type="hidden" name="izvor"  id="izvor"  value="">
+
+            <label class="consent">
+              <input type="checkbox" id="saglasnost" name="saglasnost" required>
+              <span>Saglasan/na sam da me Popzify kontaktira povodom ovog upita i da se moji podaci obrađuju u skladu sa <a href="privacypolicy" target="_blank" rel="noopener">politikom privatnosti</a>.</span>
+            </label>
+
+            <button type="submit" class="btn btn-solid btn-block" id="submitBtn" data-magnet>
+              Pošalji &mdash; javljamo se za 24h
+              <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="form-foot">Bez obaveze i bez spama. Podaci se koriste isključivo za odgovor na tvoj upit.</p>
           </div>
-
-          <div class="f">
-            <label for="email">Email <u>(opciono)</u></label>
-            <input type="email" id="email" name="email" placeholder="petar@mojafirma.rs" autocomplete="email">
-          </div>
-
-          <div class="f">
-            <label for="usluga">Čime se baviš? <i>*</i></label>
-            <select id="usluga" name="usluga" required>
-              <option value="">Izaberi...</option>
-              <option>Svadba ili proslava</option>
-              <option>Događaj, sajam ili lansiranje</option>
-              <option>Sport, klub ili borilački event</option>
-              <option>Ugostiteljstvo (kafić, restoran)</option>
-              <option>Lepota (salon, kozmetika, estetika)</option>
-              <option>Fitnes i teretana</option>
-              <option>Zanat i proizvodnja</option>
-              <option>Nekretnine</option>
-              <option>Prodavnica ili webshop</option>
-              <option>Usluge (advokat, agencija, servis)</option>
-              <option>Nešto drugo</option>
-            </select>
-          </div>
-
-          <div class="f">
-            <label for="sajt">Instagram profil ili sajt <u>(opciono)</u></label>
-            <input type="text" id="sajt" name="sajt" placeholder="@mojafirma ili mojafirma.rs">
-          </div>
-
-          <div class="f">
-            <label for="poruka">Ukratko šta ti treba <u>(opciono)</u></label>
-            <textarea id="poruka" name="poruka" placeholder="Npr. imam frizerski salon u Zemunu, treba mi sadržaj za Instagram i TikTok."></textarea>
-          </div>
-
-          <div class="hp" aria-hidden="true">
-            <label for="website">Website</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-          </div>
-          <input type="hidden" name="izvor" id="izvor" value="">
-          <input type="hidden" name="kviz" id="kviz" value="reels stranica">
-
-          <label class="consent">
-            <input type="checkbox" id="saglasnost" name="saglasnost" required>
-            <span>Saglasan/na sam da me Popzify kontaktira povodom ovog upita i da se moji podaci obrađuju u skladu sa <a href="privacypolicy" target="_blank" rel="noopener">politikom privatnosti</a>.</span>
-          </label>
-
-          <button type="submit" class="btn btn-solid btn-block" id="submitBtn" data-magnet>
-            Pošalji upit &mdash; odgovor za 24h
-            <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-          <p class="form-foot">Bez obaveze i bez spama. Podaci se koriste isključivo za odgovor na tvoj upit.</p>
         </form>
         <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
       </div>
@@ -1155,7 +1252,115 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
     });
   });
 
-  /* ---------- 9. SLANJE FORME ---------- */
+  /* ---------- 9. TOK U KORACIMA ----------
+     Zamena za obicnu kontakt formu. Cetiri pitanja pa predlog paketa,
+     i tek onda broj telefona - do tada posetilac nije morao nista da
+     kuca. Predlog se racuna iskljucivo iz datih odgovora; nista se
+     ne "analizira" i nijedna brojka se ne izmislja.
+  ------------------------------------------ */
+  var fSteps = document.querySelectorAll('.fstep');
+  var fBar   = document.getElementById('fbar');
+  var fNo    = document.getElementById('fstepno');
+  var fBack  = document.getElementById('fback');
+  var fAt    = 0;
+  var pick   = { povod: '', rok: '', ucestalost: '', dodaci: [] };
+
+  function fGo(i) {
+    if (i < 0 || i >= fSteps.length) return;
+    fSteps[fAt].classList.remove('on');
+    fAt = i;
+    fSteps[fAt].classList.add('on');
+    fBar.style.width = ((fAt + 1) / fSteps.length * 100) + '%';
+    fNo.textContent = 'Korak ' + (fAt + 1) + ' od ' + fSteps.length;
+    fBack.hidden = fAt === 0;
+    if (fAt === fSteps.length - 1) buildResult();
+
+    // Vrati u kadar samo ako je kutija odskrolovana iznad vrha ekrana.
+    var box = document.querySelector('.form-box');
+    if (box.getBoundingClientRect().top < 0) {
+      window.scrollTo({ top: box.getBoundingClientRect().top + window.pageYOffset - 90, behavior: 'smooth' });
+    }
+  }
+
+  document.querySelectorAll('.fopts').forEach(function (group) {
+    var key   = group.getAttribute('data-key');
+    var multi = group.getAttribute('data-multi') === '1';
+    group.querySelectorAll('.fopt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var v = btn.getAttribute('data-v');
+        if (multi) {
+          btn.classList.toggle('on');
+          var at = pick.dodaci.indexOf(v);
+          if (at === -1) pick.dodaci.push(v); else pick.dodaci.splice(at, 1);
+          return;
+        }
+        group.querySelectorAll('.fopt').forEach(function (b) { b.classList.remove('on'); });
+        btn.classList.add('on');
+        pick[key] = v;
+        setTimeout(function () { fGo(fAt + 1); }, 240); // da se stigne videti kvacica
+      });
+    });
+  });
+
+  fBack.addEventListener('click', function () { fGo(fAt - 1); });
+  document.getElementById('fnext').addEventListener('click', function () { fGo(fAt + 1); });
+
+  var resultTracked = false;
+
+  function buildResult() {
+    var d = pick.dodaci;
+    var hoceOglase = d.indexOf('Meta oglasi') > -1 || d.indexOf('Vođenje profila') > -1;
+    var mesecno    = pick.ucestalost === 'Svakog meseca';
+
+    var paket, zasto;
+    if (mesecno && hoceOglase) {
+      paket = 'Sadržaj + oglasi';
+      zasto = 'Snimamo svakog meseca, a isti materijal odmah ide i kao kreativa za oglase.';
+    } else if (mesecno) {
+      paket = 'Mesečno';
+      zasto = 'Jedan dan snimanja mesečno daje sadržaj za ceo mesec objava.';
+    } else if (hoceOglase) {
+      paket = 'Sadržaj + oglasi';
+      zasto = 'Snimamo jednom, ali materijal odmah ide i u kampanju.';
+    } else {
+      paket = 'Proba';
+      zasto = 'Jedno snimanje, bez obaveze dalje — da vidiš kako izgleda pre nego što se vežeš.';
+    }
+
+    document.getElementById('fpick').textContent = 'Paket ' + paket;
+
+    var stavke = [];
+    if (pick.povod)      stavke.push('Povod: ' + pick.povod.toLowerCase());
+    if (pick.ucestalost) stavke.push('Tempo: ' + pick.ucestalost.toLowerCase());
+    if (d.length)        stavke.push('Uz snimanje: ' + d.join(', ').toLowerCase());
+    stavke.push(zasto);
+
+    var ul = document.getElementById('fsum');
+    ul.innerHTML = '';
+    stavke.forEach(function (t) {
+      var li = document.createElement('li');
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+
+    document.getElementById('fnote').textContent = pick.rok === 'Za manje od dve nedelje'
+      ? 'Rok ti je kratak — zovemo te danas ako upit stigne do 17h.'
+      : 'Cenu ne lepimo unapred. Dobijaš tačnu cifru i rok u roku od 24 sata, bez obaveze.';
+
+    // Polja koja idu na server
+    document.getElementById('usluga').value = pick.povod || 'Nešto drugo';
+    document.getElementById('kviz').value   = 'predlog: ' + paket;
+    document.getElementById('poruka').value =
+      'Povod: '            + (pick.povod      || '-') + '\n' +
+      'Rok: '              + (pick.rok        || '-') + '\n' +
+      'Tempo: '            + (pick.ucestalost || '-') + '\n' +
+      'Uz snimanje: '      + (d.length ? d.join(', ') : '-') + '\n' +
+      'Predlozeni paket: ' + paket;
+
+    if (!resultTracked) { track('KvizZavrsen', { content_name: paket }, true); resultTracked = true; }
+  }
+
+  /* ---------- 10. SLANJE FORME ---------- */
   var form = document.getElementById('leadForm');
   var msg = document.getElementById('formMsg');
   var btn = document.getElementById('submitBtn');
@@ -1173,7 +1378,8 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
     var usluga = document.getElementById('usluga').value;
     var saglasan = document.getElementById('saglasnost').checked;
 
-    if (!ime || !tel || !usluga) { showMsg('Popuni ime, telefon i izaberi čime se baviš.', 'err'); return; }
+    if (!ime || !tel) { showMsg('Treba nam samo ime i broj telefona.', 'err'); return; }
+    if (!usluga) { showMsg('Vrati se par koraka i izaberi šta snimamo.', 'err'); return; }
     if (tel.replace(/\D/g, '').length < 8) { showMsg('Proveri broj telefona — deluje da nedostaje neka cifra.', 'err'); return; }
     if (!saglasan) { showMsg('Potrebna je saglasnost da bismo smeli da te kontaktiramo.', 'err'); return; }
 
@@ -1203,7 +1409,7 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
       });
   });
 
-  /* ---------- 10. Sitnice ---------- */
+  /* ---------- 11. Sitnice ---------- */
   document.getElementById('year').textContent = new Date().getFullYear();
 
   /* marquee se duplira da bi petlja bila bez seka */
