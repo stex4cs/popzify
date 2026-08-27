@@ -26,16 +26,21 @@ data-poster="assets/reels/salon.jpg"
 
 ## Šta je trenutno unutra
 
-Šest klipova isečenih iz tri sirova eksporta:
+Osam klipova isečenih iz četiri sirova eksporta:
 
 | Fajl | Sekcija | Iz čega |
 |------|---------|---------|
 | `honda-izlazak.mp4` | hero | `honda.mp4`, 3–11s |
 | `svadba-par.mp4` | hero | `svadba.mp4`, 17–25s |
-| `svadba-dron.mp4` | galerija | `svadba.mp4`, 11.5–18.5s |
+| `sajam-stand.mp4` | galerija | `sajam.mp4`, 20–28s |
 | `bojkovic-trening.mp4` | galerija | `bojkovic.mp4`, 4–12s |
-| `bojkovic-mec.mp4` | galerija | `bojkovic.mp4`, 23–30s |
+| `svadba-dron.mp4` | galerija | `svadba.mp4`, 11.5–18.5s |
+| `sajam-igre.mp4` | galerija | `sajam.mp4`, 52–59s |
 | `honda-pobeda.mp4` | galerija | `honda.mp4`, 12–19s |
+| `bojkovic-mec.mp4` | galerija | `bojkovic.mp4`, 23–30s |
+
+Redosled u galeriji je namerno izmešan po povodu (sajam, borilački,
+svadba…) da ne izgleda kao da se radi samo jedna vrsta posla.
 
 U herou stoje namerno borilačka veče i svadba — najveći raspon odmah,
 da posetilac u prve dve sekunde vidi da se ne radi samo jedna stvar.
@@ -67,6 +72,22 @@ Probano je i punjenje pozadine zamućenom kopijom, da bi ceo 16:9 kadar
 stao unutra — **ne valja**: dve trećine slike je mutna kaša i izgleda
 jeftino pored klipova koji pune ceo kadar. Radije biraj deo snimka gde je
 kompozicija centrirana, pa seci.
+
+## Provera belih blicova
+
+Aftermovie-ji često imaju bele rezove. Kratak blic je u redu, ali ako se
+zadrži pola sekunde, u petlji od 7s izgleda kao pregorela slika. Provera:
+
+```bash
+ffmpeg -v error -i klip.mp4 \
+  -vf "scale=32:32,signalstats,metadata=print:key=lavfi.signalstats.YAVG:file=-" \
+  -f null - 2>/dev/null | paste - - \
+  | sed 's/.*pts_time:\([0-9.]*\).*YAVG=\([0-9.]*\)/\1 \2/' \
+  | awk '$2>190 {print $1 "s  YAVG " $2}'
+```
+
+Nekoliko kadrova je blic. Deset i više uzastopnih znači da treba pomeriti
+prozor — tako je odbačen prvi pokušaj `sajam-neon` (0.4s belog na 4.4s).
 
 ## Format
 
