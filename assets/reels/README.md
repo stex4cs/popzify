@@ -24,12 +24,29 @@ Opciono, prva slika dok se snimak ne učita:
 data-poster="assets/reels/salon.jpg"
 ```
 
+## Šta je trenutno unutra
+
+Četiri klipa isečena iz dva sirova eksporta (FNC borilačke večeri):
+
+| Fajl | Sekcija | Iz čega |
+|------|---------|---------|
+| `honda-izlazak.mp4` | hero | `honda.mp4`, 3–11s |
+| `bojkovic-trening.mp4` | hero | `bojkovic.mp4`, 4–12s |
+| `bojkovic-mec.mp4` | galerija | `bojkovic.mp4`, 23–30s |
+| `honda-pobeda.mp4` | galerija | `honda.mp4`, 12–19s |
+
+Sirovi eksporti stoje u `_src/` i **nisu u gitu** (desetine MB). Ako ti trebaju
+na drugoj mašini, prebaci ih ručno.
+
 ## Gde su slotovi
 
 | Slot | Sekcija | Napomena |
 |------|---------|----------|
 | 1–2  | hero | kreću odmah pri učitavanju — ovde idu dva najjača snimka |
-| 3–7  | galerija „Ovako to izgleda" | učitavaju se tek kad dođu u vidno polje |
+| 3+   | galerija „Ovako to izgleda" | učitavaju se tek kad dođu u vidno polje |
+
+Galerija trenutno ima klasu `reel-grid-2` koja je drži centriranu jer su samo
+dva primera. Kad dodaš treći, skini tu klasu sa `<div class="reel-grid ...">`.
 
 ## Format
 

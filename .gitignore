@@ -6,6 +6,11 @@ data/leads_log.txt
 data/.lead_throttle_*
 data/*.log
 
+# === Sirovi eksporti snimaka ===
+# Originali su desetine MB i ne smeju u git - u repo ide samo
+# konvertovana web verzija iz assets/reels/.
+assets/reels/_src/
+
 # === Privremene / test skripte ===
 _tmp_*.php
 _tmp_*.js

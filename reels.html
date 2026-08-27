@@ -305,6 +305,9 @@ body.cursor-hot .cursor{width:64px;height:64px;background:rgba(108,92,231,.16);b
 
 /* ---------- galerija snimaka ---------- */
 .reel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+/* Dok su samo dva primera, drzimo ih uze i centrirano da se ne razvuku
+   preko cele sirine. Cim ih bude vise, skini reel-grid-2 sa markupa. */
+.reel-grid-2{max-width:600px;margin:0 auto}
 
 /* ---------- paketi ---------- */
 .plans{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
@@ -470,8 +473,8 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
 
     <div class="phones" data-parallax="0.06">
       <!-- Ubaci snimak: dodaj putanju u data-video, ostalo ide samo. -->
-      <div class="reel rv" data-video="" data-label="Reels"><span class="reel-tag">Reels</span></div>
-      <div class="reel rv" data-video="" data-label="TikTok"><span class="reel-tag">TikTok</span></div>
+      <div class="reel rv" data-video="assets/reels/honda-izlazak.mp4"><span class="reel-tag">Izlazak u kavez</span></div>
+      <div class="reel rv" data-video="assets/reels/bojkovic-trening.mp4"><span class="reel-tag">Trening i priprema</span></div>
     </div>
   </div>
   <div class="scroll-hint"><span>Skrolujte</span><i></i></div>
@@ -608,15 +611,12 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
     <div class="head mid rv">
       <span class="eyebrow">Primeri</span>
       <h2 class="display" style="margin-top:18px">Ovako to <em>izgleda</em></h2>
-      <p class="lead">Vertikalno, kratko, sa titlovima &mdash; spremno za feed bez dodatnog doterivanja.</p>
+      <p class="lead">Snimci sa FNC borilačkih večeri &mdash; od priprema u teretani do meča i proglašenja pobednika. Vertikalno, kratko, spremno za feed.</p>
     </div>
-    <!-- Ubaci snimke: upiši putanju u data-video (npr. assets/reels/salon.mp4). -->
-    <div class="reel-grid stagger">
-      <div class="reel" data-video="" data-label="Ugostiteljstvo"><span class="reel-tag">Ugostiteljstvo</span></div>
-      <div class="reel" data-video="" data-label="Lepota"><span class="reel-tag">Lepota</span></div>
-      <div class="reel" data-video="" data-label="Zanat"><span class="reel-tag">Zanat</span></div>
-      <div class="reel" data-video="" data-label="Fitnes"><span class="reel-tag">Fitnes</span></div>
-      <div class="reel" data-video="" data-label="Nekretnine"><span class="reel-tag">Nekretnine</span></div>
+    <!-- Dodavanje novog: upiši putanju u data-video (vidi assets/reels/README.md). -->
+    <div class="reel-grid reel-grid-2 stagger">
+      <div class="reel" data-video="assets/reels/bojkovic-mec.mp4"><span class="reel-tag">Meč uživo</span></div>
+      <div class="reel" data-video="assets/reels/honda-pobeda.mp4"><span class="reel-tag">Proglašenje pobednika</span></div>
     </div>
   </div>
 </section>
