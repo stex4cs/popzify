@@ -48,6 +48,19 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
 
 # ====================================================================
+# Kampanjske stranice se NE kesiraju
+# Ostatak sajta drzi HTML sat vremena (pravilo iznad), sto je ovde
+# opasno: promenis ponudu ili cenu, a oglasi jos sat vremena voze
+# ljude na staru verziju. Uz no-cache browser i dalje salje uslovni
+# zahtev i dobija 304 ako se nista nije promenilo, pa ne kosta nista.
+# ====================================================================
+<IfModule mod_headers.c>
+    <FilesMatch "^(marketing|reels)\.html$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# ====================================================================
 # Osnovni sigurnosni headeri
 # ====================================================================
 <IfModule mod_headers.c>
