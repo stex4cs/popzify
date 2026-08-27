@@ -934,25 +934,56 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
 
   /* ---------- 2. SLOTOVI ZA SNIMKE ----------
      Prazan data-video = ostaje gradijent sa znakom za reprodukciju.
-     Popunjen = ubacuje se <video>, autoplay bez zvuka, u petlji.
+     Popunjen = ubacuje se <video> bez zvuka, u petlji.
+
+     Snimci se NE ucitavaju svi odjednom. Samo prva dva (hero) krecu
+     odmah; ostali cekaju da udju u vidno polje. Kad izadju - pauza.
+     Bez toga bi sedam vertikalnih snimaka oborilo mobilni.
   ------------------------------------------- */
-  document.querySelectorAll('.reel').forEach(function (slot) {
+  var videoSlots = [];
+  document.querySelectorAll('.reel').forEach(function (slot, idx) {
     var src = (slot.getAttribute('data-video') || '').trim();
     if (!src) return;
+
+    var eager = idx < 2; // dva u herou
     var v = document.createElement('video');
-    v.src = src;
     v.muted = true;
     v.loop = true;
     v.playsInline = true;
-    v.autoplay = true;
     v.setAttribute('muted', '');
     v.setAttribute('playsinline', '');
-    v.preload = 'metadata';
+    v.preload = eager ? 'metadata' : 'none';
+
     var poster = slot.getAttribute('data-poster');
     if (poster) v.poster = poster;
+
+    if (eager) { v.src = src; } else { v.dataset.src = src; }
+
     slot.insertBefore(v, slot.firstChild);
     slot.classList.add('filled');
+    videoSlots.push(v);
   });
+
+  if (videoSlots.length && 'IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) {
+          if (!v.src && v.dataset.src) v.src = v.dataset.src;
+          var p = v.play();
+          if (p && p.catch) p.catch(function () { /* browser odbio autoplay - nista strasno */ });
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { rootMargin: '200px 0px', threshold: 0.15 });
+    videoSlots.forEach(function (v) { vio.observe(v); });
+  } else {
+    videoSlots.forEach(function (v) {
+      if (!v.src && v.dataset.src) v.src = v.dataset.src;
+      v.autoplay = true;
+    });
+  }
 
   /* ---------- 3. OTKRIVANJE PRI SKROLU ---------- */
   var toReveal = document.querySelectorAll('.rv, .stagger, .split');
