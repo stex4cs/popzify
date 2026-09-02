@@ -55,7 +55,7 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 # zahtev i dobija 304 ako se nista nije promenilo, pa ne kosta nista.
 # ====================================================================
 <IfModule mod_headers.c>
-    <FilesMatch "^(marketing|reels)\.html$">
+    <FilesMatch "^(marketing|reels|svadbe)\.html$">
         Header set Cache-Control "no-cache, must-revalidate"
     </FilesMatch>
 </IfModule>

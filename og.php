@@ -75,7 +75,16 @@ if (function_exists('imagefilter')) {
    Tri vertikalna kadra 9:16, srednji podignut. Ako fajl fali,
    preskace se i tekst dobija vise mesta - slika se ne lomi.
 ------------------------------------- */
-$tiles  = [__DIR__ . '/assets/og/f1.jpg', __DIR__ . '/assets/og/f2.jpg', __DIR__ . '/assets/og/f3.jpg'];
+// set=svadbe daje kadrove sa vencanja; podrazumevano ide mesani set
+// (borilacka vece, svadba, sajam) koji koriste /reels i /marketing.
+$sets = [
+    'default' => ['f1', 'f2', 'f3'],
+    'svadbe'  => ['w1', 'w2', 'w3'],
+];
+$setKey = isset($_GET['set']) && isset($sets[$_GET['set']]) ? $_GET['set'] : 'default';
+$tiles = array_map(function ($n) {
+    return __DIR__ . '/assets/og/' . $n . '.jpg';
+}, $sets[$setKey]);
 $tW     = 170;
 $tH     = 302;
 $gap    = 14;
