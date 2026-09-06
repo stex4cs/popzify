@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Snimanje svadbi — video i fotografija | Popzify</title>
+<title>Snimamo i fotografišemo venčanja | Popzify</title>
 <meta name="description" content="Snimamo i fotografišemo venčanja. Isti tim radi i video i fotografije. Dron, dve kamere na ceremoniji, Beograd i cela Srbija.">
 <meta name="author" content="Popzify">
 
@@ -20,7 +20,7 @@
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Popzify — kadrovi sa venčanja">
+<meta property="og:image:alt" content="Popzify, kadrovi sa venčanja">
 <meta property="og:site_name" content="Popzify">
 <meta property="og:locale" content="sr_RS">
 <meta name="twitter:card" content="summary_large_image">
@@ -842,10 +842,10 @@ footer{padding:52px 0 110px;border-top:1px solid var(--line);background:var(--bg
     });
 
     document.getElementById('fnote').textContent = pick.termin === 'U naredna tri meseca'
-      ? 'Termin vam je blizu — proveravamo slobodne datume odmah i javljamo se danas.'
+      ? 'Termin vam je blizu, proveravamo slobodne datume odmah i javljamo se danas.'
       : 'Javljamo se istog dana sa potvrdom termina i tačnom cenom.';
 
-    document.getElementById('usluga').value = 'Svadba — ' + (pick.obim || 'nije precizirano');
+    document.getElementById('usluga').value = 'Svadba: ' + (pick.obim || 'nije precizirano');
     document.getElementById('kviz').value = 'predlog: ' + paket;
     document.getElementById('poruka').value =
       'Obim: '             + (pick.obim   || '-') + '\n' +
@@ -874,7 +874,7 @@ footer{padding:52px 0 110px;border-top:1px solid var(--line);background:var(--bg
     var saglasan = document.getElementById('saglasnost').checked;
 
     if (!ime || !tel) { showMsg('Treba nam samo ime i broj telefona.', 'err'); return; }
-    if (tel.replace(/\D/g, '').length < 8) { showMsg('Proverite broj telefona — deluje da nedostaje neka cifra.', 'err'); return; }
+    if (tel.replace(/\D/g, '').length < 8) { showMsg('Proverite broj telefona, deluje da nedostaje neka cifra.', 'err'); return; }
     if (!saglasan) { showMsg('Potrebna je saglasnost da bismo smeli da vas kontaktiramo.', 'err'); return; }
 
     document.getElementById('izvor').value =
