@@ -885,22 +885,32 @@ footer{padding:52px 0 110px;border-top:1px solid var(--line);background:var(--bg
     btn.textContent = 'Šaljem...';
     msg.className = 'form-msg';
 
+    // Kad server odbije upit, on kaze i zasto. Ta poruka se pokazuje
+    // umesto opste, inace posetilac ne zna sta se desilo.
+    function fail(serverMsg) {
+      btn.disabled = false;
+      btn.innerHTML = original;
+      showMsg(serverMsg || 'Slanje nije uspelo. Pozovite nas na 060 5973212 ili pišite na business@popzify.com.', 'err');
+    }
+
     fetch('php/process-lead.php', { method: 'POST', body: new FormData(form) })
-      .then(function (r) { return r.json().catch(function () { return { status: r.ok ? 'success' : 'error' }; }); })
-      .then(function (data) {
-        if (data.status === 'success') {
-          track('Lead', { content_name: pick.obim || 'Svadba', content_category: 'svadbe' });
-          form.style.display = 'none';
-          showMsg('Hvala, ' + ime.split(' ')[0] + '! Upit je stigao. Javljamo se na ' + tel + ' još danas sa potvrdom termina.', 'ok');
-        } else {
-          throw new Error(data.message || 'greska');
-        }
+      .then(function (r) {
+        return r.json()
+          .catch(function () { return { status: r.ok ? 'success' : 'error' }; })
+          .then(function (data) { return data; });
       })
-      .catch(function () {
-        btn.disabled = false;
-        btn.innerHTML = original;
-        showMsg('Slanje nije uspelo. Pozovite nas na 060 5973212 ili pišite na business@popzify.com.', 'err');
-      });
+      .then(function (data) {
+        if (data.status !== 'success') { fail(data.message); return; }
+
+        // Od ove tacke je upit primljen i mejl poslat. Greska ispod se
+        // guta, da ne ispadne kao da slanje nije uspelo kad jeste.
+        try {
+          track('Lead', { content_name: pick.obim || 'Svadba', content_category: 'svadbe' });
+        } catch (e) { /* pixel nije bitan za ishod */ }
+        form.style.display = 'none';
+        showMsg('Hvala, ' + ime.split(' ')[0] + '! Upit je stigao. Javljamo se na ' + tel + ' još danas sa potvrdom termina.', 'ok');
+      })
+      .catch(function () { fail(''); });
   });
 
   /* ---------- 9. Sitnice ---------- */

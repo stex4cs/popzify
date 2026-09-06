@@ -1299,22 +1299,34 @@ footer{padding:50px 0 110px;border-top:1px solid var(--line);background:var(--bg
     btn.textContent = 'Šaljem...';
     msg.className = 'form-msg';
 
+    // Kad server odbije upit, on kaze i zasto. Ta poruka se pokazuje
+    // umesto opste, inace posetilac ne zna da li je pao internet ili
+    // je poslao prevec puta.
+    function fail(serverMsg) {
+      btn.disabled = false;
+      btn.innerHTML = original;
+      showMsg(serverMsg || 'Slanje nije uspelo. Pozovi nas na 060 5973212 ili piši na business@popzify.com, javljamo se odmah.', 'err');
+    }
+
     fetch('php/process-lead.php', { method: 'POST', body: new FormData(form) })
-      .then(function (r) { return r.json().catch(function () { return { status: r.ok ? 'success' : 'error' }; }); })
-      .then(function (data) {
-        if (data.status === 'success') {
-          track('Lead', { content_name: usluga, content_category: 'short-form-video' });
-          form.style.display = 'none';
-          showMsg('Hvala, ' + ime.split(' ')[0] + '! Upit je stigao. Javljamo se na ' + tel + ' u roku od 24 sata, obično mnogo pre.', 'ok');
-        } else {
-          throw new Error(data.message || 'greska');
-        }
+      .then(function (r) {
+        return r.json()
+          .catch(function () { return { status: r.ok ? 'success' : 'error' }; })
+          .then(function (data) { return data; });
       })
-      .catch(function () {
-        btn.disabled = false;
-        btn.innerHTML = original;
-        showMsg('Slanje nije uspelo. Pozovi nas na 060 5973212 ili piši na business@popzify.com, javljamo se odmah.', 'err');
-      });
+      .then(function (data) {
+        if (data.status !== 'success') { fail(data.message); return; }
+
+        // Od ove tacke je upit primljen i mejl poslat. Sve ispod je
+        // ukras, pa se greska guta - ne sme da ispadne kao da slanje
+        // nije uspelo kad jeste.
+        try {
+          track('Lead', { content_name: usluga, content_category: 'short-form-video' });
+        } catch (e) { /* pixel nije bitan za ishod */ }
+        form.style.display = 'none';
+        showMsg('Hvala, ' + ime.split(' ')[0] + '! Upit je stigao. Javljamo se na ' + tel + ' u roku od 24 sata, obično mnogo pre.', 'ok');
+      })
+      .catch(function () { fail(''); });
   });
 
   /* ---------- 11. Sitnice ---------- */

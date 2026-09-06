@@ -126,7 +126,7 @@ $now = time();
  * Dozvoljeno je $throttle_max upita u $throttle_window sekundi po IP-u.
  */
 $throttle_window = 600; // 10 minuta
-$throttle_max    = 5;
+$throttle_max    = 10;  // covek koji ponovo posalje ne sme da bude blokiran
 
 $throttle_file = $log_dir . '/.lead_throttle_' . md5($ip);
 $hits = [];
