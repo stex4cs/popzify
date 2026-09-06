@@ -87,7 +87,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         // === Slanje Emaila ===
-        $recipient_email = "info@popzify.com"; // TVOJA EMAIL ADRESA
+        // Adresa na koju stizu poruke sa kontakt forme glavnog sajta.
+        // Ranije je stajalo info@popzify.com, sanduce koje ne postoji.
+        $recipient_email = "business@popzify.com";
         $email_subject = "New Contact Form Submission: " . $subject; // Naslov emaila
 
         // Telo emaila
