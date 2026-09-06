@@ -188,7 +188,9 @@ if (@file_put_contents($log_file, $log, FILE_APPEND | LOCK_EX) === false) {
 }
 
 // === Slanje e-maila ===
-$recipient = 'info@popzify.com';
+// Adresa na koju stizu lead-ovi sa kampanjskih stranica.
+// Ako se menja, promeni je samo ovde - nigde drugde nije zakucana.
+$recipient = 'business@popzify.com';
 $subject   = 'NOVI LEAD (' . $usluga . ') - ' . $ime;
 
 $body  = "Novi upit sa kampanjske stranice: {$stranica}\n";
