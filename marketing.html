@@ -195,6 +195,7 @@ h3{font-size:1.13rem;font-weight:600}
 /* --- univerzalna mreza kartica --- */
 .grid{display:grid;gap:18px}
 .g3{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.works{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .card{
   background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
   padding:28px 26px;transition:border-color .25s ease,transform .25s ease,background .25s ease;
@@ -620,7 +621,15 @@ footer{padding:44px 0 108px;border-top:1px solid var(--border);background:var(--
       <h2 style="margin-top:16px">Nešto od toga <span class="grad">što smo napravili</span></h2>
       <p class="lead">Klikni na projekat i otvori ga uživo &mdash; ne screenshot, nego sajt koji radi.</p>
     </div>
-    <div class="grid g3">
+    <div class="grid works">
+      <a class="work rv" href="https://dukatdesk.com/sr" target="_blank" rel="noopener">
+        <div class="work-img" data-fallback="DUKAT"><img loading="lazy" src="assets/projects/dukatdesk.webp" alt="DUKAT Private Desk sajt" width="800" height="500" onerror="this.remove()"></div>
+        <div class="work-body">
+          <h3>DUKAT Private Desk</h3>
+          <p>Sajt za privatni desk za otkup i prodaju USDT, EUR i USD. Ponuda odmah u herou, proces u četiri koraka i put do Telegrama bez lutanja.</p>
+          <div class="tags"><span class="tag">SR / EN / DE / RU</span><span class="tag">Next.js</span><span class="tag">Fintech</span></div>
+        </div>
+      </a>
       <a class="work rv" href="https://hotelbali.vercel.app/me" target="_blank" rel="noopener">
         <div class="work-img" data-fallback="Bali"><img loading="lazy" src="assets/projects/hotelbali-main.webp" alt="Bali Mountain Resort sajt" width="600" height="375" onerror="this.remove()"></div>
         <div class="work-body">

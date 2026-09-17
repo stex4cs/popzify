@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="sr" class="no-js">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags - Serbian -->
+    <meta name="title" content="DUKAT Private Desk - sajt na četiri jezika | Popzify">
+    <meta name="description" content="Kako smo napravili sajt za DUKAT, privatni desk za otkup i prodaju USDT, EUR i USD. Četiri jezika, ponuda u herou, proces u četiri koraka, Next.js na Vercelu.">
+    <meta name="keywords" content="DUKAT Private Desk, dukatdesk, OTC desk sajt, višejezični sajt, Next.js, izrada sajta, studija slučaja, Popzify">
+    <meta name="author" content="Popzify">
+    <meta name="robots" content="index, follow">
+
+    <!-- Primary Meta Tags - English -->
+    <meta name="title" lang="en" content="DUKAT Private Desk - four-language website | Popzify">
+    <meta name="description" lang="en" content="How we built the website for DUKAT, a private desk for exchanging USDT, EUR and USD. Four languages, a quote widget in the hero, a four-step process, Next.js on Vercel.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://popzify.com/project-dukatdesk">
+    <meta property="og:title" content="DUKAT Private Desk - sajt na četiri jezika | Popzify">
+    <meta property="og:description" content="Sajt za privatni desk za otkup i prodaju kriptovaluta. Srpski, engleski, nemački i ruski.">
+    <meta property="og:image" content="https://popzify.com/assets/projects/dukatdesk-main.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="750">
+    <meta property="og:site_name" content="Popzify">
+    <meta property="og:locale" content="sr_RS">
+    <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DUKAT Private Desk - sajt na četiri jezika | Popzify">
+    <meta name="twitter:description" content="Sajt za privatni desk za otkup i prodaju kriptovaluta. Srpski, engleski, nemački i ruski.">
+    <meta name="twitter:image" content="https://popzify.com/assets/projects/dukatdesk-main.webp">
+
+    <!-- Favicon Tags -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#6c5ce7">
+
+    <title>DUKAT Private Desk | Popzify Project</title>
+    <link rel="stylesheet" href="styles.min.css?v=16">
+    <link rel="stylesheet" href="project-details.css?v=3">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Theme Color for browsers -->
+    <meta name="theme-color" content="#6c5ce7">
+
+    <!-- Detect JS -->
+    <script>
+        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "DUKAT Private Desk - website",
+      "headline": "DUKAT Private Desk: sajt na četiri jezika",
+      "url": "https://popzify.com/project-dukatdesk",
+      "image": "https://popzify.com/assets/projects/dukatdesk-main.webp",
+      "inLanguage": ["sr", "en"],
+      "about": {
+        "@type": "WebSite",
+        "name": "DUKAT Private Desk",
+        "url": "https://dukatdesk.com",
+        "inLanguage": ["sr-Latn", "en", "de", "ru"]
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Popzify",
+        "url": "https://popzify.com"
+      }
+    }
+    </script>
+
+    <style>
+        /* Jezicka podrska, isto kao na ostalim stranicama projekata */
+        .en-content { display: none; }
+        .sr-content { display: none; }
+        [data-lang="en"] .en-content { display: block; }
+        [data-lang="sr"] .sr-content { display: block; }
+        [data-lang="en"] .en-content.inline { display: inline; }
+        [data-lang="sr"] .sr-content.inline { display: inline; }
+
+        /* Galerija: sve plocice iste visine. Snimci su razlicitog oblika
+           (siroke trake sekcija, uspravan telefon), pa se ne seku nego
+           cele staju unutra. Podloga je iste boje kao sajt sa snimaka,
+           pa se ivice ne vide. */
+        .gallery-item { background: #0c0b0a; }
+        .gallery-item img { aspect-ratio: 16 / 10; object-fit: contain; }
+
+        /* Linkovi na sve cetiri jezicke verzije */
+        .lang-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 22px 0 8px; }
+        .lang-link {
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            padding: 16px 18px; border-radius: var(--border-radius);
+            border: 1px solid rgba(108, 92, 231, 0.25); background: rgba(108, 92, 231, 0.05);
+            color: var(--text-color); font-weight: 500; transition: var(--transition);
+        }
+        .lang-link:hover { border-color: var(--primary-color); background: rgba(108, 92, 231, 0.12); transform: translateY(-2px); }
+        .lang-link small { display: block; font-size: 0.78rem; font-weight: 400; color: var(--light-text); }
+        .lang-link i { color: var(--primary-color); }
+    </style>
+    <link rel="canonical" href="https://popzify.com/project-dukatdesk">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="/"><span>Pop</span>zify</a>
+                </div>
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="/#hero" data-nav="home" class="en-content">Home</a><a href="/#hero" data-nav="home" class="sr-content">Početna</a></li>
+                        <li><a href="/#services" data-nav="services" class="en-content">Services</a><a href="/#services" data-nav="services" class="sr-content">Usluge</a></li>
+                        <li><a href="/#team" data-nav="ourTeam" class="en-content">Our Team</a><a href="/#team" data-nav="ourTeam" class="sr-content">Naš tim</a></li>
+                        <li><a href="projects" data-nav="projects" class="active en-content">Projects</a><a href="projects" data-nav="projects" class="active sr-content">Projekti</a></li>
+                        <li><a href="/#about" data-nav="about" class="en-content">About</a><a href="/#about" data-nav="about" class="sr-content">O nama</a></li>
+                        <li><a href="/#faq" data-nav="faq" class="en-content">FAQ</a><a href="/#faq" data-nav="faq" class="sr-content">FAQ</a></li>
+                        <li><a href="ivanpopovic" data-nav="blog" class="en-content">Blog</a><a href="ivanpopovic" data-nav="blog" class="sr-content">Blog</a></li>
+                        <li><a href="/#contact" data-nav="contact" class="en-content">Contact</a><a href="/#contact" data-nav="contact" class="sr-content">Kontakt</a></li>
+                    </ul>
+                    <div class="lang-selector" data-lang="sr">
+                        <button class="lang-btn" data-lang="en" aria-label="Switch to English">EN</button>
+                        <button class="lang-btn active" data-lang="sr" aria-label="Switch to Serbian">SR</button>
+                        <div class="slider"></div>
+                    </div>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Project Hero Section -->
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-breadcrumbs">
+                <a href="/" class="en-content inline">Home</a><a href="/" class="sr-content inline">Početna</a> &gt;
+                <a href="projects" class="en-content inline">Projects</a><a href="projects" class="sr-content inline">Projekti</a> &gt;
+                <span>DUKAT Private Desk</span>
+            </div>
+            <div class="project-hero-content">
+                <h1>DUKAT Private Desk</h1>
+                <p class="project-tagline sr-content">Sajt za privatni desk za otkup i prodaju kriptovaluta, na četiri jezika</p>
+                <p class="project-tagline en-content">A website for a private digital asset desk, in four languages</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="project-overview">
+        <div class="container">
+            <div class="project-overview-grid">
+                <div class="project-overview-image">
+                    <img src="assets/projects/dukatdesk-main.webp" alt="Početna strana sajta DUKAT Private Desk na srpskom" width="1200" height="750">
+                </div>
+                <div class="project-overview-info">
+                    <h2 class="sr-content">Pregled projekta</h2>
+                    <h2 class="en-content">Project overview</h2>
+                    <p class="sr-content">DUKAT je privatni desk za razmenu USDT, EUR i USD u većim iznosima. Nema samouslužne platforme ni korisničkih naloga. Klijent pošalje zahtev, desk mu lično odgovori sa kursom, i dogovor se nastavlja preko Telegrama, WhatsApp-a ili pisanog zahteva. Sajt je trebalo da taj model objasni na prvi pogled i da posetioca bez lutanja dovede do zahteva.</p>
+                    <p class="en-content">DUKAT is a private desk for exchanging USDT, EUR and USD in larger amounts. There is no self-service platform and no user accounts. A client sends a request, the desk replies with a personal quote, and the deal continues over Telegram, WhatsApp or a written request. The website had to explain that model at a glance and lead visitors straight to a request.</p>
+
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <h4 class="sr-content">Klijent</h4>
+                            <h4 class="en-content">Client</h4>
+                            <p>DUKAT Private Desk</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="sr-content">Industrija</h4>
+                            <h4 class="en-content">Industry</h4>
+                            <p class="sr-content">Razmena digitalne imovine (OTC)</p>
+                            <p class="en-content">Digital asset exchange (OTC)</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="sr-content">Usluge</h4>
+                            <h4 class="en-content">Services</h4>
+                            <p class="sr-content">Dizajn, izrada sajta, četiri jezika</p>
+                            <p class="en-content">Design, web development, four languages</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="sr-content">Godina</h4>
+                            <h4 class="en-content">Year</h4>
+                            <p>2026</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4 class="sr-content">Sajt</h4>
+                            <h4 class="en-content">Website</h4>
+                            <p><a href="https://dukatdesk.com/sr" target="_blank" rel="noopener">dukatdesk.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details -->
+    <section class="project-details">
+        <div class="container">
+            <div class="project-details-content">
+                <div class="project-challenge">
+                    <h2 class="sr-content">Izazov</h2>
+                    <h2 class="en-content">Challenge</h2>
+                    <p class="sr-content">Privatni desk se ne prodaje kao menjačnica. Ko menja veći iznos ne traži dugme „kupi", nego nekoga kome može da veruje. Zato je sajt morao da:</p>
+                    <p class="en-content">A private desk is not sold like an exchange. Someone moving a larger amount is not looking for a "buy" button, but for someone they can trust. So the website had to:</p>
+                    <ul>
+                        <li class="sr-content">Odmah objasni da nema samouslužne trgovine i da svaki kurs daje čovek</li>
+                        <li class="en-content">Make it clear right away that there is no self-service trading and every quote comes from a person</li>
+                        <li class="sr-content">Uliva poverenje mirnim tonom, bez prodajnog pritiska</li>
+                        <li class="en-content">Build trust through a calm tone, without sales pressure</li>
+                        <li class="sr-content">Radi na četiri jezika, sa verzijama pravilno označenim za pretraživače</li>
+                        <li class="en-content">Work in four languages, with versions properly marked up for search engines</li>
+                        <li class="sr-content">Posetioca što kraćim putem dovede do zahteva, preko kanala koji mu je najlakši</li>
+                        <li class="en-content">Get the visitor to a request by the shortest route, through whichever channel suits them</li>
+                    </ul>
+                </div>
+
+                <div class="project-solution">
+                    <h2 class="sr-content">Rešenje</h2>
+                    <h2 class="en-content">Solution</h2>
+
+                    <h3 class="sr-content">Ponuda odmah u herou</h3>
+                    <h3 class="en-content">A quote request in the hero</h3>
+                    <p class="sr-content">Na samom vrhu stoji mali obrazac: šta imate, šta želite i koliko. To nije kalkulator sa kursom, jer kurs ne postoji dok ga desk ne da. Umesto toga odmah pokazuje kako saradnja izgleda i vodi pravo na Telegram ili WhatsApp.</p>
+                    <p class="en-content">Right at the top sits a small form: what you have, what you want and how much. It is not a rate calculator, because there is no rate until the desk gives one. Instead it shows straight away how working together looks and leads directly to Telegram or WhatsApp.</p>
+
+                    <h3 class="sr-content">Proces u četiri koraka</h3>
+                    <h3 class="en-content">A four-step process</h3>
+                    <p class="sr-content">Zahtev, ponuda, potvrda, realizacija. Svaki korak u jednoj rečenici, da klijent pre prvog kontakta zna tačno šta ga čeka.</p>
+                    <p class="en-content">Request, quote, confirmation, settlement. Each step in a single sentence, so the client knows exactly what to expect before making contact.</p>
+
+                    <h3 class="sr-content">Četiri jezika, svaki na svojoj adresi</h3>
+                    <h3 class="en-content">Four languages, each on its own URL</h3>
+                    <p class="sr-content">Srpski, engleski, nemački i ruski. Verzije su međusobno povezane hreflang oznakama, pa pretraživač svakom posetiocu pokazuje onu na njegovom jeziku.</p>
+                    <p class="en-content">Serbian, English, German and Russian. The versions are linked with hreflang tags, so search engines show each visitor the one in their own language.</p>
+
+                    <div class="lang-links">
+                        <a class="lang-link" href="https://dukatdesk.com/sr" target="_blank" rel="noopener" hreflang="sr-Latn">
+                            <span>Srpski<small>dukatdesk.com/sr</small></span><i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <a class="lang-link" href="https://dukatdesk.com/en" target="_blank" rel="noopener" hreflang="en">
+                            <span>English<small>dukatdesk.com/en</small></span><i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <a class="lang-link" href="https://dukatdesk.com/de" target="_blank" rel="noopener" hreflang="de">
+                            <span>Deutsch<small>dukatdesk.com/de</small></span><i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <a class="lang-link" href="https://dukatdesk.com/ru" target="_blank" rel="noopener" hreflang="ru">
+                            <span>Русский<small>dukatdesk.com/ru</small></span><i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+
+                    <h3 class="sr-content">Tehnička izvedba</h3>
+                    <h3 class="en-content">Technical implementation</h3>
+                    <div class="tech-stack">
+                        <div class="tech-category">
+                            <h4>Frontend</h4>
+                            <ul>
+                                <li><i class="fas fa-code"></i> Next.js (App Router)</li>
+                                <li><i class="fas fa-bolt"></i> <span class="sr-content inline">Statički generisane stranice</span><span class="en-content inline">Statically generated pages</span></li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Hosting</h4>
+                            <ul>
+                                <li><i class="fas fa-server"></i> Vercel</li>
+                                <li><i class="fas fa-globe"></i> <span class="sr-content inline">Isporuka sa ivice mreže</span><span class="en-content inline">Edge delivery</span></li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4>SEO</h4>
+                            <ul>
+                                <li><i class="fas fa-language"></i> hreflang: sr-Latn, en, de, ru</li>
+                                <li><i class="fas fa-link"></i> x-default</li>
+                            </ul>
+                        </div>
+                        <div class="tech-category">
+                            <h4 class="sr-content">Kontakt</h4>
+                            <h4 class="en-content">Contact</h4>
+                            <ul>
+                                <li><i class="fab fa-telegram"></i> Telegram</li>
+                                <li><i class="fab fa-whatsapp"></i> WhatsApp</li>
+                                <li><i class="fas fa-envelope"></i> <span class="sr-content inline">Pisani zahtev</span><span class="en-content inline">Written request</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cinjenice o sajtu, ne izmisljeni poslovni rezultati -->
+                <div class="project-results">
+                    <h2 class="sr-content">Ukratko</h2>
+                    <h2 class="en-content">At a glance</h2>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="result-icon"><i class="fas fa-language"></i></div>
+                            <div class="result-text">
+                                <h3>4</h3>
+                                <p class="sr-content">jezika, svaki na svojoj adresi</p>
+                                <p class="en-content">languages, each on its own URL</p>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon"><i class="fas fa-coins"></i></div>
+                            <div class="result-text">
+                                <h3>3</h3>
+                                <p class="sr-content">valute: USDT, EUR i USD</p>
+                                <p class="en-content">currencies: USDT, EUR and USD</p>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon"><i class="fas fa-list-ol"></i></div>
+                            <div class="result-text">
+                                <h3>4</h3>
+                                <p class="sr-content">koraka od zahteva do realizacije</p>
+                                <p class="en-content">steps from request to settlement</p>
+                            </div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-icon"><i class="fas fa-comments"></i></div>
+                            <div class="result-text">
+                                <h3>3</h3>
+                                <p class="sr-content">kanala za kontakt</p>
+                                <p class="en-content">contact channels</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-gallery">
+                    <h2 class="sr-content">Galerija projekta</h2>
+                    <h2 class="en-content">Project gallery</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img loading="lazy" src="assets/projects/dukatdesk-jezici.webp" alt="Početna strana DUKAT sajta na srpskom, engleskom, nemačkom i ruskom" width="1440" height="900">
+                            <div class="gallery-caption sr-content">Isti hero na sva četiri jezika</div>
+                            <div class="gallery-caption en-content">The same hero in all four languages</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img loading="lazy" src="assets/projects/dukatdesk-proces.webp" alt="Sekcija sa procesom u četiri koraka" width="1200" height="517">
+                            <div class="gallery-caption sr-content">Proces u četiri koraka</div>
+                            <div class="gallery-caption en-content">The four-step process</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img loading="lazy" src="assets/projects/dukatdesk-valute.webp" alt="Sekcija sa tri valute: EUR, USDT i USD" width="1200" height="500">
+                            <div class="gallery-caption sr-content">Tri valute na jednom mestu</div>
+                            <div class="gallery-caption en-content">Three currencies in one place</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img loading="lazy" src="assets/projects/dukatdesk-zahtev.webp" alt="Obrazac za zahtev za privatnu ponudu" width="1200" height="800">
+                            <div class="gallery-caption sr-content">Obrazac za privatnu ponudu</div>
+                            <div class="gallery-caption en-content">The private quote form</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img loading="lazy" src="assets/projects/dukatdesk-mobile.webp" alt="DUKAT sajt na mobilnom telefonu" width="390" height="844">
+                            <div class="gallery-caption sr-content">Mobilni prikaz</div>
+                            <div class="gallery-caption en-content">Mobile view</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-cta">
+                    <h2 class="sr-content">Treba vam sličan sajt?</h2>
+                    <h2 class="en-content">Need a similar website?</h2>
+                    <p class="sr-content">Višejezični sajtovi, jasan put do upita i brzo učitavanje. Javite se pa pričamo o vašem projektu.</p>
+                    <p class="en-content">Multilingual websites, a clear path to an enquiry and fast loading. Get in touch and let's talk about your project.</p>
+                    <div class="cta-buttons">
+                        <a href="/#contact" class="btn btn-primary sr-content inline">Kontaktirajte nas</a>
+                        <a href="/#contact" class="btn btn-primary en-content inline">Contact us</a>
+                        <a href="https://dukatdesk.com/sr" target="_blank" rel="noopener" class="btn btn-secondary sr-content inline">Otvorite dukatdesk.com</a>
+                        <a href="https://dukatdesk.com/en" target="_blank" rel="noopener" class="btn btn-secondary en-content inline">Visit dukatdesk.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Projects -->
+    <section class="related-projects">
+        <div class="container">
+            <h2 class="sr-content">Srodni projekti</h2>
+            <h2 class="en-content">Related projects</h2>
+            <div class="related-projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img loading="lazy" src="assets/projects/correctscore-main.webp" alt="Correct Score Pro platforma">
+                        <div class="project-overlay">
+                            <a href="project-correctscore" class="btn-view-details sr-content">Detalji projekta</a>
+                            <a href="project-correctscore" class="btn-view-details en-content">View details</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category sr-content">Web aplikacija</span>
+                        <span class="project-category en-content">Web application</span>
+                        <h3><a href="project-correctscore">Correct Score Pro</a></h3>
+                        <p class="sr-content">Sportska analitika sa pretplatama i više načina plaćanja</p>
+                        <p class="en-content">Sports analytics with subscriptions and multiple payment methods</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dark mode toggle -->
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="/"><span>Pop</span>zify</a>
+                    <p>Modern Web &amp; Mobile Solutions</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h3 class="sr-content">Kompanija</h3>
+                        <h3 class="en-content">Company</h3>
+                        <ul>
+                            <li><a href="/#about" class="sr-content">O nama</a><a href="/#about" class="en-content">About Us</a></li>
+                            <li><a href="/#services" class="sr-content">Usluge</a><a href="/#services" class="en-content">Services</a></li>
+                            <li><a href="projects" class="sr-content">Portfolio</a><a href="projects" class="en-content">Portfolio</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3 class="sr-content">Resursi</h3>
+                        <h3 class="en-content">Resources</h3>
+                        <ul>
+                            <li><a href="ivanpopovic">Blog</a></li>
+                            <li><a href="https://www.instagram.com/lolipopz.bif/" target="_blank" rel="noopener">Instagram</a></li>
+                            <li><a href="privacypolicy" class="sr-content">Politika privatnosti</a><a href="privacypolicy" class="en-content">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="sr-content">&copy; <span data-year>2026</span> Popzify. Sva prava zadržana.</p>
+                <p class="en-content">&copy; <span data-year>2026</span> Popzify. All Rights Reserved.</p>
+                <p class="footer-legal">POPZOGRAPHY &middot; PIB 114200786 &middot; MB 67394909 &middot; Datum osnivanja 14.02.2024.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="main.min.js?v=16"></script>
+
+    <!-- Promena jezika, isto kao na ostalim stranicama projekata -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var savedLang = localStorage.getItem('preferredLanguage') || 'sr';
+
+            function setLang(lang) {
+                document.documentElement.setAttribute('data-lang', lang);
+                document.documentElement.setAttribute('lang', lang);
+                var selector = document.querySelector('.lang-selector');
+                if (selector) {
+                    selector.setAttribute('data-lang', lang);
+                    selector.classList.toggle('sr-active', lang === 'sr');
+                    selector.querySelectorAll('.lang-btn').forEach(function (b) {
+                        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+                    });
+                }
+                localStorage.setItem('preferredLanguage', lang);
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
+            });
+            setLang(savedLang);
+        });
+    </script>
+</body>
+</html>
