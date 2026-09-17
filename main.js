@@ -1631,16 +1631,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
  
     // Add FAQ link to navigation menu
+    // Svaka stranica vec ima FAQ u meniju direktno u HTML-u, pa se link
+    // dodaje samo ako fali. Ranije je insertBefore pozivan na .nav-menu,
+    // a <li> je dete od <ul> - pucalo je na svakoj stranici i gasilo sve
+    // ispod u ovom handleru (animacije tima i projekata, cookie baner).
     const contactLink = document.querySelector('.nav-menu ul li:nth-child(5)');
- 
-    if (navMenu && contactLink) {
+    const hasFaqLink = !!document.querySelector('.nav-menu a[href*="faq"]');
+
+    if (contactLink && !hasFaqLink) {
         const faqLink = document.createElement('li');
         const faqAnchor = document.createElement('a');
         faqAnchor.setAttribute('href', '#faq');
         faqAnchor.textContent = currentLang === 'en' ? 'FAQ' : 'FAQ';
         faqLink.appendChild(faqAnchor);
         
-        navMenu.insertBefore(faqLink, contactLink);
+        contactLink.parentNode.insertBefore(faqLink, contactLink);
         
         // Update the nav links indexes for future language updates
         translations.en.faq = "FAQ";
