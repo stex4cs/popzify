@@ -5,6 +5,10 @@
 # ====================================================================
 RewriteEngine On
 
+# Uklonjeni projekti koji nisu bili stvarni radovi. 301 na spisak
+# projekata, da stare adrese iz Google-a i spoljnih linkova ne daju 404.
+RewriteRule ^project-(artisanmarket|fitlife|fintrack)(\.html)?/?$ /projects [R=301,L,NC]
+
 # /index.html -> /
 RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
 RewriteRule ^index\.html$ / [R=301,L,NE]
