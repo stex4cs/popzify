@@ -953,8 +953,11 @@ img {
 
 /* Project Card Entrance Animation */
 .projects-grid .project-card {
-    opacity: 0;
-    transform: translateY(30px);
+    /* Kartice su vidljive same po sebi. Ranije je ovde stajalo opacity: 0,
+       a otkrivala ih je tek klasa .animated koju nijedna skripta nikad nije
+       dodavala - pa je mreza projekata stajala prazna dok je JS ne dotakne. */
+    opacity: 1;
+    transform: none;
     animation: none;
 }
 

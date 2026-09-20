@@ -455,8 +455,8 @@ function updateLanguage(lang) {
                 // redu, a kljucevi 'mobile' i 'design' u translations su definisani
                 // dva puta pa su vracali tudje tekstove ("Mobile:", opis koraka).
                 const filterLabels = {
-                    en: { all: 'All', web: 'Web', mobile: 'Mobile', ecommerce: 'E-commerce', design: 'Design' },
-                    sr: { all: 'Sve', web: 'Web', mobile: 'Mobilno', ecommerce: 'E-commerce', design: 'Dizajn' }
+                    en: { all: 'All', web: 'Web', mobile: 'Mobile', ecommerce: 'E-commerce', visejezicni: 'Multilingual', design: 'Design' },
+                    sr: { all: 'Sve', web: 'Web', mobile: 'Mobilno', ecommerce: 'E-commerce', visejezicni: 'Višejezični', design: 'Dizajn' }
                 };
                 projects.querySelectorAll('.filter-btn').forEach(btn => {
                     const btnLang = btn.classList.contains('sr-content') ? 'sr'
