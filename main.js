@@ -450,13 +450,20 @@ function updateLanguage(lang) {
                 if (projectsHeader) projectsHeader.innerHTML = translations[lang].projectsTitle;
                 if (projectsDesc) projectsDesc.textContent = translations[lang].projectsDesc;
                 
-                const filterBtns = projects.querySelectorAll('.filter-btn');
-                if (filterBtns.length >= 4) {
-                    filterBtns[0].textContent = translations[lang].all;
-                    filterBtns[1].textContent = translations[lang].web;
-                    filterBtns[2].textContent = translations[lang].mobile;
-                    filterBtns[3].textContent = translations[lang].design;
-                }
+                // Natpis se bira po data-filter i jeziku samog dugmeta, ne po
+                // redosledu. Ranije je kod pretpostavljao tacno 4 dugmeta u fiksnom
+                // redu, a kljucevi 'mobile' i 'design' u translations su definisani
+                // dva puta pa su vracali tudje tekstove ("Mobile:", opis koraka).
+                const filterLabels = {
+                    en: { all: 'All', web: 'Web', mobile: 'Mobile', ecommerce: 'E-commerce', design: 'Design' },
+                    sr: { all: 'Sve', web: 'Web', mobile: 'Mobilno', ecommerce: 'E-commerce', design: 'Dizajn' }
+                };
+                projects.querySelectorAll('.filter-btn').forEach(btn => {
+                    const btnLang = btn.classList.contains('sr-content') ? 'sr'
+                                  : btn.classList.contains('en-content') ? 'en' : lang;
+                    const label = filterLabels[btnLang] && filterLabels[btnLang][btn.getAttribute('data-filter')];
+                    if (label) btn.textContent = label;
+                });
             }
         } catch (error) {
             console.error("Error updating projects section:", error);
