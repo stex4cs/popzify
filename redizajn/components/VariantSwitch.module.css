@@ -1,0 +1,40 @@
+/* Privremeni prekidac, zato stoji po strani i ne trazi paznju. */
+
+.wrap {
+  position: fixed;
+  left: var(--gutter);
+  bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px));
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 8px 7px 12px;
+  border: 1px dashed rgba(236, 235, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(7, 6, 13, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.btn {
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 5px 11px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: var(--f-mono);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  color: var(--ink);
+}
+
+.btn[data-on] {
+  color: var(--void);
+  background: var(--lilac);
+  border-color: var(--lilac);
+}

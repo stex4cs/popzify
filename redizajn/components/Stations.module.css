@@ -38,8 +38,14 @@
   justify-self: start;
 }
 
+/* Radovi: tekst ide u donji desni ugao, jer sredinu kadra drze paneli.
+   Dodatni razmak dole da spisak ne nalegne na podatke o kadru u viziru. */
+.right {
+  padding-bottom: calc(var(--gutter) + 112px);
+}
+
 .right .block {
-  align-self: center;
+  align-self: end;
   justify-self: end;
   text-align: right;
 }
@@ -141,6 +147,9 @@
   .right .block {
     align-self: end;
   }
+  .right {
+    padding-bottom: calc(var(--gutter) + 52px);
+  }
   .right .block {
     justify-self: start;
     text-align: left;
@@ -156,4 +165,34 @@
 /* Hint stoji nad sjajem prstena, pa mu treba isti oslonac kao bloku. */
 .hint {
   text-shadow: 0 2px 22px rgba(7, 6, 13, 0.85);
+}
+
+/* ---------- spisak radova ---------- */
+
+.clips {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.clips li {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(236, 235, 255, 0.12);
+}
+
+.clips li span:last-child {
+  flex: none;
+}
+
+@media (max-width: 860px) {
+  .clips li {
+    justify-content: space-between;
+  }
 }

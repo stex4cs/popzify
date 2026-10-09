@@ -8,6 +8,8 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { stations } from "@/lib/stations";
+import { getVariant, subscribeVariant } from "@/lib/variant";
+import { buildWork, type WorkScene } from "./world/work";
 import styles from "./World.module.css";
 
 /**
@@ -250,6 +252,16 @@ export default function World() {
       streaks.add(m);
     }
 
+    // --- radovi ---
+    let work: WorkScene = buildWork(getVariant(), mobile);
+    scene.add(work.group);
+    const unsubscribe = subscribeVariant((v) => {
+      scene.remove(work.group);
+      work.dispose();
+      work = buildWork(v, mobile);
+      scene.add(work.group);
+    });
+
     // --- post ---
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
@@ -297,6 +309,10 @@ export default function World() {
     };
     const markTarget = new THREE.Vector3();
 
+    /** Pola kadra na zadatoj dubini. Sluzi i znaku i panelima. */
+    const halfHFor = (z: number) => Math.tan((camera.fov * Math.PI) / 360) * (camera.position.z - z);
+    const halfWFor = (z: number) => halfHFor(z) * camera.aspect;
+
     // Kontekst moze da se izgubi i kasnije (uspavani GPU, prebacivanje karte).
     // Tada se petlja zaustavlja i ostaje mirna pozadina, bez praznog ekrana.
     const onLost = (e: Event) => {
@@ -333,8 +349,9 @@ export default function World() {
       // x i y stanice su udeli kadra, pa se tek ovde pretvaraju u metre:
       // koliko je pola kadra siroko zavisi od dubine i odnosa stranica.
       const markZ = a.mark[2] + (b.mark[2] - a.mark[2]) * seg.f;
-      const halfH = Math.tan((camera.fov * Math.PI) / 360) * (camera.position.z - markZ);
+      const halfH = halfHFor(markZ);
       const halfW = halfH * camera.aspect;
+      work.update(t, camera.position.x, camera.position.z, smoothed, halfWFor);
       markTarget.set(
         (a.mark[0] + (b.mark[0] - a.mark[0]) * seg.f) * halfW,
         (a.mark[1] + (b.mark[1] - a.mark[1]) * seg.f + markLift) * halfH + Math.sin(t * 0.8) * 0.05,
@@ -374,6 +391,8 @@ export default function World() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("webglcontextlost", onLost);
+      unsubscribe();
+      work.dispose();
       geometries.forEach((g) => g.dispose());
       materials.forEach((m) => m.dispose());
       envRT.texture.dispose();

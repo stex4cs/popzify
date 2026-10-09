@@ -1,5 +1,6 @@
 import { dict, type Locale } from "@/lib/i18n";
 import { stationCopy } from "@/lib/stations";
+import { clips } from "@/lib/work";
 import styles from "./Stations.module.css";
 
 /**
@@ -41,6 +42,16 @@ export default function Stations({ locale }: { locale: Locale }) {
             {c.work.title} <em className="outline">{c.work.accent}</em>
           </h2>
           <p className="lead">{c.work.body}</p>
+          {/* Spisak postoji i kad scene nema: panele u 3D sceni prati
+              isti materijal, ali naziv i vrsta posla stoje u tekstu. */}
+          <ul className={styles.clips}>
+            {clips.map((clip) => (
+              <li key={clip.id}>
+                <span>{clip.label[locale]}</span>
+                <span className="mono">{clip.kind[locale]}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

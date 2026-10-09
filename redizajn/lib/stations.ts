@@ -30,7 +30,7 @@ export type Station = {
 export const stations: Station[] = [
   { id: "mark", camZ: 10.5, mark: [0, 0.02, 0] },
   { id: "statement", camZ: 7.5, mark: [0.17, 0.05, -14] },
-  { id: "work", camZ: 3.0, mark: [-0.23, 0.03, -26] },
+  { id: "work", camZ: 3.0, mark: [-0.52, 0.3, -26] },
   { id: "contact", camZ: -2.0, mark: [-0.46, 0.28, -36] },
 ];
 
