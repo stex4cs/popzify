@@ -69,12 +69,15 @@ export default function World() {
         transparent: true,
         depthWrite: false,
         vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
-        fragmentShader: `varying vec2 vUv; uniform float uT;
+        fragmentShader: `varying vec2 vUv; uniform float uT; uniform float uHit;
           void main(){ vec2 p=vUv-.5; float d=length(p*vec2(1.,1.1));
             float g=smoothstep(.22,0.,d)*.55 + smoothstep(.09,0.,abs(d-.12-sin(uT*.4)*.01))*.08;
+            // Udarni talas od klika: prsten koji se siri i gasi.
+            float r = mix(.09, .36, 1.-uHit);
+            g += smoothstep(.04, 0., abs(d-r)) * uHit * .9;
             vec3 c=mix(vec3(.39,.40,.95), vec3(.66,.33,.97), smoothstep(-.2,.2,p.x+p.y));
             gl_FragColor=vec4(c*g, g); }`,
-        uniforms: { uT: { value: 0 } },
+        uniforms: { uT: { value: 0 }, uHit: { value: 0 } },
       })
     );
     // --- znak: P sa play trouglom, u hromiranom prstenu ---
@@ -288,10 +291,85 @@ export default function World() {
 
     const target = new THREE.Vector2(),
       cur = new THREE.Vector2();
+
+    /**
+     * Znak se hvata i vrti misem. Pogodak se racuna u pikselima na
+     * ekranu umesto raycastom, jer je iznad platna sloj sa tekstom pa
+     * do canvasa ne stize nijedan dogadjaj — slusa se ceo prozor.
+     *
+     * Na dodir se ne hvata: tamo prst sluzi za skrol i otimanje poteza
+     * bi pokvarilo stranu.
+     */
+    const markScreen = { x: 0, y: 0, r: 0 };
+    const spin = { x: 0, y: 0, vx: 0, vy: 0 };
+    const drag = { on: false, id: -1, px: 0, py: 0, t: 0, moved: 0 };
+    let hover = false;
+    let hit = 0;
+
+    const overMark = (e: PointerEvent) =>
+      Math.hypot(e.clientX - markScreen.x, e.clientY - markScreen.y) < markScreen.r * 1.05;
+
     const onMove = (e: PointerEvent) => {
       target.set((e.clientX / window.innerWidth) * 2 - 1, -((e.clientY / window.innerHeight) * 2 - 1));
+
+      if (drag.on && e.pointerId === drag.id) {
+        const step = Math.max((e.timeStamp - drag.t) / 1000, 1 / 240);
+        const dx = e.clientX - drag.px;
+        const dy = e.clientY - drag.py;
+        drag.px = e.clientX;
+        drag.py = e.clientY;
+        drag.t = e.timeStamp;
+        drag.moved += Math.abs(dx) + Math.abs(dy);
+
+        const ay = dx * 0.006;
+        const ax = dy * 0.004;
+        spin.y += ay;
+        spin.x += ax;
+        // Zamah se pamti u radijanima u sekundi, da let posle pustanja
+        // ne zavisi od toga koliko kadrova uredjaj stigne da nacrta.
+        spin.vy = Math.max(Math.min(ay / step, 12), -12);
+        spin.vx = Math.max(Math.min(ax / step, 8), -8);
+        return;
+      }
+
+      const now = e.pointerType !== "touch" && overMark(e);
+      if (now !== hover) {
+        hover = now;
+        document.body.style.cursor = now ? "grab" : "";
+      }
     };
+
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType === "touch" || !overMark(e)) return;
+      drag.on = true;
+      drag.id = e.pointerId;
+      drag.px = e.clientX;
+      drag.py = e.clientY;
+      drag.t = e.timeStamp;
+      drag.moved = 0;
+      spin.vx = 0;
+      spin.vy = 0;
+      document.body.style.cursor = "grabbing";
+      document.body.style.userSelect = "none";
+      e.preventDefault();
+    };
+
+    const onUp = (e: PointerEvent) => {
+      if (!drag.on || e.pointerId !== drag.id) return;
+      drag.on = false;
+      document.body.style.cursor = hover ? "grab" : "";
+      document.body.style.userSelect = "";
+      // Kratak potez bez pomeranja je klik: znak odgovori udarom.
+      if (drag.moved < 6) {
+        hit = 1;
+        spin.vy += 4;
+      }
+    };
+
     window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
 
     /**
      * Udeo skrola se preslika na deonicu izmedju dve stanice, pa se
@@ -308,6 +386,8 @@ export default function World() {
       seg.f = f * f * (3 - 2 * f);
     };
     const markTarget = new THREE.Vector3();
+    const screenA = new THREE.Vector3();
+    const screenB = new THREE.Vector3();
 
     /** Pola kadra na zadatoj dubini. Sluzi i znaku i panelima. */
     const halfHFor = (z: number) => Math.tan((camera.fov * Math.PI) / 360) * (camera.position.z - z);
@@ -359,12 +439,43 @@ export default function World() {
       );
       mark.position.copy(markTarget);
 
-      mark.scale.setScalar(0.72 + 0.28 * intro);
-      mark.rotation.y = cur.x * 0.35 + Math.sin(t * 0.35) * 0.22 + (1 - intro) * -1.2;
-      mark.rotation.x = -cur.y * 0.22 + Math.sin(t * 0.27) * 0.06;
+      // Polozaj i poluprecnik znaka u pikselima, da pokazivac zna gde je.
+      camera.updateMatrixWorld();
+      screenA.copy(mark.position).project(camera);
+      screenB.set(mark.position.x + 2.42 * mark.scale.x, mark.position.y, mark.position.z).project(camera);
+      markScreen.x = (screenA.x * 0.5 + 0.5) * window.innerWidth;
+      markScreen.y = (0.5 - screenA.y * 0.5) * window.innerHeight;
+      markScreen.r = (Math.abs(screenB.x - screenA.x) * 0.5) * window.innerWidth;
+
+      if (!drag.on) {
+        spin.y += spin.vy * dt;
+        spin.x += spin.vx * dt;
+        const damp = Math.pow(0.025, dt);
+        spin.vx *= damp;
+        spin.vy *= damp;
+        // Dok leti, znak se vrti slobodno. Kad zamah splasne, seda na
+        // najblizi pun obrtaj — inace bi se smirio okrenut nalicjem i
+        // P bi se citalo unazad.
+        const TAU = Math.PI * 2;
+        const pull = Math.abs(spin.vy) < 0.4 ? 2.8 : 0.25;
+        spin.y += (Math.round(spin.y / TAU) * TAU - spin.y) * (1 - Math.exp(-pull * dt));
+        spin.x *= Math.exp(-2 * dt);
+      }
+      spin.x = Math.max(Math.min(spin.x, 0.7), -0.7);
+
+      hit *= Math.exp(-2.6 * dt);
+      if (hit < 0.004) hit = 0;
+      backMat.uniforms.uHit.value = hit;
+
+      const grabbed = drag.on || hover ? 1 : 0;
+      mark.scale.setScalar((0.72 + 0.28 * intro) * (1 + hit * 0.05 + grabbed * 0.02));
+      mark.rotation.y = spin.y + cur.x * 0.35 + Math.sin(t * 0.35) * 0.22 + (1 - intro) * -1.2;
+      mark.rotation.x = spin.x - cur.y * 0.22 + Math.sin(t * 0.27) * 0.06;
       ring.rotation.x = Math.sin(t * 0.5) * 0.12 + (1 - intro) * 1.4;
       ring.rotation.y = Math.cos(t * 0.4) * 0.1;
       ring2.rotation.set(Math.sin(t * 0.3) * 0.3, Math.cos(t * 0.25) * 0.3, t * 0.1);
+      ring2.scale.setScalar(1 + hit * 0.16);
+      (ring2.material as THREE.MeshBasicMaterial).opacity = 0.35 + hit * 0.5;
 
       ptsMat.uniforms.uT.value = t;
       ptsMat.uniforms.uMouse.value.copy(cur);
@@ -390,6 +501,10 @@ export default function World() {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+      document.body.style.userSelect = "";
       canvas.removeEventListener("webglcontextlost", onLost);
       unsubscribe();
       work.dispose();
