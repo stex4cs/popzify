@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sirovi snimci ekrana i eksporti, ne idu u repo
+*.mp4
+*.mov

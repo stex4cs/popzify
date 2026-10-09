@@ -7,21 +7,20 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
-import styles from "./Hero.module.css";
-import { dict, type Locale } from "@/lib/i18n";
+import { stations } from "@/lib/stations";
+import styles from "./World.module.css";
 
 /**
- * Hero scena: stakleni P sa play trouglom u hromiranom prstenu,
- * cestice i svetlosne linije. Jedna WebGL scena po strani.
+ * Jedan neprekidan svet. Canvas stoji fiksiran preko celog ekrana, a
+ * scroll pomera kameru po z osi kroz prostor. Nema zasebnih scena po
+ * sekciji: sve sto se vidi zivi u ovoj jednoj sceni.
  *
- * Sve sto scena napravi skuplja se u disposables i oslobadja na unmount:
- * geometrije, materijali, teksture, composer, renderer, listeneri i rAF.
+ * Tekst nije ovde nego u HTML sloju iznad, da ostane ostar i citljiv.
+ *
+ * Sve sto scena napravi skuplja se i oslobadja na unmount.
  */
-export default function Hero({ locale }: { locale: Locale }) {
+export default function World() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const tcRef = useRef<HTMLSpanElement>(null);
-  const t = dict[locale].hero;
-  const hud = dict[locale].hud;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -30,21 +29,30 @@ export default function Hero({ locale }: { locale: Locale }) {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mobile = window.matchMedia("(max-width: 640px)").matches;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: !mobile, powerPreference: "high-performance" });
+    } catch {
+      // Stari uredjaj, blokiran GPU ili pukao drajver: scena se preskace.
+      // Bez ovoga bi bacena greska oborila celu stranu zajedno sa tekstom.
+      canvas.dataset.fallback = "1";
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, mobile ? 1.5 : 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x07060d);
+    // Magla daje dubinu, ali presna guta boju staklu na kraju hodnika.
+    scene.fog = new THREE.FogExp2(0x07060d, 0.016);
 
     const pmrem = new THREE.PMREMGenerator(renderer);
     const envRT = pmrem.fromScene(new RoomEnvironment(), 0.04);
     scene.environment = envRT.texture;
 
-    const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 120);
 
-    // sve sto treba osloboditi na kraju
     const geometries: THREE.BufferGeometry[] = [];
     const materials: THREE.Material[] = [];
     const track = <T extends THREE.BufferGeometry | THREE.Material>(x: T): T => {
@@ -53,14 +61,7 @@ export default function Hero({ locale }: { locale: Locale }) {
       return x;
     };
 
-    // --- svetla koja staklo hvata ---
-    const l1 = new THREE.PointLight(0x8b5cf6, 60, 20);
-    l1.position.set(-4, 3, 4);
-    const l2 = new THREE.PointLight(0x22d3ee, 40, 20);
-    l2.position.set(4, -3, 3);
-    scene.add(l1, l2);
-
-    // --- mekani violet disk iza, da transmisija ima sta da savije ---
+    // --- violet disk iza znaka ---
     const backMat = track(
       new THREE.ShaderMaterial({
         transparent: true,
@@ -74,14 +75,22 @@ export default function Hero({ locale }: { locale: Locale }) {
         uniforms: { uT: { value: 0 } },
       })
     );
+    // --- znak: P sa play trouglom, u hromiranom prstenu ---
+    const mark = new THREE.Group();
+    scene.add(mark);
+
     const back = new THREE.Mesh(track(new THREE.PlaneGeometry(30, 30)), backMat);
     back.position.z = -4;
-    scene.add(back);
+    mark.add(back);
 
-    const heroGroup = new THREE.Group();
-    scene.add(heroGroup);
+    // Svetla putuju sa znakom. Da stoje na pocetku hodnika, staklo bi
+    // posivelo cim se znak udalji.
+    const l1 = new THREE.PointLight(0x8b5cf6, 60, 24);
+    l1.position.set(-4, 3, 4);
+    const l2 = new THREE.PointLight(0x22d3ee, 40, 24);
+    l2.position.set(4, -3, 3);
+    mark.add(l1, l2);
 
-    // --- P sa play trouglom kao supljinom, iz SVG znaka (y obrnut) ---
     const shape = new THREE.Shape();
     shape.moveTo(190, -136);
     shape.lineTo(276, -136);
@@ -107,7 +116,7 @@ export default function Hero({ locale }: { locale: Locale }) {
         bevelThickness: 12,
         bevelSize: 7,
         bevelSegments: 10,
-        curveSegments: 64,
+        curveSegments: mobile ? 32 : 64,
       })
     );
     pGeo.center();
@@ -134,11 +143,10 @@ export default function Hero({ locale }: { locale: Locale }) {
     );
     const P = new THREE.Mesh(pGeo, glass);
     P.position.x = -0.06;
-    heroGroup.add(P);
+    mark.add(P);
 
-    // --- hromirani prsten ---
     const ring = new THREE.Mesh(
-      track(new THREE.TorusGeometry(2.24, 0.055, 48, 320)),
+      track(new THREE.TorusGeometry(2.24, 0.055, 32, mobile ? 160 : 320)),
       track(
         new THREE.MeshPhysicalMaterial({
           color: 0xe4e2ff,
@@ -152,24 +160,26 @@ export default function Hero({ locale }: { locale: Locale }) {
       )
     );
     const ring2 = new THREE.Mesh(
-      track(new THREE.TorusGeometry(2.42, 0.008, 12, 320)),
+      track(new THREE.TorusGeometry(2.42, 0.008, 12, mobile ? 160 : 320)),
       track(new THREE.MeshBasicMaterial({ color: 0x8b8cff, transparent: true, opacity: 0.35 }))
     );
-    heroGroup.add(ring, ring2);
+    mark.add(ring, ring2);
 
-    // --- cestice ---
-    const N = mobile ? 900 : 2200;
+    // --- cestice kroz ceo hodnik, ne samo oko znaka ---
+    const Z_NEAR = 8;
+    const Z_FAR = -34;
+    const DEPTH = Z_NEAR - Z_FAR;
+    const N = mobile ? 1100 : 3200;
     const pos = new Float32Array(N * 3);
     const seed = new Float32Array(N);
     const col = new Float32Array(N * 3);
     const palette = [0xb9a6ff, 0xffffff, 0x8b8cff, 0x67e8f9, 0xd8b4fe].map((c) => new THREE.Color(c));
     for (let i = 0; i < N; i++) {
-      const side = Math.random() < 0.5 ? -1 : 1;
-      const r = 2.4 + Math.pow(Math.random(), 0.7) * 4.5;
+      const r = 2.2 + Math.pow(Math.random(), 0.6) * 7;
       const a = Math.random() * Math.PI * 2;
-      pos[i * 3] = Math.cos(a) * r * (Math.random() < 0.65 ? 1 : 0.55) + side * Math.random() * 0.6;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 9;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 5 - 0.5;
+      pos[i * 3] = Math.cos(a) * r;
+      pos[i * 3 + 1] = Math.sin(a) * r * 0.75 + (Math.random() - 0.5) * 3;
+      pos[i * 3 + 2] = Z_FAR + Math.random() * DEPTH;
       seed[i] = Math.random();
       const c = palette[(Math.random() * palette.length) | 0];
       col.set([c.r, c.g, c.b], i * 3);
@@ -183,16 +193,21 @@ export default function Hero({ locale }: { locale: Locale }) {
         transparent: true,
         depthWrite: false,
         blending: THREE.AdditiveBlending,
-        uniforms: { uT: { value: 0 }, uPR: { value: renderer.getPixelRatio() }, uMouse: { value: new THREE.Vector2() } },
+        uniforms: {
+          uT: { value: 0 },
+          uPR: { value: renderer.getPixelRatio() },
+          uMouse: { value: new THREE.Vector2() },
+        },
         vertexShader: `attribute float aSeed; attribute vec3 aColor; uniform float uT, uPR; uniform vec2 uMouse;
           varying vec3 vC; varying float vA;
           void main(){ vec3 p=position;
-            p.y = mod(p.y + uT*(.12+aSeed*.25) + 4.5, 9.) - 4.5;
-            p.x += sin(uT*.6 + aSeed*30.)*.12; p.xy += uMouse*(.25+aSeed*.5);
+            p.y += sin(uT*(.25+aSeed*.4) + aSeed*40.)*.35;
+            p.x += cos(uT*(.2+aSeed*.3) + aSeed*30.)*.25;
+            p.xy += uMouse*(.3+aSeed*.6);
             vec4 mv = modelViewMatrix*vec4(p,1.);
-            float big = step(.985, aSeed);
-            gl_PointSize = (mix(2.5, 9., aSeed*aSeed) + big*14.) * uPR * (6./-mv.z);
-            vA = (.35 + .65*abs(sin(uT*(.6+aSeed*2.) + aSeed*40.))) * smoothstep(4.5, 3., abs(p.y));
+            float big = step(.988, aSeed);
+            gl_PointSize = (mix(2.2, 8., aSeed*aSeed) + big*13.) * uPR * (6./max(-mv.z,.001));
+            vA = (.3 + .7*abs(sin(uT*(.5+aSeed*1.8) + aSeed*40.)));
             vC = aColor; gl_Position = projectionMatrix*mv; }`,
         fragmentShader: `varying vec3 vC; varying float vA;
           void main(){ vec2 c=gl_PointCoord-.5; float d=length(c);
@@ -201,8 +216,7 @@ export default function Hero({ locale }: { locale: Locale }) {
             gl_FragColor = vec4(vC*(.8+core), a); }`,
       })
     );
-    const points = new THREE.Points(ptsGeo, ptsMat);
-    scene.add(points);
+    scene.add(new THREE.Points(ptsGeo, ptsMat));
 
     // --- svetlosne linije ---
     const streaks = new THREE.Group();
@@ -214,12 +228,11 @@ export default function Hero({ locale }: { locale: Locale }) {
         depthWrite: false,
         blending: THREE.AdditiveBlending,
         side: THREE.DoubleSide,
-        uniforms: { uT: { value: 0 } },
         vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
         fragmentShader: `varying vec2 vUv; void main(){
             float head = pow(vUv.y, 6.); float edge = smoothstep(.5,0.,abs(vUv.x-.5));
             vec3 c = mix(vec3(.75,.55,1.), vec3(1.,.92,.85), head);
-            gl_FragColor = vec4(c, (head*1.2 + vUv.y*.25) * edge); }`,
+            gl_FragColor = vec4(c, (head*.8 + vUv.y*.16) * edge); }`,
       })
     );
     const SN = mobile ? 6 : 12;
@@ -227,17 +240,25 @@ export default function Hero({ locale }: { locale: Locale }) {
     for (let i = 0; i < SN; i++) {
       const g = track(new THREE.PlaneGeometry(0.018 + Math.random() * 0.02, 1.8 + Math.random() * 2.2));
       const m = new THREE.Mesh(g, streakMat);
-      streakData.push({ m, x: 1.2 + Math.random() * 1.6, y: Math.random() * 14 - 7, v: 1.4 + Math.random() * 2.2, z: Math.random() * 1.5 - 0.3 });
+      streakData.push({
+        m,
+        x: 1.2 + Math.random() * 1.6,
+        y: Math.random() * 14 - 7,
+        v: 1.4 + Math.random() * 2.2,
+        z: Math.random() * 1.5 - 0.3,
+      });
       streaks.add(m);
     }
 
     // --- post ---
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
-    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.75, 0.55, 0.2);
+    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.62, 0.52, 0.26);
     composer.addPass(bloom);
     composer.addPass(new OutputPass());
 
+    let widenCam = 0; // na uspravnom ekranu kamera ide dalje da sve stane
+    let markLift = 0; // uspravni kadar: znak malo vise, da tekst dole dise
     const resize = () => {
       const w = window.innerWidth,
         h = window.innerHeight,
@@ -246,8 +267,8 @@ export default function Hero({ locale }: { locale: Locale }) {
       composer.setSize(w, h);
       bloom.setSize(w, h);
       camera.aspect = asp;
-      camera.position.z = asp < 1 ? 10.5 / Math.max(asp, 0.5) : 10.5;
-      heroGroup.position.y = asp < 1 ? 0.9 : 0.25;
+      widenCam = asp < 1 ? 10.5 / Math.max(asp, 0.5) - 10.5 : 0;
+      markLift = asp < 1 ? 0.22 : 0;
       camera.updateProjectionMatrix();
     };
     window.addEventListener("resize", resize);
@@ -260,28 +281,80 @@ export default function Hero({ locale }: { locale: Locale }) {
     };
     window.addEventListener("pointermove", onMove);
 
-    const pad = (n: number) => String(n).padStart(2, "0");
+    /**
+     * Udeo skrola se preslika na deonicu izmedju dve stanice, pa se
+     * kamera i znak interpoliraju po istom faktoru. Smoothstep da
+     * prelaz nema odskok na granici deonice.
+     */
+    const seg = { i: 0, f: 0 };
+    const locate = (p: number) => {
+      const n = stations.length - 1;
+      const x = Math.min(Math.max(p, 0), 1) * n;
+      const i = Math.min(Math.floor(x), n - 1);
+      const f = x - i;
+      seg.i = i;
+      seg.f = f * f * (3 - 2 * f);
+    };
+    const markTarget = new THREE.Vector3();
+
+    // Kontekst moze da se izgubi i kasnije (uspavani GPU, prebacivanje karte).
+    // Tada se petlja zaustavlja i ostaje mirna pozadina, bez praznog ekrana.
+    const onLost = (e: Event) => {
+      e.preventDefault();
+      cancelAnimationFrame(raf);
+      canvas.dataset.fallback = "1";
+    };
+    canvas.addEventListener("webglcontextlost", onLost);
+
     const clock = new THREE.Clock();
     let raf = 0;
-    let lastFrame = -1;
+    let smoothed = 0;
 
     const tick = () => {
       const dt = Math.min(clock.getDelta(), 0.05);
       const t = clock.elapsedTime * (reduce ? 0.25 : 1);
       cur.lerp(target, 0.05);
 
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? window.scrollY / max : 0;
+      smoothed += (p - smoothed) * 0.08;
+
       const intro = 1 - Math.pow(1 - Math.min(clock.elapsedTime / 2.2, 1), 3);
-      heroGroup.scale.setScalar(0.72 + 0.28 * intro);
-      heroGroup.rotation.y = cur.x * 0.45 + Math.sin(t * 0.35) * 0.22 + (1 - intro) * -1.2;
-      heroGroup.rotation.x = -cur.y * 0.3 + Math.sin(t * 0.27) * 0.06;
+
+      locate(smoothed);
+      const a = stations[seg.i];
+      const b = stations[seg.i + 1];
+
+      camera.position.z = a.camZ + (b.camZ - a.camZ) * seg.f + widenCam;
+      camera.position.x = cur.x * 0.35;
+      camera.position.y = cur.y * 0.22;
+      camera.lookAt(0, 0, camera.position.z - 10);
+
+      // x i y stanice su udeli kadra, pa se tek ovde pretvaraju u metre:
+      // koliko je pola kadra siroko zavisi od dubine i odnosa stranica.
+      const markZ = a.mark[2] + (b.mark[2] - a.mark[2]) * seg.f;
+      const halfH = Math.tan((camera.fov * Math.PI) / 360) * (camera.position.z - markZ);
+      const halfW = halfH * camera.aspect;
+      markTarget.set(
+        (a.mark[0] + (b.mark[0] - a.mark[0]) * seg.f) * halfW,
+        (a.mark[1] + (b.mark[1] - a.mark[1]) * seg.f + markLift) * halfH + Math.sin(t * 0.8) * 0.05,
+        markZ
+      );
+      mark.position.copy(markTarget);
+
+      mark.scale.setScalar(0.72 + 0.28 * intro);
+      mark.rotation.y = cur.x * 0.35 + Math.sin(t * 0.35) * 0.22 + (1 - intro) * -1.2;
+      mark.rotation.x = -cur.y * 0.22 + Math.sin(t * 0.27) * 0.06;
       ring.rotation.x = Math.sin(t * 0.5) * 0.12 + (1 - intro) * 1.4;
       ring.rotation.y = Math.cos(t * 0.4) * 0.1;
       ring2.rotation.set(Math.sin(t * 0.3) * 0.3, Math.cos(t * 0.25) * 0.3, t * 0.1);
-      P.position.y = Math.sin(t * 0.8) * 0.05;
 
       ptsMat.uniforms.uT.value = t;
       ptsMat.uniforms.uMouse.value.copy(cur);
       backMat.uniforms.uT.value = t;
+
+      // linije prate kameru da hodnik ostane naseljen celom duzinom
+      streaks.position.z = camera.position.z - 6;
       for (const d of streakData) {
         d.y += d.v * dt * (reduce ? 0.25 : 1);
         if (d.y > 7) {
@@ -289,15 +362,6 @@ export default function Hero({ locale }: { locale: Locale }) {
           d.x = 1.2 + Math.random() * 1.6;
         }
         d.m.position.set(d.x + cur.x * 0.3, d.y, d.z);
-      }
-
-      // timecode na 24 fps; DOM se dira samo kad se kadar promeni
-      const f = Math.floor(clock.elapsedTime * 24);
-      if (f !== lastFrame && tcRef.current) {
-        lastFrame = f;
-        tcRef.current.textContent = `${pad(Math.floor(f / 86400))}:${pad(Math.floor(f / 1440) % 60)}:${pad(
-          Math.floor(f / 24) % 60
-        )}:${pad(f % 24)}`;
       }
 
       composer.render();
@@ -309,6 +373,7 @@ export default function Hero({ locale }: { locale: Locale }) {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
+      canvas.removeEventListener("webglcontextlost", onLost);
       geometries.forEach((g) => g.dispose());
       materials.forEach((m) => m.dispose());
       envRT.texture.dispose();
@@ -319,54 +384,5 @@ export default function Hero({ locale }: { locale: Locale }) {
     };
   }, []);
 
-  return (
-    <section className={styles.hero}>
-      <canvas
-        ref={canvasRef}
-        className={styles.stage}
-        aria-label={
-          locale === "sr"
-            ? "Stakleni Popzify znak koji rotira, u hromiranom prstenu, sa česticama svetla"
-            : "Rotating glass Popzify mark in a chrome ring, with drifting light particles"
-        }
-      />
-
-      <div className={styles.hud}>
-        <span className="corner tl" />
-        <span className="corner tr" />
-        <span className="corner bl" />
-        <span className="corner br" />
-
-        <div className={styles.top}>
-          <div className={styles.brand}>
-            <b>Pop</b>zify
-          </div>
-          <div className={`${styles.rec} mono`}>
-            <span className={styles.dot} />
-            <span>{hud.rec}</span>
-            <span ref={tcRef}>00:00:00:00</span>
-          </div>
-        </div>
-
-        <div />
-
-        <div className={styles.bottom}>
-          <div className={styles.headline}>
-            <h1 className="display">
-              {t.headlineBefore} <em className="outline">{t.headlineAccent}</em>
-              {t.headlineAfter && ` ${t.headlineAfter}`}
-            </h1>
-            <p className="lead">{t.sub}</p>
-          </div>
-          <div className={`${styles.meta} mono`}>
-            <span>{hud.format}</span>
-            <span>{hud.lens}</span>
-            <span>{hud.geo}</span>
-          </div>
-        </div>
-
-        <div className={`${styles.hint} mono`}>{t.hint}</div>
-      </div>
-    </section>
-  );
+  return <canvas ref={canvasRef} className={styles.stage} aria-hidden="true" />;
 }

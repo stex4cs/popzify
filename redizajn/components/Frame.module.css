@@ -1,0 +1,164 @@
+/* Vizir: fiksiran sloj iznad scene, ne prima klikove osim na linkovima. */
+
+.frame {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.top {
+  position: absolute;
+  top: calc(var(--gutter) + env(safe-area-inset-top, 0px));
+  left: var(--gutter);
+  right: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  pointer-events: auto;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(16px, 1.6vw, 20px);
+  letter-spacing: 0.02em;
+}
+
+.brand b {
+  color: var(--violet);
+}
+
+.nav {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 18px);
+  padding: 9px clamp(12px, 1.4vw, 18px);
+  border: 1px solid var(--frame);
+  border-radius: 999px;
+  background: rgba(7, 6, 13, 0.42);
+  backdrop-filter: blur(10px);
+}
+
+.nav a {
+  color: var(--ink);
+  transition: color 0.25s ease;
+}
+
+.nav a:hover {
+  color: var(--lilac);
+}
+
+.lang {
+  color: var(--muted);
+  padding-left: clamp(10px, 1.4vw, 18px);
+  border-left: 1px solid var(--frame);
+}
+
+.rec,
+.meta {
+  position: absolute;
+  display: flex;
+  color: var(--ink);
+}
+
+.rec {
+  top: calc(var(--gutter) + env(safe-area-inset-top, 0px) + 36px);
+  left: var(--gutter);
+  align-items: center;
+  gap: 10px;
+}
+
+.meta {
+  right: var(--gutter);
+  bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px));
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  color: var(--muted);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rec);
+  box-shadow: 0 0 12px var(--rec);
+  animation: blink 1.2s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+/* ---------- traka napretka ---------- */
+
+.rail {
+  --p: 0;
+  position: absolute;
+  right: calc(var(--gutter) / 2);
+  top: 50%;
+  transform: translateY(-50%);
+  height: clamp(100px, 18vh, 180px);
+  width: 1px;
+  background: var(--frame);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tick {
+  width: 7px;
+  height: 1px;
+  background: var(--frame);
+}
+
+.head {
+  position: absolute;
+  top: calc(var(--p) * 100%);
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin: -2px 0 0 -2px;
+  border-radius: 50%;
+  background: var(--lilac);
+  box-shadow: 0 0 10px var(--lilac);
+}
+
+@media (max-width: 860px) {
+  .meta,
+  .rail {
+    display: none;
+  }
+}
+
+.langShort {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .langLong {
+    display: none;
+  }
+  .langShort {
+    display: inline;
+  }
+  .nav {
+    gap: 10px;
+    padding: 9px 12px;
+  }
+  .lang {
+    padding-left: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
+}

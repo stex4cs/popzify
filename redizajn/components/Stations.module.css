@@ -1,0 +1,159 @@
+/* Sadrzaj iznad scene. Tekst je uvek vidljiv; animacija je dodatak koji
+   krece iz vidljivog stanja, nikad opacity: 0 koji ceka skriptu. */
+
+.path {
+  position: relative;
+  z-index: 1;
+}
+
+.station {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  padding: calc(var(--gutter) + 92px) var(--gutter) calc(var(--gutter) + 52px);
+}
+
+.block {
+  display: grid;
+  gap: 14px;
+  max-width: min(46ch, 100%);
+  /* Tekst mora da se cita i kad bloom iza njega zasvetli. */
+  text-shadow: 0 2px 28px rgba(7, 6, 13, 0.75);
+}
+
+.block h1,
+.block h2 {
+  font-size: clamp(26px, 4.4vw, 58px);
+}
+
+/* ---------- gde u kadru stoji koja stanica ---------- */
+
+.mark .block {
+  align-self: end;
+  justify-self: start;
+}
+
+.left .block {
+  align-self: center;
+  justify-self: start;
+}
+
+.right .block {
+  align-self: center;
+  justify-self: end;
+  text-align: right;
+}
+
+.right .block :is(.mono, .lead) {
+  margin-left: auto;
+}
+
+.center {
+  place-items: center;
+}
+
+.center .block {
+  justify-items: center;
+  text-align: center;
+}
+
+.center .block .lead {
+  margin-inline: auto;
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+/* ---------- kontakt ---------- */
+
+.links {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.links a {
+  display: inline-block;
+  padding: 11px 18px;
+  border: 1px solid var(--frame);
+  border-radius: 999px;
+  background: rgba(7, 6, 13, 0.42);
+  backdrop-filter: blur(10px);
+  font-size: 14px;
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.links a:hover {
+  color: var(--lilac);
+  border-color: var(--lilac);
+  transform: translateY(-2px);
+}
+
+/* ---------- ulaz i izlaz stanice ----------
+   Vezano za polozaj elementa u kadru, bez JavaScripta. Browser koji ne
+   zna animation-timeline prikaze tekst normalno i nista ne izgubi. */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .block,
+    .hint {
+      animation: enter 1 linear both, leave 1 linear both;
+      animation-timeline: view(), view();
+      animation-range: entry 6% entry 82%, exit 18% exit 92%;
+      will-change: opacity, transform;
+    }
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  /* Uspravni kadar: znak drzi gornji deo, tekst donji. Ovako se ne
+     preklapaju ni kad je ekran nizak. */
+  .left .block,
+  .right .block {
+    align-self: end;
+  }
+  .right .block {
+    justify-self: start;
+    text-align: left;
+  }
+  .right .block :is(.mono, .lead) {
+    margin-left: 0;
+  }
+  .hint {
+    display: none;
+  }
+}
+
+/* Hint stoji nad sjajem prstena, pa mu treba isti oslonac kao bloku. */
+.hint {
+  text-shadow: 0 2px 22px rgba(7, 6, 13, 0.85);
+}
