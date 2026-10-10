@@ -24,6 +24,7 @@ const partneri = {
   naslov: "Brendovi uz koje smo radili",
   slike: [
     { src: "/partneri/bif.webp", ime: "BIF" },
+    { src: "/partneri/arenica.webp", ime: "Arenica", url: "https://www.instagram.com/arenicatv/" },
     { src: "/partneri/arenasport.webp", ime: "Arena Sport" },
     { src: "/partneri/oktagonbet.webp", ime: "Oktagon Bet" },
     { src: "/partneri/primobet.webp", ime: "Primo Bet" },

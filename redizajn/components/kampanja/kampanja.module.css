@@ -657,3 +657,13 @@
   font-size: 15px;
   line-height: 1.65;
 }
+
+/* Logotip sa linkom se ponasa kao i ostali, samo sto se otvara. */
+.partneri a {
+  display: block;
+}
+
+.partneri a:focus-visible img {
+  opacity: 0.9;
+  filter: none;
+}

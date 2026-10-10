@@ -76,12 +76,21 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
         <section className={styles.partneri} aria-label={k.partneri.naslov}>
           <p className="mono">{k.partneri.naslov}</p>
           <ul>
-            {k.partneri.slike.map((o) => (
+            {k.partneri.slike.map((o) => {
               /* eslint-disable-next-line @next/next/no-img-element */
-              <li key={o.src}>
-                <img src={o.src} alt={o.ime} loading="lazy" decoding="async" />
-              </li>
-            ))}
+              const slika = <img src={o.src} alt={o.ime} loading="lazy" decoding="async" />;
+              return (
+                <li key={o.src}>
+                  {o.url ? (
+                    <a href={o.url} target="_blank" rel="noopener" aria-label={o.ime}>
+                      {slika}
+                    </a>
+                  ) : (
+                    slika
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </section>
       )}

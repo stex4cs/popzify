@@ -50,7 +50,7 @@ export type Kampanja = {
   /** Pitanja koja se najcesce ponavljaju. */
   pitanja?: Odeljak & { items: { q: string; a: string }[] };
   /** Logotipi uz koje smo radili. */
-  partneri?: { naslov: string; slike: { src: string; ime: string }[] };
+  partneri?: { naslov: string; slike: { src: string; ime: string; url?: string }[] };
   /** Ponudjeni izbor u polju "sta snimamo"; bez njega ide opsti spisak. */
   uslugeIzbor?: string[];
   koraci: Odeljak & { steps: { h: string; p: string }[] };
