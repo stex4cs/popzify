@@ -12,7 +12,6 @@ import { loadCity, type City } from "./world/grad";
 import { buildPanorama } from "./world/panorama";
 import { buildAerials } from "./world/vazduh";
 import { buildMontaza } from "./world/montaza";
-import { getVariant, subscribeVariant } from "@/lib/variant";
 import { buildWork, type WorkScene } from "./world/work";
 import styles from "./World.module.css";
 
@@ -325,16 +324,9 @@ export default function World() {
     }
     scene.add(montaza.group);
 
-    let work: WorkScene = buildWork(getVariant(), mobile);
+    const work: WorkScene = buildWork(mobile);
     place(work.group);
     scene.add(work.group);
-    const unsubscribe = subscribeVariant((v) => {
-      scene.remove(work.group);
-      work.dispose();
-      work = buildWork(v, mobile);
-      place(work.group);
-      scene.add(work.group);
-    });
 
     // --- post ---
     const composer = new EffectComposer(renderer);
@@ -564,7 +556,7 @@ export default function World() {
       }
       // Rastojanje se meri od stvarne kamere; ranije su isle nule, pa
       // je svaki panel ispadao petsto metara daleko i gasio se.
-      work.update(t, camera.position, smoothed, (z) => halfWAt(18 - z));
+      work.update(t, camera.position, smoothed, halfWAt);
 
       // Snimci se vide u pojasu visina na kojima i stoje.
       // Pojas se zatvara pre nego sto panorama preuzme, da se dnevni
@@ -649,7 +641,6 @@ export default function World() {
       window.removeEventListener("pointercancel", onUp);
       document.body.style.userSelect = "";
       canvas.removeEventListener("webglcontextlost", onLost);
-      unsubscribe();
       work.dispose();
       geometries.forEach((g) => g.dispose());
       materials.forEach((m) => m.dispose());

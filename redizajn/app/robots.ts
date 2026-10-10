@@ -5,8 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      // Radna strana za podesavanje grada; nema sta da trazi u pretrazi.
-      disallow: ["/api/", "/sr/provera-grada", "/en/provera-grada"],
+      disallow: ["/api/"],
     },
     sitemap: "https://popzify.com/sitemap.xml",
     host: "https://popzify.com",
