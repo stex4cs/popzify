@@ -58,12 +58,12 @@ void main(){
 
   vec3 col = toLinear(texture2D(uTex, uv).rgb);
   // Materijal u traci stoji prigusen; pod glavom se otvori.
-  col *= mix(.26, .78, uOn);
+  col *= mix(.24, .60, uOn);
 
   // Ivica isecka: rez se vidi i kad je kadar taman.
   float e = min(min(vUv.x, 1. - vUv.x) * uBoxA, min(vUv.y, 1. - vUv.y));
   float edge = smoothstep(.035, 0., e);
-  col += edge * mix(.045, .30, uOn) * toLinear(vec3(.74, .72, 1.));
+  col += edge * mix(.040, .19, uOn) * toLinear(vec3(.74, .72, 1.));
 
   gl_FragColor = vec4(col, uFade);
 }`;
@@ -80,16 +80,72 @@ void main(){
   gl_FragColor = vec4(col, uFade * (core * .8 + glow * .22));
 }`;
 
-/** Pod: mreza koja bezi u dubinu, da se oseti da smo u prostoru. */
+/**
+ * Pod: mreza koja bezi u dubinu, sa odsjajem trake, barom svetla ispod
+ * glave i sporim talasom koji prelazi preko njega. Bez toga je ceo donji
+ * deo kadra crn.
+ */
 const FLOOR_FRAG = `
 uniform float uFade;
+uniform float uT;
+uniform float uHeadU;
 varying vec2 vUv;
+
 void main(){
   if (uFade < .01) discard;
+
   vec2 g = abs(fract(vUv * 42.) - .5);
-  float line = smoothstep(.5, .44, max(g.x, g.y));
-  float depth = smoothstep(.0, .4, vUv.y) * smoothstep(1., .55, vUv.y);
-  gl_FragColor = vec4(line * vec3(.030, .027, .064), uFade * depth * .7);
+  float line = smoothstep(.5, .42, max(g.x, g.y));
+  float depth = smoothstep(.0, .36, vUv.y) * smoothstep(1., .58, vUv.y);
+
+  // Odsjaj trake: pod je svetliji tamo gde je traka nad njim.
+  float band = smoothstep(.0, .34, vUv.y) * (1. - smoothstep(.34, .74, vUv.y));
+
+  // Bara svetla ispod glave.
+  float d = distance(vec2(vUv.x, vUv.y * 1.7), vec2(uHeadU, .40 * 1.7));
+  float pool = smoothstep(.2, .0, d);
+
+  // Spori talas preko poda, da pod ne bude mrtav.
+  float sweep = smoothstep(.07, .0, abs(fract(vUv.y * .5 - uT * .035) - .5));
+
+  vec3 col = line * vec3(.020, .018, .044);
+  col += band * vec3(.007, .006, .018);
+  col += pool * vec3(.034, .030, .075);
+  col += sweep * line * vec3(.022, .020, .045);
+
+  gl_FragColor = vec4(col, uFade * depth * .85);
+}`;
+
+/** Prasina u mraku: sitne tacke koje svetlucaju i polako lebde. */
+const DUST_VERT = `
+attribute float aSeed;
+uniform float uT;
+uniform float uPR;
+varying float vA;
+varying vec3 vC;
+void main(){
+  vec3 p = position;
+  p.y += sin(uT * (.12 + aSeed * .2) + aSeed * 40.) * 1.6;
+  p.x += cos(uT * (.09 + aSeed * .14) + aSeed * 30.) * 2.4;
+  vec4 mv = modelViewMatrix * vec4(p, 1.);
+  gl_PointSize = (1.4 + aSeed * aSeed * 5.) * uPR * (46. / max(-mv.z, .001));
+  vA = .25 + .75 * abs(sin(uT * (.5 + aSeed * 2.2) + aSeed * 60.));
+  vC = mix(vec3(.72, .68, 1.), vec3(.55, .82, .95), step(.78, aSeed));
+  gl_Position = projectionMatrix * mv;
+}`;
+
+const DUST_FRAG = `
+uniform float uFade;
+varying float vA;
+varying vec3 vC;
+void main(){
+  vec2 c = gl_PointCoord - .5;
+  float d = length(c);
+  float disc = smoothstep(.5, .36, d);
+  float core = smoothstep(.2, .0, d);
+  float a = (disc * .45 + core * .85) * vA * uFade;
+  if (a < .01) discard;
+  gl_FragColor = vec4(vC * (.75 + core), a);
 }`;
 
 type Clip = {
@@ -190,7 +246,12 @@ export function buildMontaza(mobile: boolean): Montaza {
     fragmentShader: FLOOR_FRAG,
     transparent: true,
     depthWrite: false,
-    uniforms: { uFade: { value: 0 } },
+    uniforms: {
+      uFade: { value: 0 },
+      uT: { value: 0 },
+      // Gde glava pada na pod, u koordinatama poda.
+      uHeadU: { value: HEAD_X / 190 + 0.5 },
+    },
   });
   const floor = new THREE.Mesh(floorGeo, floorMat);
   floor.rotation.x = -Math.PI / 2;
@@ -198,6 +259,35 @@ export function buildMontaza(mobile: boolean): Montaza {
   geos.push(floorGeo);
   mats.push(floorMat);
   group.add(floor);
+
+  // --- prasina ---
+  const DUST = mobile ? 320 : 950;
+  const dpos = new Float32Array(DUST * 3);
+  const dseed = new Float32Array(DUST);
+  for (let i = 0; i < DUST; i++) {
+    dpos[i * 3] = (Math.random() - 0.5) * 185;
+    dpos[i * 3 + 1] = (Math.random() - 0.5) * 34 - 2;
+    dpos[i * 3 + 2] = -55 + Math.random() * 85;
+    dseed[i] = Math.random();
+  }
+  const dustGeo = new THREE.BufferGeometry();
+  dustGeo.setAttribute("position", new THREE.BufferAttribute(dpos, 3));
+  dustGeo.setAttribute("aSeed", new THREE.BufferAttribute(dseed, 1));
+  const dustMat = new THREE.ShaderMaterial({
+    vertexShader: DUST_VERT,
+    fragmentShader: DUST_FRAG,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    uniforms: {
+      uT: { value: 0 },
+      uFade: { value: 0 },
+      uPR: { value: Math.min(window.devicePixelRatio || 1, 2) },
+    },
+  });
+  geos.push(dustGeo);
+  mats.push(dustMat);
+  group.add(new THREE.Points(dustGeo, dustMat));
 
   /** Isecak koji je trenutno pod glavom; jedini koji se pusta. */
   let playing: Clip | null = null;
@@ -237,6 +327,8 @@ export function buildMontaza(mobile: boolean): Montaza {
 
   const update: Montaza["update"] = (t, dt, fade) => {
     for (const m of mats) m.uniforms.uFade.value = fade;
+    floorMat.uniforms.uT.value = t;
+    dustMat.uniforms.uT.value = t;
     if (fade < 0.01) {
       stop(playing);
       playing = null;
