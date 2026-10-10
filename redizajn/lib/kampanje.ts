@@ -1,5 +1,6 @@
 import type { Locale } from "./i18n";
 import { svadbe } from "./kampanja-svadbe";
+import { marketing } from "./kampanja-marketing";
 
 /**
  * Kampanjske strane: /reels, kasnije /svadbe i /marketing.
@@ -13,6 +14,9 @@ import { svadbe } from "./kampanja-svadbe";
  */
 
 export type Odeljak = { eyebrow: string; title: string; accent: string; p: string };
+
+/** Sekcija koja je samo mreza kartica; koriste je bol, usluge i razlozi. */
+export type Mreza = Odeljak & { items: { h: string; p: string }[] };
 
 export type Kampanja = {
   slug: string;
@@ -36,7 +40,19 @@ export type Kampanja = {
   dobijate?: Odeljak & { kolone: { h: string; p: string; list: string[] }[] };
   /** Zaustavljeni kadrovi iz filma. */
   galerija?: Odeljak & { slike: string[] };
-  bol?: Odeljak & { items: { h: string; p: string }[] };
+  bol?: Mreza;
+  /** Sta sve radimo. */
+  usluge?: Mreza;
+  /** Zasto bas mi. */
+  razlozi?: Mreza;
+  /** Radovi sa linkom na zivi sajt. */
+  radovi?: Odeljak & { items: { h: string; p: string; url: string; slika: string }[] };
+  /** Pitanja koja se najcesce ponavljaju. */
+  pitanja?: Odeljak & { items: { q: string; a: string }[] };
+  /** Logotipi uz koje smo radili. */
+  partneri?: { naslov: string; slike: { src: string; ime: string }[] };
+  /** Ponudjeni izbor u polju "sta snimamo"; bez njega ide opsti spisak. */
+  uslugeIzbor?: string[];
   koraci: Odeljak & { steps: { h: string; p: string }[] };
   paketi: Odeljak & {
     items: { h: string; p: string; list: string[] }[];
@@ -316,4 +332,5 @@ const reelsEn: Kampanja = {
 export const kampanje: Record<string, Record<Locale, Kampanja>> = {
   reels: { sr: reelsSr, en: reelsEn },
   svadbe,
+  marketing,
 };

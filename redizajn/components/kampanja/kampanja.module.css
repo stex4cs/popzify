@@ -517,3 +517,143 @@
   border: 1px solid var(--frame);
   background: #0b0a14;
 }
+
+/* ---------- brendovi uz koje smo radili ---------- */
+
+.partneri {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 0 clamp(30px, 5vw, 48px);
+}
+
+.partneri ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(20px, 4vw, 44px);
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.partneri img {
+  display: block;
+  height: clamp(22px, 3vw, 32px);
+  width: auto;
+  opacity: 0.55;
+  filter: grayscale(1);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.partneri li:hover img {
+  opacity: 0.9;
+  filter: none;
+}
+
+/* ---------- radovi sa linkom na zivi sajt ---------- */
+
+.radovi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 14px;
+  list-style: none;
+  margin: clamp(26px, 4vw, 38px) 0 0;
+  padding: 0;
+}
+
+.radovi a {
+  display: block;
+  height: 100%;
+  padding-bottom: 20px;
+  border: 1px solid var(--frame);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(236, 235, 255, 0.025);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.radovi a:hover {
+  border-color: var(--lilac);
+  transform: translateY(-3px);
+}
+
+.radovi img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+  border-bottom: 1px solid var(--frame);
+  background: #0b0a14;
+}
+
+.radovi h3 {
+  margin: 18px 20px 8px;
+}
+
+.radovi p {
+  margin: 0 20px 12px;
+}
+
+.radovi span {
+  display: block;
+  margin: 0 20px;
+  color: var(--lilac);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- pitanja ---------- */
+
+.pitanja {
+  margin: clamp(26px, 4vw, 38px) 0 0;
+  border-top: 1px solid rgba(236, 235, 255, 0.1);
+}
+
+.pitanja details {
+  border-bottom: 1px solid rgba(236, 235, 255, 0.1);
+}
+
+.pitanja summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  cursor: pointer;
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(16px, 1.8vw, 19px);
+  list-style: none;
+  transition: color 0.2s ease;
+}
+
+.pitanja summary::-webkit-details-marker {
+  display: none;
+}
+
+.pitanja summary::after {
+  content: "+";
+  flex: none;
+  color: var(--lilac);
+  font-family: var(--f-mono);
+  font-size: 20px;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.pitanja details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.pitanja summary:hover {
+  color: var(--lilac);
+}
+
+.pitanja details p {
+  margin: 0 0 20px;
+  max-width: 68ch;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+}

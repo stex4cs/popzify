@@ -17,12 +17,15 @@ export default function ContactForm({
   locale,
   stranica,
   prosireno,
+  usluge,
 }: {
   locale: Locale;
   /** Sa koje strane je upit stigao; ulazi u e-mail. */
   stranica?: string;
   /** Kampanjske strane pitaju i za rok i za tempo, da se upit kvalifikuje. */
   prosireno?: boolean;
+  /** Sopstveni spisak u polju izbora; bez njega ide opsti. */
+  usluge?: string[];
 }) {
   const t = dict[locale].form;
   const [state, setState] = useState<State>({ kind: "idle" });
@@ -96,7 +99,7 @@ export default function ContactForm({
               <option value="" disabled>
                 {t.servicePick}
               </option>
-              {t.services.map((s) => (
+              {(usluge ?? t.services).map((s) => (
                 <option key={s} value={s}>
                   {s}
                 </option>

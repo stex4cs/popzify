@@ -69,6 +69,21 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
         </ul>
       </section>
 
+      {/* ---------- brendovi ---------- */}
+      {k.partneri && (
+        <section className={styles.partneri} aria-label={k.partneri.naslov}>
+          <p className="mono">{k.partneri.naslov}</p>
+          <ul>
+            {k.partneri.slike.map((o) => (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <li key={o.src}>
+                <img src={o.src} alt={o.ime} loading="lazy" decoding="async" />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {/* ---------- film ---------- */}
       {k.film && (
         <section className={styles.sekcija}>
@@ -162,6 +177,49 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
         </section>
       )}
 
+      {/* ---------- sta radimo ---------- */}
+      {k.usluge && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.usluge.eyebrow}</p>
+          <h2 className="display">
+            {k.usluge.title} <em className="outline">{k.usluge.accent}</em>
+          </h2>
+          <p className="lead">{k.usluge.p}</p>
+          <ul className={styles.mreza}>
+            {k.usluge.items.map((i) => (
+              <li key={i.h}>
+                <h3>{i.h}</h3>
+                <p>{i.p}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ---------- radovi ---------- */}
+      {k.radovi && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.radovi.eyebrow}</p>
+          <h2 className="display">
+            {k.radovi.title} <em className="outline">{k.radovi.accent}</em>
+          </h2>
+          <p className="lead">{k.radovi.p}</p>
+          <ul className={styles.radovi}>
+            {k.radovi.items.map((r) => (
+              <li key={r.url}>
+                <a href={r.url} target="_blank" rel="noopener">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={r.slika} alt={r.h} loading="lazy" decoding="async" />
+                  <h3>{r.h}</h3>
+                  <p>{r.p}</p>
+                  <span className="mono">{r.url.replace(/^https?:\/\//, "")}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {/* ---------- kako ide ---------- */}
       <section className={styles.sekcija}>
         <p className="mono">{k.koraci.eyebrow}</p>
@@ -203,6 +261,44 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
         <p className={`${styles.napomena} mono`}>{k.paketi.note}</p>
       </section>
 
+      {/* ---------- zasto mi ---------- */}
+      {k.razlozi && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.razlozi.eyebrow}</p>
+          <h2 className="display">
+            {k.razlozi.title} <em className="outline">{k.razlozi.accent}</em>
+          </h2>
+          <p className="lead">{k.razlozi.p}</p>
+          <ul className={styles.mreza}>
+            {k.razlozi.items.map((i) => (
+              <li key={i.h}>
+                <h3>{i.h}</h3>
+                <p>{i.p}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ---------- pitanja ---------- */}
+      {k.pitanja && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.pitanja.eyebrow}</p>
+          <h2 className="display">
+            {k.pitanja.title} <em className="outline">{k.pitanja.accent}</em>
+          </h2>
+          <p className="lead">{k.pitanja.p}</p>
+          <div className={styles.pitanja}>
+            {k.pitanja.items.map((i) => (
+              <details key={i.q}>
+                <summary>{i.q}</summary>
+                <p>{i.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* ---------- upit ---------- */}
       <section id="upit" className={`${styles.sekcija} ${styles.upit}`}>
         <p className="mono">{k.kraj.eyebrow}</p>
@@ -210,7 +306,7 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
           {k.kraj.title} <em className="outline">{k.kraj.accent}</em>
         </h2>
         <p className="lead">{k.kraj.p}</p>
-        <ContactForm locale={locale} stranica={k.slug} prosireno />
+        <ContactForm locale={locale} stranica={k.slug} prosireno usluge={k.uslugeIzbor} />
       </section>
 
       <footer className={styles.foot}>
