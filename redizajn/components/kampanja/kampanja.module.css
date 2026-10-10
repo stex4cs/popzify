@@ -153,6 +153,19 @@
   scroll-snap-align: start;
 }
 
+.klip {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 14px;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .klipovi video {
   display: block;
   width: 100%;
@@ -161,6 +174,62 @@
   border-radius: 14px;
   border: 1px solid var(--frame);
   background: #0c0b14;
+  transition: border-color 0.25s ease, transform 0.35s ease;
+}
+
+.klip:hover video,
+.klip:focus-visible video {
+  border-color: var(--lilac);
+  transform: scale(1.015);
+}
+
+.klip[data-svira] video {
+  border-color: var(--lilac);
+}
+
+/* Znak za pustanje: da se vidi da se snimak dira, a ne samo gleda. */
+.znak {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--frame);
+  background: rgba(7, 6, 13, 0.62);
+  backdrop-filter: blur(6px);
+  color: var(--ink);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.klip:hover .znak {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.klip[data-svira] .znak {
+  opacity: 0;
+}
+
+.klip[data-svira]:hover .znak {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.zvuk {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(7, 6, 13, 0.7);
+  border: 1px solid var(--lilac);
+  color: var(--ink);
+  pointer-events: none;
 }
 
 .klipTekst {

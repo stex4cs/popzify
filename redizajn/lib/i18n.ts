@@ -27,6 +27,7 @@ type Dict = {
     hint: string;
   };
   hud: { rec: string; format: string; lens: string; geo: string };
+  klip: { pusti: string; pauza: string; zvuk: string };
   nav: { work: string; contact: string; skip: string; other: string; otherShort: string };
   form: {
     legend: string;
@@ -74,6 +75,7 @@ export const dict: Record<Locale, Dict> = {
       lens: "ISO 800 · ƒ/2.8",
       geo: "44.8436° N · 20.4123° E",
     },
+    klip: { pusti: "Pusti", pauza: "Pauziraj", zvuk: "Zvuk" },
     nav: { work: "Radovi", contact: "Kontakt", skip: "Pređi na sadržaj", other: "English", otherShort: "EN" },
     form: {
       legend: "Upit",
@@ -118,6 +120,7 @@ export const dict: Record<Locale, Dict> = {
       lens: "ISO 800 · ƒ/2.8",
       geo: "44.8436° N · 20.4123° E",
     },
+    klip: { pusti: "Play", pauza: "Pause", zvuk: "Sound" },
     nav: { work: "Work", contact: "Contact", skip: "Skip to content", other: "Srpski", otherShort: "SR" },
     form: {
       legend: "Enquiry",

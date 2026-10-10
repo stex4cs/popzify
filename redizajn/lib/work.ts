@@ -20,8 +20,8 @@ export const clips: Clip[] = [
   {
     id: "bojkovic-mec",
     file: "bojkovic-mec",
-    label: { sr: "Meč", en: "The fight" },
-    kind: { sr: "Borilački sport", en: "Combat sports" },
+    label: { sr: "FNC", en: "FNC" },
+    kind: { sr: "Borilačka veče", en: "Fight night" },
   },
   {
     id: "svadba-dron",
