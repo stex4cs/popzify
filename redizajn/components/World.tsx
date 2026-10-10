@@ -7,20 +7,34 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
-import { stations } from "@/lib/stations";
+import { stations, PANORAMA_Y } from "@/lib/stations";
+import { loadCity, type City } from "./world/grad";
+import { buildPanorama } from "./world/panorama";
 import { getVariant, subscribeVariant } from "@/lib/variant";
 import { buildWork, type WorkScene } from "./world/work";
 import styles from "./World.module.css";
 
 /**
  * Jedan neprekidan svet. Canvas stoji fiksiran preko celog ekrana, a
- * scroll pomera kameru po z osi kroz prostor. Nema zasebnih scena po
- * sekciji: sve sto se vidi zivi u ovoj jednoj sceni.
+ * scroll spusta kameru iz svemira do ispod Beograda. Nema zasebnih
+ * scena po sekciji: sve sto se vidi zivi u ovoj jednoj sceni.
+ *
+ * Scena je u pravim metrima. Zbog toga kamera moze da stane na visinu
+ * sa koje je snimak iz drona stvarno nastao, a zgrade iz OpenStreetMap-a
+ * ulaze sa svojim visinama bez preracunavanja.
+ *
+ * Svet je podeljen na dva sloja. Svemir — znak, zvezde i komete — visi
+ * o kameri i putuje sa njom, pa se gasi kako se spustamo. Zemlja stoji
+ * u svetu, na svom mestu, i pojavljuje se kad udjemo u atmosferu.
  *
  * Tekst nije ovde nego u HTML sloju iznad, da ostane ostar i citljiv.
- *
  * Sve sto scena napravi skuplja se i oslobadja na unmount.
  */
+const smoothstep = (a: number, b: number, x: number) => {
+  const t = Math.min(Math.max((x - a) / (b - a), 0), 1);
+  return t * t * (3 - 2 * t);
+};
+
 export default function World() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -46,14 +60,23 @@ export default function World() {
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x07060d);
-    // Magla daje dubinu, ali presna guta boju staklu na kraju hodnika.
-    scene.fog = new THREE.FogExp2(0x07060d, 0.016);
 
     const pmrem = new THREE.PMREMGenerator(renderer);
     const envRT = pmrem.fromScene(new RoomEnvironment(), 0.04);
     scene.environment = envRT.texture;
 
-    const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 120);
+    // Daljina mora da pokrije devet kilometara visine i pet kilometara
+    // grada. Blizina je na dva metra jer je najblize sto se crta znak,
+    // koji visi jedanaest metara ispred kamere.
+    const camera = new THREE.PerspectiveCamera(32, 1, 2, 32000);
+    camera.rotation.order = "YXZ";
+    scene.add(camera);
+
+    /** Sve sto pripada svemiru visi o kameri i putuje sa njom. */
+    const space = new THREE.Group();
+    camera.add(space);
+
+    const gradStation = stations.find((st) => st.id === "grad")!;
 
     const geometries: THREE.BufferGeometry[] = [];
     const materials: THREE.Material[] = [];
@@ -82,7 +105,7 @@ export default function World() {
     );
     // --- znak: P sa play trouglom, u hromiranom prstenu ---
     const mark = new THREE.Group();
-    scene.add(mark);
+    space.add(mark);
 
     const back = new THREE.Mesh(track(new THREE.PlaneGeometry(30, 30)), backMat);
     back.position.z = -4;
@@ -171,8 +194,8 @@ export default function World() {
     mark.add(ring, ring2);
 
     // --- cestice kroz ceo hodnik, ne samo oko znaka ---
-    const Z_NEAR = 8;
-    const Z_FAR = -34;
+    const Z_NEAR = -8;
+    const Z_FAR = -170;
     const DEPTH = Z_NEAR - Z_FAR;
     const N = mobile ? 1100 : 3200;
     const pos = new Float32Array(N * 3);
@@ -180,10 +203,10 @@ export default function World() {
     const col = new Float32Array(N * 3);
     const palette = [0xb9a6ff, 0xffffff, 0x8b8cff, 0x67e8f9, 0xd8b4fe].map((c) => new THREE.Color(c));
     for (let i = 0; i < N; i++) {
-      const r = 2.2 + Math.pow(Math.random(), 0.6) * 7;
+      const r = 7 + Math.pow(Math.random(), 0.6) * 62;
       const a = Math.random() * Math.PI * 2;
       pos[i * 3] = Math.cos(a) * r;
-      pos[i * 3 + 1] = Math.sin(a) * r * 0.75 + (Math.random() - 0.5) * 3;
+      pos[i * 3 + 1] = Math.sin(a) * r * 0.75 + (Math.random() - 0.5) * 24;
       pos[i * 3 + 2] = Z_FAR + Math.random() * DEPTH;
       seed[i] = Math.random();
       const c = palette[(Math.random() * palette.length) | 0];
@@ -201,18 +224,19 @@ export default function World() {
         uniforms: {
           uT: { value: 0 },
           uPR: { value: renderer.getPixelRatio() },
+          uFade: { value: 1 },
           uMouse: { value: new THREE.Vector2() },
         },
-        vertexShader: `attribute float aSeed; attribute vec3 aColor; uniform float uT, uPR; uniform vec2 uMouse;
+        vertexShader: `attribute float aSeed; attribute vec3 aColor; uniform float uT, uPR, uFade; uniform vec2 uMouse;
           varying vec3 vC; varying float vA;
           void main(){ vec3 p=position;
-            p.y += sin(uT*(.25+aSeed*.4) + aSeed*40.)*.35;
-            p.x += cos(uT*(.2+aSeed*.3) + aSeed*30.)*.25;
-            p.xy += uMouse*(.3+aSeed*.6);
+            p.y += sin(uT*(.25+aSeed*.4) + aSeed*40.)*2.2;
+            p.x += cos(uT*(.2+aSeed*.3) + aSeed*30.)*1.6;
+            p.xy += uMouse*(2.+aSeed*4.);
             vec4 mv = modelViewMatrix*vec4(p,1.);
             float big = step(.988, aSeed);
-            gl_PointSize = (mix(2.2, 8., aSeed*aSeed) + big*13.) * uPR * (6./max(-mv.z,.001));
-            vA = (.3 + .7*abs(sin(uT*(.5+aSeed*1.8) + aSeed*40.)));
+            gl_PointSize = (mix(2.2, 8., aSeed*aSeed) + big*13.) * uPR * (46./max(-mv.z,.001));
+            vA = (.3 + .7*abs(sin(uT*(.5+aSeed*1.8) + aSeed*40.))) * uFade;
             vC = aColor; gl_Position = projectionMatrix*mv; }`,
         fragmentShader: `varying vec3 vC; varying float vA;
           void main(){ vec2 c=gl_PointCoord-.5; float d=length(c);
@@ -221,12 +245,14 @@ export default function World() {
             gl_FragColor = vec4(vC*(.8+core), a); }`,
       })
     );
-    scene.add(new THREE.Points(ptsGeo, ptsMat));
+    space.add(new THREE.Points(ptsGeo, ptsMat));
 
     // --- svetlosne linije ---
     const streaks = new THREE.Group();
     streaks.rotation.z = -0.62;
-    scene.add(streaks);
+    streaks.position.z = -34;
+    streaks.scale.setScalar(4);
+    space.add(streaks);
     const streakMat = track(
       new THREE.ShaderMaterial({
         transparent: true,
@@ -234,10 +260,11 @@ export default function World() {
         blending: THREE.AdditiveBlending,
         side: THREE.DoubleSide,
         vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
-        fragmentShader: `varying vec2 vUv; void main(){
+        fragmentShader: `varying vec2 vUv; uniform float uFade; void main(){
             float head = pow(vUv.y, 6.); float edge = smoothstep(.5,0.,abs(vUv.x-.5));
             vec3 c = mix(vec3(.75,.55,1.), vec3(1.,.92,.85), head);
-            gl_FragColor = vec4(c, (head*.58 + vUv.y*.11) * edge); }`,
+            gl_FragColor = vec4(c, (head*.58 + vUv.y*.11) * edge * uFade); }`,
+        uniforms: { uFade: { value: 1 } },
       })
     );
     const SN = mobile ? 14 : 28;
@@ -259,23 +286,38 @@ export default function World() {
     }
 
     // --- radovi ---
+    // Paneli vise nad Kalemegdanom, na visini sa koje je panorama
+    // snimljena, trideset metara ispred kamere na toj stanici.
+    const place = (g: THREE.Object3D) => {
+      const bearing = (gradStation.yaw * Math.PI) / 180;
+      g.position.set(
+        gradStation.at[0] + Math.sin(bearing) * 34,
+        PANORAMA_Y,
+        gradStation.at[1] - Math.cos(bearing) * 34
+      );
+      g.rotation.y = -bearing;
+      g.scale.setScalar(2.2);
+    };
+
     let work: WorkScene = buildWork(getVariant(), mobile);
+    place(work.group);
     scene.add(work.group);
     const unsubscribe = subscribeVariant((v) => {
       scene.remove(work.group);
       work.dispose();
       work = buildWork(v, mobile);
+      place(work.group);
       scene.add(work.group);
     });
 
     // --- post ---
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
-    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.62, 0.52, 0.26);
+    const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.62, 0.52, 0.45);
     composer.addPass(bloom);
     composer.addPass(new OutputPass());
 
-    let widenCam = 0; // na uspravnom ekranu kamera ide dalje da sve stane
+    let markPush = 1; // uspravni kadar: znak dalje od kamere da stane u sirinu
     let markLift = 0; // uspravni kadar: znak malo vise, da tekst dole dise
     const resize = () => {
       const w = window.innerWidth,
@@ -285,7 +327,7 @@ export default function World() {
       composer.setSize(w, h);
       bloom.setSize(w, h);
       camera.aspect = asp;
-      widenCam = asp < 1 ? 10.5 / Math.max(asp, 0.5) - 10.5 : 0;
+      markPush = asp < 1 ? 1 / Math.max(asp, 0.5) : 1;
       markLift = asp < 1 ? 0.22 : 0;
       camera.updateProjectionMatrix();
     };
@@ -388,13 +430,37 @@ export default function World() {
       seg.i = i;
       seg.f = f * f * (3 - 2 * f);
     };
-    const markTarget = new THREE.Vector3();
     const screenA = new THREE.Vector3();
     const screenB = new THREE.Vector3();
 
-    /** Pola kadra na zadatoj dubini. Sluzi i znaku i panelima. */
-    const halfHFor = (z: number) => Math.tan((camera.fov * Math.PI) / 360) * (camera.position.z - z);
-    const halfWFor = (z: number) => halfHFor(z) * camera.aspect;
+    /** Pola kadra na zadatom rastojanju od kamere. */
+    const halfHAt = (dist: number) => Math.tan((camera.fov * Math.PI) / 360) * dist;
+    const halfWAt = (dist: number) => halfHAt(dist) * camera.aspect;
+
+    /** Vrednost na deonici izmedju dve stanice. */
+    const lerpSeg = (ka: number, kb: number, f: number) => ka + (kb - ka) * f;
+
+    /**
+     * Grad se ucitava u pozadini i ulazi u scenu kad stigne. Dok traje,
+     * svemir radi normalno — nista ne ceka na njega.
+     */
+    // Panorama stoji na visini sa koje je snimljena i pali se tek kad
+    // joj se kamera priblizi; dotle je grad taj koji se vidi.
+    const pano = buildPanorama(gradStation.at, PANORAMA_Y, mobile);
+    scene.add(pano.mesh);
+
+    let city: City | null = null;
+    const cityAbort = new AbortController();
+    loadCity(cityAbort.signal).then(
+      (c) => {
+        city = c;
+        c.setFade(0);
+        scene.add(c.group);
+      },
+      () => {
+        // Bez grada ostaje svemir; spustanje i dalje radi.
+      }
+    );
 
     // Kontekst moze da se izgubi i kasnije (uspavani GPU, prebacivanje karte).
     // Tada se petlja zaustavlja i ostaje mirna pozadina, bez praznog ekrana.
@@ -427,28 +493,58 @@ export default function World() {
       const a = stations[seg.i];
       const b = stations[seg.i + 1];
 
-      camera.position.z = a.camZ + (b.camZ - a.camZ) * seg.f + widenCam;
-      camera.position.x = cur.x * 0.35;
-      camera.position.y = cur.y * 0.22;
-      camera.lookAt(0, 0, camera.position.z - 10);
+      // Visina se interpolira geometrijski: izmedju devet kilometara i
+      // sezdeset metara linearni korak bi pola puta proveo u svemiru.
+      const ya = a.y + 60;
+      const yb = b.y + 60;
+      const alt = ya * Math.pow(yb / ya, seg.f) - 60;
 
-      // x i y stanice su udeli kadra, pa se tek ovde pretvaraju u metre:
-      // koliko je pola kadra siroko zavisi od dubine i odnosa stranica.
-      const markZ = a.mark[2] + (b.mark[2] - a.mark[2]) * seg.f;
-      const halfH = halfHFor(markZ);
-      const halfW = halfH * camera.aspect;
-      work.update(t, camera.position.x, camera.position.z, smoothed, halfWFor);
-      markTarget.set(
-        (a.mark[0] + (b.mark[0] - a.mark[0]) * seg.f) * halfW,
-        (a.mark[1] + (b.mark[1] - a.mark[1]) * seg.f + markLift) * halfH + Math.sin(t * 0.8) * 0.05,
-        markZ
+      camera.position.set(
+        lerpSeg(a.at[0], b.at[0], seg.f) + cur.x * 6,
+        alt + cur.y * 3,
+        lerpSeg(a.at[1], b.at[1], seg.f)
       );
-      mark.position.copy(markTarget);
+      camera.rotation.x = (lerpSeg(a.pitch, b.pitch, seg.f) * Math.PI) / 180 - cur.y * 0.05;
+      // yaw je azimut po busoli (0 sever, raste na istok), a rotacija
+      // oko Y u sceni raste na zapad — otuda minus.
+      camera.rotation.y = (-lerpSeg(a.yaw, b.yaw, seg.f) * Math.PI) / 180 + cur.x * 0.08;
+
+      // Znak visi o kameri: x i y su udeo kadra, treci broj rastojanje.
+      const markD = lerpSeg(a.mark[2], b.mark[2], seg.f) * markPush;
+      const halfH = halfHAt(markD);
+      const halfW = halfH * camera.aspect;
+      mark.position.set(
+        lerpSeg(a.mark[0], b.mark[0], seg.f) * halfW,
+        (lerpSeg(a.mark[1], b.mark[1], seg.f) + markLift) * halfH + Math.sin(t * 0.8) * 0.05,
+        -markD
+      );
+
+      // Svemir se gasi kako ulazimo u atmosferu, grad se pali.
+      const spaceFade = smoothstep(500, 3200, alt);
+      // Gasi se i odozgo i odozdo: iznad atmosfere grad se jos ne vidi,
+      // a ispod kote nema sta da se vidi osim mraka.
+      const cityFade = (1 - smoothstep(3800, 8200, alt)) * smoothstep(-22, 10, alt);
+      const entry = smoothstep(600, 2000, alt) * (1 - smoothstep(4200, 7000, alt));
+      ptsMat.uniforms.uFade.value = spaceFade;
+      streakMat.uniforms.uFade.value = entry;
+      // Na visini snimka fotografija preuzima, a model se povlaci.
+      const panoFade = (1 - smoothstep(0, 170, Math.abs(alt - PANORAMA_Y))) * (alt > -12 ? 1 : 0);
+      pano.setFade(panoFade);
+      if (city) {
+        // Kad fotografija preuzme, model izlazi do kraja — inace mu
+        // tamne mase probijaju kroz snimak.
+        city.setFade(cityFade * (1 - panoFade));
+        city.tick(t);
+      }
+      work.update(t, 0, 0, smoothed, () => halfWAt(26));
 
       // Polozaj i poluprecnik znaka u pikselima, da pokazivac zna gde je.
       camera.updateMatrixWorld();
-      screenA.copy(mark.position).project(camera);
-      screenB.set(mark.position.x + 2.42 * mark.scale.x, mark.position.y, mark.position.z).project(camera);
+      screenA.copy(mark.position).applyMatrix4(camera.matrixWorld).project(camera);
+      screenB
+        .set(mark.position.x + 2.42 * mark.scale.x, mark.position.y, mark.position.z)
+        .applyMatrix4(camera.matrixWorld)
+        .project(camera);
       markScreen.x = (screenA.x * 0.5 + 0.5) * window.innerWidth;
       markScreen.y = (0.5 - screenA.y * 0.5) * window.innerHeight;
       markScreen.r = (Math.abs(screenB.x - screenA.x) * 0.5) * window.innerWidth;
@@ -487,8 +583,6 @@ export default function World() {
       ptsMat.uniforms.uMouse.value.copy(cur);
       backMat.uniforms.uT.value = t;
 
-      // linije prate kameru da hodnik ostane naseljen celom duzinom
-      streaks.position.z = camera.position.z - 6;
       for (const d of streakData) {
         d.y += d.v * dt * (reduce ? 0.25 : 1);
         if (d.y > 7.5) {
@@ -508,6 +602,9 @@ export default function World() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      cityAbort.abort();
+      city?.dispose();
+      pano.dispose();
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);

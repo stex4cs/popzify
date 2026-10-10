@@ -181,7 +181,7 @@
 .clips li {
   display: flex;
   align-items: baseline;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 12px;
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(236, 235, 255, 0.12);
@@ -191,12 +191,20 @@
   flex: none;
 }
 
-@media (max-width: 860px) {
-  .clips li {
-    justify-content: space-between;
-  }
+.right .clips li {
+  justify-content: flex-end;
 }
 
 .or {
   margin: 14px 0 0;
+}
+
+.credit {
+  margin: 18px 0 0;
+  opacity: 0.7;
+}
+
+.credit a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

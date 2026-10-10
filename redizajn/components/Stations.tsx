@@ -1,17 +1,22 @@
 import { dict, type Locale } from "@/lib/i18n";
 import { stationCopy } from "@/lib/stations";
 import { clips } from "@/lib/work";
+import { aerials } from "@/lib/vazduh";
 import ContactForm from "./ContactForm";
 import styles from "./Stations.module.css";
 
 /**
  * Sloj sa sadrzajem. Serverska komponenta: tekst je obican HTML u izvoru
  * strane, pa je citljiv pretrazivacima i vidljiv bez JavaScripta.
- * Scena se pomera iza njega, ali tekst se skroluje normalno.
+ * Scena se spusta iza njega, ali tekst se skroluje normalno.
+ *
+ * Redosled stanica prati visinu: svemir, ulazak u atmosferu, vazduh nad
+ * Beogradom, ulica, pa ispod nje.
  */
 export default function Stations({ locale }: { locale: Locale }) {
   const t = dict[locale];
   const c = stationCopy[locale];
+  const visine = `${Math.min(...aerials.map((a) => a.alt))}–${Math.max(...aerials.map((a) => a.alt))} m`;
 
   return (
     <div className={styles.path}>
@@ -28,21 +33,33 @@ export default function Stations({ locale }: { locale: Locale }) {
 
       <section className={`${styles.station} ${styles.left}`}>
         <div className={styles.block}>
-          <p className="mono">{c.statement.eyebrow}</p>
+          <p className="mono">{c.ulazak.eyebrow}</p>
           <h2 className="display">
-            {c.statement.title} <em className="outline">{c.statement.accent}</em>
+            {c.ulazak.title} <em className="outline">{c.ulazak.accent}</em>
           </h2>
-          <p className="lead">{c.statement.body}</p>
+          <p className="lead">{c.ulazak.body}</p>
         </div>
       </section>
 
-      <section id="work" className={`${styles.station} ${styles.right}`}>
+      <section className={`${styles.station} ${styles.right}`}>
         <div className={styles.block}>
-          <p className="mono">{c.work.eyebrow}</p>
+          <p className="mono">
+            {c.vazduh.eyebrow} · {visine}
+          </p>
           <h2 className="display">
-            {c.work.title} <em className="outline">{c.work.accent}</em>
+            {c.vazduh.title} <em className="outline">{c.vazduh.accent}</em>
           </h2>
-          <p className="lead">{c.work.body}</p>
+          <p className="lead">{c.vazduh.body}</p>
+        </div>
+      </section>
+
+      <section id="work" className={`${styles.station} ${styles.left}`}>
+        <div className={styles.block}>
+          <p className="mono">{c.grad.eyebrow}</p>
+          <h2 className="display">
+            {c.grad.title} <em className="outline">{c.grad.accent}</em>
+          </h2>
+          <p className="lead">{c.grad.body}</p>
           {/* Spisak postoji i kad scene nema: panele u 3D sceni prati
               isti materijal, ali naziv i vrsta posla stoje u tekstu. */}
           <ul className={styles.clips}>
@@ -58,11 +75,11 @@ export default function Stations({ locale }: { locale: Locale }) {
 
       <section id="contact" className={`${styles.station} ${styles.center}`}>
         <div className={styles.block}>
-          <p className="mono">{c.contact.eyebrow}</p>
+          <p className="mono">{c.ispod.eyebrow}</p>
           <h2 className="display">
-            {c.contact.title} <em className="outline">{c.contact.accent}</em>
+            {c.ispod.title} <em className="outline">{c.ispod.accent}</em>
           </h2>
-          <p className="lead">{c.contact.body}</p>
+          <p className="lead">{c.ispod.body}</p>
           <ContactForm locale={locale} />
           <p className={`${styles.or} mono`}>{t.form.or}</p>
           <ul className={styles.links}>
@@ -78,6 +95,14 @@ export default function Stations({ locale }: { locale: Locale }) {
               </a>
             </li>
           </ul>
+          {/* Potpis je obaveza licence pod kojom su podaci o gradu. */}
+          <p className={`${styles.credit} mono`}>
+            Grad: ©{" "}
+            <a href="https://www.openstreetmap.org/copyright" rel="noopener" target="_blank">
+              OpenStreetMap
+            </a>{" "}
+            {locale === "sr" ? "doprinosioci" : "contributors"}, ODbL
+          </p>
         </div>
       </section>
     </div>

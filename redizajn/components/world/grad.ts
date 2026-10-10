@@ -132,11 +132,13 @@ attribute float aH;
 varying float vH;
 varying float vUp;
 varying vec3 vView;
+varying float vD;
 void main(){
   vH = aH;
   vUp = normal.y;
   vec4 mv = modelViewMatrix * vec4(position, 1.);
   vView = -mv.xyz;
+  vD = -mv.z;
   gl_Position = projectionMatrix * mv;
 }`;
 
@@ -149,15 +151,20 @@ const BUILDING_FRAG = `
 varying float vH;
 varying float vUp;
 varying vec3 vView;
+varying float vD;
 uniform float uFade;
 void main(){
   if (uFade < .01) discard;
   float tall = clamp(vH / 60., 0., 1.);
-  vec3 base = mix(vec3(.075, .070, .125), vec3(.150, .130, .255), tall);
+  vec3 base = mix(vec3(.085, .080, .145), vec3(.170, .145, .280), tall);
   // Krovovi su svetliji, kao da hvataju nebo.
-  base += vUp * vec3(.070, .070, .120);
+  base += vUp * vec3(.075, .075, .125);
   float rim = pow(1. - clamp(dot(normalize(vView), vec3(0., 1., 0.)), 0., 1.), 3.);
-  base += rim * mix(vec3(.10, .09, .22), vec3(.26, .20, .50), tall);
+  base += rim * mix(vec3(.10, .09, .21), vec3(.23, .18, .40), tall);
+  // Izmaglica na daljini. Scena nema fog jer bi gutao znak na jedanaest
+  // metara, pa je daljina ovde racunata rucno.
+  float haze = 1. - exp(-pow(vD * .00024, 2.));
+  base = mix(base, vec3(.085, .080, .150), haze);
   gl_FragColor = vec4(base, uFade);
 }`;
 
@@ -170,7 +177,7 @@ void main(){
   // Reka je plava i glatka: jedina velika povrsina bez zgrada, pa po njoj
   // oko odmah nalazi usce. Odsjaj putuje nizvodno.
   float ripple = sin(vP.x * .012 + uT * .25) * .5 + sin(vP.z * .009 - uT * .18) * .5;
-  vec3 col = vec3(.030, .055, .135) + ripple * vec3(.010, .020, .045);
+  vec3 col = vec3(.034, .056, .128) + ripple * vec3(.010, .018, .040);
   gl_FragColor = vec4(col, uFade);
 }`;
 

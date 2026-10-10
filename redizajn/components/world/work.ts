@@ -237,14 +237,14 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
       // stvarne sirine kadra, pa na telefonu izlazi iz kadra isto kao
       // na monitoru umesto da visi na ivici.
       const reach = halfWAt(STRIP_Z) + stripHalfLen;
-      const pw = Math.min(Math.max((p - 0.28) / 0.66, 0), 1);
+      const pw = Math.min(Math.max((p - 0.56) / 0.4, 0), 1);
       group.position.x = reach - pw * reach * 2;
     }
 
     // Radovi pripadaju svojoj stanici i gase se kad se ona napusti.
     // Bez ovoga bi paneli ostali da vise nad kontaktom: kamera nikad
     // ne prodje pored njih, pa ih fade po udaljenosti ne hvata.
-    const band = smoothstep(0.30, 0.46, p) * (1 - smoothstep(0.82, 0.95, p));
+    const band = smoothstep(0.56, 0.70, p) * (1 - smoothstep(0.88, 0.98, p));
     if (bandFade) bandFade.uniforms.uFade.value = band;
 
     // Aktivan je onaj panel koji je kamera stvarno uhvatila: u jatu
