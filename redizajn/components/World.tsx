@@ -313,7 +313,7 @@ export default function World() {
 
     // Poslednja stanica: montaza ispod kote grada.
     const ispodStation = stations.find((st) => st.id === "ispod")!;
-    const montaza = buildMontaza();
+    const montaza = buildMontaza(mobile);
     {
       const b = (ispodStation.yaw * Math.PI) / 180;
       montaza.group.position.set(
@@ -572,7 +572,7 @@ export default function World() {
       aerials.update(camera, smoothstep(72, 155, alt) * (1 - smoothstep(300, 520, alt)));
 
       // Montaza se otvara tek kad se prodje kota; iznad nje nema sta.
-      montaza.update(t, 1 - smoothstep(-16, 26, alt));
+      montaza.update(t, dt, 1 - smoothstep(-16, 26, alt));
 
       // Polozaj i poluprecnik znaka u pikselima, da pokazivac zna gde je.
       camera.updateMatrixWorld();

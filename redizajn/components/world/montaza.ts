@@ -1,22 +1,34 @@
 import * as THREE from "three";
+import { clips } from "@/lib/work";
+import { aerials } from "@/lib/vazduh";
 
 /**
  * Stanica ispod kote: montaza.
  *
  * Gore je snimanje, dole je ono sto se sa snimljenim radi. Poslednja
- * stanica je zato vremenska linija: trake sa isecima, rez po rez, i
- * glava koja stoji dok materijal klizi kroz nju.
+ * stanica je zato vremenska linija — ali isecci u njoj nisu ukras nego
+ * sam materijal: sedam reelova i osamnaest snimaka iz drona, isti oni
+ * kroz koje se proslo pri spustanju.
  *
- * Linija stoji uspravno, u visini kamere, i gleda se pravo u nju.
- * Prva verzija je lezala nize i gledala se odozgo pod ostrim uglom, pa
- * su se trake skupile u jednu mrlju i nista se nije citalo.
+ * Isecak koji dodje pod glavu se pusti, ako je video. Ostali stoje na
+ * poster kadru, pa cela traka kosta jedno dekodovanje.
  */
 
-const TRACKS = 8;
 const TRACK_H = 2.6;
 const TRACK_GAP = 3.4;
-const SPAN = 170; // duzina vremenske linije u metrima
-const CLIPS = 22; // koliko iseaka stane po duzini
+const CLIP_GAP = 0.4;
+
+type Item = {
+  tex: string;
+  video?: string;
+  /** Odnos stranica samog snimka, za popunjavanje isecka bez izduzenja. */
+  ratio: number;
+};
+
+const ITEMS: Item[] = [
+  ...clips.map((c) => ({ tex: `/radovi/${c.file}.jpg`, video: `/radovi/${c.file}.mp4`, ratio: 9 / 16 })),
+  ...aerials.map((a) => ({ tex: `/beograd/${a.file}-mali.webp`, ratio: 16 / 9 })),
+];
 
 const VERT = `
 varying vec2 vUv;
@@ -25,52 +37,33 @@ void main(){
   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);
 }`;
 
-/**
- * Jedna traka je jedna ravan; iseci se crtaju u shaderu umesto da svaki
- * bude svoj objekat. Osam traka su tako osam poziva, ne dvesta.
- */
-const TRACK_FRAG = `
-uniform float uT;
+const FRAG = `
+uniform sampler2D uTex;
 uniform float uFade;
-uniform float uSeed;
-uniform float uSpeed;
-uniform float uRuler;
+uniform float uOn;
+uniform float uTexA;
+uniform float uBoxA;
 varying vec2 vUv;
 
-float hash(float n){ return fract(sin(n * 127.1 + uSeed) * 43758.5453); }
+vec3 toLinear(vec3 c){
+  return mix(c / 12.92, pow((c + .055) / 1.055, vec3(2.4)), step(vec3(.04045), c));
+}
 
 void main(){
   if (uFade < .01) discard;
 
-  float x = vUv.x * ${CLIPS}. - uT * uSpeed;
-  float cell = floor(x);
-  float f = fract(x);
-  float lit = hash(cell);
+  // Isecak je sirok, snimak uspravan: popunjava se po kracoj strani.
+  vec2 scale = uBoxA > uTexA ? vec2(1., uTexA / uBoxA) : vec2(uBoxA / uTexA, 1.);
+  vec2 uv = (vUv - .5) * scale + .5;
 
-  // Prazna mesta u traci: montaza nije puna od pocetka do kraja.
-  if (lit < .2) discard;
+  vec3 col = toLinear(texture2D(uTex, uv).rgb);
+  // Materijal u traci stoji prigusen; pod glavom se otvori.
+  col *= mix(.26, .78, uOn);
 
-  // Rez izmedju iseaka.
-  float gap = smoothstep(0., .02, f) * smoothstep(1., .98, f);
-  if (gap < .04) discard;
-
-  vec3 col = mix(vec3(.020, .019, .041), vec3(.047, .038, .092), lit);
-
-  // Talasni oblik unutar iseaka, da se vidi da je u njemu nesto.
-  float h = .16 + hash(cell + 7.3) * .26;
-  float band = smoothstep(h, h - .04, abs(vUv.y - .5));
-  col += band * mix(vec3(.013, .012, .027), vec3(.036, .028, .072), hash(cell + 2.1));
-
-  // Ivica iseaka, da se rez vidi i kad je isecak taman.
-  float edge = smoothstep(.05, .0, min(f, 1. - f));
-  col += edge * vec3(.027, .025, .054);
-
-  // Poneki isecak je izabran.
-  col += step(.9, lit) * vec3(.036, .026, .081);
-
-  // Lenjir sa podeocima stoji samo na najgornjoj traci.
-  float tick = step(.93, fract(vUv.x * ${CLIPS}. * 4.)) * step(.74, vUv.y);
-  col += tick * uRuler * vec3(.06, .055, .12);
+  // Ivica isecka: rez se vidi i kad je kadar taman.
+  float e = min(min(vUv.x, 1. - vUv.x) * uBoxA, min(vUv.y, 1. - vUv.y));
+  float edge = smoothstep(.035, 0., e);
+  col += edge * mix(.045, .30, uOn) * toLinear(vec3(.74, .72, 1.));
 
   gl_FragColor = vec4(col, uFade);
 }`;
@@ -81,10 +74,10 @@ uniform float uFade;
 varying vec2 vUv;
 void main(){
   if (uFade < .01) discard;
-  float core = smoothstep(.5, .44, abs(vUv.x - .5));
+  float core = smoothstep(.5, .42, abs(vUv.x - .5));
   float glow = smoothstep(.5, .0, abs(vUv.x - .5));
-  vec3 col = vec3(.14, .13, .28) * core + vec3(.03, .028, .07) * glow;
-  gl_FragColor = vec4(col, uFade * (core * .6 + glow * .18));
+  vec3 col = vec3(.24, .22, .46) * core + vec3(.04, .035, .09) * glow;
+  gl_FragColor = vec4(col, uFade * (core * .8 + glow * .22));
 }`;
 
 /** Pod: mreza koja bezi u dubinu, da se oseti da smo u prostoru. */
@@ -99,41 +92,82 @@ void main(){
   gl_FragColor = vec4(line * vec3(.030, .027, .064), uFade * depth * .7);
 }`;
 
+type Clip = {
+  mesh: THREE.Mesh;
+  mat: THREE.ShaderMaterial;
+  /** Pocetak isecka po duzini trake, u metrima. */
+  start: number;
+  w: number;
+  item: Item;
+  video: HTMLVideoElement | null;
+  tex: THREE.VideoTexture | null;
+  on: number;
+};
+
 export type Montaza = {
   group: THREE.Group;
-  update: (t: number, fade: number) => void;
+  update: (t: number, dt: number, fade: number) => void;
   dispose: () => void;
 };
 
-export function buildMontaza(): Montaza {
+/** Glava stoji levo od sredine: na sredini bi prolazila kroz formu. */
+const HEAD_X = -24;
+
+export function buildMontaza(mobile: boolean): Montaza {
+  const TRACKS = mobile ? 4 : 6;
+  const PER_TRACK = mobile ? 7 : 10;
+
   const group = new THREE.Group();
   const geos: THREE.BufferGeometry[] = [];
   const mats: THREE.ShaderMaterial[] = [];
-  const timed: THREE.ShaderMaterial[] = [];
+  const loader = new THREE.TextureLoader();
+  const textures = new Map<string, THREE.Texture>();
+  const getTex = (url: string) => {
+    let t = textures.get(url);
+    if (!t) {
+      t = loader.load(url);
+      t.minFilter = THREE.LinearFilter;
+      t.generateMipmaps = false;
+      textures.set(url, t);
+    }
+    return t;
+  };
 
+  const tracks: { clips: Clip[]; len: number; speed: number }[] = [];
   const top = ((TRACKS - 1) / 2) * TRACK_GAP;
+  let pick = 0;
 
   for (let i = 0; i < TRACKS; i++) {
-    const geo = new THREE.PlaneGeometry(SPAN, TRACK_H);
-    const mat = new THREE.ShaderMaterial({
-      vertexShader: VERT,
-      fragmentShader: TRACK_FRAG,
-      transparent: true,
-      uniforms: {
-        uT: { value: 0 },
-        uFade: { value: 0 },
-        uSeed: { value: i * 37.1 },
-        // Gornje trake idu brze: slika se menja cesce od tona.
-        uSpeed: { value: 0.5 - i * 0.045 },
-        uRuler: { value: i === 0 ? 1 : 0 },
-      },
-    });
-    const mesh = new THREE.Mesh(geo, mat);
-    mesh.position.set(0, top - i * TRACK_GAP, -i * 1.2);
-    geos.push(geo);
-    mats.push(mat);
-    timed.push(mat);
-    group.add(mesh);
+    const list: Clip[] = [];
+    let x = 0;
+    for (let k = 0; k < PER_TRACK; k++) {
+      const item = ITEMS[pick++ % ITEMS.length];
+      // Sirine se razlikuju kao u pravoj montazi: nije svaki rez isti.
+      const w = 4.5 + ((pick * 2.7) % 7);
+      const geo = new THREE.PlaneGeometry(w, TRACK_H);
+      const mat = new THREE.ShaderMaterial({
+        vertexShader: VERT,
+        fragmentShader: FRAG,
+        transparent: true,
+        uniforms: {
+          uTex: { value: getTex(item.tex) },
+          uFade: { value: 0 },
+          uOn: { value: 0 },
+          uTexA: { value: item.ratio },
+          uBoxA: { value: w / TRACK_H },
+        },
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.y = top - i * TRACK_GAP;
+      mesh.position.z = -i * 1.2;
+      geos.push(geo);
+      mats.push(mat);
+      group.add(mesh);
+
+      list.push({ mesh, mat, start: x, w, item, video: null, tex: null, on: 0 });
+      x += w + CLIP_GAP;
+    }
+    tracks.push({ clips: list, len: x, speed: 2.1 - i * 0.22 });
   }
 
   const headGeo = new THREE.PlaneGeometry(0.5, TRACKS * TRACK_GAP + 5);
@@ -145,14 +179,12 @@ export function buildMontaza(): Montaza {
     uniforms: { uFade: { value: 0 } },
   });
   const head = new THREE.Mesh(headGeo, headMat);
-  // Glava stoji levo od sredine kadra: na sredini bi prolazila
-  // tacno kroz formu, koja je centrirana.
-  head.position.set(-24, 0, 0.8);
+  head.position.set(HEAD_X, 0, 0.9);
   geos.push(headGeo);
   mats.push(headMat);
   group.add(head);
 
-  const floorGeo = new THREE.PlaneGeometry(SPAN, 220);
+  const floorGeo = new THREE.PlaneGeometry(190, 220);
   const floorMat = new THREE.ShaderMaterial({
     vertexShader: VERT,
     fragmentShader: FLOOR_FRAG,
@@ -167,16 +199,99 @@ export function buildMontaza(): Montaza {
   mats.push(floorMat);
   group.add(floor);
 
-  return {
-    group,
-    update: (t, fade) => {
-      for (const m of mats) m.uniforms.uFade.value = fade;
-      for (const m of timed) m.uniforms.uT.value = t;
-    },
-    dispose: () => {
-      geos.forEach((g) => g.dispose());
-      mats.forEach((m) => m.dispose());
-      group.clear();
-    },
+  /** Isecak koji je trenutno pod glavom; jedini koji se pusta. */
+  let playing: Clip | null = null;
+
+  const stop = (c: Clip | null) => {
+    if (!c?.video) return;
+    c.video.pause();
   };
+
+  const play = (c: Clip) => {
+    if (!c.item.video) return;
+    if (!c.video) {
+      const v = document.createElement("video");
+      v.muted = true;
+      v.loop = true;
+      v.playsInline = true;
+      v.preload = "none";
+      v.setAttribute("playsinline", "");
+      v.src = c.item.video;
+      c.video = v;
+      const tex = new THREE.VideoTexture(v);
+      tex.minFilter = THREE.LinearFilter;
+      tex.generateMipmaps = false;
+      c.tex = tex;
+    }
+    c.video.play().then(
+      () => {
+        if (c.tex) c.mat.uniforms.uTex.value = c.tex;
+      },
+      () => {
+        // Pregledac odbio pustanje: poster ostaje, bez greske.
+      }
+    );
+  };
+
+  let offset = 0;
+
+  const update: Montaza["update"] = (t, dt, fade) => {
+    for (const m of mats) m.uniforms.uFade.value = fade;
+    if (fade < 0.01) {
+      stop(playing);
+      playing = null;
+      return;
+    }
+
+    offset += dt;
+    let best: Clip | null = null;
+    let bestD = Infinity;
+
+    for (const track of tracks) {
+      const shift = offset * track.speed;
+      for (const c of track.clips) {
+        // Traka se vrti u krug: sta prodje levo, vraca se zdesna.
+        let cx = ((c.start + c.w / 2 - shift) % track.len + track.len) % track.len - track.len / 2;
+        c.mesh.position.x = cx;
+
+        const d = Math.abs(cx - HEAD_X);
+        const under = d < c.w / 2;
+        if (under && c.item.video && d < bestD) {
+          bestD = d;
+          best = c;
+        }
+        const target = under ? 1 : 0;
+        c.on += (target - c.on) * (1 - Math.exp(-6 * dt));
+        c.mat.uniforms.uOn.value = c.on;
+        // Isecak pod glavom malo iskoci, kao kad se u montazi izabere.
+        c.mesh.scale.setScalar(1 + c.on * 0.08);
+        c.mesh.position.z = -tracks.indexOf(track) * 1.2 + c.on * 1.4;
+      }
+    }
+
+    if (best !== playing) {
+      stop(playing);
+      playing = best;
+      if (best) play(best);
+    }
+  };
+
+  const dispose = () => {
+    stop(playing);
+    for (const track of tracks) {
+      for (const c of track.clips) {
+        if (c.video) {
+          c.video.removeAttribute("src");
+          c.video.load();
+        }
+        c.tex?.dispose();
+      }
+    }
+    textures.forEach((t) => t.dispose());
+    geos.forEach((g) => g.dispose());
+    mats.forEach((m) => m.dispose());
+    group.clear();
+  };
+
+  return { group, update, dispose };
 }
