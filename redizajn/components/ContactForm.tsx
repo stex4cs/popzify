@@ -13,7 +13,17 @@ type State = { kind: "idle" | "sending" | "ok" | "err"; msg?: string };
  * ovde nikad ne prikazuje "hvala" preko greske. Poruka servera ima
  * prednost nad opstom, jer zna sta je tacno palo.
  */
-export default function ContactForm({ locale }: { locale: Locale }) {
+export default function ContactForm({
+  locale,
+  stranica,
+  prosireno,
+}: {
+  locale: Locale;
+  /** Sa koje strane je upit stigao; ulazi u e-mail. */
+  stranica?: string;
+  /** Kampanjske strane pitaju i za rok i za tempo, da se upit kvalifikuje. */
+  prosireno?: boolean;
+}) {
   const t = dict[locale].form;
   const [state, setState] = useState<State>({ kind: "idle" });
   const srcRef = useRef<HTMLInputElement>(null);
@@ -102,6 +112,37 @@ export default function ContactForm({ locale }: { locale: Locale }) {
           <textarea name="poruka" rows={3} maxLength={3000} />
         </label>
 
+        {prosireno && (
+          <div className={styles.row}>
+            <label>
+              <span className="mono">{t.when}</span>
+              <select name="rok" defaultValue="">
+                <option value="" disabled>
+                  {t.servicePick}
+                </option>
+                {t.whenOptions.map((o) => (
+                  <option key={o} value={o}>
+                    {o}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span className="mono">{t.pace}</span>
+              <select name="tempo" defaultValue="">
+                <option value="" disabled>
+                  {t.servicePick}
+                </option>
+                {t.paceOptions.map((o) => (
+                  <option key={o} value={o}>
+                    {o}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        )}
+
         <label className={styles.consent}>
           <input name="saglasnost" type="checkbox" required />
           <span>
@@ -115,6 +156,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
 
         {/* Nevidljivo ljudima, popunjavaju ga botovi. */}
         <input ref={srcRef} name="izvor" type="hidden" />
+        <input name="stranica" type="hidden" value={stranica || "pocetna"} />
         <div className={styles.trap} aria-hidden="true">
           <label>
             Website

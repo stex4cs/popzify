@@ -94,6 +94,9 @@ export async function POST(req: Request) {
   const email = clean(form.get("email"), 160);
   const usluga = clean(form.get("usluga"), 120);
   const izvor = clean(form.get("izvor"), 400);
+  const rok = clean(form.get("rok"), 80);
+  const tempo = clean(form.get("tempo"), 80);
+  const stranica = clean(form.get("stranica"), 60);
   const poruka = cleanMultiline(form.get("poruka"));
   const saglasnost = !!form.get("saglasnost");
 
@@ -129,6 +132,9 @@ export async function POST(req: Request) {
     red("Telefon:", telefon) +
     red("Email:", email) +
     red("Snimamo:", usluga) +
+    red("Rok:", rok) +
+    red("Tempo:", tempo) +
+    red("Strana:", stranica) +
     red("Izvor:", izvor) +
     `--------------------------------------------------\n` +
     `Poruka:\n${poruka || "(nije uneta)"}\n` +
@@ -140,7 +146,7 @@ export async function POST(req: Request) {
       from: `Popzify sajt <${process.env.SMTP_USER}>`,
       to: TO,
       replyTo: email ? `${ime} <${email}>` : undefined,
-      subject: `NOVI UPIT${usluga ? ` (${usluga})` : ""} — ${ime}`,
+      subject: `NOVI UPIT${stranica && stranica !== "pocetna" ? ` /${stranica}` : ""}${usluga ? ` (${usluga})` : ""} — ${ime}`,
       text: body,
     });
   } catch (err) {

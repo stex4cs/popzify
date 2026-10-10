@@ -46,6 +46,10 @@ type Dict = {
     ok: string;
     error: string;
     or: string;
+    when: string;
+    whenOptions: string[];
+    pace: string;
+    paceOptions: string[];
   };
 };
 
@@ -89,6 +93,10 @@ export const dict: Record<Locale, Dict> = {
       ok: "Hvala. Javljamo se u roku od 24 sata.",
       error: "Slanje nije uspelo. Pozovi nas na 060 5973212 i rešavamo odmah.",
       or: "ili direktno",
+      when: "Kada ti treba",
+      whenOptions: ["Za manje od dve nedelje", "Ovaj mesec", "Za jedan do tri meseca", "Još planiram"],
+      pace: "Jednom ili redovno",
+      paceOptions: ["Jednokratno", "Svakog meseca", "Više puta godišnje"],
     },
   },
   en: {
@@ -129,6 +137,10 @@ export const dict: Record<Locale, Dict> = {
       ok: "Thanks. We come back within 24 hours.",
       error: "Sending failed. Call us on +381 60 5973212 and we sort it right away.",
       or: "or reach us directly",
+      when: "When you need it",
+      whenOptions: ["In under two weeks", "This month", "In one to three months", "Still planning"],
+      pace: "Once or regularly",
+      paceOptions: ["One-off", "Every month", "Several times a year"],
     },
   },
 };
