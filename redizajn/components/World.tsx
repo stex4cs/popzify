@@ -292,12 +292,11 @@ export default function World() {
     const place = (g: THREE.Object3D) => {
       const bearing = (gradStation.yaw * Math.PI) / 180;
       g.position.set(
-        gradStation.at[0] + Math.sin(bearing) * 34,
+        gradStation.at[0] + Math.sin(bearing) * 18,
         PANORAMA_Y,
-        gradStation.at[1] - Math.cos(bearing) * 34
+        gradStation.at[1] - Math.cos(bearing) * 18
       );
       g.rotation.y = -bearing;
-      g.scale.setScalar(2.2);
     };
 
     // Snimci iz drona stoje na svojim visinama, u krugu koji lezi u
@@ -548,7 +547,9 @@ export default function World() {
         city.setFade(cityFade);
         city.tick(t);
       }
-      work.update(t, 0, 0, smoothed, () => halfWAt(26));
+      // Rastojanje se meri od stvarne kamere; ranije su isle nule, pa
+      // je svaki panel ispadao petsto metara daleko i gasio se.
+      work.update(t, camera.position, smoothed, (z) => halfWAt(18 - z));
 
       // Snimci se vide u pojasu visina na kojima i stoje.
       // Pojas se zatvara pre nego sto panorama preuzme, da se dnevni

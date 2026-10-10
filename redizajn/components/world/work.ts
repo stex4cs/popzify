@@ -13,7 +13,8 @@ import type { WorkVariant } from "@/lib/variant";
  * kadru, pa prvi prikaz kosta sedam sitnih slika umesto sedam snimaka.
  */
 
-const PANEL_H = 2.0;
+/** Visina panela u metrima: ekran od sedam metara nad tvrdjavom. */
+const PANEL_H = 7;
 const PANEL_W = PANEL_H * CLIP_RATIO;
 const PITCH = PANEL_W * 1.16;
 
@@ -21,28 +22,31 @@ const PITCH = PANEL_W * 1.16;
 const BUDGET_DESKTOP = 3;
 const BUDGET_MOBILE = 1;
 
-/** x, y, z, zaokret oko Y, uvecanje — rucno rasporedjeno, ne nasumicno. */
+/**
+ * x, y, z, zaokret oko Y, uvecanje — rucno rasporedjeno, ne nasumicno.
+ * Sve je u metrima, u odnosu na mesto grupe, koje scena postavlja
+ * osamnaest metara ispred kamere nad Kalemegdanom.
+ */
 const JATO: [number, number, number, number, number][] = [
-  [-3.1, 0.9, -11.0, 0.4, 1.3],
-  [0.6, -1.5, -14.5, -0.24, 1.15],
-  [-3.5, -0.5, -18.0, 0.34, 1.2],
-  [1.0, 1.3, -21.5, -0.26, 1.2],
-  [-2.6, 0.1, -25.0, 0.32, 1.05],
-  [0.7, -1.3, -28.5, -0.22, 1.0],
-  [-2.0, 1.2, -32.0, 0.24, 0.95],
+  [-11, 3.5, -4, 0.4, 1.3],
+  [4, -5, -12, -0.24, 1.15],
+  [-13, -2, -22, 0.34, 1.2],
+  [6, 5, -32, -0.26, 1.2],
+  [-10, 0.5, -44, 0.32, 1.05],
+  [5, -4, -56, -0.22, 1.0],
+  [-8, 4, -68, 0.24, 0.95],
 ];
 
 /**
  * Panel se pojavljuje kad mu se kamera priblizi i gasi u daljini.
- * Brojevi su u metrima scene: grupa stoji tridesetak metara ispred
- * kamere i uvecana je, pa raspon mora da ih prati.
+ * Brojevi su u metrima scene.
  */
-const FADE_NEAR = 60;
-const FADE_FAR = 180;
+const FADE_NEAR = 20;
+const FADE_FAR = 115;
 
 /** Zakrivljenost trake: krajevi se povijaju od kamere. */
 const ARC = 0.03;
-const STRIP_Z = -10;
+const STRIP_Z = -12;
 
 const VERT = `varying vec2 vUv;
 void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }`;
@@ -75,10 +79,12 @@ void main(){
   if (inside < .01) discard;
 
   vec3 col = toLinear(texture2D(uTex, vUv).rgb);
-  col *= mix(.4, 1., uOn);
+  // Aktivan panel ne ide do pune vrednosti: na svetlom kadru bi ga
+  // bloom razlio u belo preko fotografije iza njega.
+  col *= mix(.4, .86, uOn);
 
   float edge = smoothstep(.009, 0., abs(d + .004));
-  col += edge * mix(.16, .5, uOn) * toLinear(vec3(.74, .72, 1.));
+  col += edge * mix(.14, .40, uOn) * toLinear(vec3(.74, .72, 1.));
 
   gl_FragColor = vec4(col, inside);
 }`;
@@ -120,7 +126,7 @@ type Panel = {
 
 export type WorkScene = {
   group: THREE.Group;
-  update: (t: number, camX: number, camZ: number, p: number, halfWAt: (z: number) => number) => void;
+  update: (t: number, cam: THREE.Vector3, p: number, halfWAt: (z: number) => number) => void;
   dispose: () => void;
 };
 
@@ -131,6 +137,13 @@ const smoothstep = (a: number, b: number, x: number) => {
 
 export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
   const group = new THREE.Group();
+  /**
+   * Klizanje trake i disanje jata idu po unutrasnjoj grupi. Spoljnu
+   * postavlja scena — nad Kalemegdanom i okrenutu ka kameri — pa ne sme
+   * da joj se dira ni polozaj ni ugao.
+   */
+  const inner = new THREE.Group();
+  group.add(inner);
   const geometries: THREE.BufferGeometry[] = [];
   const materials: THREE.Material[] = [];
   const panels: Panel[] = [];
@@ -184,7 +197,7 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
       mesh.rotation.y = Math.atan(2 * ARC * lx);
     }
 
-    group.add(mesh);
+    inner.add(mesh);
     panels.push({ mesh, mat, video, poster, tex: null, started: false, on: 0 });
   });
 
@@ -227,8 +240,8 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
     bandFade = bandMat;
     const band = new THREE.Mesh(bandGeo, bandMat);
     band.position.z = -0.02;
-    group.add(band);
-    group.position.z = STRIP_Z;
+    inner.add(band);
+    inner.position.z = STRIP_Z;
   }
 
   const order: number[] = panels.map((_, i) => i);
@@ -239,7 +252,7 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
   const dtOf = () => Math.min(Math.max(nowT - lastT, 0), 0.08);
   let nowT = 0;
 
-  const update: WorkScene["update"] = (t, camX, camZ, p, halfWAt) => {
+  const update: WorkScene["update"] = (t, cam, p, halfWAt) => {
     nowT = t;
     if (variant === "traka") {
       // Traka prolazi pored kamere tokom stanice. Put se racuna iz
@@ -247,7 +260,7 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
       // na monitoru umesto da visi na ivici.
       const reach = halfWAt(STRIP_Z) + stripHalfLen;
       const pw = Math.min(Math.max((p - 0.56) / 0.4, 0), 1);
-      group.position.x = reach - pw * reach * 2;
+      inner.position.x = reach - pw * reach * 2;
     }
 
     // Radovi pripadaju svojoj stanici i gase se kad se ona napusti.
@@ -261,15 +274,17 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
     order.sort((a, b) => score(a) - score(b));
     function score(i: number) {
       panels[i].mesh.getWorldPosition(world);
+      // U traci se grlo meri po samoj traci, ne po svetskoj x osi:
+      // spoljna grupa je okrenuta, pa svetski x vise nije pravac trake.
       return variant === "traka"
-        ? Math.abs(world.x - camX)
-        : Math.hypot(world.x - camX, world.z - camZ);
+        ? Math.abs(panels[i].mesh.position.x + inner.position.x)
+        : world.distanceTo(cam);
     }
 
     for (let k = 0; k < panels.length; k++) {
       const panel = panels[order[k]];
       panel.mesh.getWorldPosition(world);
-      const dist = Math.hypot(world.x - camX, world.z - camZ);
+      const dist = world.distanceTo(cam);
       const byDist =
         variant === "jato" ? Math.min(Math.max((FADE_FAR - dist) / (FADE_FAR - FADE_NEAR), 0), 1) : 1;
       const fade = byDist * band;
@@ -315,13 +330,13 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
       for (let i = 0; i < panels.length; i++) {
         const [x, y, z, ry] = JATO[i];
         const m = panels[i].mesh;
-        m.position.set(x + Math.sin(t * 0.21 + i) * 0.12, y + Math.sin(t * 0.33 + i * 1.7) * 0.1, z);
+        m.position.set(x + Math.sin(t * 0.21 + i) * 0.5, y + Math.sin(t * 0.33 + i * 1.7) * 0.4, z);
         m.rotation.y = ry + Math.sin(t * 0.25 + i) * 0.05;
       }
     } else {
       // Traka ide iznad sredine, da tekst dole desno ostane citljiv.
-      group.position.y = 0.8 + Math.sin(t * 0.3) * 0.08;
-      group.rotation.z = Math.sin(t * 0.17) * 0.012;
+      inner.position.y = 2.6 + Math.sin(t * 0.3) * 0.35;
+      inner.rotation.z = Math.sin(t * 0.17) * 0.012;
     }
   };
 
