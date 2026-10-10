@@ -44,3 +44,6 @@ next-env.d.ts
 # sirovi snimci ekrana i eksporti, ne idu u repo
 *.mp4
 *.mov
+
+# sirovi materijal iz kamere i drona; u repo ide samo web verzija iz public/
+assets/
