@@ -317,9 +317,9 @@ export default function World() {
     {
       const b = (ispodStation.yaw * Math.PI) / 180;
       montaza.group.position.set(
-        ispodStation.at[0] + Math.sin(b) * 130,
-        ispodStation.y - 46,
-        ispodStation.at[1] - Math.cos(b) * 130
+        ispodStation.at[0] + Math.sin(b) * 80,
+        ispodStation.y - 1,
+        ispodStation.at[1] - Math.cos(b) * 80
       );
       montaza.group.rotation.y = -b;
     }

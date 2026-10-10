@@ -43,7 +43,7 @@ export const stations: Station[] = [
   { id: "ulazak", y: 2600, pitch: -46, yaw: 248, at: [430, -140], mark: [0.3, 0.2, 26] },
   { id: "vazduh", y: 420, pitch: -24, yaw: 288, at: [950, 300], mark: [-0.42, 0.3, 40] },
   { id: "grad", y: 62.8, pitch: -3, yaw: 292, at: [513, -276], mark: [-0.46, 0.33, 52] },
-  { id: "ispod", y: -30, pitch: -10, yaw: 292, at: [513, -276], mark: [0.44, 0.3, 46] },
+  { id: "ispod", y: -30, pitch: -1, yaw: 292, at: [513, -276], mark: [0.46, 0.34, 46] },
 ];
 
 /**
