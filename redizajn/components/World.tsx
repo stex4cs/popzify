@@ -11,6 +11,7 @@ import { stations, PANORAMA_Y } from "@/lib/stations";
 import { loadCity, type City } from "./world/grad";
 import { buildPanorama } from "./world/panorama";
 import { buildAerials } from "./world/vazduh";
+import { buildMontaza } from "./world/montaza";
 import { getVariant, subscribeVariant } from "@/lib/variant";
 import { buildWork, type WorkScene } from "./world/work";
 import styles from "./World.module.css";
@@ -310,6 +311,20 @@ export default function World() {
     );
     scene.add(aerials.group);
 
+    // Poslednja stanica: montaza ispod kote grada.
+    const ispodStation = stations.find((st) => st.id === "ispod")!;
+    const montaza = buildMontaza();
+    {
+      const b = (ispodStation.yaw * Math.PI) / 180;
+      montaza.group.position.set(
+        ispodStation.at[0] + Math.sin(b) * 130,
+        ispodStation.y - 46,
+        ispodStation.at[1] - Math.cos(b) * 130
+      );
+      montaza.group.rotation.y = -b;
+    }
+    scene.add(montaza.group);
+
     let work: WorkScene = buildWork(getVariant(), mobile);
     place(work.group);
     scene.add(work.group);
@@ -556,6 +571,9 @@ export default function World() {
       // snimci i fotografija Kalemegdana ne poklope u istom kadru.
       aerials.update(camera, smoothstep(72, 155, alt) * (1 - smoothstep(300, 520, alt)));
 
+      // Montaza se otvara tek kad se prodje kota; iznad nje nema sta.
+      montaza.update(t, 1 - smoothstep(-16, 26, alt));
+
       // Polozaj i poluprecnik znaka u pikselima, da pokazivac zna gde je.
       camera.updateMatrixWorld();
       screenA.copy(mark.position).applyMatrix4(camera.matrixWorld).project(camera);
@@ -624,6 +642,7 @@ export default function World() {
       city?.dispose();
       pano.dispose();
       aerials.dispose();
+      montaza.dispose();
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);
