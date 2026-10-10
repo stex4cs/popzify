@@ -237,20 +237,23 @@ export default function World() {
         fragmentShader: `varying vec2 vUv; void main(){
             float head = pow(vUv.y, 6.); float edge = smoothstep(.5,0.,abs(vUv.x-.5));
             vec3 c = mix(vec3(.75,.55,1.), vec3(1.,.92,.85), head);
-            gl_FragColor = vec4(c, (head*.8 + vUv.y*.16) * edge); }`,
+            gl_FragColor = vec4(c, (head*.58 + vUv.y*.11) * edge); }`,
       })
     );
-    const SN = mobile ? 6 : 12;
+    const SN = mobile ? 14 : 28;
+    /** Gde kometa upada u kadar. Sira staza i brzi let znace da ih kroz
+     *  kadar prodje vise, a da ih u jednom trenutku i dalje nema gomila. */
+    const streakX = () => -0.6 + Math.random() * 4.2;
     const streakData: { m: THREE.Mesh; x: number; y: number; v: number; z: number }[] = [];
     for (let i = 0; i < SN; i++) {
-      const g = track(new THREE.PlaneGeometry(0.018 + Math.random() * 0.02, 1.8 + Math.random() * 2.2));
+      const g = track(new THREE.PlaneGeometry(0.016 + Math.random() * 0.022, 1.6 + Math.random() * 2.4));
       const m = new THREE.Mesh(g, streakMat);
       streakData.push({
         m,
-        x: 1.2 + Math.random() * 1.6,
-        y: Math.random() * 14 - 7,
-        v: 1.4 + Math.random() * 2.2,
-        z: Math.random() * 1.5 - 0.3,
+        x: streakX(),
+        y: Math.random() * 15 - 7.5,
+        v: 2.6 + Math.random() * 4.4,
+        z: Math.random() * 1.8 - 0.4,
       });
       streaks.add(m);
     }
@@ -409,11 +412,14 @@ export default function World() {
     const tick = () => {
       const dt = Math.min(clock.getDelta(), 0.05);
       const t = clock.elapsedTime * (reduce ? 0.25 : 1);
-      cur.lerp(target, 0.05);
+
+      // Glacanje ide po vremenu, ne po kadru. Sa korakom po kadru bi na
+      // slabijem uredjaju kamera vidno kaskala za skrolom.
+      cur.lerp(target, 1 - Math.exp(-3 * dt));
 
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const p = max > 0 ? window.scrollY / max : 0;
-      smoothed += (p - smoothed) * 0.08;
+      smoothed += (p - smoothed) * (1 - Math.exp(-5 * dt));
 
       const intro = 1 - Math.pow(1 - Math.min(clock.elapsedTime / 2.2, 1), 3);
 
@@ -485,9 +491,11 @@ export default function World() {
       streaks.position.z = camera.position.z - 6;
       for (const d of streakData) {
         d.y += d.v * dt * (reduce ? 0.25 : 1);
-        if (d.y > 7) {
-          d.y = -7;
-          d.x = 1.2 + Math.random() * 1.6;
+        if (d.y > 7.5) {
+          d.y = -7.5 - Math.random() * 3;
+          d.x = streakX();
+          d.v = 2.6 + Math.random() * 4.4;
+          d.z = Math.random() * 1.8 - 0.4;
         }
         d.m.position.set(d.x + cur.x * 0.3, d.y, d.z);
       }

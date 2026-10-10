@@ -82,6 +82,7 @@ void main(){
 /** Nosac trake: tamna podloga sa perforacijama uz obe ivice. */
 const BAND_FRAG = `
 uniform float uFrames;
+uniform float uFade;
 varying vec2 vUv;
 
 vec3 toLinear(vec3 c){
@@ -99,7 +100,8 @@ void main(){
 
   vec3 base = toLinear(vec3(.07, .065, .1));
   float sheen = smoothstep(.5, .0, abs(v - .5)) * .012;
-  gl_FragColor = vec4(base + sheen, .95);
+  if (uFade < .01) discard;
+  gl_FragColor = vec4(base + sheen, .95 * uFade);
 }`;
 
 type Panel = {
@@ -118,11 +120,17 @@ export type WorkScene = {
   dispose: () => void;
 };
 
+const smoothstep = (a: number, b: number, x: number) => {
+  const t = Math.min(Math.max((x - a) / (b - a), 0), 1);
+  return t * t * (3 - 2 * t);
+};
+
 export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
   const group = new THREE.Group();
   const geometries: THREE.BufferGeometry[] = [];
   const materials: THREE.Material[] = [];
   const panels: Panel[] = [];
+  let bandFade: THREE.ShaderMaterial | null = null;
   const loader = new THREE.TextureLoader();
   const budget = mobile ? BUDGET_MOBILE : BUDGET_DESKTOP;
 
@@ -208,10 +216,11 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
       fragmentShader: BAND_FRAG,
       transparent: true,
       side: THREE.DoubleSide,
-      uniforms: { uFrames: { value: clips.length } },
+      uniforms: { uFrames: { value: clips.length }, uFade: { value: 1 } },
     });
     materials.push(bandMat);
 
+    bandFade = bandMat;
     const band = new THREE.Mesh(bandGeo, bandMat);
     band.position.z = -0.02;
     group.add(band);
@@ -232,6 +241,12 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
       group.position.x = reach - pw * reach * 2;
     }
 
+    // Radovi pripadaju svojoj stanici i gase se kad se ona napusti.
+    // Bez ovoga bi paneli ostali da vise nad kontaktom: kamera nikad
+    // ne prodje pored njih, pa ih fade po udaljenosti ne hvata.
+    const band = smoothstep(0.30, 0.46, p) * (1 - smoothstep(0.82, 0.95, p));
+    if (bandFade) bandFade.uniforms.uFade.value = band;
+
     // Aktivan je onaj panel koji je kamera stvarno uhvatila: u jatu
     // najblizi, u traci onaj koji je usao u grlo ispred kamere.
     order.sort((a, b) => score(a) - score(b));
@@ -246,8 +261,9 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
       const panel = panels[order[k]];
       panel.mesh.getWorldPosition(world);
       const dist = Math.hypot(world.x - camX, world.z - camZ);
-      const fade =
+      const byDist =
         variant === "jato" ? Math.min(Math.max((FADE_FAR - dist) / (FADE_FAR - FADE_NEAR), 0), 1) : 1;
+      const fade = byDist * band;
       panel.mat.uniforms.uFade.value = fade;
 
       const want = k < budget && fade > 0.15;

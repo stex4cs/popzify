@@ -1,6 +1,7 @@
 import { dict, type Locale } from "@/lib/i18n";
 import { stationCopy } from "@/lib/stations";
 import { clips } from "@/lib/work";
+import ContactForm from "./ContactForm";
 import styles from "./Stations.module.css";
 
 /**
@@ -62,6 +63,8 @@ export default function Stations({ locale }: { locale: Locale }) {
             {c.contact.title} <em className="outline">{c.contact.accent}</em>
           </h2>
           <p className="lead">{c.contact.body}</p>
+          <ContactForm locale={locale} />
+          <p className={`${styles.or} mono`}>{t.form.or}</p>
           <ul className={styles.links}>
             <li>
               <a href="mailto:business@popzify.com">business@popzify.com</a>

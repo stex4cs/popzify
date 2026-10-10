@@ -1,0 +1,146 @@
+/* Kontakt forma stoji nad scenom, pa joj treba sopstvena podloga. */
+
+.form {
+  width: min(560px, 100%);
+  text-align: left;
+  margin-top: 6px;
+}
+
+.form fieldset {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: clamp(16px, 2.2vw, 22px);
+  border: 1px solid var(--frame);
+  border-radius: 18px;
+  background: rgba(7, 6, 13, 0.55);
+  backdrop-filter: blur(12px);
+}
+
+.form fieldset:disabled {
+  opacity: 0.6;
+}
+
+.form legend {
+  padding: 0 8px;
+  color: var(--lilac);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form label {
+  display: grid;
+  gap: 5px;
+}
+
+.form label span i {
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+}
+
+.form :is(input[type="text"], input[type="tel"], input[type="email"], select, textarea) {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid rgba(236, 235, 255, 0.2);
+  border-radius: 11px;
+  background: rgba(236, 235, 255, 0.05);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.form :is(input, select, textarea):focus {
+  outline: none;
+  border-color: var(--lilac);
+  background: rgba(236, 235, 255, 0.09);
+}
+
+.form select option {
+  background: #14121f;
+  color: var(--ink);
+}
+
+.consent {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.consent input {
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  accent-color: var(--violet);
+}
+
+.submit {
+  justify-self: start;
+  margin-top: 2px;
+  padding: 13px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--lilac);
+  color: var(--void);
+  font-family: var(--f-display);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(185, 166, 255, 0.28);
+}
+
+.submit:disabled {
+  cursor: progress;
+}
+
+/* Zamka za botove: van ekrana, van reda za tastaturu, bez display:none
+   jer deo botova preskace sakrivena polja. */
+.trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.msg {
+  margin: 10px 2px 0;
+  min-height: 1.3em;
+  font-size: 14px;
+  color: #ff8fa3;
+}
+
+.ok {
+  margin: 10px 0 0;
+  padding: 16px 20px;
+  border: 1px solid var(--lilac);
+  border-radius: 14px;
+  background: rgba(7, 6, 13, 0.55);
+  color: var(--ink);
+  font-size: 15px;
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

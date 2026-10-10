@@ -28,6 +28,23 @@ type Dict = {
   };
   hud: { rec: string; format: string; lens: string; geo: string };
   nav: { work: string; contact: string; skip: string; other: string; otherShort: string };
+  form: {
+    legend: string;
+    name: string;
+    phone: string;
+    email: string;
+    optional: string;
+    service: string;
+    servicePick: string;
+    services: string[];
+    message: string;
+    consent: string;
+    submit: string;
+    sending: string;
+    ok: string;
+    error: string;
+    or: string;
+  };
 };
 
 export const dict: Record<Locale, Dict> = {
@@ -52,6 +69,23 @@ export const dict: Record<Locale, Dict> = {
       geo: "44.8436° N · 20.4123° E",
     },
     nav: { work: "Radovi", contact: "Kontakt", skip: "Pređi na sadržaj", other: "English", otherShort: "EN" },
+    form: {
+      legend: "Upit",
+      name: "Ime i prezime",
+      phone: "Telefon",
+      email: "E-mail",
+      optional: "nije obavezno",
+      service: "Šta snimamo",
+      servicePick: "Izaberi",
+      services: ["Svadba", "Događaj ili sajam", "Borilačka veče", "Sadržaj za mreže", "Nešto drugo"],
+      message: "Par reči o poslu",
+      consent: "Saglasan sam da Popzify obradi ove podatke radi odgovora na upit.",
+      submit: "Pošalji upit",
+      sending: "Šaljem…",
+      ok: "Hvala. Javljamo se u roku od 24 sata.",
+      error: "Slanje nije uspelo. Pozovi nas na 060 5973212 i rešavamo odmah.",
+      or: "ili direktno",
+    },
   },
   en: {
     meta: {
@@ -73,5 +107,22 @@ export const dict: Record<Locale, Dict> = {
       geo: "44.8436° N · 20.4123° E",
     },
     nav: { work: "Work", contact: "Contact", skip: "Skip to content", other: "Srpski", otherShort: "SR" },
+    form: {
+      legend: "Enquiry",
+      name: "Full name",
+      phone: "Phone",
+      email: "Email",
+      optional: "optional",
+      service: "What we shoot",
+      servicePick: "Pick one",
+      services: ["Wedding", "Event or trade fair", "Fight night", "Social content", "Something else"],
+      message: "A few words about the job",
+      consent: "I agree that Popzify may process this data to answer my enquiry.",
+      submit: "Send enquiry",
+      sending: "Sending…",
+      ok: "Thanks. We come back within 24 hours.",
+      error: "Sending failed. Call us on +381 60 5973212 and we sort it right away.",
+      or: "or reach us directly",
+    },
   },
 };

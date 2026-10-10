@@ -7,6 +7,29 @@
   pointer-events: none;
 }
 
+/* Sadrzaj koji je visi od ekrana prolazi ispod viziru. Blaga senka na
+   vrhu i dnu drzi znak, REC i podatke citljivim dok tekst klizi ispod.
+   Pseudo-elementi se crtaju ispod dece, pa ne zamagljuju sam vizir. */
+.frame::before,
+.frame::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 130px;
+  pointer-events: none;
+}
+
+.frame::before {
+  top: 0;
+  background: linear-gradient(rgba(7, 6, 13, 0.82), rgba(7, 6, 13, 0));
+}
+
+.frame::after {
+  bottom: 0;
+  background: linear-gradient(rgba(7, 6, 13, 0), rgba(7, 6, 13, 0.72));
+}
+
 .top {
   position: absolute;
   top: calc(var(--gutter) + env(safe-area-inset-top, 0px));
