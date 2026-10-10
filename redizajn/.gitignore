@@ -41,9 +41,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# sirovi snimci ekrana i eksporti, ne idu u repo
-*.mp4
-*.mov
+# Sirovi snimci ekrana i eksporti, ne idu u repo. Samo u korenu
+# projekta: ranije je ovde stajalo *.mp4, pa je pravilo progutalo i
+# snimke u public/ — na sajtu nijedan video nije radio, a lokalno jeste.
+/*.mp4
+/*.mov
 
 # sirovi materijal iz kamere i drona; u repo ide samo web verzija iz public/
 assets/
