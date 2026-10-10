@@ -1,0 +1,37 @@
+#!/bin/sh
+# Odbija commit u kojem neka tajna ima vrednost.
+#
+# Lozinka za sanduce je vec jednom ovako otisla u javni repo, preko
+# .env.example koji se prati. Ovo je brana da se ne ponovi.
+#
+# Ukljucuje se jednom:  git config core.hooksPath .githooks
+
+kljucevi='SMTP_PASS|SMTP_PASSWORD|MAIL_PASS|API_KEY|API_SECRET|ACCESS_TOKEN|PRIVATE_KEY|DB_PASSWORD'
+nasao=0
+
+for f in $(git diff --cached --name-only --diff-filter=ACM); do
+  case "$f" in
+    *.jpg|*.jpeg|*.png|*.webp|*.mp4|*.mov|*.bin|*.ico|*.ttf|*.woff*) continue ;;
+  esac
+  # trazi KLJUC=nesto, gde "nesto" nije prazno
+  pogodak=$(git show ":$f" 2>/dev/null | grep -nE "^[[:space:]]*(export[[:space:]]+)?($kljucevi)=[^[:space:]\"']" || true)
+  if [ -n "$pogodak" ]; then
+    echo "  $f:"
+    echo "$pogodak" | sed 's/=.*/=<sakriveno>/' | sed 's/^/    /'
+    nasao=1
+  fi
+done
+
+if [ "$nasao" = "1" ]; then
+  cat >&2 <<'TXT'
+
+COMMIT ODBIJEN: u izmenama stoji tajna sa vrednoscu.
+
+Repo je javan. Prebaci vrednost u .env.local (git ga ne prati) ili u
+podesavanja projekta na Vercelu, pa ostavi prazno u sablonu.
+
+Ako ti stvarno treba, zaobidji sa:  git commit --no-verify
+TXT
+  exit 1
+fi
+exit 0
