@@ -47,3 +47,6 @@ next-env.d.ts
 
 # sirovi materijal iz kamere i drona; u repo ide samo web verzija iz public/
 assets/
+
+# privremeni Chrome profil iz rasterizacije ikone
+*.prof/
