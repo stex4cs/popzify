@@ -4,7 +4,7 @@ import { locales } from "@/lib/i18n";
 const BASE = "https://popzify.com";
 
 /** Strane koje postoje na oba jezika. Prazan string je pocetna. */
-const PAGES = ["", "/reels", "/privatnost"];
+const PAGES = ["", "/reels", "/svadbe", "/privatnost"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

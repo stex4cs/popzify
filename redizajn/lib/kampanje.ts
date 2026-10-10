@@ -1,4 +1,5 @@
 import type { Locale } from "./i18n";
+import { svadbe } from "./kampanja-svadbe";
 
 /**
  * Kampanjske strane: /reels, kasnije /svadbe i /marketing.
@@ -11,6 +12,8 @@ import type { Locale } from "./i18n";
  * ne zvuci kao da ga je pisala masina. Nije pisan iznova.
  */
 
+export type Odeljak = { eyebrow: string; title: string; accent: string; p: string };
+
 export type Kampanja = {
   slug: string;
   meta: { title: string; description: string };
@@ -22,19 +25,24 @@ export type Kampanja = {
     cta: string;
     ctaDrugi: string;
     oznake: string[];
+    /** Slika iza uvoda; bez nje uvod stoji na samoj pozadini. */
+    poster?: string;
   };
-  bol: { eyebrow: string; title: string; accent: string; intro: string; items: { h: string; p: string }[] };
-  klipovi: { eyebrow: string; title: string; accent: string; p: string };
-  koraci: { eyebrow: string; title: string; accent: string; p: string; steps: { h: string; p: string }[] };
-  paketi: {
-    eyebrow: string;
-    title: string;
-    accent: string;
-    p: string;
+  /** Film u 16:9. Ucitava se tek na klik, sa zvukom. */
+  film?: Odeljak & { src: string; poster: string; dugme: string };
+  /** Traka vertikalnih snimaka iz lib/work. */
+  klipovi?: Odeljak;
+  /** Dve kolone sa tim sta ulazi u posao. */
+  dobijate?: Odeljak & { kolone: { h: string; p: string; list: string[] }[] };
+  /** Zaustavljeni kadrovi iz filma. */
+  galerija?: Odeljak & { slike: string[] };
+  bol?: Odeljak & { items: { h: string; p: string }[] };
+  koraci: Odeljak & { steps: { h: string; p: string }[] };
+  paketi: Odeljak & {
     items: { h: string; p: string; list: string[] }[];
     note: string;
   };
-  kraj: { eyebrow: string; title: string; accent: string; p: string };
+  kraj: Odeljak;
 };
 
 const reelsSr: Kampanja = {
@@ -58,7 +66,7 @@ const reelsSr: Kampanja = {
     eyebrow: "Da pogodimo",
     title: "Znaš da treba da objavljuješ. Samo što uvek ima nešto",
     accent: "preče.",
-    intro:
+    p:
       "Prođe mesec, profil stoji prazan, a ti se setiš tek kad vidiš da je konkurencija objavila peti put.",
     items: [
       {
@@ -192,7 +200,7 @@ const reelsEn: Kampanja = {
     eyebrow: "Let us guess",
     title: "You know you should be posting. There is always something more",
     accent: "urgent.",
-    intro:
+    p:
       "A month goes by, the profile sits empty, and you remember it when you see a competitor post for the fifth time.",
     items: [
       {
@@ -307,4 +315,5 @@ const reelsEn: Kampanja = {
 
 export const kampanje: Record<string, Record<Locale, Kampanja>> = {
   reels: { sr: reelsSr, en: reelsEn },
+  svadbe,
 };

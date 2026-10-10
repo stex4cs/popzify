@@ -3,6 +3,7 @@ import type { Kampanja } from "@/lib/kampanje";
 import { firma } from "@/lib/privatnost";
 import ContactForm from "../ContactForm";
 import Klipovi from "./Klipovi";
+import Film from "./Film";
 import styles from "./kampanja.module.css";
 
 /**
@@ -39,6 +40,14 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
       </header>
 
       {/* ---------- uvod ---------- */}
+      {k.hero.poster && (
+        <div
+          className={styles.heroSlika}
+          style={{ backgroundImage: `url(${k.hero.poster})` }}
+          aria-hidden="true"
+        />
+      )}
+
       <section className={styles.hero}>
         <p className="mono">{k.hero.eyebrow}</p>
         <h1 className="display">
@@ -60,32 +69,98 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
         </ul>
       </section>
 
+      {/* ---------- film ---------- */}
+      {k.film && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.film.eyebrow}</p>
+          <h2 className="display">
+            {k.film.title} <em className="outline">{k.film.accent}</em>
+          </h2>
+          <p className="lead">{k.film.p}</p>
+          <Film
+            src={k.film.src}
+            poster={k.film.poster}
+            dugme={k.film.dugme}
+            naslov={`${k.film.title} ${k.film.accent}`}
+          />
+        </section>
+      )}
+
       {/* ---------- primeri ---------- */}
-      <section className={styles.sekcija}>
-        <p className="mono">{k.klipovi.eyebrow}</p>
-        <h2 className="display">
-          {k.klipovi.title} <em className="outline">{k.klipovi.accent}</em>
-        </h2>
-        <p className="lead">{k.klipovi.p}</p>
-        <Klipovi locale={locale} />
-      </section>
+      {k.klipovi && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.klipovi.eyebrow}</p>
+          <h2 className="display">
+            {k.klipovi.title} <em className="outline">{k.klipovi.accent}</em>
+          </h2>
+          <p className="lead">{k.klipovi.p}</p>
+          <Klipovi locale={locale} />
+        </section>
+      )}
+
+      {/* ---------- sta ulazi u posao ---------- */}
+      {k.dobijate && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.dobijate.eyebrow}</p>
+          <h2 className="display">
+            {k.dobijate.title} <em className="outline">{k.dobijate.accent}</em>
+          </h2>
+          <p className="lead">{k.dobijate.p}</p>
+          <ul className={styles.paketi}>
+            {k.dobijate.kolone.map((kol) => (
+              <li key={kol.h}>
+                <h3>{kol.h}</h3>
+                <p>{kol.p}</p>
+                <ul>
+                  {kol.list.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ---------- zaustavljeni kadrovi ---------- */}
+      {k.galerija && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.galerija.eyebrow}</p>
+          <h2 className="display">
+            {k.galerija.title} <em className="outline">{k.galerija.accent}</em>
+          </h2>
+          <p className="lead">{k.galerija.p}</p>
+          <ul className={styles.galerija}>
+            {k.galerija.slike.map((src) => (
+              <li key={src}>
+                {/* Obicna slika: Next bi je optimizovao, ali je vec
+                    pripremljena u pravoj velicini i formatu. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={src} alt="" loading="lazy" decoding="async" />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* ---------- sta te muci ---------- */}
-      <section className={styles.sekcija}>
-        <p className="mono">{k.bol.eyebrow}</p>
-        <h2 className="display">
-          {k.bol.title} <em className="outline">{k.bol.accent}</em>
-        </h2>
-        <p className="lead">{k.bol.intro}</p>
-        <ul className={styles.mreza}>
-          {k.bol.items.map((i) => (
-            <li key={i.h}>
-              <h3>{i.h}</h3>
-              <p>{i.p}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {k.bol && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.bol.eyebrow}</p>
+          <h2 className="display">
+            {k.bol.title} <em className="outline">{k.bol.accent}</em>
+          </h2>
+          <p className="lead">{k.bol.p}</p>
+          <ul className={styles.mreza}>
+            {k.bol.items.map((i) => (
+              <li key={i.h}>
+                <h3>{i.h}</h3>
+                <p>{i.p}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* ---------- kako ide ---------- */}
       <section className={styles.sekcija}>
