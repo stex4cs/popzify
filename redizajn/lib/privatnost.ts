@@ -8,8 +8,9 @@ import type { Locale } from "./i18n";
  * i podatke o placanju kojih ovde nema, a u delu za kontakt je nosila
  * tudju adresu i broj telefona iz sablona.
  *
- * Kad kampanjske strane dobiju Meta piksel, ovde mora da se doda odeljak
- * o njemu — pre nego sto piksel prvi put opali.
+ * Odeljak o Meta pikselu i dopuna odeljka o kolacicima ulaze u tekst
+ * samo kad je piksel stvarno podesen. Dok ga nema, tekst o kolacicima
+ * stoji onakav kakav jeste i ne tvrdi nista unapred.
  */
 
 export type Section = { h: string; p: string[]; list?: string[] };
@@ -164,6 +165,38 @@ export const privatnost: Record<Locale, { title: string; intro: string; sections
           "If any of this changes, this text changes with it and carries a new date at the top. If the change is more than cosmetic, it says what changed.",
         ],
       },
+    ],
+  },
+};
+
+/**
+ * Dopuna odeljka o kolacicima kad je piksel ukljucen. Bez nje bi tekst
+ * tvrdio da sajt ne postavlja kolacice za pracenje, sto na kampanjskim
+ * stranama vise ne bi bilo tacno.
+ */
+export const kolaciciSaPikselom: Record<Locale, string> = {
+  sr: "Izuzetak su kampanjske strane /marketing, /reels i /svadbe. One nose Meta piksel, koji postavlja svoje kolačiće — piše o njemu u odeljku ispod.",
+  en: "The exception is the campaign pages /marketing, /reels and /svadbe. They carry the Meta pixel, which sets its own cookies — see the section below.",
+};
+
+/** Odeljak o pikselu; prikazuje se samo kad je piksel podesen. */
+export const pikselOdeljak: Record<Locale, Section> = {
+  sr: {
+    h: "Meta piksel na kampanjskim stranama",
+    p: [
+      "Strane /marketing, /reels i /svadbe nose Meta piksel. On javlja Meti da je strana otvorena i da li je sa nje poslat upit.",
+      "Meti se ne šalje tvoje ime, broj telefona, e-mail ni tekst poruke — samo da se događaj desio i sa koje strane. Sam upit ide isključivo na našu e-mail adresu.",
+      "Zašto nam treba: bez toga ne znamo koji oglas je doneo upit, pa ne znamo ni koliko nas jedan upit košta. Piksel pritom postavlja kolačiće koji te prate i na drugim sajtovima.",
+      "Možeš ga isključiti u podešavanjima Facebook ili Instagram naloga, ili blokiranjem kolačića u pregledaču. Na ostalim stranama ovog sajta piksela nema.",
+    ],
+  },
+  en: {
+    h: "The Meta pixel on campaign pages",
+    p: [
+      "The pages /marketing, /reels and /svadbe carry the Meta pixel. It tells Meta that the page was opened and whether an enquiry was sent from it.",
+      "Meta is not sent your name, phone number, email or the text of your message — only that the event happened and which page it came from. The enquiry itself goes to our email address and nowhere else.",
+      "Why we need it: without it we do not know which ad brought an enquiry, so we do not know what one enquiry costs us. The pixel does set cookies that follow you on other sites.",
+      "You can switch it off in your Facebook or Instagram account settings, or by blocking cookies in your browser. The rest of this site carries no pixel.",
     ],
   },
 };

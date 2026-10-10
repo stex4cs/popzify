@@ -4,6 +4,7 @@ import { firma } from "@/lib/privatnost";
 import ContactForm from "../ContactForm";
 import Klipovi from "./Klipovi";
 import Film from "./Film";
+import Piksel from "../Piksel";
 import styles from "./kampanja.module.css";
 
 /**
@@ -18,6 +19,7 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
 
   return (
     <main className={styles.page}>
+      <Piksel />
       <span className="corner tl" />
       <span className="corner tr" />
 

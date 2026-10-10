@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { dict, isLocale, locales, type Locale } from "@/lib/i18n";
-import { privatnost, azurirano, firma } from "@/lib/privatnost";
+import { privatnost, azurirano, firma, pikselOdeljak, kolaciciSaPikselom } from "@/lib/privatnost";
+import { imaPiksel } from "@/lib/piksel";
 import styles from "./privatnost.module.css";
 
 export function generateStaticParams() {
@@ -37,6 +38,19 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const nav = dict[locale as Locale].nav;
   const other: Locale = locale === "sr" ? "en" : "sr";
 
+  // Piksel se pominje samo kad stvarno postoji, da tekst ne tvrdi
+  // nesto sto se ne desava — ni u jednom ni u drugom smeru.
+  const sekcije = imaPiksel
+    ? t.sections.map((s) =>
+        s.h === privatnost[locale as Locale].sections[5].h
+          ? { ...s, p: [...s.p, kolaciciSaPikselom[locale as Locale]] }
+          : s
+      )
+    : t.sections;
+  const sve = imaPiksel
+    ? [...sekcije.slice(0, 6), pikselOdeljak[locale as Locale], ...sekcije.slice(6)]
+    : sekcije;
+
   return (
     <main className={styles.page}>
       <header className={styles.top}>
@@ -58,7 +72,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <h1 className="display">{t.title}</h1>
         <p className="lead">{t.intro}</p>
 
-        {t.sections.map((s) => (
+        {sve.map((s) => (
           <section key={s.h} className={styles.block}>
             <h2>{s.h}</h2>
             {s.p.map((line) => (
