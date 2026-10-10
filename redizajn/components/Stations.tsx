@@ -95,6 +95,11 @@ export default function Stations({ locale }: { locale: Locale }) {
               </a>
             </li>
           </ul>
+          <p className={`${styles.credit} mono`}>
+            <a href={`/${locale}/privatnost`}>
+              {locale === "sr" ? "Politika privatnosti" : "Privacy policy"}
+            </a>
+          </p>
           {/* Potpis je obaveza licence pod kojom su podaci o gradu. */}
           <p className={`${styles.credit} mono`}>
             Grad: ©{" "}

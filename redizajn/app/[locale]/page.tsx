@@ -4,6 +4,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Frame from "@/components/Frame";
 import Stations from "@/components/Stations";
 import VariantSwitch from "@/components/VariantSwitch";
+import Podaci from "@/components/Podaci";
 import { dict, isLocale } from "@/lib/i18n";
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
@@ -15,6 +16,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <a className="skip" href="#work">
         {dict[locale].nav.skip}
       </a>
+      <Podaci locale={locale} />
       <World />
       <SmoothScroll />
       <Frame locale={locale} />

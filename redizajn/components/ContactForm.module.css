@@ -144,3 +144,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+.consent a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.consent a:hover {
+  color: var(--lilac);
+}

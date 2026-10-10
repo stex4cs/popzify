@@ -104,7 +104,13 @@ export default function ContactForm({ locale }: { locale: Locale }) {
 
         <label className={styles.consent}>
           <input name="saglasnost" type="checkbox" required />
-          <span>{t.consent}</span>
+          <span>
+            {t.consent}
+            <a href={`/${locale}/privatnost`} target="_blank" rel="noopener">
+              {t.consentLink}
+            </a>
+            {t.consentAfter}
+          </span>
         </label>
 
         {/* Nevidljivo ljudima, popunjavaju ga botovi. */}

@@ -39,6 +39,8 @@ type Dict = {
     services: string[];
     message: string;
     consent: string;
+    consentLink: string;
+    consentAfter: string;
     submit: string;
     sending: string;
     ok: string;
@@ -79,7 +81,9 @@ export const dict: Record<Locale, Dict> = {
       servicePick: "Izaberi",
       services: ["Svadba", "Događaj ili sajam", "Borilačka veče", "Sadržaj za mreže", "Nešto drugo"],
       message: "Par reči o poslu",
-      consent: "Saglasan sam da Popzify obradi ove podatke radi odgovora na upit.",
+      consent: "Saglasan sam da Popzify obradi ove podatke radi odgovora na upit, u skladu sa ",
+      consentLink: "politikom privatnosti",
+      consentAfter: ".",
       submit: "Pošalji upit",
       sending: "Šaljem…",
       ok: "Hvala. Javljamo se u roku od 24 sata.",
@@ -117,7 +121,9 @@ export const dict: Record<Locale, Dict> = {
       servicePick: "Pick one",
       services: ["Wedding", "Event or trade fair", "Fight night", "Social content", "Something else"],
       message: "A few words about the job",
-      consent: "I agree that Popzify may process this data to answer my enquiry.",
+      consent: "I agree that Popzify may process this data to answer my enquiry, as set out in the ",
+      consentLink: "privacy policy",
+      consentAfter: ".",
       submit: "Send enquiry",
       sending: "Sending…",
       ok: "Thanks. We come back within 24 hours.",

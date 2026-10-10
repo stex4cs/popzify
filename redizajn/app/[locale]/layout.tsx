@@ -52,6 +52,17 @@ export async function generateMetadata({
       title: m.title,
       description: m.description,
       locale: locale === "sr" ? "sr_RS" : "en_US",
+      url: `/${locale}`,
+      // Slika se navodi izricito umesto preko imena fajla: u dinamickom
+      // segmentu je Next u adresu upisivao "-" umesto jezika, a kad je
+      // fajl pomeren u koren, ovaj openGraph blok ju je pregazio.
+      images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Popzify" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: m.title,
+      description: m.description,
+      images: ["/og.jpg"],
     },
   };
 }
