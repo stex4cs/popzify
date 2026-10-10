@@ -32,9 +32,13 @@ const JATO: [number, number, number, number, number][] = [
   [-2.0, 1.2, -32.0, 0.24, 0.95],
 ];
 
-/** Panel se pojavljuje tek kad mu se kamera priblizi, i gasi u daljini. */
-const FADE_NEAR = 14;
-const FADE_FAR = 28;
+/**
+ * Panel se pojavljuje kad mu se kamera priblizi i gasi u daljini.
+ * Brojevi su u metrima scene: grupa stoji tridesetak metara ispred
+ * kamere i uvecana je, pa raspon mora da ih prati.
+ */
+const FADE_NEAR = 60;
+const FADE_FAR = 180;
 
 /** Zakrivljenost trake: krajevi se povijaju od kamere. */
 const ARC = 0.03;
@@ -231,7 +235,12 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
   const world = new THREE.Vector3();
   const stripHalfLen = ((clips.length - 1) / 2) * PITCH + PANEL_W;
 
+  let lastT = 0;
+  const dtOf = () => Math.min(Math.max(nowT - lastT, 0), 0.08);
+  let nowT = 0;
+
   const update: WorkScene["update"] = (t, camX, camZ, p, halfWAt) => {
+    nowT = t;
     if (variant === "traka") {
       // Traka prolazi pored kamere tokom stanice. Put se racuna iz
       // stvarne sirine kadra, pa na telefonu izlazi iz kadra isto kao
@@ -293,9 +302,13 @@ export function buildWork(variant: WorkVariant, mobile: boolean): WorkScene {
       }
 
       const target = want && k === 0 ? 1 : want ? 0.72 : 0;
-      panel.on += (target - panel.on) * 0.06;
+      // Po vremenu, ne po kadru: na sporijem uredjaju bi se paneli
+      // palili vidno kasnije nego sto se do njih stigne.
+      panel.on += (target - panel.on) * (1 - Math.exp(-3.5 * dtOf()));
       panel.mat.uniforms.uOn.value = panel.on;
     }
+
+    lastT = t;
 
     // Mirno disanje, da scena ne izgleda zamrznuto kad se ne skroluje.
     if (variant === "jato") {

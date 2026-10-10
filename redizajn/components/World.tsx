@@ -10,6 +10,7 @@ import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { stations, PANORAMA_Y } from "@/lib/stations";
 import { loadCity, type City } from "./world/grad";
 import { buildPanorama } from "./world/panorama";
+import { buildAerials } from "./world/vazduh";
 import { getVariant, subscribeVariant } from "@/lib/variant";
 import { buildWork, type WorkScene } from "./world/work";
 import styles from "./World.module.css";
@@ -299,6 +300,17 @@ export default function World() {
       g.scale.setScalar(2.2);
     };
 
+    // Snimci iz drona stoje na svojim visinama, u krugu koji lezi u
+    // pravcu u koji kamera gleda sa stanice "vazduh". Krug ne ide po
+    // putanji spustanja jer kamera tokom pada ne gleda tamo kuda ide.
+    const vazduhStation = stations.find((st) => st.id === "vazduh")!;
+    const vb = (vazduhStation.yaw * Math.PI) / 180;
+    const aerials = buildAerials(
+      [vazduhStation.at[0] + Math.sin(vb) * 400, vazduhStation.at[1] - Math.cos(vb) * 400],
+      mobile
+    );
+    scene.add(aerials.group);
+
     let work: WorkScene = buildWork(getVariant(), mobile);
     place(work.group);
     scene.add(work.group);
@@ -521,22 +533,27 @@ export default function World() {
 
       // Svemir se gasi kako ulazimo u atmosferu, grad se pali.
       const spaceFade = smoothstep(500, 3200, alt);
-      // Gasi se i odozgo i odozdo: iznad atmosfere grad se jos ne vidi,
-      // a ispod kote nema sta da se vidi osim mraka.
-      const cityFade = (1 - smoothstep(3800, 8200, alt)) * smoothstep(-22, 10, alt);
+      // Model se vidi izmedju atmosfere i sto desetog metra. Iznad ga
+      // jos nema, ispod ga smenjuje fotografija — prelaz je kratak, na
+      // osamdeset metara visine, da se ne gledaju oboje u istom kadru.
+      const cityFade = (1 - smoothstep(3800, 8200, alt)) * smoothstep(110, 190, alt);
       const entry = smoothstep(600, 2000, alt) * (1 - smoothstep(4200, 7000, alt));
       ptsMat.uniforms.uFade.value = spaceFade;
       streakMat.uniforms.uFade.value = entry;
-      // Na visini snimka fotografija preuzima, a model se povlaci.
-      const panoFade = (1 - smoothstep(0, 170, Math.abs(alt - PANORAMA_Y))) * (alt > -12 ? 1 : 0);
+      // Fotografija je tacno dopuna modelu: koliko jedan izadje, toliko
+      // drugi udje. Ispod kote se i ona gasi, tamo je mrak.
+      const panoFade = (1 - smoothstep(110, 190, alt)) * smoothstep(-20, 8, alt);
       pano.setFade(panoFade);
       if (city) {
-        // Kad fotografija preuzme, model izlazi do kraja — inace mu
-        // tamne mase probijaju kroz snimak.
-        city.setFade(cityFade * (1 - panoFade));
+        city.setFade(cityFade);
         city.tick(t);
       }
       work.update(t, 0, 0, smoothed, () => halfWAt(26));
+
+      // Snimci se vide u pojasu visina na kojima i stoje.
+      // Pojas se zatvara pre nego sto panorama preuzme, da se dnevni
+      // snimci i fotografija Kalemegdana ne poklope u istom kadru.
+      aerials.update(camera, smoothstep(72, 155, alt) * (1 - smoothstep(300, 520, alt)));
 
       // Polozaj i poluprecnik znaka u pikselima, da pokazivac zna gde je.
       camera.updateMatrixWorld();
@@ -605,6 +622,7 @@ export default function World() {
       cityAbort.abort();
       city?.dispose();
       pano.dispose();
+      aerials.dispose();
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);
