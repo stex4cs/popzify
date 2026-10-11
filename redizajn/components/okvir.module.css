@@ -1,5 +1,12 @@
 /* Zaglavlje i podnozje koje dele sve strane osim pocetne. */
 
+/* Na stranama radova scena prolazi tacno iza zaglavlja, pa tekst dobija
+   senku. Na kampanjskim stranama pozadina je mirna i senka se ne vidi. */
+.top a,
+.foot p {
+  text-shadow: 0 2px 18px rgba(7, 6, 13, 0.85);
+}
+
 .top {
   display: flex;
   align-items: center;

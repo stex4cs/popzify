@@ -324,3 +324,32 @@
   flex-wrap: wrap;
   gap: 12px;
 }
+
+/* ---------- citljivost preko scene ---------- */
+
+/* Znak prolazi kroz sredinu kadra dok se skroluje, pa prolazi i tacno
+   iza kartica i pasusa. Ramovi dobijaju tamnu podlogu sa zamucenjem, a
+   goli tekst senku — da se tekst cita i kad staklo prodje ispod njega. */
+
+.spisak a,
+.blokovi > div,
+.ukratko li {
+  background: rgba(9, 8, 16, 0.58);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.sekcija p,
+.sekcija h2,
+.tacke li,
+.meta dt,
+.meta dd {
+  text-shadow: 0 2px 22px rgba(7, 6, 13, 0.82);
+}
+
+/* Unutar kartica podloga vec radi posao; dupla senka bi samo zamutila. */
+.blokovi p,
+.blokovi h2,
+.ukratko span {
+  text-shadow: none;
+}
