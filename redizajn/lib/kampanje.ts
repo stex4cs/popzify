@@ -46,7 +46,9 @@ export type Kampanja = {
   /** Zasto bas mi. */
   razlozi?: Mreza;
   /** Radovi sa linkom na zivi sajt. */
-  radovi?: Odeljak & { items: { h: string; p: string; url: string; slika: string }[] };
+  radovi?: Odeljak & {
+    items: { h: string; p: string; url: string; slika: string; interno?: string }[];
+  };
   /** Pitanja koja se najcesce ponavljaju. */
   pitanja?: Odeljak & { items: { q: string; a: string }[] };
   /** Logotipi uz koje smo radili. */

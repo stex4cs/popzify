@@ -22,13 +22,13 @@ const STARE: Record<string, string> = {
   projectmenager: "/sr/marketing",
   sales: "/sr/marketing",
 
-  // Radovi: spisak i pojedinacne strane projekata
-  projects: "/sr/marketing",
-  "project-bif": "/sr/marketing",
-  "project-correctscore": "/sr/marketing",
-  "project-dukatdesk": "/sr/marketing",
-  "project-glitch": "/sr/marketing",
-  "project-raateam": "/sr/marketing",
+  // Radovi: spisak i pojedinacne strane projekata, svaka na svoju novu
+  projects: "/sr/radovi",
+  "project-bif": "/sr/radovi/bif",
+  "project-correctscore": "/sr/radovi/correctscore",
+  "project-dukatdesk": "/sr/radovi/dukatdesk",
+  "project-glitch": "/sr/radovi/glitch",
+  "project-raateam": "/sr/radovi/raateam",
 
   // Svadbe su dobile svoju stranu
   "snimanje-vencanja": "/sr/svadbe",
@@ -50,7 +50,7 @@ const nextConfig: NextConfig = {
     // oglasima i na vizitkama se pisu kao popzify.com/reels, bez /sr,
     // pa bi inace padali na 404. Nabrojane su izricito, da pravilo ne
     // pokupi /api, /_next i fajlove iz public.
-    const bezJezika = ["marketing", "reels", "svadbe", "privatnost"];
+    const bezJezika = ["marketing", "reels", "svadbe", "radovi", "privatnost"];
 
     return [
       // Privremeno (307) dok se ne odluci da li ce detekcija jezika ici

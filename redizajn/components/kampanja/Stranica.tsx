@@ -5,6 +5,7 @@ import ContactForm from "../ContactForm";
 import Klipovi from "./Klipovi";
 import Film from "./Film";
 import Piksel from "../Piksel";
+import { Zaglavlje, Podnozje } from "../Okvir";
 import styles from "./kampanja.module.css";
 
 /**
@@ -23,25 +24,12 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
       <span className="corner tl" />
       <span className="corner tr" />
 
-      <header className={styles.top}>
-        <a className={styles.brand} href={`/${locale}`}>
-          <b>Pop</b>zify
-        </a>
-        <div className={styles.topDesno}>
-          <a className={`mono ${styles.tel}`} href={`tel:${firma.telefonIntl}`}>
-            {k.hero.ctaDrugi}
-          </a>
-          <a
-            className="mono"
-            href={`/${locale === "sr" ? "en" : "sr"}/${k.slug}`}
-            hrefLang={locale === "sr" ? "en" : "sr"}
-          >
-            {t.nav.other}
-          </a>
-        </div>
-      </header>
+      <Zaglavlje
+        locale={locale}
+        telefon={k.hero.ctaDrugi}
+        drugiJezik={`/${locale === "sr" ? "en" : "sr"}/${k.slug}`}
+      />
 
-      {/* ---------- uvod ---------- */}
       {k.hero.poster && (
         <div
           className={styles.heroSlika}
@@ -218,7 +206,12 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
           <ul className={styles.radovi}>
             {k.radovi.items.map((r) => (
               <li key={r.url}>
-                <a href={r.url} target="_blank" rel="noopener">
+                <a
+                  // Interna adresa je u podacima zapisana sa /sr; ovde se
+                  // prevodi na jezik strane.
+                  href={r.interno ? r.interno.replace("/sr/", `/${locale}/`) : r.url}
+                  {...(r.interno ? {} : { target: "_blank", rel: "noopener" })}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={r.slika} alt={r.h} loading="lazy" decoding="async" />
                   <h3>{r.h}</h3>
@@ -320,27 +313,7 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
         <ContactForm locale={locale} stranica={k.slug} prosireno usluge={k.uslugeIzbor} />
       </section>
 
-      <footer className={styles.foot}>
-        <ul className={styles.veze}>
-          <li>
-            <a href={`mailto:${firma.email}`}>{firma.email}</a>
-          </li>
-          <li>
-            <a href={`tel:${firma.telefonIntl}`}>{firma.telefon}</a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/lolipopz.bif/" rel="me noopener" target="_blank">
-              @lolipopz.bif
-            </a>
-          </li>
-        </ul>
-        <p className="mono">
-          {firma.ime} · PIB {firma.pib} · MB {firma.mb} · {firma.sediste} ·{" "}
-          <a href={`/${locale}/privatnost`}>
-            {locale === "sr" ? "Politika privatnosti" : "Privacy policy"}
-          </a>
-        </p>
-      </footer>
+      <Podnozje locale={locale} />
     </main>
   );
 }
