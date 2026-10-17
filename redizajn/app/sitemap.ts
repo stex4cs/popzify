@@ -15,9 +15,25 @@ const PAGES = [
   "/privatnost",
 ];
 
+/**
+ * Portfolio dizajna stoji izvan `sr`/`en` sistema: na njemu su engleski
+ * i ruski, jer se salje klijentima koji ne citaju srpski.
+ */
+const DESIGN = { en: `${BASE}/design`, ru: `${BASE}/design/ru` };
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return locales.flatMap((locale) =>
+  const dizajn = Object.values(DESIGN).map((url) => ({
+    url,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+    alternates: { languages: DESIGN },
+  }));
+
+  return [
+    ...dizajn,
+    ...locales.flatMap((locale) =>
     PAGES.map((page) => ({
       url: `${BASE}/${locale}${page}`,
       lastModified: now,
@@ -27,5 +43,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: Object.fromEntries(locales.map((l) => [l, `${BASE}/${l}${page}`])),
       },
     }))
-  );
+  ),
+  ];
 }

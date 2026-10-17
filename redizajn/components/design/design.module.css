@@ -1,0 +1,340 @@
+/* Portfolio grafickog dizajna. Mirna strana: radovi su jaki kadrovi i
+   oni nose stranu, pa pozadina ostaje prazna. */
+
+.page {
+  position: relative;
+  min-height: 100svh;
+  padding: 0 var(--gutter);
+  background:
+    radial-gradient(120% 55% at 50% -10%, rgba(99, 102, 241, 0.16) 0%, rgba(99, 102, 241, 0) 60%),
+    var(--void);
+}
+
+/* ---------- zaglavlje ---------- */
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: calc(var(--gutter) + env(safe-area-inset-top, 0px)) 0 0;
+}
+
+.brand {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(16px, 1.6vw, 20px);
+}
+
+.brand b {
+  color: var(--violet);
+}
+
+.desno {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.desno a:hover {
+  color: var(--lilac);
+}
+
+/* ---------- uvod ---------- */
+
+.uvod {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(44px, 10vw, 118px) 0 clamp(30px, 6vw, 60px);
+}
+
+.uvod h1 {
+  font-size: clamp(32px, 6.4vw, 76px);
+  margin: 12px 0 18px;
+  max-width: 16ch;
+}
+
+.uvod .lead {
+  max-width: 62ch;
+}
+
+/* ---------- projekat ---------- */
+
+.projekat {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(46px, 8vw, 96px) 0 0;
+  border-top: 1px solid rgba(236, 235, 255, 0.1);
+}
+
+.projekat + .projekat {
+  margin-top: clamp(46px, 8vw, 96px);
+}
+
+.zaglavljeProjekta h2 {
+  font-size: clamp(26px, 3.6vw, 42px);
+  font-weight: 500;
+  margin: 0;
+}
+
+.grana {
+  margin: 10px 0 0;
+  color: var(--lilac);
+}
+
+.uvodProjekta {
+  margin: 16px 0 0;
+  max-width: 72ch;
+  color: var(--muted);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.65;
+}
+
+/* ---------- jedan rad ---------- */
+
+.rad {
+  padding: clamp(34px, 5.5vw, 64px) 0 0;
+}
+
+.opisRada {
+  max-width: 68ch;
+}
+
+.broj {
+  color: var(--lilac);
+  letter-spacing: 0.16em;
+}
+
+.broj span {
+  color: var(--muted);
+}
+
+.klijent {
+  margin: 14px 0 0;
+  color: var(--muted);
+}
+
+.opisRada h3 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.2;
+  margin: 8px 0 0;
+}
+
+.tekstRada {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.65;
+}
+
+.oznake {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.oznake li {
+  padding: 6px 13px;
+  border: 1px solid rgba(236, 235, 255, 0.16);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------- mreza radova ---------- */
+
+/* Kadrovi se slazu po jednakoj visini, a sirina ispada iz odnosa
+   stranica — kao u pravoj galeriji. Jednake kolone bi uspravnu pricu
+   razvukle na sirinu polozenog kadra i ona bi progutala ceo ekran. */
+.mreza {
+  --h: clamp(300px, 46vw, 520px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1.2vw, 16px);
+  list-style: none;
+  margin: clamp(22px, 3vw, 34px) 0 0;
+  padding: 0;
+}
+
+.mreza li {
+  flex: 0 1 auto;
+}
+
+/* Polozeni kadrovi nose ceo red: na njima se detalj vidi tek u punoj
+   sirini, dok uspravni u punoj sirini postaju zid. */
+.mreza li[data-oblik="16:9"],
+.mreza li[data-oblik="panorama"] {
+  flex: 1 1 100%;
+}
+
+.mreza li[data-oblik="16:9"] .kadar,
+.mreza li[data-oblik="panorama"] .kadar {
+  height: auto;
+  width: 100%;
+}
+
+/* Dugme je samo okvir oko kadra: bez sopstvene podloge i razmaka, da
+   slika ostane slika a ne element obrasca. */
+.kadar {
+  display: block;
+  height: var(--h);
+  width: auto;
+  padding: 0;
+  border: 1px solid rgba(236, 235, 255, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0b0a14;
+  cursor: zoom-in;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.kadar:hover,
+.kadar:focus-visible {
+  border-color: var(--lilac);
+  transform: translateY(-3px);
+}
+
+.kadar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- kadar preko ekrana ---------- */
+
+.preko {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 56px);
+  background: rgba(4, 3, 9, 0.93);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: zoom-out;
+  animation: ulaz 0.18s ease both;
+}
+
+@keyframes ulaz {
+  from {
+    opacity: 0;
+  }
+}
+
+.preko img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.krug {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(236, 235, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(7, 6, 13, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ink);
+  font-size: 17px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.krug:hover {
+  border-color: var(--lilac);
+  color: var(--lilac);
+}
+
+.zatvori {
+  top: clamp(14px, 3vw, 28px);
+  right: clamp(14px, 3vw, 28px);
+}
+
+.levo {
+  left: clamp(10px, 2vw, 24px);
+}
+
+.desno {
+  right: clamp(10px, 2vw, 24px);
+}
+
+/* ---------- kraj ---------- */
+
+.kraj {
+  max-width: 1240px;
+  margin: clamp(56px, 9vw, 110px) auto 0;
+  padding: clamp(36px, 6vw, 64px) clamp(24px, 4vw, 56px);
+  border: 1px solid rgba(236, 235, 255, 0.14);
+  border-radius: 24px;
+  background: rgba(236, 235, 255, 0.03);
+}
+
+.kraj h2 {
+  font-size: clamp(24px, 3.6vw, 40px);
+  margin: 0 0 14px;
+}
+
+.akcije {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(22px, 3vw, 30px);
+}
+
+.dugme,
+.dugmeTiho {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dugme {
+  background: var(--lilac);
+  color: var(--void);
+}
+
+.dugme:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(185, 166, 255, 0.28);
+}
+
+.dugmeTiho {
+  border: 1px solid rgba(236, 235, 255, 0.2);
+  color: var(--ink);
+}
+
+.dugmeTiho:hover {
+  border-color: var(--lilac);
+  transform: translateY(-2px);
+}
+
+.foot {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(34px, 6vw, 56px) 0 calc(var(--gutter) + 20px + env(safe-area-inset-bottom, 0px));
+}
+
+.foot a {
+  color: var(--lilac);
+}
+
+

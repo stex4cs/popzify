@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Unbounded, Manrope, JetBrains_Mono } from "next/font/google";
-import "../globals.css";
+import "../../globals.css";
 import { dict, htmlLang, isLocale, locales, type Locale } from "@/lib/i18n";
 
 /* Fontovi idu kroz next/font: nema zahteva ka Google-u u runtime-u i nema

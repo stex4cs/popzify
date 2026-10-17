@@ -52,3 +52,7 @@ assets/
 
 # privremeni Chrome profil iz rasterizacije ikone
 *.prof/
+
+# Izvorni dizajn fajlovi (PNG/JPG, 23 MB). Na sajt ide samo webp iz
+# public/design/, napravljen iz ovih.
+public/DIZAJN/
