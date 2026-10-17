@@ -29,6 +29,12 @@ type Dict = {
   hud: { rec: string; format: string; lens: string; geo: string };
   klip: { pusti: string; pauza: string; zvuk: string };
   nav: { work: string; contact: string; skip: string; other: string; otherShort: string };
+  /**
+   * Spisak za podnozje. Kampanjske strane inace ne vise ni na jednom
+   * linku sa sajta: stoje u sitemapu, ali ih nista iznutra ne drzi, pa
+   * ih pretrazivac obilazi retko. Odavde ih drze oba podnozja.
+   */
+  strane: { put: string; tekst: string }[];
   form: {
     legend: string;
     name: string;
@@ -77,6 +83,12 @@ export const dict: Record<Locale, Dict> = {
     },
     klip: { pusti: "Pusti", pauza: "Pauziraj", zvuk: "Zvuk" },
     nav: { work: "Radovi", contact: "Kontakt", skip: "Pređi na sadržaj", other: "English", otherShort: "EN" },
+    strane: [
+      { put: "marketing", tekst: "Sadržaj, oglasi i sajt" },
+      { put: "reels", tekst: "Sadržaj za mreže" },
+      { put: "svadbe", tekst: "Snimanje venčanja" },
+      { put: "radovi", tekst: "Radovi" },
+    ],
     form: {
       legend: "Upit",
       name: "Ime i prezime",
@@ -122,6 +134,12 @@ export const dict: Record<Locale, Dict> = {
     },
     klip: { pusti: "Play", pauza: "Pause", zvuk: "Sound" },
     nav: { work: "Work", contact: "Contact", skip: "Skip to content", other: "Srpski", otherShort: "SR" },
+    strane: [
+      { put: "marketing", tekst: "Content, ads and a website" },
+      { put: "reels", tekst: "Social content" },
+      { put: "svadbe", tekst: "Wedding films" },
+      { put: "radovi", tekst: "Work" },
+    ],
     form: {
       legend: "Enquiry",
       name: "Full name",

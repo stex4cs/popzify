@@ -208,3 +208,30 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Isti spisak kao u podnozju ostalih strana, samo centriran uz ostatak
+   poslednje stanice. */
+.strane {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin: 14px 0 0;
+  font-size: 14px;
+}
+
+/* Traka sa isecima prolazi tacno iza ovog reda, pa linkovi nose svoju
+   podlogu. Bez okvira, da ne takmice sa kontaktima iznad. */
+.strane a {
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: rgba(7, 6, 13, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.strane a:hover {
+  color: var(--lilac);
+}

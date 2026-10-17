@@ -87,3 +87,22 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Spisak strana u podnozju. Stoji iznad kontakata jer je to jedini
+   put kojim pretrazivac iz ostatka sajta stize do kampanjskih strana. */
+.strane {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 0 0 22px;
+  font-size: 14px;
+}
+
+.strane a {
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.strane a:hover {
+  color: var(--lilac);
+}

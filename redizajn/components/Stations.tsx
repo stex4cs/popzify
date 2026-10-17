@@ -95,6 +95,15 @@ export default function Stations({ locale }: { locale: Locale }) {
               </a>
             </li>
           </ul>
+          {/* Pocetna je strana sa najvise tezine, a do danas je vodila
+              samo na politiku privatnosti. Odavde se drze i ostale. */}
+          <nav className={styles.strane} aria-label={locale === "sr" ? "Strane" : "Pages"}>
+            {t.strane.map((x) => (
+              <a key={x.put} href={`/${locale}/${x.put}`}>
+                {x.tekst}
+              </a>
+            ))}
+          </nav>
           <p className={`${styles.credit} mono`}>
             <a href={`/${locale}/privatnost`}>
               {locale === "sr" ? "Politika privatnosti" : "Privacy policy"}

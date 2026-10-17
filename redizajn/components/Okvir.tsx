@@ -45,8 +45,19 @@ export function Zaglavlje({
 }
 
 export function Podnozje({ locale }: { locale: Locale }) {
+  const t = dict[locale];
+
   return (
     <footer className={styles.foot}>
+      {/* Jedini unutrasnji linkovi ka kampanjskim stranama. Bez njih
+          vise samo u sitemapu, bez ijedne veze sa ostatkom sajta. */}
+      <nav className={styles.strane} aria-label={locale === "sr" ? "Strane" : "Pages"}>
+        {t.strane.map((x) => (
+          <a key={x.put} href={`/${locale}/${x.put}`}>
+            {x.tekst}
+          </a>
+        ))}
+      </nav>
       <ul className={styles.veze}>
         <li>
           <a href={`mailto:${firma.email}`}>{firma.email}</a>
