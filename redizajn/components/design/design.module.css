@@ -338,3 +338,19 @@
 }
 
 
+
+/* Dugmad kanala nose ikonu, da se WhatsApp i Telegram prepoznaju pre
+   citanja. Boje ostaju kuce — zeleno i plavo bi se tuklo sa stranom. */
+.dugme,
+.dugmeTiho {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.dugme svg,
+.dugmeTiho svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+}

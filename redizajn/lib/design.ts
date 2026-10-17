@@ -64,44 +64,21 @@ export const projekti: Projekat[] = [
         id: "thumbnail",
         klijent: { en: "Arena Sport · YouTube", ru: "Arena Sport · YouTube" },
         naslov: {
-          en: "EuroLeague Highlights Thumbnail",
-          ru: "Обложка хайлайтов Евролиги",
+          en: "EuroLeague Highlights Thumbnails",
+          ru: "Обложки хайлайтов Евролиги",
         },
         opis: {
-          en: "Broadcast-grade YouTube thumbnail with a player cutout, club crests and channel branding — built to be read at small sizes.",
-          ru: "Обложка для YouTube телевизионного уровня: вырезанный игрок, клубные эмблемы и брендинг канала — рассчитана на то, чтобы читаться в маленьком размере.",
+          en: "Broadcast-grade YouTube thumbnails with club crests and channel branding, built to be read at small sizes. One layout, two variants: a player cutout against flat colour, and the same frame opened up to a full-frame action photo.",
+          ru: "Обложки для YouTube телевизионного уровня: клубные эмблемы и брендинг канала, с расчётом на то, чтобы читаться в маленьком размере. Одна раскладка, два варианта: вырезанный игрок на плашке и тот же кадр, раскрытый до полноформатного фото.",
         },
         oznake: [
           { en: "Thumbnail", ru: "Обложка" },
           { en: "16:9", ru: "16:9" },
-          { en: "Photo cutout", ru: "Вырезка" },
+          { en: "Variants", ru: "Варианты" },
         ],
         slike: [
           cs("01_arena-sport_thumbnail_cutout", "16:9", "EuroLeague highlights thumbnail, cutout version"),
-        ],
-      },
-      {
-        id: "varijante",
-        klijent: {
-          en: "Arena Sport · Correct Score Pro",
-          ru: "Arena Sport · Correct Score Pro",
-        },
-        naslov: {
-          en: "One Layout, Several Variants",
-          ru: "Одна раскладка, несколько вариантов",
-        },
-        opis: {
-          en: "A cutout version, a full-frame action photo and a re-skin for a second brand — the same grid carries all three, so a new edition is a swap, not a redesign.",
-          ru: "Вырезка, кадр целиком и перекраска под второй бренд — одна и та же сетка держит все три, поэтому новый выпуск делается заменой, а не пересборкой.",
-        },
-        oznake: [
-          { en: "System", ru: "Система" },
-          { en: "Variants", ru: "Варианты" },
-          { en: "Multi-brand", ru: "Два бренда" },
-        ],
-        slike: [
-          cs("02_arena-sport_thumbnail_action", "16:9", "Thumbnail variant with a full-frame action photo"),
-          cs("03_correct-score-pro_thumbnail", "16:9", "The same thumbnail re-skinned for Correct Score Pro"),
+          cs("02_arena-sport_thumbnail_action", "16:9", "The same thumbnail with a full-frame action photo"),
         ],
       },
       {
@@ -292,6 +269,16 @@ export const projekti: Projekat[] = [
   },
 ];
 
+/**
+ * Kanali na kojima se javljaju klijenti sa ove strane. WhatsApp vodi na
+ * isti broj koji stoji u zaglavlju, bez plusa i razmaka, kako wa.me
+ * trazi.
+ */
+export const veze = {
+  whatsapp: "https://wa.me/381605973212",
+  telegram: "https://t.me/correctscore7877",
+};
+
 export const tekst = {
   en: {
     eyebrow: "Graphic design",
@@ -302,8 +289,10 @@ export const tekst = {
     nazad: "Popzify",
     kontaktNaslov: "Want this for your brand?",
     kontaktP: "Tell us what you publish and how often. We come back with a plan and a price within 24 hours.",
-    pisi: "Write to us",
+    pisi: "Email",
     zovi: "Call",
+    vatsap: "WhatsApp",
+    telegram: "Telegram",
     uvecaj: "Open full size",
     zatvori: "Close",
     prethodna: "Previous",
@@ -318,8 +307,10 @@ export const tekst = {
     nazad: "Popzify",
     kontaktNaslov: "Хотите так же для своего бренда?",
     kontaktP: "Расскажите, что вы публикуете и как часто. В течение 24 часов вернёмся с планом и ценой.",
-    pisi: "Написать нам",
+    pisi: "Почта",
     zovi: "Позвонить",
+    vatsap: "WhatsApp",
+    telegram: "Telegram",
     uvecaj: "Открыть в полном размере",
     zatvori: "Закрыть",
     prethodna: "Назад",
