@@ -158,6 +158,8 @@ type Clip = {
   video: HTMLVideoElement | null;
   tex: THREE.VideoTexture | null;
   on: number;
+  /** Polozaj u proslom kadru, da se prepozna kad isecak obidje krug. */
+  prevX: number;
 };
 
 export type Montaza = {
@@ -191,15 +193,40 @@ export function buildMontaza(mobile: boolean): Montaza {
 
   const tracks: { clips: Clip[]; len: number; speed: number }[] = [];
   const top = ((TRACKS - 1) / 2) * TRACK_GAP;
-  let pick = 0;
+
+  /**
+   * Vreca: izmesan spisak iz koga se vuce bez vracanja dok se ne
+   * isprazni. Dok traje jedna vreca nijedan snimak se ne ponovi, pa
+   * susedne trake ne mogu da pokazu istu sliku jednu iznad druge.
+   *
+   * Ranije se islo ITEMS[pick++ % ITEMS.length]: 25 snimaka na 60
+   * panela znacilo je da treca traka pocinje isti niz kao prva.
+   */
+  const vreca: Item[] = [];
+  let zadnji: Item | null = null;
+  const izvuci = (): Item => {
+    if (!vreca.length) {
+      const k = ITEMS.slice();
+      for (let i = k.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [k[i], k[j]] = [k[j], k[i]];
+      }
+      // Na spoju dve vrece isti snimak ne sme dvaput za redom.
+      if (k[0] === zadnji && k.length > 1) [k[0], k[1]] = [k[1], k[0]];
+      vreca.push(...k);
+    }
+    const it = vreca.shift() as Item;
+    zadnji = it;
+    return it;
+  };
 
   for (let i = 0; i < TRACKS; i++) {
     const list: Clip[] = [];
     let x = 0;
     for (let k = 0; k < PER_TRACK; k++) {
-      const item = ITEMS[pick++ % ITEMS.length];
+      const item = izvuci();
       // Sirine se razlikuju kao u pravoj montazi: nije svaki rez isti.
-      const w = 4.5 + ((pick * 2.7) % 7);
+      const w = 4.5 + (((i * PER_TRACK + k + 1) * 2.7) % 7);
       const geo = new THREE.PlaneGeometry(w, TRACK_H);
       const mat = new THREE.ShaderMaterial({
         vertexShader: VERT,
@@ -220,7 +247,7 @@ export function buildMontaza(mobile: boolean): Montaza {
       mats.push(mat);
       group.add(mesh);
 
-      list.push({ mesh, mat, start: x, w, item, video: null, tex: null, on: 0 });
+      list.push({ mesh, mat, start: x, w, item, video: null, tex: null, on: 0, prevX: Infinity });
       x += w + CLIP_GAP;
     }
     tracks.push({ clips: list, len: x, speed: 2.1 - i * 0.22 });
@@ -297,6 +324,26 @@ export function buildMontaza(mobile: boolean): Montaza {
     c.video.pause();
   };
 
+  /**
+   * Isecak koji je obisao krug dobija nov snimak. Bez ovoga traka vrti
+   * jedan te isti redosled dokle god stranica stoji otvorena.
+   */
+  const zameni = (c: Clip) => {
+    if (c === playing) return;
+    if (c.video) {
+      c.video.pause();
+      c.video.removeAttribute("src");
+      c.video.load();
+      c.video = null;
+    }
+    c.tex?.dispose();
+    c.tex = null;
+    const item = izvuci();
+    c.item = item;
+    c.mat.uniforms.uTex.value = getTex(item.tex);
+    c.mat.uniforms.uTexA.value = item.ratio;
+  };
+
   const play = (c: Clip) => {
     if (!c.item.video) return;
     if (!c.video) {
@@ -343,7 +390,11 @@ export function buildMontaza(mobile: boolean): Montaza {
       const shift = offset * track.speed;
       for (const c of track.clips) {
         // Traka se vrti u krug: sta prodje levo, vraca se zdesna.
-        let cx = ((c.start + c.w / 2 - shift) % track.len + track.len) % track.len - track.len / 2;
+        const cx = ((c.start + c.w / 2 - shift) % track.len + track.len) % track.len - track.len / 2;
+        // cx stalno opada; nagli skok navise znaci da se isecak vratio
+        // zdesna, i tek tada sme da promeni snimak — van vidnog polja.
+        if (cx - c.prevX > track.len / 2) zameni(c);
+        c.prevX = cx;
         c.mesh.position.x = cx;
 
         const d = Math.abs(cx - HEAD_X);
