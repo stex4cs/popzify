@@ -52,10 +52,10 @@ const an = (file: string, alt: string): Slika => ({
   oblik: "16:9",
   alt,
 });
-const mo = (file: string, alt: string): Slika => ({
+const mo = (file: string, alt: string, oblik: Oblik = "9:16"): Slika => ({
   file: `/design/motion/${file}.webp`,
   video: `/design/motion/${file}.mp4`,
-  oblik: "9:16",
+  oblik,
   alt,
 });
 const db = (file: string, alt: string): Slika => ({
@@ -284,6 +284,23 @@ export const projekti: Projekat[] = [
         ],
         slike: [
           db("triple-combo", "Triple combo promotion banner for the Donbet homepage"),
+        ],
+      },
+      {
+        id: "combo-pokret",
+        klijent: { en: "Donbet · Homepage", ru: "Donbet · Главная" },
+        naslov: { en: "The Banner, Assembled", ru: "Баннер, собранный в движении" },
+        opis: {
+          en: "Thirteen seconds that build the banner and take it apart again: the league badges fly in along painted streaks, the headline lands, and the three offer boxes arrive one after another with their numbers counting up. The frame holds, then empties — which is why the loop has no visible seam.",
+          ru: "Тринадцать секунд, которые собирают баннер и снова его разбирают: знаки лиг влетают по нарисованным росчеркам, падает заголовок, три блока с предложениями приходят один за другим, а цифры в них досчитываются. Кадр держит, затем очищается — поэтому у петли не видно шва.",
+        },
+        oznake: [
+          { en: "Motion", ru: "Анимация" },
+          { en: "16:9", ru: "16:9" },
+          { en: "13s loop", ru: "Петля 13 с" },
+        ],
+        slike: [
+          mo("donbet-combo-petlja", "The triple combo banner assembling in motion", "16:9"),
         ],
       },
       {
