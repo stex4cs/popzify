@@ -185,24 +185,6 @@ export const projekti: Projekat[] = [
         ],
       },
       {
-        id: "promo",
-        klijent: { en: "Donbet · Sponsor", ru: "Donbet · Спонсор" },
-        naslov: { en: "Promo Code Campaign", ru: "Кампания с промокодами" },
-        opis: {
-          en: "Bonus-code creative for the sponsor: a clear offer hierarchy, the terms where they belong, and a real app screen in the phone mockup instead of a placeholder.",
-          ru: "Креатив с бонус-кодами для спонсора: понятная иерархия предложения, условия на своём месте и реальный экран приложения в мокапе телефона вместо заглушки.",
-        },
-        oznake: [
-          { en: "Promo", ru: "Промо" },
-          { en: "Campaign", ru: "Кампания" },
-          { en: "Mockup", ru: "Мокап" },
-        ],
-        slike: [
-          cs("15_donbet_promo-codes_story", "9:16", "Promo code story"),
-          cs("16_donbet_promo-codes_post", "4:5", "Promo code post"),
-        ],
-      },
-      {
         id: "beta",
         klijent: { en: "Correct Score Pro · App", ru: "Correct Score Pro · Приложение" },
         naslov: { en: "Beta Launch Announcement", ru: "Анонс запуска беты" },
@@ -244,12 +226,12 @@ export const projekti: Projekat[] = [
     id: "donbet",
     ime: "Donbet",
     grana: {
-      en: "Sports betting · On-site promotions",
-      ru: "Беттинг · Промо на сайте",
+      en: "Sports betting · Promotions",
+      ru: "Беттинг · Промо",
     },
     uvod: {
-      en: "Promotional artwork for the operator's own site. The banner sits inside the promo window on the homepage, so the brand frame, the terms and the sign-up buttons come from the page around it. The artwork has one job: make the offer land in a second.",
-      ru: "Промо-графика для собственного сайта оператора. Баннер стоит в промо-окне на главной, поэтому фирменная рамка, условия и кнопки регистрации приходят от самой страницы. У графики одна задача — чтобы предложение считывалось за секунду.",
+      en: "Promotional artwork for a betting operator, on its own site and through partner channels. The homepage banner sits inside the promo window, so the brand frame, the terms and the sign-up buttons come from the page around it; the bonus-code creative carries all of that itself. Different frames, one job: make the offer land in a second.",
+      ru: "Промо-графика для беттинг-оператора — на его собственном сайте и через партнёрские каналы. Баннер на главной стоит в промо-окне, поэтому фирменная рамка, условия и кнопки регистрации приходят от самой страницы; креатив с бонус-кодами несёт всё это сам. Рамки разные, задача одна — чтобы предложение считывалось за секунду.",
     },
     radovi: [
       {
@@ -267,6 +249,27 @@ export const projekti: Projekat[] = [
         ],
         slike: [
           db("triple-combo", "Triple combo promotion banner for the Donbet homepage"),
+        ],
+      },
+      {
+        id: "promo",
+        klijent: {
+          en: "Donbet × Correct Score Pro",
+          ru: "Donbet × Correct Score Pro",
+        },
+        naslov: { en: "Promo Code Campaign", ru: "Кампания с промокодами" },
+        opis: {
+          en: "Bonus-code creative for the operator, published through the partner channel: a clear offer hierarchy, the terms where they belong, and a real app screen in the phone mockup instead of a placeholder.",
+          ru: "Креатив с бонус-кодами для оператора, выходит через партнёрский канал: понятная иерархия предложения, условия на своём месте и реальный экран приложения в мокапе телефона вместо заглушки.",
+        },
+        oznake: [
+          { en: "Promo", ru: "Промо" },
+          { en: "Campaign", ru: "Кампания" },
+          { en: "Mockup", ru: "Мокап" },
+        ],
+        slike: [
+          cs("15_donbet_promo-codes_story", "9:16", "Promo code story"),
+          cs("16_donbet_promo-codes_post", "4:5", "Promo code post"),
         ],
       },
     ],
@@ -287,10 +290,10 @@ export const projekti: Projekat[] = [
       {
         id: "citati",
         klijent: { en: "Arenica · Editorial", ru: "Arenica · Редакция" },
-        naslov: { en: "Interview Cards", ru: "Карточки интервью" },
+        naslov: { en: "Editorial Cards", ru: "Редакционные карточки" },
         opis: {
-          en: "A quote card per rubric — the athlete's own words, the rubric badge and the brand bar. One template, different sections, and the photograph still carries the post.",
-          ru: "Карточка цитаты под каждую рубрику — слова самого спортсмена, бейдж рубрики и фирменная полоса. Один шаблон, разные разделы, и фотография по-прежнему держит пост.",
+          en: "A card per rubric — a quote in the athlete's own words, or the result itself — carrying the rubric badge and the brand bar. One template, different sections, and the photograph still does the work.",
+          ru: "Карточка под каждую рубрику — цитата словами самого спортсмена или сам результат — с бейджем рубрики и фирменной полосой. Один шаблон, разные разделы, а работу по-прежнему делает фотография.",
         },
         oznake: [
           { en: "Editorial", ru: "Редакция" },
@@ -321,7 +324,6 @@ export const projekti: Projekat[] = [
         ],
         slike: [
           ar("liga-boje", "panorama", "Four municipality colour editions side by side"),
-          ar("liga-surcin", "9:16", "Results story, Surčin edition"),
         ],
       },
       {

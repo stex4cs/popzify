@@ -57,9 +57,25 @@ export default function Galerija({
   // slucaj sa cetiri naslovne razvuce u zid od tri hiljade piksela.
   const siroki = slike.filter((s) => s.oblik === "16:9" || s.oblik === "panorama").length;
 
+  /**
+   * Kad su svi kadrovi istog oblika, red se deli na tacan broj njih i
+   * sirina se racuna u procentima. Jednaka visina u pikselima ne moze
+   * da garantuje tri u redu: izmedju 1240 i 1400 piksela kontejner se
+   * suzi pre nego sto se visina promeni, pa treci kadar padne dole.
+   */
+  const oblici = new Set(slike.map((s) => s.oblik));
+  const jednak =
+    oblici.size === 1 && !oblici.has("16:9") && !oblici.has("panorama") && slike.length > 1;
+  const kolone = Math.min(slike.length, 4);
+
   return (
     <>
-      <ul className={styles.mreza} data-siroki={siroki > 1 ? "vise" : "jedan"}>
+      <ul
+        className={styles.mreza}
+        data-siroki={siroki > 1 ? "vise" : "jedan"}
+        data-red={jednak ? "jednak" : undefined}
+        style={jednak ? ({ "--k": kolone } as React.CSSProperties) : undefined}
+      >
         {slike.map((s, i) => (
           <li key={s.file} data-oblik={s.oblik}>
             <button
