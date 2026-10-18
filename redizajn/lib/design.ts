@@ -46,6 +46,11 @@ const an = (file: string, alt: string): Slika => ({
   oblik: "16:9",
   alt,
 });
+const db = (file: string, alt: string): Slika => ({
+  file: `/design/donbet/${file}.webp`,
+  oblik: "16:9",
+  alt,
+});
 const ar = (file: string, oblik: Oblik, alt: string): Slika => ({
   file: `/design/arenica/${file}.webp`,
   oblik,
@@ -230,6 +235,38 @@ export const projekti: Projekat[] = [
         slike: [
           cs("10_matchday_top-matches-gold_post", "4:5", "Telegram post format"),
           cs("09_matchday_top-matches-gold_story", "9:16", "Instagram story format"),
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "donbet",
+    ime: "Donbet",
+    grana: {
+      en: "Sports betting · On-site promotions",
+      ru: "Беттинг · Промо на сайте",
+    },
+    uvod: {
+      en: "Promotional artwork for the operator's own site. The banner sits inside the promo window on the homepage, so the brand frame, the terms and the sign-up buttons come from the page around it. The artwork has one job: make the offer land in a second.",
+      ru: "Промо-графика для собственного сайта оператора. Баннер стоит в промо-окне на главной, поэтому фирменная рамка, условия и кнопки регистрации приходят от самой страницы. У графики одна задача — чтобы предложение считывалось за секунду.",
+    },
+    radovi: [
+      {
+        id: "triple-combo",
+        klijent: { en: "Donbet · Homepage", ru: "Donbet · Главная" },
+        naslov: { en: "Triple Combo Promotion", ru: "Промо «Тройное комбо»" },
+        opis: {
+          en: "Three offers stacked in one frame — freebet insurance by number of legs, live cashback and a payout boost — over a painted field of the five league marks. The numbers are the loudest thing on it, because the numbers are what the player is scanning for.",
+          ru: "Три предложения в одном кадре — страховка фрибетом по числу событий, live-кешбэк и буст выплаты — поверх написанного кистью поля из знаков пяти лиг. Цифры здесь самое громкое, потому что именно их игрок и ищет.",
+        },
+        oznake: [
+          { en: "Promo", ru: "Промо" },
+          { en: "16:9", ru: "16:9" },
+          { en: "On-site", ru: "На сайте" },
+        ],
+        slike: [
+          db("triple-combo", "Triple combo promotion banner for the Donbet homepage"),
         ],
       },
     ],
