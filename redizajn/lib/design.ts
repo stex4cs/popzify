@@ -98,8 +98,8 @@ export const projekti: Projekat[] = [
         klijent: { en: "Arena Sport · YouTube", ru: "Arena Sport · YouTube" },
         naslov: { en: "Alternate Cuts", ru: "Другие варианты" },
         opis: {
-          en: "The same match comes back in a second cut. The Premier League thumbnail swaps sides — type left, player right, crests into a white bar — and the EuroLeague one opens from a cutout on flat colour to a full-frame action photo. Same rules, different reading, and the channel picks.",
-          ru: "Тот же матч возвращается во втором варианте. Премьер-лига меняет стороны — текст слева, игрок справа, эмблемы уходят в белую плашку, — а Евролига раскрывается из вырезки на плашке в полноформатное фото. Правила те же, прочтение другое, а выбирает канал.",
+          en: "The same match comes back in a second cut. The Premier League thumbnail swaps sides — type left, player right, crests into a white bar — while the EuroLeague one is rebuilt as cut paper: halftone, torn edges, sticker outlines and a handwritten mark pointing at the ball. Same rules, a different register, and the channel picks.",
+          ru: "Тот же матч возвращается во втором варианте. Премьер-лига меняет стороны — текст слева, игрок справа, эмблемы уходят в белую плашку, — а Евролига пересобрана как бумажные вырезки: растр, рваные края, стикерные обводки и нарисованная от руки пометка на мяче. Правила те же, регистр другой, а выбирает канал.",
         },
         oznake: [
           { en: "Variants", ru: "Варианты" },
@@ -108,7 +108,7 @@ export const projekti: Projekat[] = [
         ],
         slike: [
           an("premier-league-druga", "Premier League thumbnail, second layout"),
-          cs("02_arena-sport_thumbnail_action", "16:9", "EuroLeague thumbnail opened to a full-frame action photo"),
+          an("euroleague-druga", "EuroLeague thumbnail rebuilt as a cut-paper collage"),
         ],
       },
     ],
