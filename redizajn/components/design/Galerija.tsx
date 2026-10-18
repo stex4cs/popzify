@@ -53,9 +53,13 @@ export default function Galerija({
     };
   }, [otvorena, pomeri]);
 
+  // Jedan polozeni kadar nosi ceo red; vise njih ide po dva, inace se
+  // slucaj sa cetiri naslovne razvuce u zid od tri hiljade piksela.
+  const siroki = slike.filter((s) => s.oblik === "16:9" || s.oblik === "panorama").length;
+
   return (
     <>
-      <ul className={styles.mreza}>
+      <ul className={styles.mreza} data-siroki={siroki > 1 ? "vise" : "jedan"}>
         {slike.map((s, i) => (
           <li key={s.file} data-oblik={s.oblik}>
             <button

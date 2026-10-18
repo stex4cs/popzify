@@ -41,6 +41,11 @@ const cs = (file: string, oblik: Oblik, alt: string): Slika => ({
   oblik,
   alt,
 });
+const an = (file: string, alt: string): Slika => ({
+  file: `/design/arena/${file}.webp`,
+  oblik: "16:9",
+  alt,
+});
 const ar = (file: string, oblik: Oblik, alt: string): Slika => ({
   file: `/design/arenica/${file}.webp`,
   oblik,
@@ -49,6 +54,62 @@ const ar = (file: string, oblik: Oblik, alt: string): Slika => ({
 
 export const projekti: Projekat[] = [
   {
+    id: "arena-sport",
+    ime: "Arena Sport",
+    grana: {
+      en: "Sports broadcaster · YouTube",
+      ru: "Спортивный вещатель · YouTube",
+    },
+    uvod: {
+      en: "Thumbnails for the channel's match highlights. Each competition gets its own look without the channel ever disappearing, and every frame is built to be read at the size YouTube actually shows it — a strip a few centimetres wide, next to a dozen others.",
+      ru: "Обложки для обзоров матчей на канале. У каждого турнира свой вид, но канал из кадра не исчезает, и каждая обложка собрана под тот размер, в котором YouTube её и показывает — полоска в несколько сантиметров среди десятка других.",
+    },
+    radovi: [
+      {
+        id: "takmicenja",
+        klijent: { en: "Arena Sport · YouTube", ru: "Arena Sport · YouTube" },
+        naslov: {
+          en: "A Thumbnail Per Competition",
+          ru: "Своя обложка на каждый турнир",
+        },
+        opis: {
+          en: "Four competitions, four looks: Europa League in ember, Serie A in blue, Premier League in its own purple, EuroLeague in orange. The league brings the colour, the channel brings the rules — crest against crest, the round, and a cutout doing the work the type cannot.",
+          ru: "Четыре турнира — четыре вида: Лига Европы в углях, Серия А в синем, Премьер-лига в своём фиолетовом, Евролига в оранжевом. Цвет приходит от лиги, правила — от канала: эмблема против эмблемы, тур и вырезка, которая делает то, чего шрифт не может.",
+        },
+        oznake: [
+          { en: "Thumbnail", ru: "Обложка" },
+          { en: "16:9", ru: "16:9" },
+          { en: "Football + basketball", ru: "Футбол и баскетбол" },
+        ],
+        slike: [
+          an("europa-league", "Europa League highlights thumbnail, Lech Poznań vs Bayer Leverkusen"),
+          an("serie-a", "Serie A highlights thumbnail, Roma vs Genoa"),
+          an("premier-league", "Premier League highlights thumbnail, Newcastle vs Aston Villa"),
+          cs("01_arena-sport_thumbnail_cutout", "16:9", "EuroLeague highlights thumbnail, Paris vs ASVEL"),
+        ],
+      },
+      {
+        id: "rezovi",
+        klijent: { en: "Arena Sport · YouTube", ru: "Arena Sport · YouTube" },
+        naslov: { en: "Alternate Cuts", ru: "Другие варианты" },
+        opis: {
+          en: "The same match comes back in a second cut. The Premier League thumbnail swaps sides — type left, player right, crests into a white bar — and the EuroLeague one opens from a cutout on flat colour to a full-frame action photo. Same rules, different reading, and the channel picks.",
+          ru: "Тот же матч возвращается во втором варианте. Премьер-лига меняет стороны — текст слева, игрок справа, эмблемы уходят в белую плашку, — а Евролига раскрывается из вырезки на плашке в полноформатное фото. Правила те же, прочтение другое, а выбирает канал.",
+        },
+        oznake: [
+          { en: "Variants", ru: "Варианты" },
+          { en: "Same brief", ru: "Одно задание" },
+          { en: "16:9", ru: "16:9" },
+        ],
+        slike: [
+          an("premier-league-druga", "Premier League thumbnail, second layout"),
+          cs("02_arena-sport_thumbnail_action", "16:9", "EuroLeague thumbnail opened to a full-frame action photo"),
+        ],
+      },
+    ],
+  },
+
+  {
     id: "correct-score",
     ime: "Correct Score Pro",
     grana: {
@@ -56,31 +117,10 @@ export const projekti: Projekat[] = [
       ru: "Спортивные прогнозы · Беттинг-медиа",
     },
     uvod: {
-      en: "Daily social graphics for a football and basketball predictions platform, its broadcast partner Arena Sport and its sponsor Donbet. Everything is built as a template and ships in two native formats.",
-      ru: "Ежедневная графика для платформы прогнозов на футбол и баскетбол, её вещательного партнёра Arena Sport и спонсора Donbet. Всё собрано как шаблон и выходит в двух нативных форматах.",
+      en: "Daily social graphics for a football and basketball predictions platform and its sponsor Donbet. Everything is built as a template and ships in two native formats.",
+      ru: "Ежедневная графика для платформы прогнозов на футбол и баскетбол и её спонсора Donbet. Всё собрано как шаблон и выходит в двух нативных форматах.",
     },
     radovi: [
-      {
-        id: "thumbnail",
-        klijent: { en: "Arena Sport · YouTube", ru: "Arena Sport · YouTube" },
-        naslov: {
-          en: "EuroLeague Highlights Thumbnails",
-          ru: "Обложки хайлайтов Евролиги",
-        },
-        opis: {
-          en: "Broadcast-grade YouTube thumbnails with club crests and channel branding, built to be read at small sizes. One layout, two variants: a player cutout against flat colour, and the same frame opened up to a full-frame action photo.",
-          ru: "Обложки для YouTube телевизионного уровня: клубные эмблемы и брендинг канала, с расчётом на то, чтобы читаться в маленьком размере. Одна раскладка, два варианта: вырезанный игрок на плашке и тот же кадр, раскрытый до полноформатного фото.",
-        },
-        oznake: [
-          { en: "Thumbnail", ru: "Обложка" },
-          { en: "16:9", ru: "16:9" },
-          { en: "Variants", ru: "Варианты" },
-        ],
-        slike: [
-          cs("01_arena-sport_thumbnail_cutout", "16:9", "EuroLeague highlights thumbnail, cutout version"),
-          cs("02_arena-sport_thumbnail_action", "16:9", "The same thumbnail with a full-frame action photo"),
-        ],
-      },
       {
         id: "mec-dana",
         klijent: { en: "Correct Score Pro × Donbet", ru: "Correct Score Pro × Donbet" },
