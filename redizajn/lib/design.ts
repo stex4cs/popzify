@@ -16,7 +16,13 @@ type T = Record<Jezik, string>;
 /** Oblik kadra; odredjuje koliko slika stane u red i kako se rezerva prostora. */
 export type Oblik = "16:9" | "4:5" | "9:16" | "panorama";
 
-export type Slika = { file: string; oblik: Oblik; alt: string };
+export type Slika = {
+  file: string;
+  oblik: Oblik;
+  alt: string;
+  /** Kad stoji, `file` je poster a ovo je nema petlja koja se pusti. */
+  video?: string;
+};
 
 export type Rad = {
   id: string;
@@ -44,6 +50,12 @@ const cs = (file: string, oblik: Oblik, alt: string): Slika => ({
 const an = (file: string, alt: string): Slika => ({
   file: `/design/arena/${file}.webp`,
   oblik: "16:9",
+  alt,
+});
+const mo = (file: string, alt: string): Slika => ({
+  file: `/design/motion/${file}.webp`,
+  video: `/design/motion/${file}.mp4`,
+  oblik: "9:16",
   alt,
 });
 const db = (file: string, alt: string): Slika => ({
@@ -161,6 +173,29 @@ export const projekti: Projekat[] = [
           cs("06_matchday_champions-league_story", "9:16", "Champions League matchday story"),
           cs("07_matchday_euroleague_story", "9:16", "EuroLeague matchday story"),
           cs("08_matchday_top-matches_story", "9:16", "Top matches of the day story"),
+        ],
+      },
+      {
+        id: "pokret",
+        klijent: {
+          en: "Correct Score Pro · Motion",
+          ru: "Correct Score Pro · Анимация",
+        },
+        naslov: {
+          en: "The Same Template, In Motion",
+          ru: "Тот же шаблон, в движении",
+        },
+        opis: {
+          en: "The daily card as an eight-second loop for the story feed: embers drifting behind it, a light pass across the card, and the odds rolling before they settle. The motion sits on the template that already ships every day, so a moving post costs a render, not a redesign.",
+          ru: "Та же ежедневная карточка — восьмисекундная петля для сторис: за карточкой тлеют угли, по ней проходит блик, коэффициенты прокручиваются и встают на место. Движение — слой поверх шаблона, который и так выходит каждый день, поэтому анимированный пост стоит рендера, а не пересборки.",
+        },
+        oznake: [
+          { en: "Motion", ru: "Анимация" },
+          { en: "9:16", ru: "9:16" },
+          { en: "8s loop", ru: "Петля 8 с" },
+        ],
+        slike: [
+          mo("csp-dnevna-petlja", "Daily matchday card as an eight-second loop"),
         ],
       },
       {

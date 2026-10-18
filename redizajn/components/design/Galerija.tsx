@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { Slika } from "@/lib/design";
 import styles from "./design.module.css";
 
@@ -20,6 +20,49 @@ const ODNOS: Record<Slika["oblik"], string> = {
   "9:16": "9 / 16",
   panorama: "1400 / 610",
 };
+
+/**
+ * Nema petlja koja krene tek kad kadar dodje blizu ekrana.
+ *
+ * Izvor se postavlja u tom trenutku, a ne pri ucitavanju strane: inace
+ * bi svako ko do ovog slucaja nikad ne dogura ipak skinuo dva megabajta.
+ * Dok se ne ucita, stoji poster, pa se u spisku nista ne pomera.
+ */
+function Klip({ slika }: { slika: Slika }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const oko = new IntersectionObserver(
+      ([u]) => {
+        if (u.isIntersecting) {
+          if (!v.getAttribute("src")) v.setAttribute("src", slika.video as string);
+          void v.play().catch(() => {
+            // Pregledac odbio pustanje: poster ostaje, bez greske.
+          });
+        } else {
+          v.pause();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    oko.observe(v);
+    return () => oko.disconnect();
+  }, [slika.video]);
+
+  return (
+    <video
+      ref={ref}
+      poster={slika.file}
+      muted
+      loop
+      playsInline
+      preload="none"
+      aria-label={slika.alt}
+    />
+  );
+}
 
 export default function Galerija({
   slike,
@@ -85,8 +128,12 @@ export default function Galerija({
               onClick={() => setOtvorena(i)}
               aria-label={`${natpisi.uvecaj} — ${s.alt}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={s.file} alt={s.alt} loading="lazy" decoding="async" />
+              {s.video ? (
+                <Klip slika={s} />
+              ) : (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img src={s.file} alt={s.alt} loading="lazy" decoding="async" />
+              )}
             </button>
           </li>
         ))}
@@ -100,8 +147,22 @@ export default function Galerija({
           aria-label={slike[otvorena].alt}
           onClick={() => setOtvorena(null)}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={slike[otvorena].file} alt={slike[otvorena].alt} />
+          {slike[otvorena].video ? (
+            <video
+              src={slike[otvorena].video}
+              poster={slike[otvorena].file}
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-label={slike[otvorena].alt}
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img src={slike[otvorena].file} alt={slike[otvorena].alt} />
+          )}
 
           <button
             type="button"
