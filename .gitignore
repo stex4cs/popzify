@@ -34,3 +34,6 @@ dist/
 build/
 .env
 .env.local
+
+# Licni CV: nije deo sajta i ne ide u javni repozitorijum
+/cv/
