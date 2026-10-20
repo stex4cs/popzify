@@ -1,5 +1,5 @@
 import { firma } from "@/lib/privatnost";
-import { projekti, tekst, veze, type Jezik } from "@/lib/design";
+import { osoba, porodice, projekti, tekst, veze, type Jezik } from "@/lib/design";
 import Galerija from "./Galerija";
 import styles from "./design.module.css";
 
@@ -23,8 +23,12 @@ function Ikona({ kanal }: { kanal: keyof typeof PUTANJE }) {
  * Strana sa portfoliom grafickog dizajna.
  *
  * Stoji izvan `/[locale]` sistema sajta: ovde su engleski i ruski, jer
- * se salje klijentima koji ne citaju srpski. Zato i svoje zaglavlje,
- * sa prebacivanjem izmedju /design i /design/ru.
+ * se salje klijentima i poslodavcima koji ne citaju srpski. Zato i svoje
+ * zaglavlje, sa prebacivanjem izmedju /design i /design/ru.
+ *
+ * Projekti se grupisu u dve porodice — iGaming i sport — jer je ravan
+ * spisak od pet brendova skrivao da je specijalnost beting i kazino, a
+ * to je prvo sto poslodavac u toj grani trazi.
  *
  * Nema 3D scene namerno. Na ostalim stranama scena nosi stranu; ovde bi
  * se tukla sa radovima, koji su sami po sebi jaki kadrovi.
@@ -39,12 +43,15 @@ export default function Portfolio({ jezik }: { jezik: Jezik }) {
       <span className="corner tr" />
 
       <header className={styles.top}>
-        <a className={styles.brand} href={jezik === "en" ? "/en" : "/en"}>
+        <a className={styles.brand} href="/en">
           <b>Pop</b>zify
         </a>
         <div className={styles.desno}>
-          <a className="mono" href={`tel:${firma.telefonIntl}`}>
-            {firma.telefonIntl}
+          <a className="mono" href="#radovi">
+            {t.radoviVeza}
+          </a>
+          <a className="mono" href="#kontakt">
+            {t.kontaktVeza}
           </a>
           <a className="mono" href={drugi} hrefLang={jezik === "en" ? "ru" : "en"}>
             {t.jezik}
@@ -53,72 +60,103 @@ export default function Portfolio({ jezik }: { jezik: Jezik }) {
       </header>
 
       <section className={styles.uvod}>
-        <p className="mono">{t.eyebrow}</p>
-        <h1 className="display">
-          {t.naslov} <em className="outline">{t.naglasak}</em>
-        </h1>
-        <p className="lead">{t.uvod}</p>
+        <div className={styles.uvodTekst}>
+          <p className="mono">{t.eyebrow}</p>
+          <h1 className="display">
+            {t.naslov} <em className="outline">{t.naglasak}</em>
+          </h1>
+          <p className="lead">{t.uvod}</p>
+          <p className={styles.potpis}>
+            <strong>{osoba.ime}</strong>
+            <span className="mono">{osoba.uloga[jezik]}</span>
+          </p>
+        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className={styles.foto}
+          src={osoba.foto}
+          alt={osoba.ime}
+          width={720}
+          height={864}
+          decoding="async"
+        />
       </section>
 
-      {projekti.map((p) => (
-        <section key={p.id} className={styles.projekat} id={p.id}>
-          <div className={styles.zaglavljeProjekta}>
-            <h2 className="display">{p.ime}</h2>
-            <p className={`mono ${styles.grana}`}>{p.grana[jezik]}</p>
-            <p className={styles.uvodProjekta}>{p.uvod[jezik]}</p>
-          </div>
+      <div id="radovi">
+        {porodice.map((f) => (
+          <div key={f.id}>
+            <section className={styles.porodica}>
+              <h2 className="display">{f.naslov[jezik]}</h2>
+              <p className={styles.uvodProjekta}>{f.opis[jezik]}</p>
+            </section>
 
-          {p.radovi.map((r, i) => (
-            <article key={r.id} className={styles.rad}>
-              <div className={styles.opisRada}>
-                <p className={`mono ${styles.broj}`}>
-                  {String(i + 1).padStart(2, "0")} <span>/ {String(p.radovi.length).padStart(2, "0")}</span>
-                </p>
-                <p className={`mono ${styles.klijent}`}>{r.klijent[jezik]}</p>
-                <h3>{r.naslov[jezik]}</h3>
-                <p className={styles.tekstRada}>{r.opis[jezik]}</p>
-                <ul className={styles.oznake}>
-                  {r.oznake.map((o) => (
-                    <li key={o.en} className="mono">
-                      {o[jezik]}
-                    </li>
+            {projekti
+              .filter((p) => p.porodica === f.id)
+              .map((p) => (
+                <section key={p.id} className={styles.projekat} id={p.id}>
+                  <div className={styles.zaglavljeProjekta}>
+                    <h3 className="display">{p.ime}</h3>
+                    <p className={`mono ${styles.grana}`}>{p.grana[jezik]}</p>
+                    <p className={styles.uvodProjekta}>{p.uvod[jezik]}</p>
+                  </div>
+
+                  {p.radovi.map((r, i) => (
+                    <article key={r.id} className={styles.rad}>
+                      <div className={styles.opisRada}>
+                        <p className={`mono ${styles.broj}`}>
+                          {String(i + 1).padStart(2, "0")}{" "}
+                          <span>/ {String(p.radovi.length).padStart(2, "0")}</span>
+                        </p>
+                        <p className={`mono ${styles.klijent}`}>{r.klijent[jezik]}</p>
+                        <h4>{r.naslov[jezik]}</h4>
+                        <p className={styles.tekstRada}>{r.opis[jezik]}</p>
+                        <ul className={styles.oznake}>
+                          {r.oznake.map((o) => (
+                            <li key={o.en} className="mono">
+                              {o[jezik]}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <Galerija
+                        slike={r.slike}
+                        natpisi={{
+                          uvecaj: t.uvecaj,
+                          zatvori: t.zatvori,
+                          prethodna: t.prethodna,
+                          sledeca: t.sledeca,
+                        }}
+                      />
+                    </article>
                   ))}
-                </ul>
-              </div>
+                </section>
+              ))}
+          </div>
+        ))}
+      </div>
 
-              <Galerija
-                slike={r.slike}
-                natpisi={{
-                  uvecaj: t.uvecaj,
-                  zatvori: t.zatvori,
-                  prethodna: t.prethodna,
-                  sledeca: t.sledeca,
-                }}
-              />
-            </article>
-          ))}
-        </section>
-      ))}
+      <section className={styles.dvoje}>
+        <div>
+          <p className="mono">{t.tokNaslov}</p>
+          <p className={styles.tekstRada}>{t.tokP}</p>
+          <p className={`mono ${styles.alati}`}>{t.tokAlati}</p>
+        </div>
+        <div>
+          <p className="mono">{t.oNaslov}</p>
+          <p className={styles.tekstRada}>{t.oP}</p>
+        </div>
+      </section>
 
-      <section className={styles.kraj}>
+      <section className={styles.kraj} id="kontakt">
         <h2 className="display">{t.kontaktNaslov}</h2>
         <p className="lead">{t.kontaktP}</p>
         <div className={styles.akcije}>
-          <a
-            className={styles.dugme}
-            href={veze.whatsapp}
-            target="_blank"
-            rel="noopener"
-          >
+          <a className={styles.dugme} href={veze.whatsapp} target="_blank" rel="noopener">
             <Ikona kanal="whatsapp" />
             {t.vatsap}
           </a>
-          <a
-            className={styles.dugmeTiho}
-            href={veze.telegram}
-            target="_blank"
-            rel="noopener"
-          >
+          <a className={styles.dugmeTiho} href={veze.telegram} target="_blank" rel="noopener">
             <Ikona kanal="telegram" />
             {t.telegram}
           </a>
@@ -130,8 +168,7 @@ export default function Portfolio({ jezik }: { jezik: Jezik }) {
 
       <footer className={styles.foot}>
         <p className="mono">
-          {firma.ime} · {firma.sediste} ·{" "}
-          <a href="/en">{t.nazad}</a>
+          {osoba.ime} · {firma.ime} · {firma.sediste} · <a href="/en">{t.nazad}</a>
         </p>
       </footer>
     </main>

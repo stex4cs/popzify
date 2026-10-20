@@ -33,8 +33,12 @@ export type Rad = {
   slike: Slika[];
 };
 
+export type Porodica = "igaming" | "sport";
+
 export type Projekat = {
   id: string;
+  /** Grupa u kojoj projekat stoji na strani. */
+  porodica: Porodica;
   /** Ime brenda se ne prevodi. */
   ime: string;
   grana: T;
@@ -50,6 +54,11 @@ const cs = (file: string, oblik: Oblik, alt: string): Slika => ({
 const an = (file: string, alt: string): Slika => ({
   file: `/design/arena/${file}.webp`,
   oblik: "16:9",
+  alt,
+});
+const sb = (file: string, oblik: Oblik, alt: string): Slika => ({
+  file: `/design/soccerbet/${file}.webp`,
+  oblik,
   alt,
 });
 const mo = (file: string, alt: string, oblik: Oblik = "9:16"): Slika => ({
@@ -72,6 +81,7 @@ const ar = (file: string, oblik: Oblik, alt: string): Slika => ({
 export const projekti: Projekat[] = [
   {
     id: "arena-sport",
+    porodica: "sport",
     ime: "Arena Sport",
     grana: {
       en: "Sports broadcaster · YouTube",
@@ -128,6 +138,7 @@ export const projekti: Projekat[] = [
 
   {
     id: "correct-score",
+    porodica: "sport",
     ime: "Correct Score Pro",
     grana: {
       en: "Sports predictions · Betting media",
@@ -258,7 +269,64 @@ export const projekti: Projekat[] = [
   },
 
   {
+    id: "soccerbet",
+    porodica: "igaming",
+    ime: "Soccerbet",
+    grana: {
+      en: "Online casino · Campaign concept",
+      ru: "Онлайн-казино · Концепция кампании",
+    },
+    uvod: {
+      en: "A concept for a casino campaign built as a game rather than an offer: the player explores a map, clears a mission, climbs ten levels and unlocks free spins along the way. One illustrated world carries all four messages, and every message ships as a web banner and a story.",
+      ru: "Концепция кампании для казино, собранная как игра, а не как оферта: игрок исследует карту, проходит миссию, поднимается по десяти уровням и попутно открывает фриспины. Один нарисованный мир держит все четыре сообщения, и каждое выходит и баннером для сайта, и сторис.",
+    },
+    radovi: [
+      {
+        id: "avantura-baneri",
+        klijent: { en: "Soccerbet · Web banners", ru: "Soccerbet · Баннеры сайта" },
+        naslov: { en: "Avantura, Four Messages", ru: "«Авантура», четыре сообщения" },
+        opis: {
+          en: "The campaign reads as a progression, not four separate ads: explore the map, take the mission of the day, climb from level one to ten, unlock the reward. The same jungle and the same gold hold all four, so a player who saw the first recognises the fourth before reading it.",
+          ru: "Кампания читается как путь, а не как четыре отдельные рекламы: исследуй карту, возьми миссию дня, поднимись с первого уровня на десятый, открой награду. Те же джунгли и то же золото держат все четыре, поэтому игрок, увидевший первое, узнаёт четвёртое ещё до того, как прочтёт.",
+        },
+        oznake: [
+          { en: "Casino", ru: "Казино" },
+          { en: "16:9", ru: "16:9" },
+          { en: "Gamified", ru: "Геймификация" },
+        ],
+        slike: [
+          sb("istrazi-mapu-16x9", "16:9", "Explore the map — collect free spins"),
+          sb("misija-dana-16x9", "16:9", "Mission of the day"),
+          sb("nivoi-16x9", "16:9", "From level one to level ten"),
+          sb("otkljucaj-16x9", "16:9", "Unlock the reward"),
+        ],
+      },
+      {
+        id: "avantura-storije",
+        klijent: { en: "Soccerbet · Stories", ru: "Soccerbet · Сторис" },
+        naslov: { en: "The Same Four, Upright", ru: "Те же четыре, вертикально" },
+        opis: {
+          en: "Every message again in 9:16, rebuilt rather than cropped: the scene is recomposed for the tall frame, the type re-stacked, the reward panel moved where the thumb lands. A campaign that only exists in one format is half a campaign.",
+          ru: "Каждое сообщение снова в 9:16, пересобранное, а не обрезанное: сцена перекомпонована под вертикальный кадр, шрифт переставлен, панель с наградой сдвинута туда, где оказывается палец. Кампания, которая существует в одном формате, — половина кампании.",
+        },
+        oznake: [
+          { en: "Casino", ru: "Казино" },
+          { en: "9:16", ru: "9:16" },
+          { en: "Rebuilt, not cropped", ru: "Пересобрано, не обрезано" },
+        ],
+        slike: [
+          sb("istrazi-mapu-9x16", "9:16", "Explore the map, story format"),
+          sb("misija-dana-9x16", "9:16", "Mission of the day, story format"),
+          sb("nivoi-9x16", "9:16", "Levels one to ten, story format"),
+          sb("otkljucaj-9x16", "9:16", "Unlock the reward, story format"),
+        ],
+      },
+    ],
+  },
+
+  {
     id: "donbet",
+    porodica: "igaming",
     ime: "Donbet",
     grana: {
       en: "Sports betting · Promotions",
@@ -329,6 +397,7 @@ export const projekti: Projekat[] = [
 
   {
     id: "arenica",
+    porodica: "sport",
     ime: "Arenica",
     grana: {
       en: "Sports media · Arena Channels Group",
@@ -410,38 +479,80 @@ export const veze = {
   telegram: "https://t.me/correctscore7877",
 };
 
+/** Grupe u kojima projekti stoje; redosled je redosled na strani. */
+export const porodice = [
+  {
+    id: "igaming" as const,
+    naslov: { en: "iGaming & casino", ru: "iGaming и казино" },
+    opis: {
+      en: "Campaign concepts and promotional creative for operators — where the offer has to land in a second and the terms have to be on it.",
+      ru: "Концепции кампаний и промо-креатив для операторов — там, где предложение должно считываться за секунду, а условия обязаны быть на нём.",
+    },
+  },
+  {
+    id: "sport" as const,
+    naslov: { en: "Sports & media", ru: "Спорт и медиа" },
+    opis: {
+      en: "Daily graphics, broadcast thumbnails and editorial systems for channels that publish every day of the week.",
+      ru: "Ежедневная графика, телевизионные обложки и редакционные системы для каналов, которые публикуют каждый день.",
+    },
+  },
+];
+
+export const osoba = {
+  ime: "Stefan Popović",
+  foto: "/design/stefan.webp",
+  uloga: { en: "Creative designer · Popzify", ru: "Креативный дизайнер · Popzify" },
+};
+
 export const tekst = {
   en: {
-    eyebrow: "Graphic design",
-    naslov: "Design systems for",
-    naglasak: "sports media.",
-    uvod: "Daily social graphics, broadcast thumbnails and campaign creative — built as templates, themed per edition, and shipped in every format the channel needs.",
+    eyebrow: "Creative & design",
+    naslov: "Advertising creative for betting,",
+    naglasak: "casino and sports.",
+    uvod: "Campaign concepts, daily social graphics, broadcast thumbnails and motion — built as systems, themed per brand, and shipped in every format the channel needs.",
+    radoviVeza: "Selected work",
+    kontaktVeza: "Contact",
+    tokNaslov: "How the work gets made",
+    tokP: "Creative direction first, then production built for volume: layered, editable files, so a concept becomes a set of variants, formats and languages without being redrawn. AI sits inside that system for iteration and asset generation, not instead of it.",
+    tokAlati: "Figma · Canva · Claude · Python",
+    oNaslov: "The person behind it",
+    oP: "I run design at Popzify, a Belgrade studio doing video production and web. This page is the design side of it: campaign creative for betting and casino operators, and daily graphics for sports channels. Open to ongoing work and to single campaigns alike.",
     jezik: "Русский",
     nazad: "Popzify",
-    kontaktNaslov: "Want this for your brand?",
-    kontaktP: "Tell us what you publish and how often. We come back with a plan and a price within 24 hours.",
+    kontaktNaslov: "Let's talk",
+    kontaktP: "One campaign or an ongoing feed — tell me what you publish and how often, and you get a plan and a price within 24 hours.",
     pisi: "Email",
     zovi: "Call",
     vatsap: "WhatsApp",
     telegram: "Telegram",
+    linkedin: "LinkedIn",
     uvecaj: "Open full size",
     zatvori: "Close",
     prethodna: "Previous",
     sledeca: "Next",
   },
   ru: {
-    eyebrow: "Графический дизайн",
-    naslov: "Дизайн-системы для",
-    naglasak: "спортивных медиа.",
-    uvod: "Ежедневная графика для соцсетей, телевизионные обложки и кампейн-креатив — собраны как шаблоны, с темой под каждый выпуск, и отгружаются в любом формате, который нужен каналу.",
+    eyebrow: "Креатив и дизайн",
+    naslov: "Рекламный креатив для беттинга,",
+    naglasak: "казино и спорта.",
+    uvod: "Концепции кампаний, ежедневная графика для соцсетей, телевизионные обложки и анимация — собраны как системы, с темой под каждый бренд, и отгружаются в любом формате, который нужен каналу.",
+    radoviVeza: "Избранные работы",
+    kontaktVeza: "Контакты",
+    tokNaslov: "Как это делается",
+    tokP: "Сначала креативная дирекция, затем производство, рассчитанное на объём: многослойные редактируемые файлы, чтобы концепция превращалась в набор вариантов, форматов и языков без перерисовки. ИИ работает внутри этой системы — для итераций и генерации ассетов, а не вместо неё.",
+    tokAlati: "Figma · Canva · Claude · Python",
+    oNaslov: "Кто за этим стоит",
+    oP: "Я веду дизайн в Popzify — белградской студии видеопродакшена и веб-разработки. На этой странице дизайнерская часть: кампейн-креатив для беттинг- и казино-операторов и ежедневная графика для спортивных каналов. Открыт и для постоянной работы, и для отдельных кампаний.",
     jezik: "English",
     nazad: "Popzify",
-    kontaktNaslov: "Хотите так же для своего бренда?",
-    kontaktP: "Расскажите, что вы публикуете и как часто. В течение 24 часов вернёмся с планом и ценой.",
+    kontaktNaslov: "Давайте поговорим",
+    kontaktP: "Одна кампания или постоянная лента — расскажите, что вы публикуете и как часто, и в течение 24 часов получите план и цену.",
     pisi: "Почта",
     zovi: "Позвонить",
     vatsap: "WhatsApp",
     telegram: "Telegram",
+    linkedin: "LinkedIn",
     uvecaj: "Открыть в полном размере",
     zatvori: "Закрыть",
     prethodna: "Назад",

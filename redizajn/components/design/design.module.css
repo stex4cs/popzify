@@ -378,3 +378,110 @@
   height: 17px;
   flex: none;
 }
+
+/* ---------- hero sa fotografijom ---------- */
+
+.uvod {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(200px, 22vw, 300px);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.foto {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(236, 235, 255, 0.14);
+  border-radius: 20px;
+  background: #0b0a14;
+}
+
+.potpis {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  margin: clamp(22px, 3vw, 32px) 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(236, 235, 255, 0.12);
+}
+
+.potpis strong {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(17px, 1.8vw, 21px);
+}
+
+.potpis span {
+  color: var(--lilac);
+}
+
+/* Na telefonu fotografija ide ispod teksta i ne sme da zauzme ekran. */
+@media (max-width: 720px) {
+  .uvod {
+    grid-template-columns: 1fr;
+  }
+
+  .foto {
+    max-width: 220px;
+  }
+}
+
+/* ---------- grupa projekata ---------- */
+
+/* Ravan spisak od pet brendova skrivao je da je specijalnost beting i
+   kazino. Grupe to kazu pre nego sto se otvori ijedan projekat. */
+.porodica {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(54px, 9vw, 104px) 0 0;
+}
+
+.porodica h2 {
+  font-size: clamp(30px, 4.4vw, 52px);
+  font-weight: 500;
+  margin: 0 0 14px;
+}
+
+.porodica + .projekat {
+  border-top: 0;
+  padding-top: clamp(28px, 4vw, 44px);
+}
+
+.zaglavljeProjekta h3 {
+  font-family: var(--f-display);
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 500;
+  margin: 0;
+}
+
+.opisRada h4 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.2;
+  margin: 8px 0 0;
+}
+
+/* ---------- tok rada i o meni ---------- */
+
+.dvoje {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(24px, 4vw, 56px);
+  max-width: 1240px;
+  margin: clamp(56px, 9vw, 110px) auto 0;
+  padding-top: clamp(36px, 6vw, 64px);
+  border-top: 1px solid rgba(236, 235, 255, 0.1);
+}
+
+.dvoje > div > p:first-child {
+  color: var(--lilac);
+  margin-bottom: 12px;
+}
+
+.alati {
+  margin-top: 16px;
+  color: var(--muted);
+}
