@@ -45,6 +45,12 @@
   order: 2;
 }
 
+/* Snimak se vidi ceo: `contain` umesto `cover`, za slucaj da neki
+   buduci snimak ima drugaciji odnos od ostalih. */
+.kadar :global(img) {
+  object-fit: contain;
+}
+
 .misao h2 {
   font-family: var(--f-display);
   font-weight: 500;

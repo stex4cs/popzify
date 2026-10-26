@@ -83,7 +83,7 @@ export default function Ui() {
           <section key={e.id} className={ui.ekran}>
             <div className={ui.kadar}>
               <Galerija
-                slike={[{ file: e.file, oblik: "9:16", alt: e.naslov }]}
+                slike={[{ file: e.file, oblik: "telefon", alt: e.naslov }]}
                 natpisi={{
                   uvecaj: t.uvecaj,
                   zatvori: t.zatvori,

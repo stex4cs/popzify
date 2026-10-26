@@ -19,6 +19,9 @@ const ODNOS: Record<Slika["oblik"], string> = {
   "4:5": "4 / 5",
   "9:16": "9 / 16",
   panorama: "1400 / 610",
+  // Snimak ekrana telefona je uzi od 9:16; u tom okviru mu je `cover`
+  // sekao sedamnaest odsto visine, i to u mrezi, pre nego sto se udje.
+  telefon: "720 / 1558",
 };
 
 /**
