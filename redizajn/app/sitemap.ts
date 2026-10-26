@@ -23,6 +23,13 @@ const DESIGN = { en: `${BASE}/design`, ru: `${BASE}/design/ru` };
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const studija = {
+    url: `${BASE}/ui`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  };
+
   const dizajn = Object.values(DESIGN).map((url) => ({
     url,
     lastModified: now,
@@ -33,6 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...dizajn,
+    studija,
     ...locales.flatMap((locale) =>
     PAGES.map((page) => ({
       url: `${BASE}/${locale}${page}`,

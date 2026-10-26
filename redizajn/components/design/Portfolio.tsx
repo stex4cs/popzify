@@ -50,6 +50,11 @@ export default function Portfolio({ jezik }: { jezik: Jezik }) {
           <a className="mono" href="#radovi">
             {t.radoviVeza}
           </a>
+          {/* Bez ove veze strana sa aplikacijom visi sama: stoji u
+              sitemapu, a sa sajta do nje ne vodi nista. */}
+          <a className="mono" href="/ui">
+            UI/UX
+          </a>
           <a className="mono" href="#kontakt">
             {t.kontaktVeza}
           </a>

@@ -1,0 +1,101 @@
+/* Studija slucaja za aplikaciju. Raspored je drugaciji nego na /design:
+   tamo kadar nosi stranu, ovde ga prati obrazlozenje, pa idu jedno uz
+   drugo da se tvrdnja i ekran citaju zajedno. */
+
+.cinjenice {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: clamp(16px, 3vw, 34px);
+  max-width: 1240px;
+  margin: clamp(30px, 5vw, 54px) auto 0;
+  padding-top: clamp(22px, 3.5vw, 34px);
+  border-top: 1px solid rgba(236, 235, 255, 0.1);
+}
+
+.cinjenice p:first-child {
+  color: var(--lilac);
+  margin-bottom: 7px;
+}
+
+.cinjenice p:last-child {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ---------- ekran uz obrazlozenje ---------- */
+
+.ekran {
+  display: grid;
+  grid-template-columns: clamp(230px, 24vw, 310px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(26px, 5vw, 70px);
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(40px, 6.5vw, 82px) 0 0;
+}
+
+/* Svaki drugi ekran menja stranu, da se strana ne cita kao spisak.
+   Uz `order` mora i obrnut raspored kolona: inace tekst upadne u usku
+   kolonu predvidjenu za telefon i prelomi se na pet redova. */
+.ekran:nth-child(even) {
+  grid-template-columns: minmax(0, 1fr) clamp(230px, 24vw, 310px);
+}
+
+.ekran:nth-child(even) .kadar {
+  order: 2;
+}
+
+.misao h2 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(21px, 2.6vw, 30px);
+  line-height: 1.2;
+  margin: 10px 0 0;
+}
+
+@media (max-width: 760px) {
+  .ekran,
+  .ekran:nth-child(even) {
+    grid-template-columns: 1fr;
+  }
+
+  .ekran:nth-child(even) .kadar {
+    order: 0;
+  }
+
+  .kadar {
+    max-width: 260px;
+  }
+}
+
+/* ---------- parovi: sistem i ogranicenja ---------- */
+
+.parovi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: clamp(16px, 2.4vw, 26px);
+  list-style: none;
+  margin: clamp(24px, 3.5vw, 36px) 0 0;
+  padding: 0;
+}
+
+.parovi li {
+  padding: clamp(18px, 2.4vw, 26px);
+  border: 1px solid rgba(236, 235, 255, 0.13);
+  border-radius: 18px;
+  background: rgba(236, 235, 255, 0.025);
+}
+
+.parovi h3 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 17px;
+  margin: 0 0 9px;
+}
+
+.parovi p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
