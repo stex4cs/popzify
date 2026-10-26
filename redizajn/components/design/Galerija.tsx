@@ -22,6 +22,7 @@ const ODNOS: Record<Slika["oblik"], string> = {
   // Snimak ekrana telefona je uzi od 9:16; u tom okviru mu je `cover`
   // sekao sedamnaest odsto visine, i to u mrezi, pre nego sto se udje.
   telefon: "720 / 1558",
+  desktop: "1600 / 789",
 };
 
 /**
@@ -101,7 +102,9 @@ export default function Galerija({
 
   // Jedan polozeni kadar nosi ceo red; vise njih ide po dva, inace se
   // slucaj sa cetiri naslovne razvuce u zid od tri hiljade piksela.
-  const siroki = slike.filter((s) => s.oblik === "16:9" || s.oblik === "panorama").length;
+  const siroki = slike.filter(
+    (s) => s.oblik === "16:9" || s.oblik === "panorama" || s.oblik === "desktop"
+  ).length;
 
   /**
    * Kad su svi kadrovi istog oblika, red se deli na tacan broj njih i
@@ -111,7 +114,11 @@ export default function Galerija({
    */
   const oblici = new Set(slike.map((s) => s.oblik));
   const jednak =
-    oblici.size === 1 && !oblici.has("16:9") && !oblici.has("panorama") && slike.length > 1;
+    oblici.size === 1 &&
+    !oblici.has("16:9") &&
+    !oblici.has("panorama") &&
+    !oblici.has("desktop") &&
+    slike.length > 1;
   const kolone = Math.min(slike.length, 4);
 
   return (

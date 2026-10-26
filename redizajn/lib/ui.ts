@@ -145,3 +145,55 @@ export const ogranicenja = {
     ],
   ],
 };
+
+/**
+ * Isti proizvod na sirokom ekranu.
+ *
+ * Oglas trazi „consistent experience across desktop and mobile", a bez
+ * ovoga je studija bila samo telefon. Nije rastegnut telefon: isti
+ * delovi su preslozeni za prostor koji postoji, i to je ono sto se
+ * ovde i pokazuje.
+ */
+export const desktop = {
+  naslov: "The same system, with room",
+  uvod:
+    "The product also runs on the web at correctscore.pro. The desktop build is not the phone stretched: the same " +
+    "parts are re-laid for the space there is. The date strip grows from six days to a fortnight, the match stack " +
+    "becomes a three-column grid, and a top bar carries the navigation the tab bar carries on the phone. What stays " +
+    "identical is the card, the status pill, the accent rules and the reading order inside every card.",
+  ekrani: [
+    {
+      id: "nadzorna",
+      file: "/design/web/nadzorna.webp",
+      naslov: "Dashboard",
+      opis:
+        "The same hierarchy as the phone home screen — proof tiles, date strip, filters, then the feed. With the " +
+        "width available the feed becomes a three-column grid and the strip shows a fortnight instead of a week, so " +
+        "a desktop user plans further ahead without reaching for a second control.",
+    },
+    {
+      id: "analiza",
+      file: "/design/web/analiza.webp",
+      naslov: "Analysis",
+      opis:
+        "An editorial layer that only exists where there is room to read it. Match of the day takes a wide card with " +
+        "its own image area; the rest of the day's analyses sit underneath and filter by league.",
+    },
+    {
+      id: "mec",
+      file: "/design/web/mec.webp",
+      naslov: "Match page",
+      opis:
+        "The depth the phone card links out to: form over the last seven, head-to-head, venue and the players who " +
+        "are unavailable. On the phone this is a destination; here it is the page itself.",
+    },
+    {
+      id: "podaci",
+      file: "/design/web/podaci.webp",
+      naslov: "Predictions and tables",
+      opis:
+        "Where the width earns itself. Four prediction tiles each with its vote split, then standings and an " +
+        "expected-goals table side by side — a comparison the phone would have to turn into a scroll nobody finishes.",
+    },
+  ],
+};

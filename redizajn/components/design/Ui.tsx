@@ -1,6 +1,6 @@
 import { firma } from "@/lib/privatnost";
 import { osoba, tekst, veze } from "@/lib/design";
-import { ekrani, meta, ogranicenja, sistem } from "@/lib/ui";
+import { desktop, ekrani, meta, ogranicenja, sistem } from "@/lib/ui";
 import Galerija from "./Galerija";
 import styles from "./design.module.css";
 import ui from "./ui.module.css";
@@ -110,6 +110,29 @@ export default function Ui() {
           </section>
         ))}
       </div>
+
+      <section className={styles.projekat}>
+        <div className={styles.zaglavljeProjekta}>
+          <h2 className="display">{desktop.naslov}</h2>
+          <p className={styles.uvodProjekta}>{desktop.uvod}</p>
+        </div>
+
+        {desktop.ekrani.map((e) => (
+          <article key={e.id} className={ui.siroki}>
+            <h3>{e.naslov}</h3>
+            <p className={styles.tekstRada}>{e.opis}</p>
+            <Galerija
+              slike={[{ file: e.file, oblik: "desktop", alt: `${e.naslov} — desktop` }]}
+              natpisi={{
+                uvecaj: t.uvecaj,
+                zatvori: t.zatvori,
+                prethodna: t.prethodna,
+                sledeca: t.sledeca,
+              }}
+            />
+          </article>
+        ))}
+      </section>
 
       <section className={styles.projekat}>
         <div className={styles.zaglavljeProjekta}>

@@ -14,7 +14,7 @@ export type Jezik = "en" | "ru";
 type T = Record<Jezik, string>;
 
 /** Oblik kadra; odredjuje koliko slika stane u red i kako se rezerva prostora. */
-export type Oblik = "16:9" | "4:5" | "9:16" | "panorama" | "telefon";
+export type Oblik = "16:9" | "4:5" | "9:16" | "panorama" | "telefon" | "desktop";
 
 export type Slika = {
   file: string;

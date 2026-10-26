@@ -105,3 +105,22 @@
   font-size: 15px;
   line-height: 1.6;
 }
+
+/* ---------- siroki ekran ---------- */
+
+/* Tekst ide iznad kadra, ne pored: na odnosu 2:1 kadar sam trazi punu
+   sirinu, a kolona teksta pored njega bi ga stisnula na pola. */
+.siroki {
+  padding: clamp(28px, 4.5vw, 54px) 0 0;
+}
+
+.siroki h3 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(19px, 2.2vw, 25px);
+  margin: 0 0 8px;
+}
+
+.siroki p {
+  max-width: 76ch;
+}
