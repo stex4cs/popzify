@@ -197,6 +197,13 @@ export default function Ui() {
           </ul>
           <p className={styles.tekstRada}>{sistemTokena.mreza}</p>
         </article>
+
+        <article className={ui.tokeni}>
+          <div className={ui.tokeniTekst}>
+            <h3>{sistemTokena.tokNaslov}</h3>
+            <p className={styles.tekstRada}>{sistemTokena.tokOpis}</p>
+          </div>
+        </article>
       </section>
 
       <section className={styles.projekat}>

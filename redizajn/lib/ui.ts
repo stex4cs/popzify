@@ -212,7 +212,7 @@ export const sistemTokena = {
     "The app is not styled screen by screen. Colour, type, spacing and radius live in one token file that the " +
     "whole product reads from, and the rules for using them are written next to the values. Below is that file, " +
     "rendered — the same values now also exist as a Figma library so a team can work from them.",
-  figma: "Open the Figma library",
+  figma: "Open the Figma library — foundations, components and the user flow",
   figmaUrl: "https://figma.com/design/3Ugd6UDPmrY0wjkYlBb3HG",
   grupe: [
     {
@@ -290,5 +290,12 @@ export const sistemTokena = {
     ["Number / Large", "24 / 29", "Inter ExtraBold, tabular"],
     ["Number / Base", "16 / 21", "Inter Bold, tabular"],
   ],
+  tokNaslov: "From open to a locked pick",
+  tokOpis:
+    "The league is designed around one path: open, narrow the day, enter the league, set a scoreline, save it, and " +
+    "come back before it locks. The flow is documented step by step in the Figma file — each step naming what the " +
+    "user does and what the interface owes them back, because the second half is where the decisions sit. The one " +
+    "branch is the deadline: before it the pick is editable, after it the card settles to read-only and the pick " +
+    "becomes a record. Nothing disappears, because removing it would make the user doubt it was ever saved.",
   mreza: "Spacing runs on a 4pt grid — every margin, padding and gap is one of ten steps. Radii are a fixed set, and the card radius is constant across every card in the app, which is a large part of why the UI reads as one system.",
 };
