@@ -124,3 +124,110 @@
 .siroki p {
   max-width: 76ch;
 }
+
+/* ---------- dizajn sistem ---------- */
+
+.figmaVeza {
+  margin-top: 16px;
+}
+
+.figmaVeza a {
+  color: var(--lilac);
+  border-bottom: 1px solid rgba(185, 166, 255, 0.4);
+  padding-bottom: 2px;
+}
+
+.tokeni {
+  padding: clamp(28px, 4vw, 48px) 0 0;
+}
+
+.tokeniTekst {
+  max-width: 76ch;
+  margin-bottom: clamp(16px, 2.4vw, 24px);
+}
+
+.tokeniTekst h3 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(18px, 2vw, 23px);
+  margin: 0 0 8px;
+}
+
+/* Plocice su same po sebi dokaz; red se deli na onoliko koliko ih ima. */
+.ploce {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ploce li {
+  display: grid;
+  gap: 4px;
+}
+
+.ploca {
+  display: block;
+  height: 62px;
+  border: 1px solid rgba(236, 235, 255, 0.12);
+  border-radius: 10px;
+}
+
+.ploce b {
+  margin-top: 6px;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.ploce i {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ---------- skala ---------- */
+
+.skala {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(236, 235, 255, 0.1);
+}
+
+.skala li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(236, 235, 255, 0.08);
+}
+
+.skala b {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.skala span {
+  color: var(--lilac);
+  font-size: 12px;
+}
+
+.skala i {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 560px) {
+  .skala li {
+    grid-template-columns: 1fr auto;
+  }
+
+  .skala i {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,6 +1,6 @@
 import { firma } from "@/lib/privatnost";
 import { osoba, tekst, veze } from "@/lib/design";
-import { desktop, ekrani, meta, ogranicenja, sistem } from "@/lib/ui";
+import { desktop, ekrani, meta, ogranicenja, sistem, sistemTokena } from "@/lib/ui";
 import Galerija from "./Galerija";
 import styles from "./design.module.css";
 import ui from "./ui.module.css";
@@ -147,6 +147,56 @@ export default function Ui() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className={styles.projekat}>
+        <div className={styles.zaglavljeProjekta}>
+          <h2 className="display">{sistemTokena.naslov}</h2>
+          <p className={styles.uvodProjekta}>{sistemTokena.uvod}</p>
+          <p className={ui.figmaVeza}>
+            <a href={sistemTokena.figmaUrl} target="_blank" rel="noopener">
+              {sistemTokena.figma} ↗
+            </a>
+          </p>
+        </div>
+
+        {sistemTokena.grupe.map((g) => (
+          <article key={g.id} className={ui.tokeni}>
+            <div className={ui.tokeniTekst}>
+              <h3>{g.naslov}</h3>
+              <p className={styles.tekstRada}>{g.opis}</p>
+            </div>
+            <ul className={ui.ploce}>
+              {g.boje.map(([ime, boja, nota]) => (
+                <li key={ime}>
+                  <span className={ui.ploca} style={{ background: boja }} aria-hidden="true" />
+                  <b className="mono">{ime}</b>
+                  <i className="mono">
+                    {boja}
+                    {nota ? ` · ${nota}` : ""}
+                  </i>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+
+        <article className={ui.tokeni}>
+          <div className={ui.tokeniTekst}>
+            <h3>{sistemTokena.skalaNaslov}</h3>
+            <p className={styles.tekstRada}>{sistemTokena.skalaOpis}</p>
+          </div>
+          <ul className={ui.skala}>
+            {sistemTokena.skala.map(([ime, mere, font]) => (
+              <li key={ime}>
+                <b>{ime}</b>
+                <span className="mono">{mere}</span>
+                <i className="mono">{font}</i>
+              </li>
+            ))}
+          </ul>
+          <p className={styles.tekstRada}>{sistemTokena.mreza}</p>
+        </article>
       </section>
 
       <section className={styles.projekat}>

@@ -197,3 +197,98 @@ export const desktop = {
     },
   ],
 };
+
+/**
+ * Dizajn sistem aplikacije.
+ *
+ * Vrednosti su prepisane iz `constants/theme.ts` u kodu aplikacije, koji
+ * je izvor istine. Komentari uz tokene su takodje odande — oni su ono
+ * sto oglas za UI/UX zove „razmisljanje", pa stoje kao obrazlozenja, a
+ * ne kao ukras.
+ */
+export const sistemTokena = {
+  naslov: "The system underneath",
+  uvod:
+    "The app is not styled screen by screen. Colour, type, spacing and radius live in one token file that the " +
+    "whole product reads from, and the rules for using them are written next to the values. Below is that file, " +
+    "rendered — the same values now also exist as a Figma library so a team can work from them.",
+  figma: "Open the Figma library",
+  figmaUrl: "https://figma.com/design/3Ugd6UDPmrY0wjkYlBb3HG",
+  grupe: [
+    {
+      id: "dubina",
+      naslov: "Elevation ladder",
+      opis:
+        "Each step up is lighter and reads as closer to the viewer. Never skip a step for emphasis — the ladder is " +
+        "what tells the eye how the screen is layered. The neutrals carry a blue cast rather than being pure grey: " +
+        "pure grey on OLED reads flat, and the cool cast makes the orange feel warmer by contrast.",
+      boje: [
+        ["surface/base", "#0A0B0F", "app floor"],
+        ["surface/raised", "#14161F", "cards, rows"],
+        ["surface/elevated", "#1E212D", "cards on cards"],
+        ["surface/overlay", "#272B3A", "sheets, menus"],
+      ],
+    },
+    {
+      id: "kontrast",
+      naslov: "Text contrast ladder",
+      opis:
+        "primary and secondary both clear WCAG AA on surface/raised. tertiary is AA for large text only. " +
+        "quaternary is decorative — placeholders and disabled states, never information the user actually needs.",
+      boje: [
+        ["text/primary", "#FFFFFF", "AA"],
+        ["text/secondary", "#A8AEBF", "AA"],
+        ["text/tertiary", "#767D91", "AA, large only"],
+        ["text/quaternary", "#4E5566", "decorative"],
+      ],
+    },
+    {
+      id: "brend",
+      naslov: "Brand ramp",
+      opis:
+        "500 is the brand. The ramp exists so hover, pressed and disabled states are picked from a related family " +
+        "rather than eyeballed per component. Orange is the only saturated colour on most screens.",
+      boje: [
+        ["brand/300", "#FF8F65", ""],
+        ["brand/400", "#FF6E3D", ""],
+        ["brand/500", "#FF5722", "brand"],
+        ["brand/600", "#F04A18", "pressed"],
+        ["brand/700", "#D13C10", ""],
+      ],
+    },
+    {
+      id: "stanja",
+      naslov: "Status and market",
+      opis:
+        "Live deliberately differs from the danger red even though both are red: one is a status, the other an " +
+        "alert, and reusing a single red trains users to ignore the alert. Home, draw and away have fixed colours " +
+        "so the 1/X/2 columns read the same on every screen.",
+      boje: [
+        ["status/won", "#3DDC84", ""],
+        ["status/pending", "#FFB020", ""],
+        ["status/lost", "#FF5A5A", ""],
+        ["status/live", "#FF3B3B", "status, not alert"],
+        ["market/home", "#4D9FFF", ""],
+        ["market/draw", "#A8AEBF", ""],
+        ["market/away", "#C77DFF", ""],
+      ],
+    },
+  ],
+  skalaNaslov: "Type scale",
+  skalaOpis:
+    "Sora carries headings and figures; Inter is the workhorse, drawn for screen UI at small sizes. The number " +
+    "styles use tabular figures so odds and scores stay aligned in a column and do not jitter when they tick live.",
+  skala: [
+    ["Display", "32 / 38", "Sora ExtraBold"],
+    ["Heading / H1", "26 / 32", "Sora Bold"],
+    ["Heading / H2", "21 / 27", "Sora Bold"],
+    ["Heading / H3", "17 / 23", "Sora SemiBold"],
+    ["Body / Large", "16 / 24", "Inter Regular"],
+    ["Body / Base", "14 / 21", "Inter Regular"],
+    ["Caption", "12 / 17", "Inter Medium"],
+    ["Overline", "11 / 14", "Inter Bold, uppercase"],
+    ["Number / Large", "24 / 29", "Inter ExtraBold, tabular"],
+    ["Number / Base", "16 / 21", "Inter Bold, tabular"],
+  ],
+  mreza: "Spacing runs on a 4pt grid — every margin, padding and gap is one of ten steps. Radii are a fixed set, and the card radius is constant across every card in the app, which is a large part of why the UI reads as one system.",
+};
