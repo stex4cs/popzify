@@ -42,6 +42,9 @@ const STARE: Record<string, string> = {
 };
 
 const nextConfig: NextConfig = {
+  // Postavio `next upgrade --agent=security` uz prelazak 16.4.0 -> 16.4.3.
+  experimental: { agentUpgrade: "security" },
+
   cacheComponents: true,
   partialPrefetching: true,
 
