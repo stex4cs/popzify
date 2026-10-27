@@ -44,8 +44,8 @@ const igra = {
     "Play money only — no wagering and no accounts. The declared RTP in the paytable is a configured figure, not a measured one.",
   ceoEkran: "Open full screen",
   crte: [
-    ["Reels", "Five reels on weighted strips, stopping right to left with vertical motion blur and a bounce on landing. Turbo halves every duration; space quick-stops a spin in flight."],
-    ["Paylines", "Twenty lines, paid right to left from the rightmost reel. Winning lines are drawn over the symbols and the winning cells spark and pulse, so the player can see why they were paid."],
+    ["Reels", "Five reels on weighted strips, stopping left to right at a fixed interval — each reel covers the same distance in the same time, so the order never breaks. Vertical motion blur, a bounce on landing, turbo halves every duration, and space quick-stops a spin in flight."],
+    ["Paylines", "Twenty lines, paid left to right from the leftmost reel, so the last reel to stop is the one that completes the line. Winning lines are drawn over the symbols and the winning cells spark and pulse, so the player can see why they were paid."],
     ["Wild and scatter", "Wild substitutes for every symbol except the scatter and pays on its own. Three or more scatters anywhere award free spins, which is why they are counted across the grid rather than along a line."],
     ["Free spins", "Ten to fifteen spins at a 2× multiplier, retriggerable, with the whole scene tinted for as long as the round lasts and a summary when it ends — the player should never have to wonder which mode they are in."],
     ["Win tiers", "Big, giant, massive and jackpot, chosen by win-to-bet ratio, each with its own overlay, count-up and coin shower. Autoplay stops itself on a feature or a jackpot rather than spinning past it."],
