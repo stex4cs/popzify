@@ -1,0 +1,15 @@
+/* Platno nosi logicki kadar 1000x620 i skalira se u raspolozivu sirinu;
+   visina ide sa njim, pa odnos ostaje isti na svakoj sirini. */
+.platno {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: clamp(22px, 3vw, 34px) 0 0;
+}
+
+.platno canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 24px;
+}

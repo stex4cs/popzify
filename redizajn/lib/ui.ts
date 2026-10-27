@@ -299,3 +299,20 @@ export const sistemTokena = {
     "becomes a record. Nothing disappears, because removing it would make the user doubt it was ever saved.",
   mreza: "Spacing runs on a 4pt grid — every margin, padding and gap is one of ten steps. Radii are a fixed set, and the card radius is constant across every card in the app, which is a large part of why the UI reads as one system.",
 };
+
+/**
+ * Prototip ima svoju stranu, a odavde se na njega upucuje. Razlog je isti
+ * kao za odvajanje /ui od /design: ovo je dokaz druge vrste. Tokeni su
+ * isti brojevi, samo ih crta platno umesto DOM-a, pa se vidi da sistem ne
+ * zavisi od tehnologije kojom se iscrtava.
+ */
+export const prototip = {
+  naslov: "The same system, on a canvas",
+  uvod:
+    "The tokens above are not tied to CSS. To show that, the HUD below is drawn with PixiJS on a WebGL canvas, " +
+    "reading the same colour, radius and spacing values as the app: five reels, a bet stepper, autoplay, a " +
+    "paytable drawer and a focus ring that moves with the arrow keys and skips disabled controls. It is playable, " +
+    "not a recording — the rules, the states and the empty-balance case all run.",
+  natpis: "Open the prototype",
+  veza: "/ui/hud",
+};

@@ -30,6 +30,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   };
 
+  // Prototip je zasebna adresa jer se i salje zasebno, na konkurse koji
+  // traze interaktivni rad.
+  const prototip = {
+    url: `${BASE}/ui/hud`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  };
+
   const dizajn = Object.values(DESIGN).map((url) => ({
     url,
     lastModified: now,
@@ -41,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...dizajn,
     studija,
+    prototip,
     ...locales.flatMap((locale) =>
     PAGES.map((page) => ({
       url: `${BASE}/${locale}${page}`,

@@ -1,6 +1,6 @@
 import { firma } from "@/lib/privatnost";
 import { osoba, tekst, veze } from "@/lib/design";
-import { desktop, ekrani, meta, ogranicenja, sistem, sistemTokena } from "@/lib/ui";
+import { desktop, ekrani, meta, ogranicenja, prototip, sistem, sistemTokena } from "@/lib/ui";
 import Galerija from "./Galerija";
 import styles from "./design.module.css";
 import ui from "./ui.module.css";
@@ -28,6 +28,9 @@ export default function Ui() {
           <b>Pop</b>zify
         </a>
         <div className={styles.desno}>
+          <a className="mono" href={prototip.veza}>
+            Interactive prototype
+          </a>
           <a className="mono" href="/design">
             Graphic design
           </a>
@@ -204,6 +207,16 @@ export default function Ui() {
             <p className={styles.tekstRada}>{sistemTokena.tokOpis}</p>
           </div>
         </article>
+
+        <article className={ui.tokeni}>
+          <div className={ui.tokeniTekst}>
+            <h3>{prototip.naslov}</h3>
+            <p className={styles.tekstRada}>{prototip.uvod}</p>
+            <p className={ui.figmaVeza}>
+              <a href={prototip.veza}>{prototip.natpis} →</a>
+            </p>
+          </div>
+        </article>
       </section>
 
       <section className={styles.projekat}>
@@ -229,6 +242,9 @@ export default function Ui() {
           </a>
           <a className={styles.dugmeTiho} href={veze.telegram} target="_blank" rel="noopener">
             {t.telegram}
+          </a>
+          <a className={styles.dugmeTiho} href={prototip.veza}>
+            {prototip.natpis}
           </a>
           <a className={styles.dugmeTiho} href="/design">
             Graphic design work
