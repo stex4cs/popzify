@@ -231,3 +231,53 @@
     grid-column: 1 / -1;
   }
 }
+
+/* ===== Ugradjena igra =====
+   Igra je zaseban staticki paket u /public/igra i stoji u okviru, pa joj
+   stilovi i ID-evi ne mogu da se sudare sa stranom. Sama se skalira na
+   svoj prozor, pa okvir samo treba da joj da razuman odnos stranica. */
+.okvirIgre {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 900 / 640;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b0d16;
+  border: 1px solid rgba(236, 235, 255, 0.1);
+}
+
+.okvirIgre iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.podIgrom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.podIgrom p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.podIgrom a {
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  /* U uskoj koloni razmeru odredjuje sirina, pa svaka dodatna visina ostaje
+     prazna. Okvir se zato prati visinu igre, a ko hoce vece ide na ceo ekran. */
+  .okvirIgre {
+    aspect-ratio: 4 / 3;
+  }
+}

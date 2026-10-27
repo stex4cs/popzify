@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fortune Gems Deluxe — PixiJS slot prototype</title>
+    <!-- Igra se gleda ugradjena na /ui/hud; gola strana bez konteksta nema
+         sta da trazi u pretrazi. -->
+    <meta name="robots" content="noindex">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <!-- Optional: Favicon -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <style>
+        /* Prevent annoying blue highlight on tap in mobile browsers */
+        body, div, button {
+             -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+    </style>
+  <script type="module" crossorigin src="./bundle/index-eonupmX2.js"></script>
+  <link rel="stylesheet" crossorigin href="./bundle/index-CTlhmxJr.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Pixi sam pravi svoje platno i kaci ga ovde; prazan canvas je ostajao mrtav u DOM-u. -->
+
+        <!-- Top UI Elements Container -->
+        <div id="top-ui-container">
+            <!-- Settings/Info Buttons (Left) -->
+            <div id="settings-container">
+                <button id="paytable-button" class="icon-button" title="Paytable / Info">
+                    <!-- Icon handled by CSS -->
+                </button>
+                <button id="sound-button" class="icon-button" title="Toggle Sound">
+                    <!-- Icon handled by CSS -->
+                </button>
+            </div>
+
+            <!-- Jackpot Display (Center) -->
+            <div id="jackpot-container">
+                <div id="jackpot-label">JACKPOT</div>
+                <div id="jackpot-value">10000.00</div> <!-- Format with decimals -->
+            </div>
+
+            <!-- Free Spins Display (Right) -->
+            <div id="freespins-container">
+                <div id="freespins-label">FREE SPINS</div>
+                <div id="freespins-value">10</div>
+            </div>
+        </div>
+
+        <!-- Auto Spin Options (Above Main UI) -->
+        <div id="auto-spin-container">
+            <div class="auto-option" data-spins="0">OFF</div>
+            <div class="auto-option" data-spins="5">5</div>
+            <div class="auto-option" data-spins="10">10</div>
+            <div class="auto-option" data-spins="25">25</div>
+            <div class="auto-option" data-spins="50">50</div>
+            <div class="auto-option" data-spins="100">100</div>
+        </div>
+
+        <!-- Main Bottom UI Container -->
+        <div id="ui-container">
+            <!-- Balance Display (Left) -->
+            <div id="balance-container">
+                <div id="balance-label">BALANCE</div>
+                <div id="balance-value">1000.00</div> <!-- Format with decimals -->
+            </div>
+
+            <!-- Bet Controls (Middle-Left) -->
+            <div id="bet-controls-container">
+                <div id="bet-decrease" title="Decrease Bet">-</div>
+                <div id="bet-value-display">
+                    <div id="bet-label">BET</div>
+                    <div id="bet-value">1.00</div> <!-- Format with decimals -->
+                </div>
+                <div id="bet-increase" title="Increase Bet">+</div>
+            </div>
+
+             <!-- Spin/Turbo Controls (Middle-Right) -->
+             <div id="spin-controls-container">
+                 <button id="spin-button" title="Spin">
+                     <span class="spin-icon">SPIN</span> <!-- You can replace text with an SVG/Icon Font -->
+                 </button>
+                 <button id="turbo-button" class="control-button" title="Toggle Turbo Mode">
+                     TURBO OFF <!-- Text updates via JS -->
+                 </button>
+            </div>
+
+            <!-- Win Display (Right) -->
+            <div id="win-container">
+                <div id="win-label">WIN</div>
+                <div id="win-value">0.00</div> <!-- Format with decimals -->
+            </div>
+        </div>
+
+        <!-- Big Win Overlay -->
+        <div id="big-win-container">
+            <div id="big-win-text">BIG WIN!</div>
+        </div>
+
+        <!-- Tablica isplata; sadrzaj se puni iz SYMBOLS, da tabela i igra ne mogu da se raziđu -->
+<div id="paytable-overlay" class="game-overlay">
+    <div class="overlay-content paytable-content">
+        <h2>Paytable</h2>
+        <p class="paytable-note">Pays right to left, from the rightmost reel. Multipliers apply to the current bet.</p>
+        <div id="paytable-grid"></div>
+        <ul class="paytable-rules"></ul>
+        <button id="paytable-close-btn">CLOSE</button>
+    </div>
+</div>
+<!-- Free Spins Summary Overlay (sakriven po defaultu) -->
+<div id="freespins-summary-overlay" class="game-overlay">
+    <div class="overlay-content">
+        <h2>FREE SPINS COMPLETE</h2>
+        <p>Total Win:</p>
+        <div id="fs-summary-win-amount" class="win-amount">€0.00</div>
+        <button id="fs-summary-close-btn">CONTINUE</button>
+    </div>
+</div>
+
+        <!-- Loading Screen -->
+        <div id="loading-screen">
+            <h2>LOADING…</h2>
+            <div id="loading-progress">
+                <div id="loading-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Game Script -->
+</body>
+</html>

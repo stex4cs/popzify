@@ -254,7 +254,8 @@ export default function Ui() {
 
       <footer className={styles.foot}>
         <p className="mono">
-          {osoba.ime} · {firma.ime} · {firma.sediste} · <a href="/en">{t.nazad}</a>
+          {osoba.ime} · {firma.ime} · {firma.sediste} · <a href="/design">Design</a> ·{" "}
+          <a href={prototip.veza}>Prototypes</a> · <a href="/en">{t.nazad}</a>
         </p>
       </footer>
     </main>

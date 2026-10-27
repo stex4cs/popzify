@@ -55,6 +55,9 @@ export default function Portfolio({ jezik }: { jezik: Jezik }) {
           <a className="mono" href="/ui">
             UI/UX
           </a>
+          <a className="mono" href="/ui/hud">
+            {t.prototipiVeza}
+          </a>
           <a className="mono" href="#kontakt">
             {t.kontaktVeza}
           </a>
@@ -173,7 +176,8 @@ export default function Portfolio({ jezik }: { jezik: Jezik }) {
 
       <footer className={styles.foot}>
         <p className="mono">
-          {osoba.ime} · {firma.ime} · {firma.sediste} · <a href="/en">{t.nazad}</a>
+          {osoba.ime} · {firma.ime} · {firma.sediste} · <a href="/ui">UI/UX</a> ·{" "}
+          <a href="/ui/hud">{t.prototipiVeza}</a> · <a href="/en">{t.nazad}</a>
         </p>
       </footer>
     </main>

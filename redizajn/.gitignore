@@ -47,8 +47,10 @@ next-env.d.ts
 /*.mp4
 /*.mov
 
-# sirovi materijal iz kamere i drona; u repo ide samo web verzija iz public/
-assets/
+# sirovi materijal iz kamere i drona; u repo ide samo web verzija iz public/.
+# Pravilo je usidreno na koren: neusidreno `assets/` hvata svaku fasciklu tog
+# imena, pa je gutalo i public/igra/assets/ - isti promasaj kao nekadasnje *.mp4.
+/assets/
 
 # privremeni Chrome profil iz rasterizacije ikone
 *.prof/
