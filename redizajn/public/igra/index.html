@@ -20,8 +20,8 @@
              -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
     </style>
-  <script type="module" crossorigin src="./bundle/index-jBKPAsFc.js"></script>
-  <link rel="stylesheet" crossorigin href="./bundle/index-CTlhmxJr.css">
+  <script type="module" crossorigin src="./bundle/index-BaoHpWDy.js"></script>
+  <link rel="stylesheet" crossorigin href="./bundle/index-JiXwDeVq.css">
 </head>
 <body>
     <div id="game-container">
@@ -52,48 +52,50 @@
             </div>
         </div>
 
-        <!-- Auto Spin Options (Above Main UI) -->
-        <div id="auto-spin-container">
-            <div class="auto-option" data-spins="0">OFF</div>
-            <div class="auto-option" data-spins="5">5</div>
-            <div class="auto-option" data-spins="10">10</div>
-            <div class="auto-option" data-spins="25">25</div>
-            <div class="auto-option" data-spins="50">50</div>
-            <div class="auto-option" data-spins="100">100</div>
-        </div>
-
         <!-- Main Bottom UI Container -->
         <div id="ui-container">
-            <!-- Balance Display (Left) -->
+            <!-- Balance (Left) -->
             <div id="balance-container">
                 <div id="balance-label">BALANCE</div>
-                <div id="balance-value">1000.00</div> <!-- Format with decimals -->
+                <div id="balance-value">1000.00</div>
             </div>
 
-            <!-- Bet Controls (Middle-Left) -->
+            <!-- Bet Controls -->
             <div id="bet-controls-container">
-                <div id="bet-decrease" title="Decrease Bet">-</div>
+                <button id="bet-decrease" class="step-button" title="Decrease bet">&minus;</button>
                 <div id="bet-value-display">
                     <div id="bet-label">BET</div>
-                    <div id="bet-value">1.00</div> <!-- Format with decimals -->
+                    <div id="bet-value">1.00</div>
                 </div>
-                <div id="bet-increase" title="Increase Bet">+</div>
+                <button id="bet-increase" class="step-button" title="Increase bet">+</button>
+            </div>
+            <button id="maxbet-button" class="control-button" title="Maximum bet">MAX</button>
+
+            <!-- Spin + modes -->
+            <div id="spin-controls-container">
+                <button id="turbo-button" class="control-button" title="Toggle turbo">TURBO</button>
+                <button id="spin-button" title="Spin">
+                    <span class="spin-icon">SPIN</span>
+                </button>
+                <!-- Autoplay otvara svoj spisak iznad sebe; ranije je stajao
+                     kao traka preko cele sirine i SPIN je ulazio u nju. -->
+                <div id="auto-wrap">
+                    <button id="auto-button" class="control-button" title="Autoplay">AUTO</button>
+                    <div id="auto-spin-container" role="menu" aria-label="Autoplay">
+                        <div class="auto-option" data-spins="100" role="menuitem">100</div>
+                        <div class="auto-option" data-spins="50" role="menuitem">50</div>
+                        <div class="auto-option" data-spins="25" role="menuitem">25</div>
+                        <div class="auto-option" data-spins="10" role="menuitem">10</div>
+                        <div class="auto-option" data-spins="5" role="menuitem">5</div>
+                        <div class="auto-option" data-spins="0" role="menuitem">OFF</div>
+                    </div>
+                </div>
             </div>
 
-             <!-- Spin/Turbo Controls (Middle-Right) -->
-             <div id="spin-controls-container">
-                 <button id="spin-button" title="Spin">
-                     <span class="spin-icon">SPIN</span> <!-- You can replace text with an SVG/Icon Font -->
-                 </button>
-                 <button id="turbo-button" class="control-button" title="Toggle Turbo Mode">
-                     TURBO OFF <!-- Text updates via JS -->
-                 </button>
-            </div>
-
-            <!-- Win Display (Right) -->
+            <!-- Win (Right) -->
             <div id="win-container">
                 <div id="win-label">WIN</div>
-                <div id="win-value">0.00</div> <!-- Format with decimals -->
+                <div id="win-value">0.00</div>
             </div>
         </div>
 
