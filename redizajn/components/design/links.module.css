@@ -1,13 +1,20 @@
 /* Strana /links: slozena da se cita odozgo nadole u jednom dahu, bez
    bocne navigacije. Red je cela povrsina za klik, ne samo naslov. */
 
+/* Jedna centrirana kolona za celu stranu. Sekcije su ranije imale samo
+   max-width, bez margin:auto, pa je sav sadrzaj visio uz levu ivicu dok je
+   na sirokom ekranu desna polovina stajala prazna. */
+.okvir {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .vrh {
   display: grid;
   grid-template-columns: 132px 1fr;
   align-items: start;
   gap: clamp(20px, 3vw, 36px);
   padding: clamp(72px, 11vw, 132px) 0 clamp(36px, 5vw, 56px);
-  max-width: 780px;
 }
 
 .foto {
@@ -33,14 +40,15 @@
   line-height: 1.5;
 }
 
-.vrhTekst .lead {
+/* `.lead` je globalna klasa: u CSS modulu i ona dobija hes, pa je
+   `.vrhTekst .lead` gadjao nista i globalnih 46ch je ostajalo na snazi. */
+.vrhTekst :global(.lead) {
   margin: 16px 0 0;
-  max-width: 62ch;
+  max-width: 64ch;
 }
 
 .grupa {
   padding: clamp(28px, 4vw, 44px) 0 0;
-  max-width: 920px;
 }
 
 .zaglavlje {
