@@ -30,6 +30,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   };
 
+  // Rasputnica: strana koja se salje umesto pet linkova u poruci. Ide u
+  // sitemap jer treba da se nadje i kad neko trazi ime, ne samo kad dobije
+  // link.
+  const rasputnica = {
+    url: `${BASE}/links`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  };
+
   // Prototip je zasebna adresa jer se i salje zasebno, na konkurse koji
   // traze interaktivni rad.
   const prototip = {
@@ -49,6 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...dizajn,
+    rasputnica,
     studija,
     prototip,
     ...locales.flatMap((locale) =>

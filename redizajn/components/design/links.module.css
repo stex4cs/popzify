@@ -1,0 +1,176 @@
+/* Strana /links: slozena da se cita odozgo nadole u jednom dahu, bez
+   bocne navigacije. Red je cela povrsina za klik, ne samo naslov. */
+
+.vrh {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  align-items: start;
+  gap: clamp(20px, 3vw, 36px);
+  padding: clamp(72px, 11vw, 132px) 0 clamp(36px, 5vw, 56px);
+  max-width: 780px;
+}
+
+.foto {
+  width: 132px;
+  height: 132px;
+  margin-top: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 18%;
+  border: 1px solid rgba(236, 235, 255, 0.16);
+}
+
+.vrhTekst h1 {
+  margin: 10px 0 0;
+  font-size: clamp(32px, 5.6vw, 54px);
+  line-height: 1.04;
+}
+
+.rola {
+  margin: 14px 0 0;
+  color: var(--lilac);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.vrhTekst .lead {
+  margin: 16px 0 0;
+  max-width: 62ch;
+}
+
+.grupa {
+  padding: clamp(28px, 4vw, 44px) 0 0;
+  max-width: 920px;
+}
+
+.zaglavlje {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(236, 235, 255, 0.1);
+}
+
+.zaglavlje h2 {
+  margin: 0;
+  font-size: clamp(19px, 2.4vw, 23px);
+}
+
+.zaglavlje p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 56ch;
+}
+
+.spisak {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.spisak li + li {
+  margin-top: 8px;
+}
+
+.spisak li:first-child {
+  margin-top: 14px;
+}
+
+/* Ceo red je link: na telefonu se ne gadja naslov od 15px. */
+.veza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(236, 235, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(236, 235, 255, 0.022);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.veza:hover {
+  border-color: var(--lilac);
+  background: rgba(236, 235, 255, 0.055);
+  transform: translateY(-2px);
+}
+
+.slicica {
+  width: 104px;
+  height: 65px;
+  object-fit: cover;
+  object-position: 50% 0;
+  border-radius: 8px;
+  border: 1px solid rgba(236, 235, 255, 0.12);
+  flex: none;
+}
+
+.telo {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.naslovVeze {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.opis {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 68ch;
+}
+
+.oznaka {
+  color: var(--lilac);
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.strelica {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 17px;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.veza:hover .strelica {
+  color: var(--lilac);
+  transform: translateX(2px);
+}
+
+@media (max-width: 640px) {
+  .vrh {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .foto {
+    width: 92px;
+    height: 92px;
+  }
+
+  .veza {
+    gap: 10px 12px;
+  }
+
+  /* Slicica ide iznad teksta: u koloni od 90px se ne vidi nista. */
+  .slicica {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 118px;
+  }
+}
