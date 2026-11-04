@@ -71,7 +71,7 @@ export default function Linkovi() {
                       <span className={`mono ${l.oznaka}`}>{v.oznaka}</span>
                     </span>
                     <span className={l.strelica} aria-hidden="true">
-                      {v.spolja ? "↗" : "→"}
+                      {v.preuzimanje ? "↓" : v.spolja ? "↗" : "→"}
                     </span>
                   </a>
                 </li>

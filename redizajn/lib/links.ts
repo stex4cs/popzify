@@ -18,6 +18,8 @@ export type Veza = {
   /** Slika iz /public/radovi-sajt; samo isporuceni sajtovi je imaju. */
   slika?: string;
   spolja?: boolean;
+  /** Fajl koji se skida (APK), ne strana: strelica nadole, bez novog taba. */
+  preuzimanje?: boolean;
 };
 
 export type Grupa = {
@@ -80,6 +82,29 @@ export const grupe: Grupa[] = [
           "five-reel slot with paylines, wilds, free spins and a jackpot. Both run in the browser.",
         url: "/ui/hud",
         oznaka: "popzify.com/ui/hud",
+      },
+    ],
+  },
+  {
+    id: "aplikacije",
+    naslov: "Try the apps",
+    uvod:
+      "Android test builds, installed straight from the file. They are not on Google Play yet, so " +
+      "Android will ask once to allow installs from your browser.",
+    veze: [
+      {
+        naslov: "Correct Score Pro — Android APK",
+        opis: "The full app: AI predictions, live scores, favourites and the monthly prediction league. Version 1.0.1, 55 MB.",
+        url: "/apk/correctscore",
+        oznaka: "popzify.com/apk/correctscore",
+        preuzimanje: true,
+      },
+      {
+        naslov: "4S — Android APK",
+        opis: "Native news app for 4s-info.rs: the same account as the site, live blogs, comments and breaking news. Version 2.7.1, 3 MB.",
+        url: "/apk/4s",
+        oznaka: "popzify.com/apk/4s",
+        preuzimanje: true,
       },
     ],
   },

@@ -41,6 +41,12 @@ const STARE: Record<string, string> = {
   privacypolicy: "/sr/privatnost",
 };
 
+const APK_BLOB = "https://coacfqopspaomx61.public.blob.vercel-storage.com/apk";
+const APK: Record<string, string> = {
+  correctscore: "CorrectScorePro-1.0.1.apk",
+  "4s": "4S-2.7.1.apk",
+};
+
 const nextConfig: NextConfig = {
   // Postavio `next upgrade --agent=security` uz prelazak 16.4.0 -> 16.4.3.
   experimental: { agentUpgrade: "security" },
@@ -72,6 +78,15 @@ const nextConfig: NextConfig = {
       ]),
       // Stari sajt je imao i /index.html
       { source: "/index.html", destination: "/sr", permanent: true },
+
+      // Test APK-ovi za Android. Ova adresa stoji u CV-u i na /links,
+      // a fajl je u Vercel Blob-u (store popzify-downloads). Privremeno
+      // (307), jer svaka nova verzija menja samo odrediste ovde.
+      ...Object.entries(APK).map(([ime, fajl]) => ({
+        source: `/apk/${ime}`,
+        destination: `${APK_BLOB}/${fajl}`,
+        permanent: false,
+      })),
     ];
   },
 };
