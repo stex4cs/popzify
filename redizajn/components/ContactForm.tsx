@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { dict, type Locale } from "@/lib/i18n";
-import { prati } from "@/lib/piksel";
+import { upit } from "@/lib/konverzije";
 import styles from "./ContactForm.module.css";
 
 type State = { kind: "idle" | "sending" | "ok" | "err"; msg?: string };
@@ -52,9 +52,9 @@ export default function ContactForm({
       const res = await fetch("/api/lead", { method: "POST", body: new FormData(form) });
       const data = await res.json().catch(() => null);
       if (data?.status === "success") {
-        // Merenje posle ishoda i u svom try/catch: da pad piksela ne
-        // pretvori poslat upit u prikazanu gresku.
-        prati("Lead", { content_category: stranica || "pocetna" });
+        // Merenje posle ishoda: forma je jedini kanal kod kog se zna da
+        // je upit stvarno otisao, pa se broji tek kad server to potvrdi.
+        upit("forma", stranica || "pocetna");
         setState({ kind: "ok" });
         return;
       }

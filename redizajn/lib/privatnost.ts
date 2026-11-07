@@ -176,8 +176,8 @@ export const privatnost: Record<Locale, { title: string; intro: string; sections
  * stranama vise ne bi bilo tacno.
  */
 export const kolaciciSaPikselom: Record<Locale, string> = {
-  sr: "Izuzetak su kampanjske strane /marketing, /reels i /svadbe. One nose Meta piksel, koji postavlja svoje kolačiće — piše o njemu u odeljku ispod.",
-  en: "The exception is the campaign pages /marketing, /reels and /svadbe. They carry the Meta pixel, which sets its own cookies — see the section below.",
+  sr: "Sajt nosi i Meta piksel, na svim stranama. On postavlja svoje kolačiće — piše o njemu u odeljku ispod.",
+  en: "The site also carries the Meta pixel, on every page. It sets its own cookies — see the section below.",
 };
 
 /**
@@ -195,7 +195,7 @@ export const analitikaOdeljak: Record<Locale, Section> = {
     h: "Google Analytics",
     p: [
       "Sajt koristi Google Analytics 4 da bismo videli koje se strane otvaraju, odakle posetioci dolaze i na čemu se zadržavaju.",
-      "Šalje se podatak o poseti: koja strana, koji uređaj i pregledač, približna lokacija na nivou grada i sa kog sajta si stigao. Ne šalju se ni ime, ni e-mail, ni broj telefona, ni tekst poruke iz kontakt forme.",
+      "Šalje se podatak o poseti: koja strana, koji uređaj i pregledač, približna lokacija na nivou grada i sa kog sajta si stigao. Beleži se i da je poslat upit, i kojim putem — formom, e-mailom, telefonom, WhatsApp-om ili Telegramom. Ne šalju se ni ime, ni e-mail, ni broj telefona, ni tekst poruke iz kontakt forme.",
       "Zašto nam treba: bez toga ne znamo koji deo sajta neko uopšte otvori, pa pišemo i prepravljamo napamet.",
       "Analytics postavlja svoje kolačiće. Možeš ih blokirati u pregledaču ili koristiti Google-ov dodatak za isključivanje Analytics-a; sajt radi normalno i bez njih.",
     ],
@@ -204,7 +204,7 @@ export const analitikaOdeljak: Record<Locale, Section> = {
     h: "Google Analytics",
     p: [
       "This site uses Google Analytics 4 so we can see which pages get opened, where visitors come from and what they stay on.",
-      "What is sent is the visit itself: which page, which device and browser, an approximate city-level location and the site you arrived from. Your name, email, phone number and the text of a contact message are not sent.",
+      "What is sent is the visit itself: which page, which device and browser, an approximate city-level location and the site you arrived from. It also records that an enquiry was sent and which route it took — the form, email, phone, WhatsApp or Telegram. Your name, email, phone number and the text of a contact message are not sent.",
       "Why we need it: without it we do not know which part of the site anyone actually opens, so we write and rewrite it blind.",
       "Analytics sets its own cookies. You can block them in your browser or use Google's Analytics opt-out add-on; the site works normally without them.",
     ],
@@ -214,21 +214,21 @@ export const analitikaOdeljak: Record<Locale, Section> = {
 /** Odeljak o pikselu; prikazuje se samo kad je piksel podesen. */
 export const pikselOdeljak: Record<Locale, Section> = {
   sr: {
-    h: "Meta piksel na kampanjskim stranama",
+    h: "Meta piksel",
     p: [
-      "Strane /marketing, /reels i /svadbe nose Meta piksel. On javlja Meti da je strana otvorena i da li je sa nje poslat upit.",
-      "Meti se ne šalje tvoje ime, broj telefona, e-mail ni tekst poruke — samo da se događaj desio i sa koje strane. Sam upit ide isključivo na našu e-mail adresu.",
+      "Sajt nosi Meta piksel na svim stranama. On javlja Meti da je strana otvorena i da li je sa nje poslat upit — kroz formu, ili klikom na e-mail, telefon, WhatsApp ili Telegram.",
+      "Meti se ne šalje tvoje ime, broj telefona, e-mail ni tekst poruke — samo da se događaj desio, sa koje strane i kojim putem. Sam upit ide isključivo na našu e-mail adresu.",
       "Zašto nam treba: bez toga ne znamo koji oglas je doneo upit, pa ne znamo ni koliko nas jedan upit košta. Piksel pritom postavlja kolačiće koji te prate i na drugim sajtovima.",
-      "Možeš ga isključiti u podešavanjima Facebook ili Instagram naloga, ili blokiranjem kolačića u pregledaču. Na ostalim stranama ovog sajta piksela nema.",
+      "Možeš ga isključiti u podešavanjima Facebook ili Instagram naloga, ili blokiranjem kolačića u pregledaču.",
     ],
   },
   en: {
-    h: "The Meta pixel on campaign pages",
+    h: "The Meta pixel",
     p: [
-      "The pages /marketing, /reels and /svadbe carry the Meta pixel. It tells Meta that the page was opened and whether an enquiry was sent from it.",
-      "Meta is not sent your name, phone number, email or the text of your message — only that the event happened and which page it came from. The enquiry itself goes to our email address and nowhere else.",
+      "The site carries the Meta pixel on every page. It tells Meta that the page was opened and whether an enquiry was sent from it — through the form, or by clicking the email, phone, WhatsApp or Telegram link.",
+      "Meta is not sent your name, phone number, email or the text of your message — only that the event happened, which page it came from and which route it took. The enquiry itself goes to our email address and nowhere else.",
       "Why we need it: without it we do not know which ad brought an enquiry, so we do not know what one enquiry costs us. The pixel does set cookies that follow you on other sites.",
-      "You can switch it off in your Facebook or Instagram account settings, or by blocking cookies in your browser. The rest of this site carries no pixel.",
+      "You can switch it off in your Facebook or Instagram account settings, or by blocking cookies in your browser.",
     ],
   },
 };

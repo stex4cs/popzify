@@ -1,6 +1,8 @@
 import { Unbounded, Manrope, JetBrains_Mono } from "next/font/google";
 import type { Jezik } from "@/lib/design";
 import Analitika from "../Analitika";
+import Piksel from "../Piksel";
+import Konverzije from "../Konverzije";
 
 /**
  * Koreni okvir portfolio strana.
@@ -47,6 +49,8 @@ export default function Koren({
       <body>
         {children}
         <Analitika />
+        <Piksel />
+        <Konverzije />
       </body>
     </html>
   );

@@ -4,6 +4,8 @@ import { Unbounded, Manrope, JetBrains_Mono } from "next/font/google";
 import "../../globals.css";
 import { dict, htmlLang, isLocale, locales, type Locale } from "@/lib/i18n";
 import Analitika from "@/components/Analitika";
+import Piksel from "@/components/Piksel";
+import Konverzije from "@/components/Konverzije";
 
 /* Fontovi idu kroz next/font: nema zahteva ka Google-u u runtime-u i nema
    skoka teksta pri ucitavanju. Imena promenljivih prate globals.css. */
@@ -89,8 +91,10 @@ export default async function LocaleLayout({
     <html lang={htmlLang[locale as Locale]} className={`${unbounded.variable} ${manrope.variable} ${mono.variable}`}>
       <body>
         {children}
-        {/* Analitika na svim stranama; bez NEXT_PUBLIC_GA_ID ne ubacuje nista. */}
+        {/* Merenje na svim stranama; svaki alat cuti dok nema svoj ID. */}
         <Analitika />
+        <Piksel />
+        <Konverzije />
       </body>
     </html>
   );
