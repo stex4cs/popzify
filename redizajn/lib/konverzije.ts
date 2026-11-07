@@ -18,8 +18,45 @@ import { dogadjaj } from "./analitika";
 /** Odakle je upit krenuo. Forma je jedini kanal sa potvrdjenim ishodom. */
 export type Kanal = "forma" | "email" | "telefon" | "whatsapp" | "telegram";
 
+/**
+ * Jedan posetilac, jedan upit — u prozoru od pola sata.
+ *
+ * Covek koji klikne WhatsApp pa posalje i formu nije dva posla. Bez ovoga
+ * bi obe platforme ucile na naduvanom broju i trazile publiku koja mnogo
+ * klikce, a ne onu koja se javlja.
+ *
+ * Isti prozor koji GA4 koristi za sesiju. Moglo je i podesavanjem
+ * „ONCE_PER_SESSION" u GA4, ali to vazi samo za Google — Meta bi i dalje
+ * primala svaki klik kao poseban Lead. Zato se broji ovde, pre slanja.
+ */
+const PROZOR = 30 * 60 * 1000;
+const KLJUC = "popzify_upit";
+
+function vecBrojan(): boolean {
+  try {
+    const pre = Number(window.localStorage.getItem(KLJUC) || 0);
+    return pre > 0 && Date.now() - pre < PROZOR;
+  } catch {
+    // Zabranjeno skladiste (privatni prozor, blokirani kolacici): radije
+    // izbroji dvaput nego da ne izbrojis nijednom.
+    return false;
+  }
+}
+
+function zabelezi() {
+  try {
+    window.localStorage.setItem(KLJUC, String(Date.now()));
+  } catch {
+    /* merenje nije bitno za ishod */
+  }
+}
+
 export function upit(kanal: Kanal, strana?: string) {
-  const putanja = strana || (typeof window !== "undefined" ? window.location.pathname : "");
+  if (typeof window === "undefined") return;
+  if (vecBrojan()) return;
+  zabelezi();
+
+  const putanja = strana || window.location.pathname;
 
   dogadjaj("generate_lead", { kanal, strana: putanja });
   prati("Lead", { content_category: putanja, content_name: kanal });

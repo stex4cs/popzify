@@ -17,8 +17,6 @@ import { kanalZaVezu, upit } from "@/lib/konverzije";
  */
 export default function Konverzije() {
   useEffect(() => {
-    const poslednji = new Map<string, number>();
-
     const naKlik = (e: MouseEvent) => {
       const cilj = e.target as Element | null;
       const veza = cilj?.closest?.("a[href]") as HTMLAnchorElement | null;
@@ -27,11 +25,8 @@ export default function Konverzije() {
       const kanal = kanalZaVezu(veza.getAttribute("href") || "");
       if (!kanal) return;
 
-      // Dvoklik na isti link nije dva upita.
-      const sada = Date.now();
-      if (sada - (poslednji.get(kanal) ?? 0) < 1500) return;
-      poslednji.set(kanal, sada);
-
+      // Ponavljanje ne filtriramo ovde: `upit` vec broji jedan po sesiji,
+      // kroz sve kanale, pa bi jos jedan filter samo prikrivao prvi.
       upit(kanal);
     };
 
