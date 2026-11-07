@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { dict, isLocale, locales, type Locale } from "@/lib/i18n";
-import { privatnost, azurirano, firma, pikselOdeljak, kolaciciSaPikselom } from "@/lib/privatnost";
+import {
+  privatnost,
+  azurirano,
+  firma,
+  pikselOdeljak,
+  kolaciciSaPikselom,
+  analitikaOdeljak,
+  kolaciciSaAnalitikom,
+} from "@/lib/privatnost";
 import { imaPiksel } from "@/lib/piksel";
+import { imaAnalitiku } from "@/lib/analitika";
 import styles from "./privatnost.module.css";
 
 export function generateStaticParams() {
@@ -40,15 +49,25 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   // Piksel se pominje samo kad stvarno postoji, da tekst ne tvrdi
   // nesto sto se ne desava — ni u jednom ni u drugom smeru.
-  const sekcije = imaPiksel
-    ? t.sections.map((s) =>
-        s.h === privatnost[locale as Locale].sections[5].h
-          ? { ...s, p: [...s.p, kolaciciSaPikselom[locale as Locale]] }
-          : s
-      )
+  // Odeljak o kolacicima dobija po jednu recenicu za svaki alat koji je
+  // stvarno ukljucen, pa tekst ne tvrdi nista unapred ni u jednom smeru.
+  const dopune = [
+    imaPiksel ? kolaciciSaPikselom[locale as Locale] : null,
+    imaAnalitiku ? kolaciciSaAnalitikom[locale as Locale] : null,
+  ].filter((x): x is string => x !== null);
+
+  const naslovKolacica = privatnost[locale as Locale].sections[5].h;
+  const sekcije = dopune.length
+    ? t.sections.map((s) => (s.h === naslovKolacica ? { ...s, p: [...s.p, ...dopune] } : s))
     : t.sections;
-  const sve = imaPiksel
-    ? [...sekcije.slice(0, 6), pikselOdeljak[locale as Locale], ...sekcije.slice(6)]
+
+  const dodatni = [
+    imaPiksel ? pikselOdeljak[locale as Locale] : null,
+    imaAnalitiku ? analitikaOdeljak[locale as Locale] : null,
+  ].filter((x): x is (typeof pikselOdeljak)[Locale] => x !== null);
+
+  const sve = dodatni.length
+    ? [...sekcije.slice(0, 6), ...dodatni, ...sekcije.slice(6)]
     : sekcije;
 
   return (

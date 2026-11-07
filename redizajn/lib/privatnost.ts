@@ -10,7 +10,8 @@ import type { Locale } from "./i18n";
  *
  * Odeljak o Meta pikselu i dopuna odeljka o kolacicima ulaze u tekst
  * samo kad je piksel stvarno podesen. Dok ga nema, tekst o kolacicima
- * stoji onakav kakav jeste i ne tvrdi nista unapred.
+ * stoji onakav kakav jeste i ne tvrdi nista unapred. Isto vazi i za
+ * odeljak o analitici.
  */
 
 export type Section = { h: string; p: string[]; list?: string[] };
@@ -177,6 +178,37 @@ export const privatnost: Record<Locale, { title: string; intro: string; sections
 export const kolaciciSaPikselom: Record<Locale, string> = {
   sr: "Izuzetak su kampanjske strane /marketing, /reels i /svadbe. One nose Meta piksel, koji postavlja svoje kolačiće — piše o njemu u odeljku ispod.",
   en: "The exception is the campaign pages /marketing, /reels and /svadbe. They carry the Meta pixel, which sets its own cookies — see the section below.",
+};
+
+/**
+ * Dopuna odeljka o kolacicima kad je analitika ukljucena. Za razliku od
+ * piksela, analitika stoji na celom sajtu, pa recenica mora da kaze bas to.
+ */
+export const kolaciciSaAnalitikom: Record<Locale, string> = {
+  sr: "Sajt koristi i Google Analytics, na svim stranama. On postavlja svoje kolačiće — piše o njemu u odeljku ispod.",
+  en: "The site also uses Google Analytics, on every page. It sets its own cookies — see the section below.",
+};
+
+/** Odeljak o analitici; prikazuje se samo kad je NEXT_PUBLIC_GA_ID podesen. */
+export const analitikaOdeljak: Record<Locale, Section> = {
+  sr: {
+    h: "Google Analytics",
+    p: [
+      "Sajt koristi Google Analytics 4 da bismo videli koje se strane otvaraju, odakle posetioci dolaze i na čemu se zadržavaju.",
+      "Šalje se podatak o poseti: koja strana, koji uređaj i pregledač, približna lokacija na nivou grada i sa kog sajta si stigao. Ne šalju se ni ime, ni e-mail, ni broj telefona, ni tekst poruke iz kontakt forme.",
+      "Zašto nam treba: bez toga ne znamo koji deo sajta neko uopšte otvori, pa pišemo i prepravljamo napamet.",
+      "Analytics postavlja svoje kolačiće. Možeš ih blokirati u pregledaču ili koristiti Google-ov dodatak za isključivanje Analytics-a; sajt radi normalno i bez njih.",
+    ],
+  },
+  en: {
+    h: "Google Analytics",
+    p: [
+      "This site uses Google Analytics 4 so we can see which pages get opened, where visitors come from and what they stay on.",
+      "What is sent is the visit itself: which page, which device and browser, an approximate city-level location and the site you arrived from. Your name, email, phone number and the text of a contact message are not sent.",
+      "Why we need it: without it we do not know which part of the site anyone actually opens, so we write and rewrite it blind.",
+      "Analytics sets its own cookies. You can block them in your browser or use Google's Analytics opt-out add-on; the site works normally without them.",
+    ],
+  },
 };
 
 /** Odeljak o pikselu; prikazuje se samo kad je piksel podesen. */

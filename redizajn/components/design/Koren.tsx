@@ -1,5 +1,6 @@
 import { Unbounded, Manrope, JetBrains_Mono } from "next/font/google";
 import type { Jezik } from "@/lib/design";
+import Analitika from "../Analitika";
 
 /**
  * Koreni okvir portfolio strana.
@@ -43,7 +44,10 @@ export default function Koren({
       lang={jezik}
       className={`${unbounded.variable} ${manrope.variable} ${mono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analitika />
+      </body>
     </html>
   );
 }
