@@ -672,3 +672,143 @@
   opacity: 0.9;
   filter: none;
 }
+
+/* ---------- WhatsApp u uvodu ---------- */
+
+.wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wa svg {
+  color: #25d366;
+}
+
+/* ---------- isti dogadjaj u 9:16 ---------- */
+
+/* Uspravan kadar levo, tekst desno: asimetricno, kao ostatak sajta.
+   Na telefonu tekst ide prvi, pa snimak — da se zna sta se gleda. */
+.uspravno {
+  display: grid;
+  gap: clamp(26px, 5vw, 64px);
+  align-items: center;
+}
+
+.uspravno > div:last-child {
+  order: -1;
+}
+
+.filmUspravno {
+  width: min(100%, 380px);
+  margin: 0 auto;
+}
+
+.filmUspravno video {
+  aspect-ratio: 9 / 16;
+}
+
+@media (min-width: 820px) {
+  .uspravno {
+    grid-template-columns: minmax(280px, 380px) 1fr;
+  }
+  .uspravno > div:last-child {
+    order: 0;
+  }
+  .filmUspravno {
+    margin: 0;
+  }
+}
+
+.stavke {
+  list-style: none;
+  margin: clamp(20px, 3vw, 28px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.stavke li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.stavke li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 0;
+  height: 0;
+  /* Play trougao iz znaka, umesto obicne crtice. */
+  border-left: 8px solid var(--lilac);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+/* ---------- prave fotografije ---------- */
+
+/* Stupci umesto mreze: fotografije zadrzavaju svoj oblik, uspravne i
+   polozene se slazu bez secenja. */
+.fotografije {
+  columns: 2;
+  column-gap: 10px;
+  list-style: none;
+  margin: clamp(26px, 4vw, 38px) 0 0;
+  padding: 0;
+}
+
+.fotografije li {
+  break-inside: avoid;
+  margin-bottom: 10px;
+}
+
+.fotografije img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--frame);
+  background: #0b0a14;
+}
+
+@media (min-width: 820px) {
+  .fotografije {
+    columns: 3;
+    column-gap: 14px;
+  }
+  .fotografije li {
+    margin-bottom: 14px;
+  }
+}
+
+/* ---------- direktni kontakt ispod forme ---------- */
+
+.direktno {
+  margin: 18px 0 0;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.direktno a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.direktno a:hover {
+  color: var(--lilac);
+}
+
+/* Mesto za plutajuce WhatsApp dugme, da ne pokrije podatke o firmi. */
+.page {
+  padding-bottom: 72px;
+}
+
+.direktno a {
+  white-space: nowrap;
+}

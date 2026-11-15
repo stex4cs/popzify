@@ -1,6 +1,7 @@
 import type { Locale } from "./i18n";
 import { svadbe } from "./kampanja-svadbe";
 import { marketing } from "./kampanja-marketing";
+import { dogadjaji } from "./kampanja-dogadjaji";
 
 /**
  * Kampanjske strane: /reels, kasnije /svadbe i /marketing.
@@ -34,6 +35,16 @@ export type Kampanja = {
   };
   /** Film u 16:9. Ucitava se tek na klik, sa zvukom. */
   film?: Odeljak & { src: string; poster: string; dugme: string };
+  /**
+   * Isti dogadjaj u 9:16, kao zaseban rez za telefon. Stoji pored
+   * spiska sta ta verzija donosi, jer je ona sama po sebi argument.
+   */
+  uspravno?: Odeljak & { src: string; poster: string; dugme: string; stavke: string[] };
+  /**
+   * Prave fotografije, ne kadrovi iz filma. Dimenzije su tu da se
+   * prostor rezervise pre ucitavanja i strana ne skace.
+   */
+  fotografije?: Odeljak & { slike: { src: string; w: number; h: number; alt: string }[] };
   /** Traka vertikalnih snimaka iz lib/work. */
   klipovi?: Odeljak;
   /** Dve kolone sa tim sta ulazi u posao. */
@@ -55,6 +66,14 @@ export type Kampanja = {
   partneri?: { naslov: string; slike: { src: string; ime: string; url?: string }[] };
   /** Ponudjeni izbor u polju "sta snimamo"; bez njega ide opsti spisak. */
   uslugeIzbor?: string[];
+  /**
+   * Dodatna pitanja u formi. `rok` pita kad treba i koliko cesto (za
+   * sadrzaj koji se ponavlja), `datum` pita datum i mesto (za svadbu i
+   * dogadjaj, gde je to prvo sto treba da se zna). Podrazumevano `rok`.
+   */
+  forma?: "rok" | "datum";
+  /** Poruka koja je vec upisana kad se otvori WhatsApp. */
+  whatsapp?: string;
   koraci: Odeljak & { steps: { h: string; p: string }[] };
   paketi: Odeljak & {
     items: { h: string; p: string; list: string[] }[];
@@ -334,5 +353,6 @@ const reelsEn: Kampanja = {
 export const kampanje: Record<string, Record<Locale, Kampanja>> = {
   reels: { sr: reelsSr, en: reelsEn },
   svadbe,
+  dogadjaji,
   marketing,
 };

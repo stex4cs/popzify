@@ -10,6 +10,7 @@ const PAGES = [
   "/marketing",
   "/reels",
   "/svadbe",
+  "/dogadjaji",
   "/radovi",
   ...slugovi.map((s) => `/radovi/${s}`),
   "/privatnost",

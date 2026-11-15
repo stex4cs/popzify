@@ -16,7 +16,7 @@ const sr: Kampanja = {
       "Isti tim radi i video i fotografiju, pa ne morate da usklađujete dve ekipe. Nekoliko kadrova dobijate isto veče, film i fotografije u roku iz ugovora. Beograd i cela Srbija.",
   },
   hero: {
-    eyebrow: "Beograd · cela Srbija",
+    eyebrow: "Beograd · Novi Sad · cela Srbija",
     title: "Vaš dan, onako kako je",
     accent: "bio.",
     sub:
@@ -153,6 +153,9 @@ const sr: Kampanja = {
     p:
       "Subote u sezoni odu prve. Zato prvo proveravamo da li je vaš datum slobodan, pa onda pričamo o svemu ostalom.",
   },
+  uslugeIzbor: ["Video", "Video i fotografija", "Samo fotografija", "Još ne znamo"],
+  forma: "datum",
+  whatsapp: "Zdravo, pišem sa sajta. Zanima me snimanje venčanja. Datum i mesto: ",
 };
 
 const en: Kampanja = {
@@ -163,7 +166,7 @@ const en: Kampanja = {
       "One team shoots both video and stills, so you never have to coordinate two crews. A few frames the same evening, the film and photos within the deadline in the contract. Belgrade and all of Serbia.",
   },
   hero: {
-    eyebrow: "Belgrade · all of Serbia",
+    eyebrow: "Belgrade · Novi Sad · all of Serbia",
     title: "Your day, the way it",
     accent: "was.",
     sub:
@@ -299,6 +302,9 @@ const en: Kampanja = {
     accent: "rest.",
     p: "Saturdays in season go first. So we check whether your date is free before talking about anything else.",
   },
+  uslugeIzbor: ["Video", "Video and photos", "Photos only", "Not sure yet"],
+  forma: "datum",
+  whatsapp: "Hi, I am writing from your website. I would like our wedding filmed. Date and venue: ",
 };
 
 export const svadbe = { sr, en };

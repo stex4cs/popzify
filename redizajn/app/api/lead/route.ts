@@ -61,6 +61,12 @@ function cleanMultiline(value: unknown, max = 3000): string {
     .slice(0, max);
 }
 
+/** Datum iz polja stize kao 2026-06-13; u mejlu se cita kao 13.06.2026. */
+function datumIspis(v: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+  return m ? `${m[3]}.${m[2]}.${m[1]}.` : v;
+}
+
 function fail(message: string, status: number) {
   return NextResponse.json({ status: "error", message }, { status });
 }
@@ -96,6 +102,8 @@ export async function POST(req: Request) {
   const izvor = clean(form.get("izvor"), 400);
   const rok = clean(form.get("rok"), 80);
   const tempo = clean(form.get("tempo"), 80);
+  const datum = clean(form.get("datum"), 20);
+  const mesto = clean(form.get("mesto"), 160);
   const stranica = clean(form.get("stranica"), 60);
   const poruka = cleanMultiline(form.get("poruka"));
   const saglasnost = !!form.get("saglasnost");
@@ -134,6 +142,8 @@ export async function POST(req: Request) {
     red("Snimamo:", usluga) +
     red("Rok:", rok) +
     red("Tempo:", tempo) +
+    (datum ? red("Datum:", datumIspis(datum)) : "") +
+    (mesto ? red("Mesto:", mesto) : "") +
     red("Strana:", stranica) +
     red("Izvor:", izvor) +
     `--------------------------------------------------\n` +
@@ -146,7 +156,7 @@ export async function POST(req: Request) {
       from: `Popzify sajt <${process.env.SMTP_USER}>`,
       to: TO,
       replyTo: email ? `${ime} <${email}>` : undefined,
-      subject: `NOVI UPIT${stranica && stranica !== "pocetna" ? ` /${stranica}` : ""}${usluga ? ` (${usluga})` : ""} — ${ime}`,
+      subject: `NOVI UPIT${stranica && stranica !== "pocetna" ? ` /${stranica}` : ""}${usluga ? ` (${usluga})` : ""} — ${ime}${datum ? ` · ${datumIspis(datum)}` : ""}`,
       text: body,
     });
   } catch (err) {

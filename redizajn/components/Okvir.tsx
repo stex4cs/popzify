@@ -1,5 +1,6 @@
 import { dict, type Locale } from "@/lib/i18n";
 import { firma } from "@/lib/privatnost";
+import { waVeza, WA_ISPIS } from "@/lib/whatsapp";
 import styles from "./okvir.module.css";
 
 /**
@@ -64,6 +65,11 @@ export function Podnozje({ locale }: { locale: Locale }) {
         </li>
         <li>
           <a href={`tel:${firma.telefonIntl}`}>{firma.telefon}</a>
+        </li>
+        <li>
+          <a href={waVeza()} target="_blank" rel="noopener">
+            WhatsApp {WA_ISPIS}
+          </a>
         </li>
         <li>
           <a href="https://www.instagram.com/lolipopz.bif/" rel="me noopener" target="_blank">

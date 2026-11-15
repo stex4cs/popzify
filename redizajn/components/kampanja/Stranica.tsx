@@ -4,6 +4,8 @@ import { firma } from "@/lib/privatnost";
 import ContactForm from "../ContactForm";
 import Klipovi from "./Klipovi";
 import Film from "./Film";
+import { WaPlutajuce, WaZnak } from "../WhatsApp";
+import { waVeza, WA_ISPIS } from "@/lib/whatsapp";
 import { Zaglavlje, Podnozje } from "../Okvir";
 import styles from "./kampanja.module.css";
 
@@ -46,8 +48,16 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
           <a className={styles.primarno} href="#upit">
             {k.hero.cta}
           </a>
-          <a className={styles.sporedno} href={`tel:${firma.telefonIntl}`}>
-            {k.hero.ctaDrugi}
+          {/* Telefon je i u zaglavlju i u podnozju; ovde ide WhatsApp,
+              jer sa telefona ljudi radije pisu nego sto zovu. */}
+          <a
+            className={`${styles.sporedno} ${styles.wa}`}
+            href={waVeza(k.whatsapp)}
+            target="_blank"
+            rel="noopener"
+          >
+            <WaZnak size={18} />
+            {t.whatsapp}
           </a>
         </div>
         <ul className={`${styles.oznake} mono`}>
@@ -95,6 +105,31 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
             dugme={k.film.dugme}
             naslov={`${k.film.title} ${k.film.accent}`}
           />
+        </section>
+      )}
+
+      {/* ---------- isti dogadjaj u 9:16 ---------- */}
+      {k.uspravno && (
+        <section className={`${styles.sekcija} ${styles.uspravno}`}>
+          <Film
+            src={k.uspravno.src}
+            poster={k.uspravno.poster}
+            dugme={k.uspravno.dugme}
+            naslov={`${k.uspravno.title} ${k.uspravno.accent}`}
+            uspravno
+          />
+          <div>
+            <p className="mono">{k.uspravno.eyebrow}</p>
+            <h2 className="display">
+              {k.uspravno.title} <em className="outline">{k.uspravno.accent}</em>
+            </h2>
+            <p className="lead">{k.uspravno.p}</p>
+            <ul className={styles.stavke}>
+              {k.uspravno.stavke.map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ul>
+          </div>
         </section>
       )}
 
@@ -149,6 +184,25 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
                     pripremljena u pravoj velicini i formatu. */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={src} alt="" loading="lazy" decoding="async" />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ---------- prave fotografije ---------- */}
+      {k.fotografije && (
+        <section className={styles.sekcija}>
+          <p className="mono">{k.fotografije.eyebrow}</p>
+          <h2 className="display">
+            {k.fotografije.title} <em className="outline">{k.fotografije.accent}</em>
+          </h2>
+          <p className="lead">{k.fotografije.p}</p>
+          <ul className={styles.fotografije}>
+            {k.fotografije.slike.map((f) => (
+              <li key={f.src}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={f.src} alt={f.alt} width={f.w} height={f.h} loading="lazy" decoding="async" />
               </li>
             ))}
           </ul>
@@ -308,10 +362,25 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
           {k.kraj.title} <em className="outline">{k.kraj.accent}</em>
         </h2>
         <p className="lead">{k.kraj.p}</p>
-        <ContactForm locale={locale} stranica={k.slug} prosireno usluge={k.uslugeIzbor} />
+        <ContactForm
+          locale={locale}
+          stranica={k.slug}
+          prosireno
+          usluge={k.uslugeIzbor}
+          polja={k.forma}
+        />
+        <p className={`${styles.direktno} mono`}>
+          {t.form.or}:{" "}
+          <a href={waVeza(k.whatsapp)} target="_blank" rel="noopener">
+            WhatsApp {WA_ISPIS}
+          </a>{" "}
+          · <a href={`tel:${firma.telefonIntl}`}>{firma.telefon}</a>
+        </p>
       </section>
 
       <Podnozje locale={locale} />
+
+      <WaPlutajuce poruka={k.whatsapp} natpis={t.whatsapp} />
     </main>
   );
 }

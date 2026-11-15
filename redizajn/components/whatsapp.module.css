@@ -1,0 +1,44 @@
+/* WhatsApp: krug na telefonu, kapsula sa natpisom na sirem ekranu. */
+
+.plutajuce {
+  position: fixed;
+  right: calc(var(--gutter) + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--gutter) + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.plutajuce:hover,
+.plutajuce:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(37, 211, 102, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+}
+
+.natpis {
+  display: none;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+@media (min-width: 820px) {
+  .plutajuce {
+    width: auto;
+    padding: 0 22px 0 18px;
+  }
+  .natpis {
+    display: inline;
+  }
+}

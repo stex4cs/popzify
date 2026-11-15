@@ -16,11 +16,14 @@ export default function Film({
   poster,
   dugme,
   naslov,
+  uspravno,
 }: {
   src: string;
   poster: string;
   dugme: string;
   naslov: string;
+  /** 9:16 umesto 16:9. */
+  uspravno?: boolean;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [krenuo, setKrenuo] = useState(false);
@@ -43,7 +46,9 @@ export default function Film({
   };
 
   return (
-    <div className={styles.film} data-krenuo={krenuo || undefined}>
+    <div
+      className={uspravno ? `${styles.film} ${styles.filmUspravno}` : styles.film}
+      data-krenuo={krenuo || undefined}>
       <video ref={ref} poster={poster} preload="none" playsInline aria-label={naslov} />
       {!krenuo && (
         <button type="button" className={styles.filmDugme} onClick={pusti}>

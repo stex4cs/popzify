@@ -3,6 +3,7 @@ import { stationCopy } from "@/lib/stations";
 import { clips } from "@/lib/work";
 import { aerials } from "@/lib/vazduh";
 import ContactForm from "./ContactForm";
+import { waVeza, WA_ISPIS } from "@/lib/whatsapp";
 import styles from "./Stations.module.css";
 
 /**
@@ -88,6 +89,11 @@ export default function Stations({ locale }: { locale: Locale }) {
             </li>
             <li>
               <a href="tel:+381605973212">060 5973212</a>
+            </li>
+            <li>
+              <a href={waVeza()} target="_blank" rel="noopener">
+                WhatsApp {WA_ISPIS}
+              </a>
             </li>
             <li>
               <a href="https://www.instagram.com/lolipopz.bif/" rel="me noopener" target="_blank">

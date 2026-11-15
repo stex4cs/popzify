@@ -19,6 +19,7 @@ export default function ContactForm({
   stranica,
   prosireno,
   usluge,
+  polja = "rok",
 }: {
   locale: Locale;
   /** Sa koje strane je upit stigao; ulazi u e-mail. */
@@ -27,6 +28,8 @@ export default function ContactForm({
   prosireno?: boolean;
   /** Sopstveni spisak u polju izbora; bez njega ide opsti. */
   usluge?: string[];
+  /** Sta se pita u prosirenom delu: rok i tempo, ili datum i mesto. */
+  polja?: "rok" | "datum";
 }) {
   const t = dict[locale].form;
   const [state, setState] = useState<State>({ kind: "idle" });
@@ -41,7 +44,11 @@ export default function ContactForm({
       .map((k) => q.get(k))
       .filter(Boolean)
       .join(" / ");
-    srcRef.current.value = utm || document.referrer || "direktno";
+    // Google Ads sa automatskim oznacavanjem ne dodaje UTM, nego samo
+    // gclid. Bez ovoga bi upit sa placenog oglasa u mejlu izgledao kao
+    // da je dosao direktno.
+    const ads = q.get("gclid") || q.get("gbraid") || q.get("wbraid") ? "Google Ads" : "";
+    srcRef.current.value = [ads, utm].filter(Boolean).join(" · ") || document.referrer || "direktno";
   }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -119,7 +126,20 @@ export default function ContactForm({
           <textarea name="poruka" rows={3} maxLength={3000} />
         </label>
 
-        {prosireno && (
+        {prosireno && polja === "datum" && (
+          <div className={styles.row}>
+            <label>
+              <span className="mono">{t.date}</span>
+              <input name="datum" type="date" autoComplete="off" />
+            </label>
+            <label>
+              <span className="mono">{t.venue}</span>
+              <input name="mesto" type="text" maxLength={160} placeholder={t.venueHint} />
+            </label>
+          </div>
+        )}
+
+        {prosireno && polja === "rok" && (
           <div className={styles.row}>
             <label>
               <span className="mono">{t.when}</span>

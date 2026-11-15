@@ -57,7 +57,13 @@ type Dict = {
     whenOptions: string[];
     pace: string;
     paceOptions: string[];
+    /** Za svadbe i dogadjaje: datum i mesto umesto roka i tempa. */
+    date: string;
+    venue: string;
+    venueHint: string;
   };
+  /** Natpis na WhatsApp dugmetu. */
+  whatsapp: string;
 };
 
 export const dict: Record<Locale, Dict> = {
@@ -87,6 +93,7 @@ export const dict: Record<Locale, Dict> = {
       { put: "marketing", tekst: "Sadržaj, oglasi i sajt" },
       { put: "reels", tekst: "Sadržaj za mreže" },
       { put: "svadbe", tekst: "Snimanje venčanja" },
+      { put: "dogadjaji", tekst: "Događaji i proslave" },
       { put: "radovi", tekst: "Radovi" },
     ],
     form: {
@@ -111,7 +118,11 @@ export const dict: Record<Locale, Dict> = {
       whenOptions: ["Za manje od dve nedelje", "Ovaj mesec", "Za jedan do tri meseca", "Još planiram"],
       pace: "Jednom ili redovno",
       paceOptions: ["Jednokratno", "Svakog meseca", "Više puta godišnje"],
+      date: "Datum",
+      venue: "Mesto ili sala",
+      venueHint: "npr. Novi Sad, restoran…",
     },
+    whatsapp: "Pišite na WhatsApp",
   },
   en: {
     meta: {
@@ -138,6 +149,7 @@ export const dict: Record<Locale, Dict> = {
       { put: "marketing", tekst: "Content, ads and a website" },
       { put: "reels", tekst: "Social content" },
       { put: "svadbe", tekst: "Wedding films" },
+      { put: "dogadjaji", tekst: "Events and parties" },
       { put: "radovi", tekst: "Work" },
     ],
     form: {
@@ -162,6 +174,10 @@ export const dict: Record<Locale, Dict> = {
       whenOptions: ["In under two weeks", "This month", "In one to three months", "Still planning"],
       pace: "Once or regularly",
       paceOptions: ["One-off", "Every month", "Several times a year"],
+      date: "Date",
+      venue: "Venue",
+      venueHint: "e.g. Novi Sad, a restaurant…",
     },
+    whatsapp: "Message us on WhatsApp",
   },
 };
