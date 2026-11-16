@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Unbounded, Manrope, JetBrains_Mono } from "next/font/google";
 import "../../globals.css";
-import { dict, htmlLang, isLocale, locales, type Locale } from "@/lib/i18n";
+import { dict, htmlLang, isLocale, locales, ogLocale, verzije, type Locale } from "@/lib/i18n";
 import Analitika from "@/components/Analitika";
 import Piksel from "@/components/Piksel";
 import Konverzije from "@/components/Konverzije";
@@ -10,19 +10,19 @@ import Konverzije from "@/components/Konverzije";
 /* Fontovi idu kroz next/font: nema zahteva ka Google-u u runtime-u i nema
    skoka teksta pri ucitavanju. Imena promenljivih prate globals.css. */
 const unbounded = Unbounded({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["500", "700"],
   variable: "--font-unbounded",
   display: "swap",
 });
 const manrope = Manrope({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["400", "600"],
   variable: "--font-manrope",
   display: "swap",
 });
 const mono = JetBrains_Mono({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["400", "600"],
   variable: "--font-mono",
   display: "swap",
@@ -45,16 +45,14 @@ export async function generateMetadata({
     metadataBase: new URL("https://popzify.com"),
     title: m.title,
     description: m.description,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: { "sr-Latn-RS": "/sr", en: "/en", "x-default": "/sr" },
-    },
+    alternates: verzije(locale),
     openGraph: {
       type: "website",
       siteName: "Popzify",
       title: m.title,
       description: m.description,
-      locale: locale === "sr" ? "sr_RS" : "en_US",
+      locale: ogLocale[locale],
+      alternateLocale: locales.filter((l) => l !== locale).map((l) => ogLocale[l]),
       url: `/${locale}`,
       // Slika se navodi izricito umesto preko imena fajla: u dinamickom
       // segmentu je Next u adresu upisivao "-" umesto jezika, a kad je

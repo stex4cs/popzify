@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { locales } from "@/lib/i18n";
+import { htmlLang, locales } from "@/lib/i18n";
 import { slugovi } from "@/lib/radovi";
 
 const BASE = "https://popzify.com";
@@ -69,8 +69,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: page === "" ? 1 : page === "/privatnost" ? 0.3 : page.startsWith("/radovi/") ? 0.7 : 0.9,
+      // Isti kodovi kao u <link rel="alternate"> na samim stranama, da
+      // pretrazivac ne dobije dve price o istoj strani.
       alternates: {
-        languages: Object.fromEntries(locales.map((l) => [l, `${BASE}/${l}${page}`])),
+        languages: {
+          ...Object.fromEntries(locales.map((l) => [htmlLang[l], `${BASE}/${l}${page}`])),
+          "x-default": `${BASE}/sr${page}`,
+        },
       },
     }))
   ),

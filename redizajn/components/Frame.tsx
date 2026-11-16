@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { dict, type Locale } from "@/lib/i18n";
 import { stations } from "@/lib/stations";
+import Jezici from "./Jezici";
 import styles from "./Frame.module.css";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -50,8 +51,6 @@ export default function Frame({ locale }: { locale: Locale }) {
     };
   }, []);
 
-  const other: Locale = locale === "sr" ? "en" : "sr";
-
   return (
     <div className={styles.frame}>
       <span className="corner tl" />
@@ -64,26 +63,14 @@ export default function Frame({ locale }: { locale: Locale }) {
           <b>Pop</b>zify
         </a>
 
-        <nav className={styles.nav} aria-label={locale === "sr" ? "Glavna navigacija" : "Main navigation"}>
+        <nav className={styles.nav} aria-label={t.ui.glavnaNav}>
           <a className="mono" href="#work">
             {t.nav.work}
           </a>
           <a className="mono" href="#contact">
             {t.nav.contact}
           </a>
-          <a
-            className={`mono ${styles.lang}`}
-            href={`/${other}`}
-            hrefLang={other}
-            lang={other}
-            aria-label={t.nav.other}
-          >
-            {/* Na uskom ekranu puno ime jezika ne stane, ali prekidac ne sme da nestane. */}
-            <span className={styles.langLong}>{t.nav.other}</span>
-            <span className={styles.langShort} aria-hidden="true">
-              {t.nav.otherShort}
-            </span>
-          </a>
+          <Jezici locale={locale} className={`mono ${styles.lang}`} />
         </nav>
       </header>
 

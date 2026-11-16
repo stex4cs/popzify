@@ -65,7 +65,9 @@ export default function ContactForm({
         setState({ kind: "ok" });
         return;
       }
-      setState({ kind: "err", msg: data?.message });
+      // Server pise poruke na srpskom; na ostalim jezicima ide opsta
+      // poruka iz recnika, sa brojem telefona.
+      setState({ kind: "err", msg: locale === "sr" ? data?.message : undefined });
     } catch {
       setState({ kind: "err" });
     }

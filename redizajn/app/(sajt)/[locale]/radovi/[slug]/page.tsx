@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, locales, type Locale } from "@/lib/i18n";
+import { dict, isLocale, locales, ogLocale, verzije, type Locale } from "@/lib/i18n";
 import { nadjiRad, slugovi } from "@/lib/radovi";
 import Detalj from "@/components/radovi/Detalj";
 
@@ -18,22 +18,16 @@ export async function generateMetadata({
   const rad = nadjiRad(slug, locale as Locale);
   if (!rad) return {};
   return {
-    title: `${rad.ime} — ${locale === "sr" ? "rad" : "work"} | Popzify`,
+    title: `${rad.ime} — ${dict[locale].ui.rad} | Popzify`,
     description: rad.lead,
-    alternates: {
-      canonical: `/${locale}/radovi/${slug}`,
-      languages: {
-        "sr-Latn-RS": `/sr/radovi/${slug}`,
-        en: `/en/radovi/${slug}`,
-        "x-default": `/sr/radovi/${slug}`,
-      },
-    },
+    alternates: verzije(locale, `/radovi/${slug}`),
     openGraph: {
       type: "article",
       siteName: "Popzify",
       title: rad.ime,
       description: rad.lead,
       url: `/${locale}/radovi/${slug}`,
+      locale: ogLocale[locale],
       images: [{ url: `/radovi-sajt/${slug}/main.webp`, alt: rad.ime }],
     },
   };

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, locales, type Locale } from "@/lib/i18n";
+import { isLocale, locales, ogLocale, verzije, type Locale } from "@/lib/i18n";
 import { kampanje } from "@/lib/kampanje";
 import Stranica from "@/components/kampanja/Stranica";
 
@@ -21,21 +21,15 @@ export async function generateMetadata({
   return {
     title: k.meta.title,
     description: k.meta.description,
-    alternates: {
-      canonical: `/${locale}/${SLUG}`,
-      languages: {
-        "sr-Latn-RS": `/sr/${SLUG}`,
-        en: `/en/${SLUG}`,
-        "x-default": `/sr/${SLUG}`,
-      },
-    },
+    alternates: verzije(locale, `/${SLUG}`),
     openGraph: {
       type: "website",
       siteName: "Popzify",
       title: k.meta.title,
       description: k.meta.description,
       url: `/${locale}/${SLUG}`,
-      locale: locale === "sr" ? "sr_RS" : "en_US",
+      locale: ogLocale[locale],
+      alternateLocale: locales.filter((l) => l !== locale).map((l) => ogLocale[l]),
       images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Popzify" }],
     },
   };

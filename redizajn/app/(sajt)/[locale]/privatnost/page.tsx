@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { dict, isLocale, locales, type Locale } from "@/lib/i18n";
+import { dict, isLocale, locales, verzije, type Locale } from "@/lib/i18n";
+import Jezici from "@/components/Jezici";
 import {
   privatnost,
   azurirano,
@@ -29,14 +30,7 @@ export async function generateMetadata({
   return {
     title: `${t.title} — Popzify`,
     description: t.intro,
-    alternates: {
-      canonical: `/${locale}/privatnost`,
-      languages: {
-        "sr-Latn-RS": "/sr/privatnost",
-        en: "/en/privatnost",
-        "x-default": "/sr/privatnost",
-      },
-    },
+    alternates: verzije(locale, "/privatnost"),
   };
 }
 
@@ -44,8 +38,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const t = privatnost[locale as Locale];
-  const nav = dict[locale as Locale].nav;
-  const other: Locale = locale === "sr" ? "en" : "sr";
+  const ui = dict[locale as Locale].ui;
 
   // Piksel se pominje samo kad stvarno postoji, da tekst ne tvrdi
   // nesto sto se ne desava — ni u jednom ni u drugom smeru.
@@ -78,16 +71,14 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         </a>
         <nav className={styles.nav}>
           <a className="mono" href={`/${locale}`}>
-            {locale === "sr" ? "Nazad na sajt" : "Back to the site"}
+            {ui.nazad}
           </a>
-          <a className="mono" href={`/${other}/privatnost`} hrefLang={other} lang={other}>
-            {nav.other}
-          </a>
+          <Jezici locale={locale as Locale} putanja="/privatnost" className="mono" />
         </nav>
       </header>
 
       <article className={styles.doc}>
-        <p className="mono">{locale === "sr" ? `Ažurirano ${azurirano}` : `Updated ${azurirano}`}</p>
+        <p className="mono">{`${ui.azurirano} ${azurirano[locale as Locale]}`}</p>
         <h1 className="display">{t.title}</h1>
         <p className="lead">{t.intro}</p>
 

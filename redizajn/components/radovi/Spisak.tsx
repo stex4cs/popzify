@@ -21,6 +21,14 @@ const TEKST = {
     otvori: "Open the site",
     vidi: "See the project",
   },
+  ru: {
+    eyebrow: "Работы",
+    title: "Сайты, которые мы",
+    accent: "сделали.",
+    p: "Каждый открывается вживую, а не картинкой. Нажмите на проект — и посмотрите, как он устроен.",
+    otvori: "Открыть сайт",
+    vidi: "Смотреть проект",
+  },
 } as const;
 
 export default function Spisak({ locale }: { locale: Locale }) {
@@ -32,7 +40,7 @@ export default function Spisak({ locale }: { locale: Locale }) {
       <span className="corner tl" />
       <span className="corner tr" />
 
-      <Zaglavlje locale={locale} drugiJezik={`/${locale === "sr" ? "en" : "sr"}/radovi`} />
+      <Zaglavlje locale={locale} putanja="/radovi" />
 
       <section className={styles.uvod}>
         <p className="mono">{t.eyebrow}</p>

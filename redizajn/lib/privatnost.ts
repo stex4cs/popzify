@@ -27,7 +27,12 @@ export const firma = {
   telefonIntl: "+381605973212",
 };
 
-export const azurirano = "10. oktobar 2026.";
+/** Datum poslednje izmene, ispisan kako se pise na svakom jeziku. */
+export const azurirano: Record<Locale, string> = {
+  sr: "16. novembar 2026.",
+  en: "16 November 2026",
+  ru: "16 ноября 2026 г.",
+};
 
 export const privatnost: Record<Locale, { title: string; intro: string; sections: Section[] }> = {
   sr: {
@@ -46,7 +51,7 @@ export const privatnost: Record<Locale, { title: string; intro: string; sections
         h: "Šta se prikuplja",
         p: ["Samo ono što je potrebno da se odgovori na upit:"],
         list: [
-          "Ono što sam upišeš u formu: ime i prezime, broj telefona, e-mail ako ga ostaviš, šta snimamo i poruku.",
+          "Ono što sam upišeš u formu: ime i prezime, broj telefona, e-mail ako ga ostaviš, šta snimamo, datum i mesto ako ih navedeš, i poruku.",
           "Odakle si došao na sajt — adresa stranice sa koje si stigao ili oznake kampanje iz linka.",
           "IP adresa sa koje je upit poslat. Služi samo da se spreči slanje stotinu upita u minutu.",
         ],
@@ -115,7 +120,7 @@ export const privatnost: Record<Locale, { title: string; intro: string; sections
         h: "What is collected",
         p: ["Only what is needed to answer an enquiry:"],
         list: [
-          "What you type into the form: your name, phone number, email if you leave one, what we are shooting, and your message.",
+          "What you type into the form: your name, phone number, email if you leave one, what we are shooting, the date and venue if you give them, and your message.",
           "Where you came from — the page that referred you, or the campaign tags in the link.",
           "The IP address the enquiry was sent from. It is used only to stop a hundred submissions a minute.",
         ],
@@ -168,6 +173,75 @@ export const privatnost: Record<Locale, { title: string; intro: string; sections
       },
     ],
   },
+  ru: {
+    title: "Политика конфиденциальности",
+    intro:
+      "Здесь точно написано, какие данные Popzify получает через этот сайт, зачем, куда они попадают и сколько хранятся. Текст короткий, потому что сайт мало что делает с данными.",
+    sections: [
+      {
+        h: "Кто обрабатывает данные",
+        p: [
+          `${firma.ime} — компания, зарегистрированная в Агентстве хозяйственных регистров Сербии, ИНН (PIB) ${firma.pib}, регистрационный номер ${firma.mb}, дата основания ${firma.osnovano}, юридический адрес: Белград, Земун, Сербия.`,
+          `По любым вопросам о данных: ${firma.email}, ${firma.telefonIntl}.`,
+        ],
+      },
+      {
+        h: "Что мы собираем",
+        p: ["Только то, что нужно, чтобы ответить на заявку:"],
+        list: [
+          "То, что вы сами вводите в форму: имя и фамилию, номер телефона, e-mail (если укажете), что нужно снять, дату и место (если укажете) и сообщение.",
+          "Откуда вы пришли на сайт — адрес страницы, с которой был переход, или метки рекламной кампании в ссылке.",
+          "IP-адрес, с которого отправлена заявка. Он нужен только для того, чтобы никто не мог отправить сотню заявок в минуту.",
+        ],
+      },
+      {
+        h: "Зачем и на каком основании",
+        p: [
+          "Чтобы ответить вам, договориться о работе и прислать предложение. Основание — ваше согласие: вы даёте его, отмечая галочку под формой. Без него заявка не отправляется.",
+          "Данные не используются для рекламных рассылок и никому не продаются.",
+        ],
+      },
+      {
+        h: "Куда попадают данные",
+        p: [
+          `Заявка приходит обычным письмом на ${firma.email} через почтовый сервер нашего хостинга — тем же путём, что и письмо, которое вы отправили бы нам сами.`,
+          "Сайт не хранит базу заявок. Если письмо не ушло, заявка нигде не сохраняется — и вы сразу увидите об этом сообщение вместе с нашим номером телефона.",
+        ],
+      },
+      {
+        h: "Сколько хранятся",
+        p: [
+          "В почтовом ящике — пока идёт переписка и работа, которая из неё выросла. Если вам больше не нужно с нами связываться, напишите — и мы всё удалим.",
+        ],
+      },
+      {
+        h: "Файлы cookie",
+        p: [
+          "Сайт не устанавливает cookie для отслеживания и не считает посещения. В браузере остаётся только настройка отображения, и она хранится у вас — к нам она не попадает.",
+        ],
+      },
+      {
+        h: "Ваши права",
+        p: ["По сербскому закону о защите персональных данных вы вправе:"],
+        list: [
+          "узнать, какие данные о вас у нас есть;",
+          "потребовать их исправить или удалить;",
+          "в любой момент отозвать согласие, не объясняя причин;",
+          "подать жалобу Уполномоченному по вопросам информации общественного значения и защиты персональных данных: Bulevar kralja Aleksandra 15, Белград.",
+        ],
+      },
+      {
+        h: "Дети",
+        p: ["Сайт не предназначен для лиц младше 16 лет, и мы не запрашиваем их данные."],
+      },
+      {
+        h: "Изменения",
+        p: [
+          "Если что-то из этого изменится, изменится и этот текст — с новой датой вверху. Если изменение больше чем косметическое, мы напишем, что именно поменялось.",
+        ],
+      },
+    ],
+  },
 };
 
 /**
@@ -178,6 +252,7 @@ export const privatnost: Record<Locale, { title: string; intro: string; sections
 export const kolaciciSaPikselom: Record<Locale, string> = {
   sr: "Sajt nosi i Meta piksel, na svim stranama. On postavlja svoje kolačiće — piše o njemu u odeljku ispod.",
   en: "The site also carries the Meta pixel, on every page. It sets its own cookies — see the section below.",
+  ru: "На всех страницах сайта также установлен пиксель Meta. Он ставит собственные cookie — подробнее в разделе ниже.",
 };
 
 /**
@@ -187,6 +262,7 @@ export const kolaciciSaPikselom: Record<Locale, string> = {
 export const kolaciciSaAnalitikom: Record<Locale, string> = {
   sr: "Sajt koristi i Google Analytics, na svim stranama. On postavlja svoje kolačiće — piše o njemu u odeljku ispod.",
   en: "The site also uses Google Analytics, on every page. It sets its own cookies — see the section below.",
+  ru: "На всех страницах сайта также работает Google Analytics. Он ставит собственные cookie — подробнее в разделе ниже.",
 };
 
 /** Odeljak o analitici; prikazuje se samo kad je NEXT_PUBLIC_GA_ID podesen. */
@@ -209,6 +285,15 @@ export const analitikaOdeljak: Record<Locale, Section> = {
       "Analytics sets its own cookies. You can block them in your browser or use Google's Analytics opt-out add-on; the site works normally without them.",
     ],
   },
+  ru: {
+    h: "Google Analytics",
+    p: [
+      "Сайт использует Google Analytics 4, чтобы мы видели, какие страницы открывают, откуда приходят посетители и на чём задерживаются.",
+      "Передаются данные о самом посещении: какая страница, какое устройство и браузер, примерное местоположение с точностью до города и с какого сайта вы пришли. Также фиксируется, что заявка отправлена, и каким способом — через форму, e-mail, телефон, WhatsApp или Telegram. Имя, e-mail, номер телефона и текст сообщения из формы не передаются.",
+      "Зачем это нужно: без этого мы не знаем, какие разделы сайта вообще открывают, и правим его вслепую.",
+      "Analytics ставит собственные cookie. Их можно заблокировать в браузере или установить официальное дополнение Google для отключения Analytics — сайт будет работать как обычно.",
+    ],
+  },
 };
 
 /** Odeljak o pikselu; prikazuje se samo kad je piksel podesen. */
@@ -229,6 +314,15 @@ export const pikselOdeljak: Record<Locale, Section> = {
       "Meta is not sent your name, phone number, email or the text of your message — only that the event happened, which page it came from and which route it took. The enquiry itself goes to our email address and nowhere else.",
       "Why we need it: without it we do not know which ad brought an enquiry, so we do not know what one enquiry costs us. The pixel does set cookies that follow you on other sites.",
       "You can switch it off in your Facebook or Instagram account settings, or by blocking cookies in your browser.",
+    ],
+  },
+  ru: {
+    h: "Пиксель Meta",
+    p: [
+      "На всех страницах сайта установлен пиксель Meta. Он сообщает Meta, что страница открыта и была ли с неё отправлена заявка — через форму или нажатием на e-mail, телефон, WhatsApp или Telegram.",
+      "Meta не получает ни вашего имени, ни номера телефона, ни e-mail, ни текста сообщения — только сам факт события, страницу и способ связи. Сама заявка приходит исключительно на наш e-mail.",
+      "Зачем это нужно: без этого мы не знаем, какое объявление принесло заявку, а значит — сколько она нам стоит. При этом пиксель ставит cookie, которые отслеживают вас и на других сайтах.",
+      "Отключить его можно в настройках аккаунта Facebook или Instagram или заблокировав cookie в браузере.",
     ],
   },
 };

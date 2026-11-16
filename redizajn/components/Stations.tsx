@@ -103,7 +103,7 @@ export default function Stations({ locale }: { locale: Locale }) {
           </ul>
           {/* Pocetna je strana sa najvise tezine, a do danas je vodila
               samo na politiku privatnosti. Odavde se drze i ostale. */}
-          <nav className={styles.strane} aria-label={locale === "sr" ? "Strane" : "Pages"}>
+          <nav className={styles.strane} aria-label={t.ui.strane}>
             {t.strane.map((x) => (
               <a key={x.put} href={`/${locale}/${x.put}`}>
                 {x.tekst}
@@ -112,7 +112,7 @@ export default function Stations({ locale }: { locale: Locale }) {
           </nav>
           <p className={`${styles.credit} mono`}>
             <a href={`/${locale}/privatnost`}>
-              {locale === "sr" ? "Politika privatnosti" : "Privacy policy"}
+              {t.ui.privatnost}
             </a>
           </p>
           {/* Potpis je obaveza licence pod kojom su podaci o gradu. */}
@@ -121,7 +121,7 @@ export default function Stations({ locale }: { locale: Locale }) {
             <a href="https://www.openstreetmap.org/copyright" rel="noopener" target="_blank">
               OpenStreetMap
             </a>{" "}
-            {locale === "sr" ? "doprinosioci" : "contributors"}, ODbL
+            {t.ui.doprinosioci}, ODbL
           </p>
         </div>
       </section>

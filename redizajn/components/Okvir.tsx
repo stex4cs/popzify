@@ -1,4 +1,5 @@
 import { dict, type Locale } from "@/lib/i18n";
+import Jezici from "./Jezici";
 import { firma } from "@/lib/privatnost";
 import { waVeza, WA_ISPIS } from "@/lib/whatsapp";
 import styles from "./okvir.module.css";
@@ -14,16 +15,15 @@ import styles from "./okvir.module.css";
 export function Zaglavlje({
   locale,
   telefon,
-  drugiJezik,
+  putanja,
 }: {
   locale: Locale;
   /** Kako se broj ispisuje; kampanje ga pisu domace, radovi medjunarodno. */
   telefon?: string;
-  /** Adresa iste strane na drugom jeziku. */
-  drugiJezik: string;
+  /** Deo adrese posle jezika ("/svadbe"), da prekidac vodi na istu stranu. */
+  putanja: string;
 }) {
   const t = dict[locale];
-  const other: Locale = locale === "sr" ? "en" : "sr";
 
   return (
     <header className={styles.top}>
@@ -37,9 +37,7 @@ export function Zaglavlje({
         <a className={`mono ${styles.tel}`} href={`tel:${firma.telefonIntl}`}>
           {telefon || firma.telefon}
         </a>
-        <a className="mono" href={drugiJezik} hrefLang={other} lang={other}>
-          {t.nav.other}
-        </a>
+        <Jezici locale={locale} putanja={putanja} className="mono" />
       </div>
     </header>
   );
@@ -52,7 +50,7 @@ export function Podnozje({ locale }: { locale: Locale }) {
     <footer className={styles.foot}>
       {/* Jedini unutrasnji linkovi ka kampanjskim stranama. Bez njih
           vise samo u sitemapu, bez ijedne veze sa ostatkom sajta. */}
-      <nav className={styles.strane} aria-label={locale === "sr" ? "Strane" : "Pages"}>
+      <nav className={styles.strane} aria-label={t.ui.strane}>
         {t.strane.map((x) => (
           <a key={x.put} href={`/${locale}/${x.put}`}>
             {x.tekst}
@@ -80,7 +78,7 @@ export function Podnozje({ locale }: { locale: Locale }) {
       <p className="mono">
         {firma.ime} · PIB {firma.pib} · MB {firma.mb} · {firma.sediste} ·{" "}
         <a href={`/${locale}/privatnost`}>
-          {locale === "sr" ? "Politika privatnosti" : "Privacy policy"}
+          {t.ui.privatnost}
         </a>
       </p>
     </footer>

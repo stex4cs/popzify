@@ -37,6 +37,22 @@ const TEKST = {
     ctaP: "Get in touch and we come back with a plan, a timeline and a price within 24 hours.",
     ctaDugme: "Send an enquiry",
   },
+  ru: {
+    nazad: "Все работы",
+    otvori: "Открыть сайт",
+    pregled: "О проекте",
+    izazov: "Задача",
+    resenje: "Решение",
+    ukratko: "Коротко",
+    galerija: "Галерея",
+    grana: "Сфера",
+    obim: "Объём работ",
+    godina: "Год",
+    dalje: "Следующий проект",
+    cta: "Нужен такой же сайт?",
+    ctaP: "Напишите нам — в течение 24 часов вернёмся с планом, сроками и ценой.",
+    ctaDugme: "Отправить заявку",
+  },
 } as const;
 
 export default function Detalj({ rad, locale }: { rad: Rad; locale: Locale }) {
@@ -52,7 +68,7 @@ export default function Detalj({ rad, locale }: { rad: Rad; locale: Locale }) {
 
       <Zaglavlje
         locale={locale}
-        drugiJezik={`/${locale === "sr" ? "en" : "sr"}/radovi/${rad.slug}`}
+        putanja={`/radovi/${rad.slug}`}
       />
 
       <article>

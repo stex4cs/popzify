@@ -1,4 +1,4 @@
-import { dict, type Locale } from "@/lib/i18n";
+import { dict, htmlLang, type Locale } from "@/lib/i18n";
 import type { Kampanja } from "@/lib/kampanje";
 import { firma } from "@/lib/privatnost";
 import ContactForm from "../ContactForm";
@@ -19,15 +19,43 @@ import styles from "./kampanja.module.css";
 export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale }) {
   const t = dict[locale];
 
+  // Usluga za pretrazivace: sta se nudi, gde i ko. Firma je opisana na
+  // pocetnoj (components/Podaci) pod istim @id, pa se ovde samo poziva.
+  const usluga = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: k.meta.title.split(" | ")[0],
+    description: k.meta.description,
+    url: `https://popzify.com/${locale}/${k.slug}`,
+    inLanguage: htmlLang[locale],
+    provider: {
+      "@type": "LocalBusiness",
+      "@id": "https://popzify.com/#popzify",
+      name: "Popzify",
+      telephone: firma.telefonIntl,
+      email: firma.email,
+    },
+    areaServed: [
+      { "@type": "City", name: "Beograd" },
+      { "@type": "City", name: "Novi Sad" },
+      { "@type": "Country", name: "Srbija" },
+    ],
+  };
+
   return (
     <main className={styles.page}>
+      <script
+        type="application/ld+json"
+        // Sadrzaj je nas, ne korisnicki unos.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(usluga) }}
+      />
       <span className="corner tl" />
       <span className="corner tr" />
 
       <Zaglavlje
         locale={locale}
         telefon={k.hero.ctaDrugi}
-        drugiJezik={`/${locale === "sr" ? "en" : "sr"}/${k.slug}`}
+        putanja={`/${k.slug}`}
       />
 
       {k.hero.poster && (

@@ -29,7 +29,7 @@ export default function Podaci({ locale }: { locale: Locale }) {
     },
     areaServed: "RS",
     sameAs: ["https://www.instagram.com/lolipopz.bif/"],
-    knowsLanguage: ["sr", "en"],
+    knowsLanguage: ["sr", "en", "ru"],
   };
 
   return (
