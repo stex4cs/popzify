@@ -15,6 +15,12 @@ import type { Kampanja } from "./kampanje";
  * Obraca se u mnozini, kao strana za svadbe.
  */
 
+/**
+ * Tri polozene i sest uspravnih: na desktopu red od tri polozene pa dva
+ * reda uspravnih, na telefonu polozena preko cele sirine pa par
+ * uspravnih. Redosled ovde je onaj za telefon; desktop polozene sam
+ * podigne u prvi red.
+ */
 const fotografije = [
   { src: "/dogadjaji/f1.webp", w: 1400, h: 934 },
   { src: "/dogadjaji/f2.webp", w: 934, h: 1400 },
@@ -24,28 +30,31 @@ const fotografije = [
   { src: "/dogadjaji/f6.webp", w: 934, h: 1400 },
   { src: "/dogadjaji/f7.webp", w: 1400, h: 934 },
   { src: "/dogadjaji/f8.webp", w: 934, h: 1400 },
+  { src: "/dogadjaji/f9.webp", w: 934, h: 1400 },
 ];
 
 const altSr = [
   "Bend uživo na bini, ESVS Belgrade 2026",
   "Violinistkinja u crvenom odelu",
-  "Gosti plešu pod crvenim svetlom",
-  "Gosti na terasi pre početka programa",
   "Performerka u haljini od crvenih ruža",
-  "Par u plesu",
+  "Gosti na terasi pre početka programa",
+  "Par u plesu pod crvenim svetlom",
+  "Gost u svetlom sakou na podijumu",
   "Dvojica gostiju nazdravljaju",
   "Gošća se smeje na podijumu",
+  "Slika na štafelaju, detalj sa večeri",
 ];
 
 const altEn = [
   "Live band on stage, ESVS Belgrade 2026",
   "Violinist in a red suit",
-  "Guests dancing under red light",
-  "Guests on the terrace before the programme",
   "Performer in a dress made of red roses",
-  "A couple dancing",
+  "Guests on the terrace before the programme",
+  "A couple dancing under red light",
+  "A guest in a light jacket on the dance floor",
   "Two guests raising a glass",
   "A guest laughing on the dance floor",
+  "A painting on an easel, a detail from the night",
 ];
 
 const sr: Kampanja = {

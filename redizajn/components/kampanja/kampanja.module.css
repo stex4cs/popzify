@@ -750,37 +750,45 @@
 
 /* ---------- prave fotografije ---------- */
 
-/* Stupci umesto mreze: fotografije zadrzavaju svoj oblik, uspravne i
-   polozene se slazu bez secenja. */
+/* Mreza sa stalnim oblicima, da redovi budu iste visine i strana
+   simetricna. Telefon: dve kolone, polozena ide preko obe. Desktop:
+   tri kolone, polozene se podignu u prvi red, uspravne idu ispod. */
 .fotografije {
-  columns: 2;
-  column-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
   list-style: none;
   margin: clamp(26px, 4vw, 38px) 0 0;
   padding: 0;
 }
 
-.fotografije li {
-  break-inside: avoid;
-  margin-bottom: 10px;
-}
-
 .fotografije img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
   border-radius: 12px;
   border: 1px solid var(--frame);
   background: #0b0a14;
 }
 
+.fotografije .polozena {
+  grid-column: 1 / -1;
+}
+
+.fotografije .polozena img {
+  aspect-ratio: 3 / 2;
+}
+
 @media (min-width: 820px) {
   .fotografije {
-    columns: 3;
-    column-gap: 14px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
   }
-  .fotografije li {
-    margin-bottom: 14px;
+  .fotografije .polozena {
+    grid-column: auto;
+    order: -1;
   }
 }
 
@@ -811,4 +819,21 @@
 
 .direktno a {
   white-space: nowrap;
+}
+
+/* ---------- upit u sredini ---------- */
+
+/* Poslednja sekcija je jedina koja nema sta da cita sa strane: naslov,
+   forma i direktni kontakt idu u osu, forma ostaje poravnata levo
+   iznutra jer se tako polja citaju. */
+.upit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.upit h2,
+.upit .lead {
+  margin-inline: auto;
 }

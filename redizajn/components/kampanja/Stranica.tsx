@@ -200,7 +200,7 @@ export default function Stranica({ k, locale }: { k: Kampanja; locale: Locale })
           <p className="lead">{k.fotografije.p}</p>
           <ul className={styles.fotografije}>
             {k.fotografije.slike.map((f) => (
-              <li key={f.src}>
+              <li key={f.src} className={f.w > f.h ? styles.polozena : undefined}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={f.src} alt={f.alt} width={f.w} height={f.h} loading="lazy" decoding="async" />
               </li>
